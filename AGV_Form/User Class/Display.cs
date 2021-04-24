@@ -249,16 +249,15 @@ namespace AGV_Form
         {
             listView.Items.Clear();
             foreach (Task task in listData)
-            {                                 
-                    listView.Items.Add(task.Name, 1);
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(task.Status);
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(task.Type);
-                    listView.Items[listView.Items.Count - 1].SubItems.Add("AGV#" + task.AGVID.ToString());
-                    listView.Items[listView.Items.Count - 1].SubItems.Add("Node " + task.PickNode.ToString());
-                    listView.Items[listView.Items.Count - 1].SubItems.Add("Node " + task.DropNode.ToString());
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(task.Priority);
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(task.PalletCode);
-                    if (task.Status == "Doing")
+            {
+                listView.Items.Add(task.Name, 1);
+                listView.Items[listView.Items.Count - 1].SubItems.Add(task.Status);
+                listView.Items[listView.Items.Count - 1].SubItems.Add(task.Type);
+                listView.Items[listView.Items.Count - 1].SubItems.Add("AGV#" + task.AGVID.ToString());
+                listView.Items[listView.Items.Count - 1].SubItems.Add("Node " + task.PickNode.ToString() + "-" + task.PickLevel.ToString());
+                listView.Items[listView.Items.Count - 1].SubItems.Add("Node " + task.DropNode.ToString() + "-" + task.DropLevel.ToString());
+                listView.Items[listView.Items.Count - 1].SubItems.Add(task.PalletCode);
+                if (task.Status == "Doing")
                         listView.Items[listData.IndexOf(task)].BackColor = Color.PaleGreen;
                     else
                         listView.Items[listData.IndexOf(task)].BackColor = Color.White;

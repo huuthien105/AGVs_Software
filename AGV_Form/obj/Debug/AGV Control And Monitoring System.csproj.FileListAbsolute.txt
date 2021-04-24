@@ -90,3 +90,24 @@ C:\Users\thien\OneDrive\Máy tính\AGV Control And Monitoring System\AGV_Form\ob
 C:\Users\thien\OneDrive\Máy tính\AGV Control And Monitoring System\AGV_Form\obj\Debug\AGV_Form.exe
 C:\Users\thien\OneDrive\Máy tính\AGV Control And Monitoring System\AGV_Form\obj\Debug\AGV_Form.pdb
 C:\Users\thien\OneDrive\Máy tính\AGV Control And Monitoring System\AGV_Form\obj\Debug\AGV_Form.AddTaskAGVForm.resources
+D:\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.exe.config
+D:\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.exe
+D:\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.pdb
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.AddRemoveAGVForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.AddTaskAGVForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.COMSetting.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.DashboardForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.fLogin.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.HelpForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.MonitoringForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.HomeScreenForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.Properties.Resources.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.ReportForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.TasksForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.WarehouseForm.resources
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.GenerateResource.cache
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.CoreCompileInputs.cache
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.exe
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.pdb
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.OrderForm.resources

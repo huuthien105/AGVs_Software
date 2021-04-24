@@ -95,7 +95,7 @@ namespace AGV_Form
                     // Update data in listView AGVs
                     Display.UpdateListViewAGVs(listViewAGVs, AGV.SimListAGV);
                     // Update location of AGV icon (label)
-                    
+                    Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
 
 
                     break;
@@ -166,11 +166,11 @@ namespace AGV_Form
             
             foreach(AGV agv in AGV.SimListAGV)
             {
-                Task.AddFirstPathOfAGVs(agv);
+                Task.SimUpdatePathFromTaskOfAGVs(agv);
                 Display.SimLabelAGV[agv.ID].Location = Display.SimUpdatePositionAGV(agv.ID, 1);
                     
             }
-            Display.UpdateListViewTasks(listViewTasks,Task.SimListTask);
+            
         }
 
        
@@ -255,6 +255,14 @@ namespace AGV_Form
             btnRun.BackColor = Color.DodgerBlue;
             btnPause.BackColor = Color.LightSteelBlue;
             timerSimAGV.Enabled = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OrderForm orderForm = new OrderForm();
+            
+                orderForm.Show();
+            
         }
     }
 }

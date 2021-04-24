@@ -10,24 +10,26 @@ namespace AGV_Form
     {
         public string Name { get; set; }
         public string Type { get; set; }
-        public string Priority { get; set; }
         public string PalletCode { get; set; }
         public int AGVID { get; set; }
         public int PickNode { get; set; }
         public int DropNode { get; set; }
+        public int PickLevel { get; set; }
+        public int DropLevel { get; set; }
         public string Status { get; set; }
 
         // Constructor of Task
-        public Task(string name, string type, string priority, string palletCode,
-                    int agvID, int pickNode, int dropNode, string status)
+        public Task(string name, string type, string palletCode,
+                    int agvID, int pickNode, int dropNode, int pickLevel, int dropLevel, string status)
         {
             this.Name = name;
             this.Type = type;
-            this.Priority = priority;
             this.PalletCode = palletCode;
             this.AGVID = agvID;
             this.PickNode = pickNode;
             this.DropNode = dropNode;
+            this.PickLevel = pickLevel;
+            this.DropLevel = dropLevel;
             this.Status = status;
         }
 
@@ -36,7 +38,9 @@ namespace AGV_Form
 
         // Information list of simulation Task
         public static List<Task> SimListTask = new List<Task>();
-        public static void AddFirstPathOfAGVs(AGV agv)
+
+        public static List<Task> SimHistoryTask = new List<Task>();
+        public static void SimUpdatePathFromTaskOfAGVs(AGV agv)
         {
 
             // Clear all path (this do not affect Task.SimListTask)
@@ -62,16 +66,35 @@ namespace AGV_Form
                     agv.Path.RemoveAt(0);
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                 }
-                else if(agv.CurrentNode == currentTask.DropNode)
+                else if(agv.CurrentNode == currentTask.DropNode && agv.DistanceToCurrentNode == 0 && currentTask.Status == "Doing" )
                 {
                             
-                             agv.Tasks.Remove(currentTask);
+                             agv.Tasks.RemoveAt(0);
                              agv.Path.Clear();
                              Task.SimListTask.Remove(currentTask);
                 }
-                        
+                       
                         
             }            
         }
+
+        public static void OutputAutoAdd(string palletCode, List<Task> listTaskToAdd, List<AGV> listAGV, List<RackColumn> listColumn)
+        {
+            // auto select agv
+            //if (SimlistAGV.Count == 0) return;
+            int agvID = 1;
+
+            // find pick node & level
+            RackColumn col = listColumn.Find(c => c.PalletCodes.Contains(palletCode));
+            int pickNode = col.AtNode;
+            int pickLevel = Array.IndexOf(col.PalletCodes, palletCode) + 1;
+
+            // select drop node (output1 or output2)
+            int dropNode = agvID % 2 == 1 ? 51 : 52;
+
+            Task newTask = new Task("Auto " + palletCode, "Output", palletCode, agvID, pickNode, dropNode, pickLevel, 1, "Waiting");
+            listTaskToAdd.Add(newTask);
+        }
+
     }
 }

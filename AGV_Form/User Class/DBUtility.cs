@@ -10,12 +10,13 @@ namespace AGV_Form
 {
     class DBUtility
     {
+        private const string connectionStr = @"Data Source=DESKTOP-TN7L9R8\PERFECT;
+                                    Initial Catalog=AGV_Datasource;Integrated Security=True";
         public static dynamic GetDataFromDB<T>(string tableName)
         {
             List<Node> listNode = new List<Node>();
             DataTable table = new DataTable();
-            string connectionStr = @"Data Source=DESKTOP-TN7L9R8\PERFECT;
-                                    Initial Catalog=AGV_Datasource;Integrated Security=True";
+            
             using (SqlConnection connection = new SqlConnection(connectionStr))
             {
                 //SqlComnection
@@ -50,6 +51,40 @@ namespace AGV_Form
 
             if (typeof(T) == typeof(DataTable)) return table;
             else if (typeof(T) == typeof(List<Node>)) return listNode;
+            else return null;
+        }
+        public static dynamic GetPalletInfoFromDB<T>(string tableName)
+        {
+            DataTable table = new DataTable();
+            List<Pallet> listPallet = new List<Pallet>();
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                //SqlComnection
+                connection.Open(); // don't need because using SqlDataAdapter
+
+                //SqlCommand
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "select * from " + tableName;
+
+                //SqlAdapter
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                //Get data
+                table.Clear();
+                adapter.Fill(table);
+                connection.Close(); // don't need because using SqlDataAdapter
+            }
+
+            // Store DataTable into a List
+            listPallet = (from DataRow dr in table.Rows
+                          where Convert.ToBoolean(dr["InStock"]) == true
+                          select new Pallet(dr["PalletCode"].ToString(), Convert.ToBoolean(dr["InStock"]), dr["StoreTime"].ToString(),
+                                            dr["AtBlock"].ToString(), Convert.ToInt16(dr["AtColumn"]), Convert.ToInt16(dr["AtLevel"]))
+                          ).ToList();
+
+            if (typeof(T) == typeof(DataTable)) return table;
+            else if (typeof(T) == typeof(List<Pallet>)) return listPallet;
             else return null;
         }
     }

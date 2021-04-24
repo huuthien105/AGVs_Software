@@ -53,6 +53,13 @@
     <Compile Include="Mini Form\AddTaskAGVForm.Designer.cs">
       <DependentUpon>AddTaskAGVForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mini Form\OrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mini Form\OrderForm.Designer.cs">
+      <DependentUpon>OrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Class\RackColumn.cs" />
     <Compile Include="User Class\Algorithm.cs" />
     <Compile Include="User Class\DBUtility.cs" />
     <Compile Include="Mini Form\AddRemoveAGVForm.cs">
@@ -146,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HomeScreenForm.resx">
       <DependentUpon>HomeScreenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mini Form\OrderForm.resx">
+      <DependentUpon>OrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

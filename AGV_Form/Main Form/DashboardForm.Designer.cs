@@ -106,8 +106,8 @@ namespace AGV_Form
             this.TaskAGV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PickNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DropNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Priority = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PalletCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -140,7 +140,6 @@ namespace AGV_Form
             this.lbD.Size = new System.Drawing.Size(19, 19);
             this.lbD.TabIndex = 9;
             this.lbD.Text = "D";
-            this.lbD.Visible = false;
             // 
             // lbC
             // 
@@ -153,7 +152,6 @@ namespace AGV_Form
             this.lbC.Size = new System.Drawing.Size(18, 19);
             this.lbC.TabIndex = 9;
             this.lbC.Text = "C";
-            this.lbC.Visible = false;
             // 
             // lbD6
             // 
@@ -166,7 +164,6 @@ namespace AGV_Form
             this.lbD6.Size = new System.Drawing.Size(17, 19);
             this.lbD6.TabIndex = 9;
             this.lbD6.Text = "6";
-            this.lbD6.Visible = false;
             // 
             // lbC6
             // 
@@ -179,7 +176,6 @@ namespace AGV_Form
             this.lbC6.Size = new System.Drawing.Size(17, 19);
             this.lbC6.TabIndex = 9;
             this.lbC6.Text = "6";
-            this.lbC6.Visible = false;
             // 
             // lbB6
             // 
@@ -192,7 +188,6 @@ namespace AGV_Form
             this.lbB6.Size = new System.Drawing.Size(17, 19);
             this.lbB6.TabIndex = 9;
             this.lbB6.Text = "6";
-            this.lbB6.Visible = false;
             // 
             // lbD5
             // 
@@ -205,7 +200,6 @@ namespace AGV_Form
             this.lbD5.Size = new System.Drawing.Size(17, 19);
             this.lbD5.TabIndex = 9;
             this.lbD5.Text = "5";
-            this.lbD5.Visible = false;
             // 
             // btnCOMSetting
             // 
@@ -228,6 +222,7 @@ namespace AGV_Form
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Lavender;
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnPause);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnCOMSetting);
@@ -415,7 +410,6 @@ namespace AGV_Form
             this.lbC5.Size = new System.Drawing.Size(17, 19);
             this.lbC5.TabIndex = 9;
             this.lbC5.Text = "5";
-            this.lbC5.Visible = false;
             // 
             // lbB5
             // 
@@ -428,7 +422,6 @@ namespace AGV_Form
             this.lbB5.Size = new System.Drawing.Size(17, 19);
             this.lbB5.TabIndex = 9;
             this.lbB5.Text = "5";
-            this.lbB5.Visible = false;
             // 
             // lbA6
             // 
@@ -441,7 +434,6 @@ namespace AGV_Form
             this.lbA6.Size = new System.Drawing.Size(17, 19);
             this.lbA6.TabIndex = 9;
             this.lbA6.Text = "6";
-            this.lbA6.Visible = false;
             // 
             // lbD3
             // 
@@ -454,7 +446,6 @@ namespace AGV_Form
             this.lbD3.Size = new System.Drawing.Size(17, 19);
             this.lbD3.TabIndex = 9;
             this.lbD3.Text = "3";
-            this.lbD3.Visible = false;
             // 
             // lbC3
             // 
@@ -467,7 +458,6 @@ namespace AGV_Form
             this.lbC3.Size = new System.Drawing.Size(17, 19);
             this.lbC3.TabIndex = 9;
             this.lbC3.Text = "3";
-            this.lbC3.Visible = false;
             // 
             // lbB3
             // 
@@ -480,7 +470,6 @@ namespace AGV_Form
             this.lbB3.Size = new System.Drawing.Size(17, 19);
             this.lbB3.TabIndex = 9;
             this.lbB3.Text = "3";
-            this.lbB3.Visible = false;
             // 
             // lbD4
             // 
@@ -493,7 +482,6 @@ namespace AGV_Form
             this.lbD4.Size = new System.Drawing.Size(17, 19);
             this.lbD4.TabIndex = 9;
             this.lbD4.Text = "4";
-            this.lbD4.Visible = false;
             // 
             // lbA5
             // 
@@ -506,7 +494,6 @@ namespace AGV_Form
             this.lbA5.Size = new System.Drawing.Size(17, 19);
             this.lbA5.TabIndex = 9;
             this.lbA5.Text = "5";
-            this.lbA5.Visible = false;
             // 
             // lbC4
             // 
@@ -519,7 +506,6 @@ namespace AGV_Form
             this.lbC4.Size = new System.Drawing.Size(17, 19);
             this.lbC4.TabIndex = 9;
             this.lbC4.Text = "4";
-            this.lbC4.Visible = false;
             // 
             // lbD2
             // 
@@ -532,7 +518,6 @@ namespace AGV_Form
             this.lbD2.Size = new System.Drawing.Size(17, 19);
             this.lbD2.TabIndex = 9;
             this.lbD2.Text = "2";
-            this.lbD2.Visible = false;
             // 
             // lbB4
             // 
@@ -545,7 +530,6 @@ namespace AGV_Form
             this.lbB4.Size = new System.Drawing.Size(17, 19);
             this.lbB4.TabIndex = 9;
             this.lbB4.Text = "4";
-            this.lbB4.Visible = false;
             // 
             // lbA3
             // 
@@ -558,7 +542,6 @@ namespace AGV_Form
             this.lbA3.Size = new System.Drawing.Size(17, 19);
             this.lbA3.TabIndex = 9;
             this.lbA3.Text = "3";
-            this.lbA3.Visible = false;
             // 
             // lbD1
             // 
@@ -571,7 +554,6 @@ namespace AGV_Form
             this.lbD1.Size = new System.Drawing.Size(15, 19);
             this.lbD1.TabIndex = 9;
             this.lbD1.Text = "1";
-            this.lbD1.Visible = false;
             // 
             // lbB2
             // 
@@ -584,7 +566,6 @@ namespace AGV_Form
             this.lbB2.Size = new System.Drawing.Size(17, 19);
             this.lbB2.TabIndex = 9;
             this.lbB2.Text = "2";
-            this.lbB2.Visible = false;
             // 
             // lbC1
             // 
@@ -597,7 +578,6 @@ namespace AGV_Form
             this.lbC1.Size = new System.Drawing.Size(15, 19);
             this.lbC1.TabIndex = 9;
             this.lbC1.Text = "1";
-            this.lbC1.Visible = false;
             // 
             // lbA4
             // 
@@ -610,7 +590,6 @@ namespace AGV_Form
             this.lbA4.Size = new System.Drawing.Size(17, 19);
             this.lbA4.TabIndex = 9;
             this.lbA4.Text = "4";
-            this.lbA4.Visible = false;
             // 
             // lbC2
             // 
@@ -623,7 +602,6 @@ namespace AGV_Form
             this.lbC2.Size = new System.Drawing.Size(17, 19);
             this.lbC2.TabIndex = 9;
             this.lbC2.Text = "2";
-            this.lbC2.Visible = false;
             // 
             // imgList
             // 
@@ -642,7 +620,6 @@ namespace AGV_Form
             this.lbB1.Size = new System.Drawing.Size(15, 19);
             this.lbB1.TabIndex = 9;
             this.lbB1.Text = "1";
-            this.lbB1.Visible = false;
             // 
             // groupBox6
             // 
@@ -885,7 +862,6 @@ namespace AGV_Form
             this.lbA2.Size = new System.Drawing.Size(17, 19);
             this.lbA2.TabIndex = 9;
             this.lbA2.Text = "2";
-            this.lbA2.Visible = false;
             // 
             // lbA1
             // 
@@ -898,7 +874,6 @@ namespace AGV_Form
             this.lbA1.Size = new System.Drawing.Size(15, 19);
             this.lbA1.TabIndex = 9;
             this.lbA1.Text = "1";
-            this.lbA1.Visible = false;
             // 
             // lbB
             // 
@@ -911,7 +886,6 @@ namespace AGV_Form
             this.lbB.Size = new System.Drawing.Size(17, 19);
             this.lbB.TabIndex = 9;
             this.lbB.Text = "B";
-            this.lbB.Visible = false;
             // 
             // lbA
             // 
@@ -924,7 +898,6 @@ namespace AGV_Form
             this.lbA.Size = new System.Drawing.Size(18, 19);
             this.lbA.TabIndex = 9;
             this.lbA.Text = "A";
-            this.lbA.Visible = false;
             // 
             // btnStore2
             // 
@@ -1006,34 +979,34 @@ namespace AGV_Form
             this.TaskAGV,
             this.PickNode,
             this.DropNode,
-            this.Priority,
             this.PalletCode});
-            this.listViewTasks.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewTasks.Font = new System.Drawing.Font("Segoe UI", 9.25F);
             this.listViewTasks.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listViewTasks.HideSelection = false;
-            this.listViewTasks.Location = new System.Drawing.Point(3, 23);
+            this.listViewTasks.Location = new System.Drawing.Point(3, 22);
             this.listViewTasks.Name = "listViewTasks";
-            this.listViewTasks.Size = new System.Drawing.Size(575, 139);
-            this.listViewTasks.TabIndex = 27;
+            this.listViewTasks.Size = new System.Drawing.Size(571, 139);
+            this.listViewTasks.SmallImageList = this.imgList;
+            this.listViewTasks.TabIndex = 28;
             this.listViewTasks.UseCompatibleStateImageBehavior = false;
             this.listViewTasks.View = System.Windows.Forms.View.Details;
             // 
             // TaskName
             // 
             this.TaskName.Text = "Task Name";
-            this.TaskName.Width = 75;
+            this.TaskName.Width = 80;
             // 
             // TaskStatus
             // 
             this.TaskStatus.Text = "Status";
             this.TaskStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TaskStatus.Width = 65;
+            this.TaskStatus.Width = 75;
             // 
             // Type
             // 
             this.Type.Text = "Type";
             this.Type.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Type.Width = 70;
             // 
             // TaskAGV
             // 
@@ -1044,24 +1017,28 @@ namespace AGV_Form
             // 
             this.PickNode.Text = "Pick Node";
             this.PickNode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PickNode.Width = 75;
+            this.PickNode.Width = 95;
             // 
             // DropNode
             // 
             this.DropNode.Text = "Drop Node";
-            this.DropNode.Width = 75;
-            // 
-            // Priority
-            // 
-            this.Priority.Text = "Priority";
-            this.Priority.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Priority.Width = 65;
+            this.DropNode.Width = 95;
             // 
             // PalletCode
             // 
             this.PalletCode.Text = "Pallet Code";
             this.PalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.PalletCode.Width = 80;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(315, 121);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DashboardForm
             // 
@@ -1153,15 +1130,6 @@ namespace AGV_Form
         private System.Windows.Forms.Timer timerSimAGV;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.ListView listViewTasks;
-        private System.Windows.Forms.ColumnHeader TaskName;
-        private System.Windows.Forms.ColumnHeader TaskStatus;
-        private System.Windows.Forms.ColumnHeader Type;
-        private System.Windows.Forms.ColumnHeader TaskAGV;
-        private System.Windows.Forms.ColumnHeader PickNode;
-        private System.Windows.Forms.ColumnHeader DropNode;
-        private System.Windows.Forms.ColumnHeader Priority;
-        private System.Windows.Forms.ColumnHeader PalletCode;
         private System.Windows.Forms.ContextMenuStrip cntxMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem showPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hidePathToolStripMenuItem;
@@ -1171,5 +1139,14 @@ namespace AGV_Form
         private System.Windows.Forms.Button btnOrder2;
         private System.Windows.Forms.Button btnOrder1;
         private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.ListView listViewTasks;
+        private System.Windows.Forms.ColumnHeader TaskName;
+        private System.Windows.Forms.ColumnHeader TaskStatus;
+        private System.Windows.Forms.ColumnHeader Type;
+        private System.Windows.Forms.ColumnHeader TaskAGV;
+        private System.Windows.Forms.ColumnHeader PickNode;
+        private System.Windows.Forms.ColumnHeader DropNode;
+        private System.Windows.Forms.ColumnHeader PalletCode;
+        private System.Windows.Forms.Button button1;
     }
 }
