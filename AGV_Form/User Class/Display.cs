@@ -66,7 +66,7 @@ namespace AGV_Form
             int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString()); ;
             if (frameArr[indexNode + 1] == "G"|| frameArr[indexNode + 1] == null )
             {
-                       
+                
                 if (agv.Path.Count() != 0)
                 {
                     

@@ -87,6 +87,45 @@ namespace AGV_Form
             else if (typeof(T) == typeof(List<Pallet>)) return listPallet;
             else return null;
         }
+        public static void InsertNewPalletToDB(string tableName, string palletCode, bool inStock, string storeTime,
+                                               string block, int column, int level)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                //SqlComnection
+                connection.Open();
+
+                //SqlCommand
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "insert into " + tableName + " (PalletCode, InStock, StoreTime, AtBlock, AtColumn, AtLevel)"
+                                                     + " values(@palletCode, @inStock, @storeTime, @atBlock, @atColumn, @atLevel)";
+                command.Parameters.Add("@palletCode", SqlDbType.NVarChar).Value = palletCode;
+                command.Parameters.Add("@inStock", SqlDbType.Bit).Value = inStock;
+                command.Parameters.Add("@storeTime", SqlDbType.NVarChar).Value = storeTime;
+                command.Parameters.Add("@atBlock", SqlDbType.NVarChar).Value = block;
+                command.Parameters.Add("@atColumn", SqlDbType.Int).Value = column;
+                command.Parameters.Add("@atLevel", SqlDbType.Int).Value = level;
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+        public static void DeletePalletFromDB(string tableName, string palletCode)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                //SqlComnection
+                connection.Open();
+
+                //SqlCommand
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "delete " + tableName + " where PalletCode = @palletCode";
+                command.Parameters.Add("@palletCode", SqlDbType.NVarChar).Value = palletCode;
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
     }
 }
 

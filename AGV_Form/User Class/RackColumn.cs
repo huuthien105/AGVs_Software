@@ -88,7 +88,7 @@ namespace AGV_Form
         // Save pallet info (the present and the past)
         public static List<Pallet> ListPallet = new List<Pallet>();
         public static List<Pallet> SimListPallet = new List<Pallet>();
-
+        public static List<Pallet> SimStorePallet = new List<Pallet>();
         public static void SaveDeliveryTime(string palletCode, List<Pallet> listPallet)
         {
             Pallet pallet = listPallet.Find(p => p.Code == palletCode);

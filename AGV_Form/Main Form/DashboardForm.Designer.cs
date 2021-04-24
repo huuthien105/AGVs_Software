@@ -87,6 +87,7 @@ namespace AGV_Form
             this.cntxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hidePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnOrder2 = new System.Windows.Forms.Button();
             this.btnOrder1 = new System.Windows.Forms.Button();
             this.lbA2 = new System.Windows.Forms.Label();
@@ -99,14 +100,15 @@ namespace AGV_Form
             this.timerListview = new System.Windows.Forms.Timer(this.components);
             this.timerSimAGV = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listViewTasks = new System.Windows.Forms.ListView();
-            this.TaskName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TaskStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Type = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TaskAGV = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PickNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DropNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PalletCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listViewTask = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -133,11 +135,11 @@ namespace AGV_Form
             // 
             this.lbD.AutoSize = true;
             this.lbD.BackColor = System.Drawing.Color.Transparent;
-            this.lbD.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbD.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
             this.lbD.ForeColor = System.Drawing.Color.Blue;
-            this.lbD.Location = new System.Drawing.Point(398, 364);
+            this.lbD.Location = new System.Drawing.Point(387, 355);
             this.lbD.Name = "lbD";
-            this.lbD.Size = new System.Drawing.Size(19, 19);
+            this.lbD.Size = new System.Drawing.Size(36, 37);
             this.lbD.TabIndex = 9;
             this.lbD.Text = "D";
             // 
@@ -145,11 +147,11 @@ namespace AGV_Form
             // 
             this.lbC.AutoSize = true;
             this.lbC.BackColor = System.Drawing.Color.Transparent;
-            this.lbC.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbC.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
             this.lbC.ForeColor = System.Drawing.Color.Blue;
-            this.lbC.Location = new System.Drawing.Point(70, 364);
+            this.lbC.Location = new System.Drawing.Point(64, 355);
             this.lbC.Name = "lbC";
-            this.lbC.Size = new System.Drawing.Size(18, 19);
+            this.lbC.Size = new System.Drawing.Size(34, 37);
             this.lbC.TabIndex = 9;
             this.lbC.Text = "C";
             // 
@@ -159,7 +161,7 @@ namespace AGV_Form
             this.lbD6.BackColor = System.Drawing.Color.Transparent;
             this.lbD6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbD6.ForeColor = System.Drawing.Color.Blue;
-            this.lbD6.Location = new System.Drawing.Point(611, 413);
+            this.lbD6.Location = new System.Drawing.Point(590, 385);
             this.lbD6.Name = "lbD6";
             this.lbD6.Size = new System.Drawing.Size(17, 19);
             this.lbD6.TabIndex = 9;
@@ -171,7 +173,7 @@ namespace AGV_Form
             this.lbC6.BackColor = System.Drawing.Color.Transparent;
             this.lbC6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbC6.ForeColor = System.Drawing.Color.Blue;
-            this.lbC6.Location = new System.Drawing.Point(290, 413);
+            this.lbC6.Location = new System.Drawing.Point(267, 385);
             this.lbC6.Name = "lbC6";
             this.lbC6.Size = new System.Drawing.Size(17, 19);
             this.lbC6.TabIndex = 9;
@@ -183,7 +185,7 @@ namespace AGV_Form
             this.lbB6.BackColor = System.Drawing.Color.Transparent;
             this.lbB6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbB6.ForeColor = System.Drawing.Color.Blue;
-            this.lbB6.Location = new System.Drawing.Point(611, 190);
+            this.lbB6.Location = new System.Drawing.Point(590, 162);
             this.lbB6.Name = "lbB6";
             this.lbB6.Size = new System.Drawing.Size(17, 19);
             this.lbB6.TabIndex = 9;
@@ -195,7 +197,7 @@ namespace AGV_Form
             this.lbD5.BackColor = System.Drawing.Color.Transparent;
             this.lbD5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbD5.ForeColor = System.Drawing.Color.Blue;
-            this.lbD5.Location = new System.Drawing.Point(537, 413);
+            this.lbD5.Location = new System.Drawing.Point(516, 385);
             this.lbD5.Name = "lbD5";
             this.lbD5.Size = new System.Drawing.Size(17, 19);
             this.lbD5.TabIndex = 9;
@@ -405,7 +407,7 @@ namespace AGV_Form
             this.lbC5.BackColor = System.Drawing.Color.Transparent;
             this.lbC5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbC5.ForeColor = System.Drawing.Color.Blue;
-            this.lbC5.Location = new System.Drawing.Point(216, 413);
+            this.lbC5.Location = new System.Drawing.Point(193, 385);
             this.lbC5.Name = "lbC5";
             this.lbC5.Size = new System.Drawing.Size(17, 19);
             this.lbC5.TabIndex = 9;
@@ -417,7 +419,7 @@ namespace AGV_Form
             this.lbB5.BackColor = System.Drawing.Color.Transparent;
             this.lbB5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbB5.ForeColor = System.Drawing.Color.Blue;
-            this.lbB5.Location = new System.Drawing.Point(537, 190);
+            this.lbB5.Location = new System.Drawing.Point(516, 162);
             this.lbB5.Name = "lbB5";
             this.lbB5.Size = new System.Drawing.Size(17, 19);
             this.lbB5.TabIndex = 9;
@@ -429,7 +431,7 @@ namespace AGV_Form
             this.lbA6.BackColor = System.Drawing.Color.Transparent;
             this.lbA6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbA6.ForeColor = System.Drawing.Color.Blue;
-            this.lbA6.Location = new System.Drawing.Point(290, 190);
+            this.lbA6.Location = new System.Drawing.Point(267, 162);
             this.lbA6.Name = "lbA6";
             this.lbA6.Size = new System.Drawing.Size(17, 19);
             this.lbA6.TabIndex = 9;
@@ -441,7 +443,7 @@ namespace AGV_Form
             this.lbD3.BackColor = System.Drawing.Color.Transparent;
             this.lbD3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbD3.ForeColor = System.Drawing.Color.Blue;
-            this.lbD3.Location = new System.Drawing.Point(611, 318);
+            this.lbD3.Location = new System.Drawing.Point(590, 346);
             this.lbD3.Name = "lbD3";
             this.lbD3.Size = new System.Drawing.Size(17, 19);
             this.lbD3.TabIndex = 9;
@@ -453,7 +455,7 @@ namespace AGV_Form
             this.lbC3.BackColor = System.Drawing.Color.Transparent;
             this.lbC3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbC3.ForeColor = System.Drawing.Color.Blue;
-            this.lbC3.Location = new System.Drawing.Point(290, 318);
+            this.lbC3.Location = new System.Drawing.Point(267, 346);
             this.lbC3.Name = "lbC3";
             this.lbC3.Size = new System.Drawing.Size(17, 19);
             this.lbC3.TabIndex = 9;
@@ -465,7 +467,7 @@ namespace AGV_Form
             this.lbB3.BackColor = System.Drawing.Color.Transparent;
             this.lbB3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbB3.ForeColor = System.Drawing.Color.Blue;
-            this.lbB3.Location = new System.Drawing.Point(611, 95);
+            this.lbB3.Location = new System.Drawing.Point(590, 123);
             this.lbB3.Name = "lbB3";
             this.lbB3.Size = new System.Drawing.Size(17, 19);
             this.lbB3.TabIndex = 9;
@@ -477,7 +479,7 @@ namespace AGV_Form
             this.lbD4.BackColor = System.Drawing.Color.Transparent;
             this.lbD4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbD4.ForeColor = System.Drawing.Color.Blue;
-            this.lbD4.Location = new System.Drawing.Point(463, 413);
+            this.lbD4.Location = new System.Drawing.Point(441, 385);
             this.lbD4.Name = "lbD4";
             this.lbD4.Size = new System.Drawing.Size(17, 19);
             this.lbD4.TabIndex = 9;
@@ -489,7 +491,7 @@ namespace AGV_Form
             this.lbA5.BackColor = System.Drawing.Color.Transparent;
             this.lbA5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbA5.ForeColor = System.Drawing.Color.Blue;
-            this.lbA5.Location = new System.Drawing.Point(216, 190);
+            this.lbA5.Location = new System.Drawing.Point(193, 162);
             this.lbA5.Name = "lbA5";
             this.lbA5.Size = new System.Drawing.Size(17, 19);
             this.lbA5.TabIndex = 9;
@@ -501,7 +503,7 @@ namespace AGV_Form
             this.lbC4.BackColor = System.Drawing.Color.Transparent;
             this.lbC4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbC4.ForeColor = System.Drawing.Color.Blue;
-            this.lbC4.Location = new System.Drawing.Point(142, 413);
+            this.lbC4.Location = new System.Drawing.Point(118, 385);
             this.lbC4.Name = "lbC4";
             this.lbC4.Size = new System.Drawing.Size(17, 19);
             this.lbC4.TabIndex = 9;
@@ -513,7 +515,7 @@ namespace AGV_Form
             this.lbD2.BackColor = System.Drawing.Color.Transparent;
             this.lbD2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbD2.ForeColor = System.Drawing.Color.Blue;
-            this.lbD2.Location = new System.Drawing.Point(537, 318);
+            this.lbD2.Location = new System.Drawing.Point(516, 346);
             this.lbD2.Name = "lbD2";
             this.lbD2.Size = new System.Drawing.Size(17, 19);
             this.lbD2.TabIndex = 9;
@@ -525,7 +527,7 @@ namespace AGV_Form
             this.lbB4.BackColor = System.Drawing.Color.Transparent;
             this.lbB4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbB4.ForeColor = System.Drawing.Color.Blue;
-            this.lbB4.Location = new System.Drawing.Point(463, 190);
+            this.lbB4.Location = new System.Drawing.Point(441, 162);
             this.lbB4.Name = "lbB4";
             this.lbB4.Size = new System.Drawing.Size(17, 19);
             this.lbB4.TabIndex = 9;
@@ -537,7 +539,7 @@ namespace AGV_Form
             this.lbA3.BackColor = System.Drawing.Color.Transparent;
             this.lbA3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbA3.ForeColor = System.Drawing.Color.Blue;
-            this.lbA3.Location = new System.Drawing.Point(290, 95);
+            this.lbA3.Location = new System.Drawing.Point(267, 123);
             this.lbA3.Name = "lbA3";
             this.lbA3.Size = new System.Drawing.Size(17, 19);
             this.lbA3.TabIndex = 9;
@@ -549,7 +551,7 @@ namespace AGV_Form
             this.lbD1.BackColor = System.Drawing.Color.Transparent;
             this.lbD1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbD1.ForeColor = System.Drawing.Color.Blue;
-            this.lbD1.Location = new System.Drawing.Point(463, 318);
+            this.lbD1.Location = new System.Drawing.Point(442, 346);
             this.lbD1.Name = "lbD1";
             this.lbD1.Size = new System.Drawing.Size(15, 19);
             this.lbD1.TabIndex = 9;
@@ -561,7 +563,7 @@ namespace AGV_Form
             this.lbB2.BackColor = System.Drawing.Color.Transparent;
             this.lbB2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbB2.ForeColor = System.Drawing.Color.Blue;
-            this.lbB2.Location = new System.Drawing.Point(537, 95);
+            this.lbB2.Location = new System.Drawing.Point(517, 123);
             this.lbB2.Name = "lbB2";
             this.lbB2.Size = new System.Drawing.Size(17, 19);
             this.lbB2.TabIndex = 9;
@@ -573,7 +575,7 @@ namespace AGV_Form
             this.lbC1.BackColor = System.Drawing.Color.Transparent;
             this.lbC1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbC1.ForeColor = System.Drawing.Color.Blue;
-            this.lbC1.Location = new System.Drawing.Point(142, 318);
+            this.lbC1.Location = new System.Drawing.Point(119, 346);
             this.lbC1.Name = "lbC1";
             this.lbC1.Size = new System.Drawing.Size(15, 19);
             this.lbC1.TabIndex = 9;
@@ -585,7 +587,7 @@ namespace AGV_Form
             this.lbA4.BackColor = System.Drawing.Color.Transparent;
             this.lbA4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbA4.ForeColor = System.Drawing.Color.Blue;
-            this.lbA4.Location = new System.Drawing.Point(142, 190);
+            this.lbA4.Location = new System.Drawing.Point(118, 162);
             this.lbA4.Name = "lbA4";
             this.lbA4.Size = new System.Drawing.Size(17, 19);
             this.lbA4.TabIndex = 9;
@@ -597,7 +599,7 @@ namespace AGV_Form
             this.lbC2.BackColor = System.Drawing.Color.Transparent;
             this.lbC2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbC2.ForeColor = System.Drawing.Color.Blue;
-            this.lbC2.Location = new System.Drawing.Point(216, 318);
+            this.lbC2.Location = new System.Drawing.Point(193, 346);
             this.lbC2.Name = "lbC2";
             this.lbC2.Size = new System.Drawing.Size(17, 19);
             this.lbC2.TabIndex = 9;
@@ -615,7 +617,7 @@ namespace AGV_Form
             this.lbB1.BackColor = System.Drawing.Color.Transparent;
             this.lbB1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbB1.ForeColor = System.Drawing.Color.Blue;
-            this.lbB1.Location = new System.Drawing.Point(463, 95);
+            this.lbB1.Location = new System.Drawing.Point(442, 123);
             this.lbB1.Name = "lbB1";
             this.lbB1.Size = new System.Drawing.Size(15, 19);
             this.lbB1.TabIndex = 9;
@@ -751,6 +753,7 @@ namespace AGV_Form
             this.pnFloor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnFloor.BackgroundImage")));
             this.pnFloor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnFloor.ContextMenuStrip = this.cntxMenuStrip;
+            this.pnFloor.Controls.Add(this.button2);
             this.pnFloor.Controls.Add(this.btnOrder2);
             this.pnFloor.Controls.Add(this.btnOrder1);
             this.pnFloor.Controls.Add(this.lbD);
@@ -815,6 +818,17 @@ namespace AGV_Form
             this.hidePathToolStripMenuItem.Text = "Hide current path";
             this.hidePathToolStripMenuItem.Click += new System.EventHandler(this.hidePathToolStripMenuItem_Click);
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.button2.Location = new System.Drawing.Point(343, 608);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(122, 33);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "Return AGV";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // btnOrder2
             // 
             this.btnOrder2.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -832,6 +846,7 @@ namespace AGV_Form
             this.btnOrder2.Text = "Order";
             this.btnOrder2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOrder2.UseVisualStyleBackColor = false;
+            this.btnOrder2.Click += new System.EventHandler(this.btnOrder2_Click);
             // 
             // btnOrder1
             // 
@@ -850,6 +865,7 @@ namespace AGV_Form
             this.btnOrder1.Text = "Order";
             this.btnOrder1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOrder1.UseVisualStyleBackColor = false;
+            this.btnOrder1.Click += new System.EventHandler(this.btnOrder1_Click);
             // 
             // lbA2
             // 
@@ -857,7 +873,7 @@ namespace AGV_Form
             this.lbA2.BackColor = System.Drawing.Color.Transparent;
             this.lbA2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbA2.ForeColor = System.Drawing.Color.Blue;
-            this.lbA2.Location = new System.Drawing.Point(216, 95);
+            this.lbA2.Location = new System.Drawing.Point(194, 123);
             this.lbA2.Name = "lbA2";
             this.lbA2.Size = new System.Drawing.Size(17, 19);
             this.lbA2.TabIndex = 9;
@@ -869,7 +885,7 @@ namespace AGV_Form
             this.lbA1.BackColor = System.Drawing.Color.Transparent;
             this.lbA1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbA1.ForeColor = System.Drawing.Color.Blue;
-            this.lbA1.Location = new System.Drawing.Point(142, 95);
+            this.lbA1.Location = new System.Drawing.Point(120, 123);
             this.lbA1.Name = "lbA1";
             this.lbA1.Size = new System.Drawing.Size(15, 19);
             this.lbA1.TabIndex = 9;
@@ -879,11 +895,11 @@ namespace AGV_Form
             // 
             this.lbB.AutoSize = true;
             this.lbB.BackColor = System.Drawing.Color.Transparent;
-            this.lbB.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbB.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
             this.lbB.ForeColor = System.Drawing.Color.Blue;
-            this.lbB.Location = new System.Drawing.Point(398, 144);
+            this.lbB.Location = new System.Drawing.Point(389, 132);
             this.lbB.Name = "lbB";
-            this.lbB.Size = new System.Drawing.Size(17, 19);
+            this.lbB.Size = new System.Drawing.Size(33, 37);
             this.lbB.TabIndex = 9;
             this.lbB.Text = "B";
             // 
@@ -891,11 +907,11 @@ namespace AGV_Form
             // 
             this.lbA.AutoSize = true;
             this.lbA.BackColor = System.Drawing.Color.Transparent;
-            this.lbA.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbA.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
             this.lbA.ForeColor = System.Drawing.Color.Blue;
-            this.lbA.Location = new System.Drawing.Point(70, 144);
+            this.lbA.Location = new System.Drawing.Point(64, 132);
             this.lbA.Name = "lbA";
-            this.lbA.Size = new System.Drawing.Size(18, 19);
+            this.lbA.Size = new System.Drawing.Size(35, 37);
             this.lbA.TabIndex = 9;
             this.lbA.Text = "A";
             // 
@@ -948,6 +964,7 @@ namespace AGV_Form
             // timerListview
             // 
             this.timerListview.Enabled = true;
+            this.timerListview.Interval = 250;
             this.timerListview.Tick += new System.EventHandler(this.timerListview_Tick);
             // 
             // timerSimAGV
@@ -959,80 +976,87 @@ namespace AGV_Form
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.BackColor = System.Drawing.Color.Lavender;
-            this.groupBox3.Controls.Add(this.listViewTasks);
+            this.groupBox3.Controls.Add(this.listViewTask);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.Color.DarkRed;
             this.groupBox3.Location = new System.Drawing.Point(15, 334);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(581, 165);
-            this.groupBox3.TabIndex = 21;
+            this.groupBox3.Size = new System.Drawing.Size(581, 163);
+            this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Tasks Monitoring";
+            this.groupBox3.Text = "AGVs Monitoring";
             // 
-            // listViewTasks
+            // listViewTask
             // 
-            this.listViewTasks.BackColor = System.Drawing.Color.White;
-            this.listViewTasks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.TaskName,
-            this.TaskStatus,
-            this.Type,
-            this.TaskAGV,
-            this.PickNode,
-            this.DropNode,
-            this.PalletCode});
-            this.listViewTasks.Font = new System.Drawing.Font("Segoe UI", 9.25F);
-            this.listViewTasks.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.listViewTasks.HideSelection = false;
-            this.listViewTasks.Location = new System.Drawing.Point(3, 22);
-            this.listViewTasks.Name = "listViewTasks";
-            this.listViewTasks.Size = new System.Drawing.Size(571, 139);
-            this.listViewTasks.SmallImageList = this.imgList;
-            this.listViewTasks.TabIndex = 28;
-            this.listViewTasks.UseCompatibleStateImageBehavior = false;
-            this.listViewTasks.View = System.Windows.Forms.View.Details;
+            this.listViewTask.BackColor = System.Drawing.Color.White;
+            this.listViewTask.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7});
+            this.listViewTask.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+            this.listViewTask.HideSelection = false;
+            this.listViewTask.Location = new System.Drawing.Point(3, 22);
+            this.listViewTask.Name = "listViewTask";
+            this.listViewTask.Size = new System.Drawing.Size(571, 134);
+            this.listViewTask.TabIndex = 1;
+            this.listViewTask.UseCompatibleStateImageBehavior = false;
+            this.listViewTask.View = System.Windows.Forms.View.Details;
             // 
-            // TaskName
+            // columnHeader1
             // 
-            this.TaskName.Text = "Task Name";
-            this.TaskName.Width = 80;
+            this.columnHeader1.Text = "Task Name";
+            this.columnHeader1.Width = 80;
             // 
-            // TaskStatus
+            // columnHeader2
             // 
-            this.TaskStatus.Text = "Status";
-            this.TaskStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TaskStatus.Width = 75;
+            this.columnHeader2.Text = "Status";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 80;
             // 
-            // Type
+            // columnHeader3
             // 
-            this.Type.Text = "Type";
-            this.Type.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Type.Width = 70;
+            this.columnHeader3.Text = "Type";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 80;
             // 
-            // TaskAGV
+            // columnHeader4
             // 
-            this.TaskAGV.Text = "AGV";
-            this.TaskAGV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader4.Text = "AGV";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // PickNode
+            // columnHeader5
             // 
-            this.PickNode.Text = "Pick Node";
-            this.PickNode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PickNode.Width = 95;
+            this.columnHeader5.Text = "Pick Node";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader5.Width = 90;
             // 
-            // DropNode
+            // columnHeader6
             // 
-            this.DropNode.Text = "Drop Node";
-            this.DropNode.Width = 95;
+            this.columnHeader6.Text = "Drop Node";
+            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader6.Width = 90;
             // 
-            // PalletCode
+            // columnHeader7
             // 
-            this.PalletCode.Text = "Pallet Code";
-            this.PalletCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PalletCode.Width = 80;
+            this.columnHeader7.Text = "Pallet Code";
+            this.columnHeader7.Width = 85;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "East_Direction.png.png");
+            this.imageList1.Images.SetKeyName(1, "North_Direction.png.png");
+            this.imageList1.Images.SetKeyName(2, "South_Direction.png.png");
+            this.imageList1.Images.SetKeyName(3, "West_Direction.png.png");
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(315, 121);
+            this.button1.Location = new System.Drawing.Point(319, 121);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 24;
@@ -1129,7 +1153,6 @@ namespace AGV_Form
         private System.Windows.Forms.Button btnAddAGV;
         private System.Windows.Forms.Timer timerSimAGV;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ContextMenuStrip cntxMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem showPathToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hidePathToolStripMenuItem;
@@ -1139,14 +1162,17 @@ namespace AGV_Form
         private System.Windows.Forms.Button btnOrder2;
         private System.Windows.Forms.Button btnOrder1;
         private System.Windows.Forms.Button btnPause;
-        private System.Windows.Forms.ListView listViewTasks;
-        private System.Windows.Forms.ColumnHeader TaskName;
-        private System.Windows.Forms.ColumnHeader TaskStatus;
-        private System.Windows.Forms.ColumnHeader Type;
-        private System.Windows.Forms.ColumnHeader TaskAGV;
-        private System.Windows.Forms.ColumnHeader PickNode;
-        private System.Windows.Forms.ColumnHeader DropNode;
-        private System.Windows.Forms.ColumnHeader PalletCode;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ListView listViewTask;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button button1;
     }
 }

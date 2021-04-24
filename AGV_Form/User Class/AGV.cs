@@ -41,6 +41,7 @@ namespace AGV_Form
 
         // then next path will be at Path[0] because of List<> characteristic 
         public List<List<int>> Path = new List<List<int>>();
+        public int PathCopmpleted = 0;
 
         public static string[] FullPathOfAGV = new string[40];
         //public string CurrentTask { get; set; }

@@ -16,7 +16,7 @@ namespace AGV_Form
         {
             InitializeComponent();
         }
-        int x = 300;
+        public static int delay = 0;
         private void DashboardForm_Load(object sender, EventArgs e)
         {
             
@@ -81,7 +81,7 @@ namespace AGV_Form
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
-
+            delay++;
             switch (Display.Mode)
             {
                 case "Real Time":
@@ -94,8 +94,9 @@ namespace AGV_Form
                 case "Simulation":
                     // Update data in listView AGVs
                     Display.UpdateListViewAGVs(listViewAGVs, AGV.SimListAGV);
+                    Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
                     // Update location of AGV icon (label)
-                    Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
+                    //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
 
 
                     break;
@@ -162,7 +163,7 @@ namespace AGV_Form
 
         private void timerSimAGV_Tick(object sender, EventArgs e)
         {
-            listViewTasks.Items.Clear();
+            //listViewTask.Items.Clear();
             
             foreach(AGV agv in AGV.SimListAGV)
             {
@@ -257,12 +258,24 @@ namespace AGV_Form
             timerSimAGV.Enabled = true;
         }
 
+        private void btnOrder1_Click(object sender, EventArgs e)
+        {
+            OrderForm orderForm = new OrderForm(51);
+
+            orderForm.Show();
+        }
+
+        private void btnOrder2_Click(object sender, EventArgs e)
+        {
+            OrderForm orderForm = new OrderForm(52);
+
+            orderForm.Show();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            OrderForm orderForm = new OrderForm();
-            
-                orderForm.Show();
-            
+            StoreForm storeForm = new StoreForm();
+            storeForm.Show();
         }
     }
 }

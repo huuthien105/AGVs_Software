@@ -59,6 +59,12 @@
     <Compile Include="Mini Form\OrderForm.Designer.cs">
       <DependentUpon>OrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mini Form\StoreForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mini Form\StoreForm.Designer.cs">
+      <DependentUpon>StoreForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="User Class\RackColumn.cs" />
     <Compile Include="User Class\Algorithm.cs" />
     <Compile Include="User Class\DBUtility.cs" />
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mini Form\OrderForm.resx">
       <DependentUpon>OrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mini Form\StoreForm.resx">
+      <DependentUpon>StoreForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

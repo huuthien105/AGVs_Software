@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+
 
 namespace AGV_Form
 {
@@ -38,8 +40,9 @@ namespace AGV_Form
 
         // Information list of simulation Task
         public static List<Task> SimListTask = new List<Task>();
-
+        
         public static List<Task> SimHistoryTask = new List<Task>();
+        
         public static void SimUpdatePathFromTaskOfAGVs(AGV agv)
         {
 
@@ -61,17 +64,41 @@ namespace AGV_Form
                     
                     agv.Tasks[0].Status = "Doing";
                 }
-                else if(agv.CurrentNode == currentTask.PickNode)
+                else if(agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" )
                 {
-                    agv.Path.RemoveAt(0);
+                    //Thread.Sleep(200);
+                    //DashboardForm.delay = 0;
+                    //while(DashboardForm.delay<2)
+                    
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
+                    agv.Path.RemoveAt(0);
+                    agv.PathCopmpleted = 1;
                 }
-                else if(agv.CurrentNode == currentTask.DropNode && agv.DistanceToCurrentNode == 0 && currentTask.Status == "Doing" )
+                else if(agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
                 {
-                            
-                             agv.Tasks.RemoveAt(0);
-                             agv.Path.Clear();
-                             Task.SimListTask.Remove(currentTask);
+                    //Thread.Sleep(200);
+                    //DashboardForm.delay = 0;
+                    //while (DashboardForm.delay < 2)
+                    agv.PathCopmpleted = 0;
+                    agv.Tasks.RemoveAt(0);
+                    agv.Path.Clear();
+                    if (currentTask.Type == "Order")
+                    {
+                        DBUtility.DeletePalletFromDB("SimPalletInfoTable", currentTask.PalletCode);
+                        Task.SimListTask.Remove(currentTask);
+                    }
+                    else if (currentTask.Type == "Store")
+                    {
+
+                        Pallet pallet = Pallet.SimStorePallet.Find(c=>c.Code == currentTask.PalletCode);
+                        pallet.DeliverTime = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
+                        DBUtility.InsertNewPalletToDB("SimPalletInfoTable", pallet.Code, pallet.InStock,pallet.DeliverTime, pallet.AtBlock,pallet.AtColumn,pallet.AtLevel);
+                        Pallet.SimStorePallet.Remove(pallet);
+                        Pallet.SimListPallet.Add(pallet);
+                        Task.SimListTask.Remove(currentTask);
+                    }  
+                    
+                   
                 }
                        
                         
