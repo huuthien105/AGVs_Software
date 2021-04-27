@@ -19,9 +19,19 @@ namespace AGV_Form
         public static int delay = 0;
         private void DashboardForm_Load(object sender, EventArgs e)
         {
-            
-            
-            
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    rdbtnRealTime.Checked = true;
+                    rdbtnSimulation.Checked = false;
+                    break;
+                case "Simulation":
+                    rdbtnRealTime.Checked = false;
+                    rdbtnSimulation.Checked = true;
+                    break;
+            }
+
+
             //AGV.ListPathOfAGV[2] = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, 54, 30);
         }
         private void btnCOMSetting_Click(object sender, EventArgs e)
@@ -164,13 +174,28 @@ namespace AGV_Form
         private void timerSimAGV_Tick(object sender, EventArgs e)
         {
             //listViewTask.Items.Clear();
-            
-            foreach(AGV agv in AGV.SimListAGV)
+            switch (Display.Mode)
             {
-                Task.SimUpdatePathFromTaskOfAGVs(agv);
-                Display.SimLabelAGV[agv.ID].Location = Display.SimUpdatePositionAGV(agv.ID, 1);
-                    
+                case "Real Time":
+                    foreach (AGV agv in AGV.ListAGV)
+                    {
+                        
+                       
+
+                    }
+                    break;
+                case "Simulation":
+                    foreach (AGV agv in AGV.SimListAGV)
+                    {
+                        Task.SimUpdatePathFromTaskOfAGVs(agv);
+                        Display.SimLabelAGV[agv.ID].Location = Display.SimUpdatePositionAGV(agv.ID, agv.Velocity);
+
+                    }
+                    break;
             }
+
+
+           
             
         }
 
@@ -182,14 +207,8 @@ namespace AGV_Form
 
         private void button6_Click(object sender, EventArgs e)
         {
-            AddTaskAGVForm AddTaskForm = new AddTaskAGVForm();
-            
-                
-                AddTaskForm.Show();
-                
-
-            
-            
+            AddTaskAGVForm AddTaskForm = new AddTaskAGVForm();                
+            AddTaskForm.Show();            
         }
 
         private void cntxMenuStrip_Opening(object sender, CancelEventArgs e)
@@ -248,14 +267,31 @@ namespace AGV_Form
         {
             btnPause.BackColor = Color.DodgerBlue;
             btnRun.BackColor = Color.LightSteelBlue;
-            timerSimAGV.Enabled = false;
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                   
+                    break;
+                case "Simulation":
+                    timerSimAGV.Enabled = false;
+                    break;
+            }
+           
         }
 
         private void btnRun_Click(object sender, EventArgs e)
         {
             btnRun.BackColor = Color.DodgerBlue;
             btnPause.BackColor = Color.LightSteelBlue;
-            timerSimAGV.Enabled = true;
+            switch (Display.Mode)
+            {
+                case "Real Time":
+
+                    break;
+                case "Simulation":
+                    timerSimAGV.Enabled = true;
+                    break;
+            }
         }
 
         private void btnOrder1_Click(object sender, EventArgs e)
@@ -272,10 +308,26 @@ namespace AGV_Form
             orderForm.Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+
+        private void btnStore1_Click(object sender, EventArgs e)
         {
-            StoreForm storeForm = new StoreForm();
+            StoreForm storeForm = new StoreForm(53);
             storeForm.Show();
         }
+
+        private void btnStore2_Click(object sender, EventArgs e)
+        {
+            StoreForm storeForm = new StoreForm(54);
+            storeForm.Show();
+        }
+
+       
+
+      
+      
+
+       
     }
 }

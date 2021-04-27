@@ -51,6 +51,11 @@ namespace AGV_Form
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.cbbModeList = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtVelocity = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -95,7 +100,7 @@ namespace AGV_Form
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox2.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox2.Location = new System.Drawing.Point(12, 271);
+            this.groupBox2.Location = new System.Drawing.Point(12, 369);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(226, 62);
             this.groupBox2.TabIndex = 31;
@@ -143,6 +148,11 @@ namespace AGV_Form
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.txtVelocity);
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnEdit);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnAdd);
@@ -157,7 +167,7 @@ namespace AGV_Form
             this.groupBox1.ForeColor = System.Drawing.Color.DarkRed;
             this.groupBox1.Location = new System.Drawing.Point(12, 82);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(241, 175);
+            this.groupBox1.Size = new System.Drawing.Size(241, 264);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add";
@@ -167,7 +177,7 @@ namespace AGV_Form
             this.btnEdit.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.btnEdit.ForeColor = System.Drawing.Color.Navy;
-            this.btnEdit.Location = new System.Drawing.Point(78, 142);
+            this.btnEdit.Location = new System.Drawing.Point(69, 228);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(71, 27);
             this.btnEdit.TabIndex = 17;
@@ -194,7 +204,7 @@ namespace AGV_Form
             this.btnAdd.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.btnAdd.ForeColor = System.Drawing.Color.Navy;
-            this.btnAdd.Location = new System.Drawing.Point(155, 142);
+            this.btnAdd.Location = new System.Drawing.Point(150, 228);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(71, 27);
             this.btnAdd.TabIndex = 6;
@@ -328,9 +338,8 @@ namespace AGV_Form
             this.label4.ForeColor = System.Drawing.Color.Navy;
             this.label4.Location = new System.Drawing.Point(17, 114);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 19);
+            this.label4.Size = new System.Drawing.Size(0, 19);
             this.label4.TabIndex = 13;
-            this.label4.Text = "Distance to Exit Node:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
@@ -377,12 +386,77 @@ namespace AGV_Form
             this.cbbModeList.TabIndex = 17;
             this.cbbModeList.SelectedValueChanged += new System.EventHandler(this.cbbModeList_SelectedValueChanged);
             // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label7.ForeColor = System.Drawing.Color.Navy;
+            this.label7.Location = new System.Drawing.Point(17, 129);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 19);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "(unit: cm)";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label8.ForeColor = System.Drawing.Color.Navy;
+            this.label8.Location = new System.Drawing.Point(17, 111);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(143, 19);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Distance to Exit Node:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label10.ForeColor = System.Drawing.Color.Navy;
+            this.label10.Location = new System.Drawing.Point(17, 155);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(96, 19);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Initial Velocity:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txtVelocity
+            // 
+            this.txtVelocity.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.txtVelocity.Location = new System.Drawing.Point(169, 155);
+            this.txtVelocity.Name = "txtVelocity";
+            this.txtVelocity.Size = new System.Drawing.Size(52, 25);
+            this.txtVelocity.TabIndex = 22;
+            this.txtVelocity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtVelocity_KeyPress);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label11.ForeColor = System.Drawing.Color.Navy;
+            this.label11.Location = new System.Drawing.Point(17, 174);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 19);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "(unit: cm/s)";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // AddRemoveAGVForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(387, 346);
+            this.ClientSize = new System.Drawing.Size(387, 457);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listViewAGV);
@@ -424,5 +498,10 @@ namespace AGV_Form
         private System.Windows.Forms.ComboBox cbbModeList;
         private System.Windows.Forms.ComboBox cbbIDRemove;
         private System.Windows.Forms.Button btnEdit;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtVelocity;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
     }
 }

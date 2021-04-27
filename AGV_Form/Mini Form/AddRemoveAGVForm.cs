@@ -32,7 +32,7 @@ namespace AGV_Form
                String.IsNullOrEmpty(cbbOrientation.Text) || String.IsNullOrEmpty(txbDistance.Text))
                 return;
             AGV agv = new AGV(Convert.ToInt16(txbID.Text), Convert.ToInt16(cbbExitNode.Text),
-                              Convert.ToChar(cbbOrientation.Text), Convert.ToInt16(txbDistance.Text), "Stop");
+                              Convert.ToChar(cbbOrientation.Text), Convert.ToSingle(txbDistance.Text), "Stop");
             
             switch (cbbModeList.Text)
             {
@@ -66,6 +66,7 @@ namespace AGV_Form
                         }
                     }
                     // If not exist, add new AGV into listNewAGV
+                    agv.Velocity = Convert.ToSingle(txtVelocity.Text);                    
                     AGV.SimListAGV.Add(agv);
                     AGV.FullPathOfAGV[agv.ID] = agv.CurrentNode.ToString() + "-G";
                     Display.AddLabelAGV(cbbModeList.Text, agv.ID, agv.CurrentNode, agv.CurrentOrient, agv.DistanceToCurrentNode);
@@ -79,6 +80,7 @@ namespace AGV_Form
             // Clear textBox for next adding
             txbID.Clear();
             txbDistance.Clear();
+            txtVelocity.Clear();
         }
 
 
@@ -151,14 +153,14 @@ namespace AGV_Form
                 case "Real Time":
 
                     // Put existing AGV in ListAGV and listView
-                    
+                    txtVelocity.Enabled = false;
                     foreach (AGV agv in AGV.ListAGV)
                     {
                         listViewAGV.Items.Add(" AGV#" + agv.ID, 0);
                     }
                     break;
                 case "Simulation":
-
+                    txtVelocity.Enabled = true;
                     // Put existing AGV in SimListAGV and listView
                     foreach (AGV agv in AGV.SimListAGV)
                     {
@@ -241,6 +243,15 @@ namespace AGV_Form
                     if (!agvSimAdded)
                         MessageBox.Show("AGV ID is not in AGV List !", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     break;
+            }
+        }
+
+        private void txtVelocity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !(e.KeyChar=='.'))
+            {
+                e.Handled = true;
+                MessageBox.Show("Only allow digit", "AGV ID Type", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

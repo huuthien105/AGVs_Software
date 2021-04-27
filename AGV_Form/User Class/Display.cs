@@ -33,53 +33,52 @@ namespace AGV_Form
         public static void UpdateListViewAGVs(ListView listView, List<AGV> listData)
         {
             listView.Items.Clear();
-           
-                
-                foreach (AGV agv in listData)
-                {
-                    listView.Items.Add("AGV#" + agv.ID, 0);
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Status);
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentNode.ToString());
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentOrient.ToString());
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(agv.DistanceToCurrentNode.ToString());
-                    listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Velocity.ToString());
+
+
+            foreach (AGV agv in listData)
+            {
+                listView.Items.Add("AGV#" + agv.ID, 0);
+                listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Status);
+                listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentNode.ToString());
+                listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentOrient.ToString());
+                listView.Items[listView.Items.Count - 1].SubItems.Add((Math.Round( agv.DistanceToCurrentNode,2)).ToString() + " cm");
+                listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Velocity.ToString() + " cm/s");
                 if (agv.Status == "Running")
                     listView.Items[listData.IndexOf(agv)].BackColor = Color.PaleGreen;
                 else
                     listView.Items[listData.IndexOf(agv)].BackColor = Color.White;
             }
-                
-            
+
+
         }
-        public static Point SimUpdatePositionAGV(int agvID, int speed)
+        public static Point SimUpdatePositionAGV(int agvID, float speed)
         {
-            
+            //int step = (int)speed * 2 / 10;              //1pixel = 0.5cm =>> 20cm/s=40pixel/s
             var index = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
             AGV agv = AGV.SimListAGV[index];
             //List<char> fullpath = AGV.FullPathOfAGV[agvID].ToList();
             
             string[] frameArr = AGV.FullPathOfAGV[agvID].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-            
+
             Point oldPosition = Display.SimLabelAGV[agvID].Location;
             Point newPosition = new Point();
 
             int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString()); ;
-            if (frameArr[indexNode + 1] == "G"|| frameArr[indexNode + 1] == null )
+            if (frameArr[indexNode + 1] == "G" || frameArr[indexNode + 1] == null)
             {
-                
-                if (agv.Path.Count() != 0)
-                {
-                    
-                    AGV.FullPathOfAGV[agvID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
-                    //agv.Path.RemoveAt(0);
-                }
-                else
-                {
-                    agv.Status = "Stop";
-                }
-                        
-                    // agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 1]);
-                
+                agv.PathCopmpleted++;
+                //if (agv.Path.Count() != 0)
+                //{
+
+
+                //}
+                //else
+                //{
+                //    agv.Status = "Stop";
+                //}
+
+                // agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 1]);
+
 
 
 
@@ -90,19 +89,19 @@ namespace AGV_Form
                 int nextNode = Convert.ToInt32(frameArr[indexNode + 2]);
                 if (agv.CurrentOrient != Display.UpdateOrient(frameArr[indexNode + 1]))
                 {
-                    agv.DistanceToCurrentNode -= 5;
-                    if(agv.DistanceToCurrentNode <=0)
+                    agv.DistanceToCurrentNode -= speed/5.2f;
+                    if (agv.DistanceToCurrentNode <= 0)
                     {
                         agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 1]);
                         agv.DistanceToCurrentNode = 0;
                     }
-                    
+
                 }
                 else
                 {
 
-                    agv.DistanceToCurrentNode += 5;
-                    if (agv.DistanceToCurrentNode >= Node.MatrixNodeDistance[currentNode, nextNode])
+                    agv.DistanceToCurrentNode += speed/5.2f;
+                    if (agv.DistanceToCurrentNode*2 >= Node.MatrixNodeDistance[currentNode, nextNode])
                     {
                         agv.DistanceToCurrentNode = 0;
                         agv.CurrentNode = nextNode;
@@ -112,23 +111,24 @@ namespace AGV_Form
                     agv.Status = "Running";
                 }
             }
-            
+
+            int pixelDistance = (int)Math.Round(agv.DistanceToCurrentNode * 2);
             List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
             int x = Nodes[agv.CurrentNode].X - 50 / 2;
             int y = Nodes[agv.CurrentNode].Y - 50 / 2;
             switch (agv.CurrentOrient)
             {
                 case 'E':
-                    newPosition = new Point(x + agv.DistanceToCurrentNode, y);
+                    newPosition = new Point(x + pixelDistance, y);
                     break;
                 case 'W':
-                    newPosition = new Point(x - agv.DistanceToCurrentNode, y);
+                    newPosition = new Point(x - pixelDistance, y);
                     break;
                 case 'S':
-                    newPosition = new Point(x, y + agv.DistanceToCurrentNode);
+                    newPosition = new Point(x, y + pixelDistance);
                     break;
                 case 'N':
-                    newPosition = new Point(x, y - agv.DistanceToCurrentNode);
+                    newPosition = new Point(x, y - pixelDistance);
                     break;
                 default: newPosition = oldPosition;
                     break;
@@ -171,7 +171,7 @@ namespace AGV_Form
             SimLabelAGV[agvID].Location = new Point(x, y+3);
 
         }
-        public static void AddLabelAGV(string Mode,int agvID, int initExitNode, char initOrientation, int initDistanceToExitNode)
+        public static void AddLabelAGV(string Mode,int agvID, int initExitNode, char initOrientation, float initDistanceToExitNode)
         {
             Label lbAGV = new Label();
             lbAGV.BackColor = SystemColors.ActiveCaption;
@@ -182,7 +182,7 @@ namespace AGV_Form
             lbAGV.Text = "AGV#" + agvID.ToString();
             lbAGV.TextAlign = ContentAlignment.MiddleCenter;
             lbAGV.Name = "AGV" + agvID.ToString();
-
+            int initPixelDistance = (int)Math.Round(initDistanceToExitNode*2);
             // Init the Location of new AGV
             List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
             int x = Nodes[initExitNode].X - lbAGV.Size.Width / 2;
@@ -190,16 +190,16 @@ namespace AGV_Form
             switch (initOrientation)
             {
                 case 'E':
-                    lbAGV.Location = new Point(x + initDistanceToExitNode, y);
+                    lbAGV.Location = new Point(x + initPixelDistance, y);
                     break;
                 case 'W':
-                    lbAGV.Location = new Point(x - initDistanceToExitNode, y);
+                    lbAGV.Location = new Point(x - initPixelDistance, y);
                     break;
                 case 'N':
-                    lbAGV.Location = new Point(x, y - initDistanceToExitNode);
+                    lbAGV.Location = new Point(x, y - initPixelDistance);
                     break;
                 case 'S':
-                    lbAGV.Location = new Point(x, y + initDistanceToExitNode);
+                    lbAGV.Location = new Point(x, y + initPixelDistance);
                     break;
             }
             // Add to Array for use

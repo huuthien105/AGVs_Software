@@ -12,25 +12,53 @@ namespace AGV_Form
 {
     public partial class StoreForm : Form
     {
-        public StoreForm()
+        private int Input;
+        public StoreForm(int input)
         {
             InitializeComponent();
+            Input = input;
         }
+        private void StoreForm_Load(object sender, EventArgs e)
+        {
+            List<Pallet> palletsInStock = new List<Pallet>();
+            lstvwPalletInStock.Items.Clear();
 
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    lbMode.Text = "Mode: Real Time";
+                    break;
+                case "Simulation":
+
+                    lbMode.Text = "Mode: Simulation";
+                    Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
+                    foreach (Pallet pallet in Pallet.SimListPallet)
+                    {
+                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtColumn.ToString());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtLevel.ToString());
+                    }
+
+
+                    break;
+            }
+
+           
+        }
         private void btnStore_Click(object sender, EventArgs e)
         {
             int agvID = 1;
             RackColumn rack = RackColumn.SimListColumn.Find(c => c.Block == cbbBlock.Text && c.Number == Convert.ToInt32(cbbColumn.Text));
             string palletcode = txtPalletCode.Text;
-            int pickNode = 53;
+            int pickNode = Input;
             int pickLevel = 1;
 
             int dropNode = rack.AtNode;
             int dropLevel = Convert.ToInt32(cbbLevel.Text);
 
-            label4.Text = dropNode.ToString();
-            label6.Text = dropLevel.ToString();
-            label7.Text = rack.Block.ToString();
+            
             Task task = new Task("Store1", "Store", palletcode, agvID,
                                  pickNode, dropNode, pickLevel, dropLevel
                                  , "Waiting");
@@ -40,5 +68,12 @@ namespace AGV_Form
             Task.SimListTask.Add(task);
             Pallet.SimStorePallet.Add(pallet);
         }
+
+        private void timerListview_Tick(object sender, EventArgs e)
+        {
+            Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
+        }
+
+       
     }
 }

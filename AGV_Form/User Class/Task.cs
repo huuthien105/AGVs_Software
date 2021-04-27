@@ -61,10 +61,12 @@ namespace AGV_Form
                 if ( currentTask.Status == "Waiting")
                 {
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
-                    
+                    AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
+                    //agv.Path.RemoveAt(0);
                     agv.Tasks[0].Status = "Doing";
+                    agv.PathCopmpleted = 0;
                 }
-                else if(agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" )
+                else if(agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1 )
                 {
                     //Thread.Sleep(200);
                     //DashboardForm.delay = 0;
@@ -72,16 +74,20 @@ namespace AGV_Form
                     
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                     agv.Path.RemoveAt(0);
-                    agv.PathCopmpleted = 1;
+                    AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
+
                 }
-                else if(agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
+                else if(agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 2)
                 {
                     //Thread.Sleep(200);
                     //DashboardForm.delay = 0;
                     //while (DashboardForm.delay < 2)
-                    agv.PathCopmpleted = 0;
+                    //agv.PathCopmpleted = 0;
                     agv.Tasks.RemoveAt(0);
                     agv.Path.Clear();
+                    agv.Status = "Stop";
+                    string timeComplete = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
+                    DBUtility.InsertCompleteTaskToDB("SimHistoryTask", currentTask, timeComplete, "Done");
                     if (currentTask.Type == "Order")
                     {
                         DBUtility.DeletePalletFromDB("SimPalletInfoTable", currentTask.PalletCode);
@@ -97,8 +103,13 @@ namespace AGV_Form
                         Pallet.SimListPallet.Add(pallet);
                         Task.SimListTask.Remove(currentTask);
                     }  
-                    
+                    else if (currentTask.Type == "Input" || currentTask.Type == "Output")
+                    {
+                        Task.SimListTask.Remove(currentTask);
+                    }
                    
+
+
                 }
                        
                         

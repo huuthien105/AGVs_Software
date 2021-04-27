@@ -16,7 +16,7 @@ namespace AGV_Form
         {
             List<Node> listNode = new List<Node>();
             DataTable table = new DataTable();
-            
+
             using (SqlConnection connection = new SqlConnection(connectionStr))
             {
                 //SqlComnection
@@ -121,6 +121,60 @@ namespace AGV_Form
                 SqlCommand command = connection.CreateCommand();
                 command.CommandText = "delete " + tableName + " where PalletCode = @palletCode";
                 command.Parameters.Add("@palletCode", SqlDbType.NVarChar).Value = palletCode;
+                command.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
+        public static dynamic GetHisTaskFromDB<T>(string tableName)
+        {
+            
+            DataTable table = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                //SqlComnection
+                connection.Open();
+
+                //SqlCommand
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "select * from " + tableName;
+
+                //SqlAdapter
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                //Get data
+                table.Clear();
+                adapter.Fill(table);
+                connection.Close();
+            }
+
+           
+            if (typeof(T) == typeof(DataTable)) return table;
+            
+            else return null;
+        }
+        public static void InsertCompleteTaskToDB(string tableName, Task task, string time, string status)
+        {
+            //string palletCode, bool inStock, string storeTime string block, int column, int level
+            using (SqlConnection connection = new SqlConnection(connectionStr))
+            {
+                //SqlComnection
+                connection.Open();
+
+                //SqlCommand
+                SqlCommand command = connection.CreateCommand();
+                command.CommandText = "insert into " + tableName + " ([Task Name], Status,[Completion Time],[Pallet Code], Type, AGV,[Pick Node],[Drop Node])"
+                                                     + " values(@taskname, @status, @completiontime, @palletcode, @type, @agv,@picknode,@dropnode)";
+                command.Parameters.Add("@taskname", SqlDbType.NVarChar).Value = task.Name;
+                command.Parameters.Add("@status", SqlDbType.NVarChar).Value = status;
+                command.Parameters.Add("@completiontime", SqlDbType.NVarChar).Value = time;
+                command.Parameters.Add("@palletcode", SqlDbType.NVarChar).Value = task.PalletCode;
+                command.Parameters.Add("@type", SqlDbType.NVarChar).Value = task.Type;
+                command.Parameters.Add("@agv", SqlDbType.NVarChar).Value = task.AGVID;
+                command.Parameters.Add("@picknode", SqlDbType.NVarChar).Value = task.PickNode + "- Slot" + task.PickLevel;
+                command.Parameters.Add("@dropnode", SqlDbType.NVarChar).Value = task.DropNode + "- Slot" + task.DropLevel;
                 command.ExecuteNonQuery();
 
                 connection.Close();

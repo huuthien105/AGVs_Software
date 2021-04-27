@@ -109,7 +109,6 @@ namespace AGV_Form
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -224,7 +223,6 @@ namespace AGV_Form
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Lavender;
-            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnPause);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnCOMSetting);
@@ -932,6 +930,7 @@ namespace AGV_Form
             this.btnStore2.Text = "Store";
             this.btnStore2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStore2.UseVisualStyleBackColor = false;
+            this.btnStore2.Click += new System.EventHandler(this.btnStore2_Click);
             // 
             // btnStore1
             // 
@@ -950,6 +949,7 @@ namespace AGV_Form
             this.btnStore1.Text = "Store";
             this.btnStore1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStore1.UseVisualStyleBackColor = false;
+            this.btnStore1.Click += new System.EventHandler(this.btnStore1_Click);
             // 
             // pictureBox1
             // 
@@ -984,7 +984,7 @@ namespace AGV_Form
             this.groupBox3.Size = new System.Drawing.Size(581, 163);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "AGVs Monitoring";
+            this.groupBox3.Text = "Tasks Monitoring";
             // 
             // listViewTask
             // 
@@ -1053,16 +1053,6 @@ namespace AGV_Form
             this.imageList1.Images.SetKeyName(1, "North_Direction.png.png");
             this.imageList1.Images.SetKeyName(2, "South_Direction.png.png");
             this.imageList1.Images.SetKeyName(3, "West_Direction.png.png");
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(319, 121);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DashboardForm
             // 
@@ -1173,6 +1163,5 @@ namespace AGV_Form
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Button button1;
     }
 }

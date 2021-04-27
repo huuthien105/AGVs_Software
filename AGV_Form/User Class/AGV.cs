@@ -11,14 +11,14 @@ namespace AGV_Form
         public int ID { get; set; }
         public int CurrentNode { get; set; }
         public char CurrentOrient { get; set; }
-        public int DistanceToCurrentNode { get; set; }
+        public float DistanceToCurrentNode { get; set; }
         public string Status { get; set; }
         public float Velocity { get; set; }
 
        // public bool IsInitialized = false; // only use in Real Time mode
 
         // Constructor of AGV with some initial information
-        public AGV(int id, int initNode, char initOrient, int distanceToInitNode, string status)
+        public AGV(int id, int initNode, char initOrient, float distanceToInitNode, string status)
         {
             this.ID = id;
             this.CurrentNode = initNode;

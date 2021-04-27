@@ -24,14 +24,27 @@ namespace AGV_Form
             List<Pallet> palletsInStock = new List<Pallet>();
             Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
             lstvwPalletInStock.Items.Clear();
-            foreach (Pallet pallet in Pallet.SimListPallet)
+
+            switch (Display.Mode)
             {
-                lstvwPalletInStock.Items.Add(pallet.Code, 0);
-                lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime);
-                lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock);
-                lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtColumn.ToString());
-                lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtLevel.ToString());
+                case "Real Time":
+                    lbMode.Text = "Mode: Real Time";
+                    break;
+                case "Simulation":
+
+                    lbMode.Text = "Mode: Simulation";
+                    Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
+                    foreach (Pallet pallet in Pallet.SimListPallet)
+                    {
+                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtColumn.ToString());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtLevel.ToString());
+                    }
+                    break;
             }
+            
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
@@ -63,7 +76,8 @@ namespace AGV_Form
                 int AGVindex = AGV.SimListAGV.FindIndex(a => { return a.ID == agvID; });
                 AGV.SimListAGV[AGVindex].Tasks.Add(task);
                 Task.SimListTask.Add(task);
-                
+                listViewPalletSelected.Items.Clear();
+                foreach (ListViewItem item in lstvwPalletInStock.Items) item.Checked = false;
             }
         }
 
@@ -72,6 +86,18 @@ namespace AGV_Form
             Display.UpdateListViewTasks(listViewTask,Task.SimListTask);
             // collect pallet in stock
             
+        }
+
+        private void lstvwPalletInStock_ItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            listViewPalletSelected.Items.Clear();
+
+            foreach (ListViewItem item in lstvwPalletInStock.CheckedItems)
+            {
+
+                listViewPalletSelected.Items.Add(item.Text, 0);
+
+            }
         }
     }
 }

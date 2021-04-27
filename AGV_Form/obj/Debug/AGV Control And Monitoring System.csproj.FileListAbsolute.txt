@@ -112,3 +112,69 @@ D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.pdb
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.OrderForm.resources
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.StoreForm.resources
+E:\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.exe.config
+E:\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.exe
+E:\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.pdb
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.AddRemoveAGVForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.AddTaskAGVForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.COMSetting.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.DashboardForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.fLogin.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.HelpForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.MonitoringForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.HomeScreenForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.OrderForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.StoreForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.Properties.Resources.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.ReportForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.TasksForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.WarehouseForm.resources
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.GenerateResource.cache
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.CoreCompileInputs.cache
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.exe
+E:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.pdb
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.exe.config
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.exe
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.pdb
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.AddRemoveAGVForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.AddTaskAGVForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.COMSetting.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.DashboardForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.fLogin.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.HelpForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.MonitoringForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.HomeScreenForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.OrderForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.StoreForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.Properties.Resources.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.ReportForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.TasksForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.WarehouseForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.GenerateResource.cache
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.CoreCompileInputs.cache
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.exe
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.pdb
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\bin\Debug\AGV_Form.exe.config
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\bin\Debug\AGV_Form.exe
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\bin\Debug\AGV_Form.pdb
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.AddRemoveAGVForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.AddTaskAGVForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.COMSetting.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.DashboardForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.fLogin.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.HelpForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.MonitoringForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.HomeScreenForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.OrderForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.StoreForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.Properties.Resources.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.ReportForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.TasksForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.WarehouseForm.resources
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.GenerateResource.cache
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.CoreCompileInputs.cache
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.exe
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.pdb
+C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
