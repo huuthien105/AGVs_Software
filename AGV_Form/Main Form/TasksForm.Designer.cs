@@ -31,9 +31,8 @@ namespace AGV_Form
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TasksForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.checkBox = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -74,7 +73,10 @@ namespace AGV_Form
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.dgvHistoryTask = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
@@ -82,14 +84,11 @@ namespace AGV_Form
             this.cbbFilter = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.cbbModeList = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.timerListview = new System.Windows.Forms.Timer(this.components);
-            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -189,7 +188,7 @@ namespace AGV_Form
             this.listViewTasks.HideSelection = false;
             this.listViewTasks.Location = new System.Drawing.Point(12, 304);
             this.listViewTasks.Name = "listViewTasks";
-            this.listViewTasks.Size = new System.Drawing.Size(558, 309);
+            this.listViewTasks.Size = new System.Drawing.Size(558, 303);
             this.listViewTasks.TabIndex = 49;
             this.listViewTasks.UseCompatibleStateImageBehavior = false;
             this.listViewTasks.View = System.Windows.Forms.View.Details;
@@ -411,7 +410,6 @@ namespace AGV_Form
             this.label9.TabIndex = 25;
             this.label9.Text = "Task Name:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // cbbTaskName
             // 
@@ -578,7 +576,7 @@ namespace AGV_Form
             this.listviewSearch.HideSelection = false;
             this.listviewSearch.Location = new System.Drawing.Point(6, 92);
             this.listviewSearch.Name = "listviewSearch";
-            this.listviewSearch.Size = new System.Drawing.Size(769, 130);
+            this.listviewSearch.Size = new System.Drawing.Size(769, 89);
             this.listviewSearch.TabIndex = 55;
             this.listviewSearch.UseCompatibleStateImageBehavior = false;
             this.listviewSearch.View = System.Windows.Forms.View.Details;
@@ -621,6 +619,12 @@ namespace AGV_Form
             this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnHeader12.Width = 80;
             // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Drop Node";
+            this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader13.Width = 80;
+            // 
             // groupBox4
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -637,52 +641,72 @@ namespace AGV_Form
             this.groupBox4.Controls.Add(this.listviewSearch);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox4.Location = new System.Drawing.Point(576, 57);
+            this.groupBox4.Location = new System.Drawing.Point(577, 14);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(782, 640);
+            this.groupBox4.Size = new System.Drawing.Size(782, 599);
             this.groupBox4.TabIndex = 58;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "History Tasks";
             // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label15.ForeColor = System.Drawing.Color.Navy;
+            this.label15.Location = new System.Drawing.Point(6, 225);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(158, 19);
+            this.label15.TabIndex = 62;
+            this.label15.Text = "History Tasks Data Table:";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label14.ForeColor = System.Drawing.Color.Navy;
+            this.label14.Location = new System.Drawing.Point(7, 68);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(49, 19);
+            this.label14.TabIndex = 61;
+            this.label14.Text = "Result:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // dgvHistoryTask
             // 
             this.dgvHistoryTask.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHistoryTask.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvHistoryTask.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHistoryTask.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvHistoryTask.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvHistoryTask.Location = new System.Drawing.Point(6, 247);
             this.dgvHistoryTask.Name = "dgvHistoryTask";
             this.dgvHistoryTask.ReadOnly = true;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvHistoryTask.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvHistoryTask.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvHistoryTask.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvHistoryTask.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvHistoryTask.Size = new System.Drawing.Size(769, 372);
+            this.dgvHistoryTask.Size = new System.Drawing.Size(769, 346);
             this.dgvHistoryTask.TabIndex = 60;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(500, 24);
+            this.button3.Location = new System.Drawing.Point(417, 24);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 29);
             this.button3.TabIndex = 59;
@@ -692,10 +716,11 @@ namespace AGV_Form
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(214, 26);
+            this.txtName.Location = new System.Drawing.Point(242, 26);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(258, 27);
+            this.txtName.Size = new System.Drawing.Size(157, 27);
             this.txtName.TabIndex = 58;
+            this.txtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtName_KeyDown);
             // 
             // label10
             // 
@@ -704,7 +729,7 @@ namespace AGV_Form
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(160, 28);
+            this.label10.Location = new System.Drawing.Point(188, 28);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(48, 19);
             this.label10.TabIndex = 57;
@@ -724,7 +749,7 @@ namespace AGV_Form
             "[Drop Node]"});
             this.cbbFilter.Location = new System.Drawing.Point(54, 24);
             this.cbbFilter.Name = "cbbFilter";
-            this.cbbFilter.Size = new System.Drawing.Size(85, 28);
+            this.cbbFilter.Size = new System.Drawing.Size(110, 28);
             this.cbbFilter.TabIndex = 56;
             // 
             // label7
@@ -743,23 +768,13 @@ namespace AGV_Form
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.cbbModeList);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Location = new System.Drawing.Point(12, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1346, 44);
+            this.groupBox3.Size = new System.Drawing.Size(558, 44);
             this.groupBox3.TabIndex = 59;
             this.groupBox3.TabStop = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(800, 18);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 13);
-            this.label13.TabIndex = 61;
-            this.label13.Text = "label13";
             // 
             // cbbModeList
             // 
@@ -797,26 +812,6 @@ namespace AGV_Form
             this.timerListview.Enabled = true;
             this.timerListview.Tick += new System.EventHandler(this.timerListview_Tick);
             // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Drop Node";
-            this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader13.Width = 80;
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label14.ForeColor = System.Drawing.Color.Navy;
-            this.label14.Location = new System.Drawing.Point(7, 68);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(49, 19);
-            this.label14.TabIndex = 61;
-            this.label14.Text = "Result:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label11
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -831,25 +826,23 @@ namespace AGV_Form
             this.label11.Text = "List of Tasks:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label15
+            // label13
             // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label15.ForeColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(6, 225);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(158, 19);
-            this.label15.TabIndex = 62;
-            this.label15.Text = "History Tasks Data Table:";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label13.Location = new System.Drawing.Point(8, 655);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 21);
+            this.label13.TabIndex = 60;
+            this.label13.Text = "Tab: Tasks";
             // 
             // TasksForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1370, 742);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.listViewTasks);
@@ -930,10 +923,10 @@ namespace AGV_Form
         private System.Windows.Forms.ComboBox cbbModeList;
         private System.Windows.Forms.Timer timerListview;
         private System.Windows.Forms.DataGridView dgvHistoryTask;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
     }
 }

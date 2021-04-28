@@ -109,7 +109,6 @@ D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.Gen
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.CoreCompileInputs.cache
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.exe
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.pdb
-D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.OrderForm.resources
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV_Form.StoreForm.resources
 E:\AGVs_Software\AGV_Form\bin\Debug\AGV_Form.exe.config

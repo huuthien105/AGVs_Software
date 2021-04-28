@@ -36,10 +36,6 @@ namespace AGV_Form
             dgvHistoryTask.Columns[6].Width = 80;
             dgvHistoryTask.Columns[7].Width = 80;
         }
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
@@ -55,7 +51,7 @@ namespace AGV_Form
                 case "Simulation":
                     // Update data in listView AGVs
                     
-                    Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
+                    Display.UpdateListViewTasks(listViewTasks, Task.SimListTask,RackColumn.SimListColumn);
                     // Update location of AGV icon (label)
                     //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
 
@@ -111,8 +107,18 @@ namespace AGV_Form
 
         private void button3_Click(object sender, EventArgs e)
         {
-            DataTable table = new DataTable();   
-           
+            SearchTask();
+            //DataTable table1 = table.Clone();
+            //for(int i=0;i<result.Length;i++)
+            //{
+            //    table1.Rows.Add(result[i]);
+            //}
+            //dataGridView1.DataSource = table1;
+        }
+        private void SearchTask()
+        {
+            DataTable table = new DataTable();
+
             switch (cbbModeList.Text)
             {
                 case "Real Time":
@@ -123,18 +129,14 @@ namespace AGV_Form
 
                     break;
                 case "Simulation":
-                    // Update data in listView AGVs
 
-                    Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
-                    // Update location of AGV icon (label)
-                    //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
                     table = DBUtility.GetHisTaskFromDB<DataTable>("SimHistoryTask");
                     //dgvPalletInfo.DataSource = table;
                     string searchQuery = cbbFilter.Text + "='" + txtName.Text + "'";
                     DataRow[] result = table.Select(searchQuery);
                     //result[0][1].ToString();
                     listviewSearch.Items.Clear();
-                    for(int i=0;i<result.Length;i++)
+                    for (int i = 0; i < result.Length; i++)
                     {
                         listviewSearch.Items.Add(result[i][0].ToString());
                         listviewSearch.Items[listviewSearch.Items.Count - 1].SubItems.Add(result[i][1].ToString());
@@ -145,16 +147,18 @@ namespace AGV_Form
                         listviewSearch.Items[listviewSearch.Items.Count - 1].SubItems.Add(result[i][6].ToString());
                         listviewSearch.Items[listviewSearch.Items.Count - 1].SubItems.Add(result[i][7].ToString());
                     }
-                    
+
 
                     break;
             }
-            //DataTable table1 = table.Clone();
-            //for(int i=0;i<result.Length;i++)
-            //{
-            //    table1.Rows.Add(result[i]);
-            //}
-            //dataGridView1.DataSource = table1;
+        }
+
+        private void txtName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                SearchTask();
+            }
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 
 namespace AGV_Form
 {
@@ -65,24 +66,25 @@ namespace AGV_Form
                     //agv.Path.RemoveAt(0);
                     agv.Tasks[0].Status = "Doing";
                     agv.PathCopmpleted = 0;
+                    
                 }
                 else if(agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1 )
                 {
-                    //Thread.Sleep(200);
-                    //DashboardForm.delay = 0;
-                    //while(DashboardForm.delay<2)
-                    
+                   
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                     agv.Path.RemoveAt(0);
                     AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
+                    if (currentTask.Type == "Order")
+                    {
+                        Pallet pallet = Pallet.SimListPallet.Find(c => c.Code == currentTask.PalletCode);
+                        Display.DeleteLabelPallet(pallet);
+                    }
+                   
 
                 }
                 else if(agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 2)
                 {
-                    //Thread.Sleep(200);
-                    //DashboardForm.delay = 0;
-                    //while (DashboardForm.delay < 2)
-                    //agv.PathCopmpleted = 0;
+                   
                     agv.Tasks.RemoveAt(0);
                     agv.Path.Clear();
                     agv.Status = "Stop";
@@ -91,6 +93,7 @@ namespace AGV_Form
                     if (currentTask.Type == "Order")
                     {
                         DBUtility.DeletePalletFromDB("SimPalletInfoTable", currentTask.PalletCode);
+                        
                         Task.SimListTask.Remove(currentTask);
                     }
                     else if (currentTask.Type == "Store")
@@ -101,15 +104,15 @@ namespace AGV_Form
                         DBUtility.InsertNewPalletToDB("SimPalletInfoTable", pallet.Code, pallet.InStock,pallet.DeliverTime, pallet.AtBlock,pallet.AtColumn,pallet.AtLevel);
                         Pallet.SimStorePallet.Remove(pallet);
                         Pallet.SimListPallet.Add(pallet);
+                        Display.UpdateLabelPallet(pallet);
                         Task.SimListTask.Remove(currentTask);
                     }  
                     else if (currentTask.Type == "Input" || currentTask.Type == "Output")
                     {
                         Task.SimListTask.Remove(currentTask);
                     }
-                   
 
-
+                    
                 }
                        
                         

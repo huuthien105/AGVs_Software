@@ -12,13 +12,19 @@ namespace AGV_Form
 {
     public partial class DashboardForm : Form
     {
+        
+
         public DashboardForm()
         {
             InitializeComponent();
+
+            LoadLabel();
         }
+        
         public static int delay = 0;
         private void DashboardForm_Load(object sender, EventArgs e)
         {
+           
             switch (Display.Mode)
             {
                 case "Real Time":
@@ -65,6 +71,15 @@ namespace AGV_Form
                 {                   
                     pnFloor.Controls.Add(Display.SimLabelAGV[agv.ID]);
                 }
+                Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
+                
+                // Display Pallet in Navigation Map
+                foreach (Pallet pallet in Pallet.SimListPallet)
+                {
+                    Display.UpdateLabelPallet(pallet);
+                    
+                        
+                }
             }
         }
 
@@ -104,7 +119,7 @@ namespace AGV_Form
                 case "Simulation":
                     // Update data in listView AGVs
                     Display.UpdateListViewAGVs(listViewAGVs, AGV.SimListAGV);
-                    Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
+                    Display.UpdateListViewTasks(listViewTask, Task.SimListTask,RackColumn.SimListColumn);
                     // Update location of AGV icon (label)
                     //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
 
@@ -157,7 +172,8 @@ namespace AGV_Form
                 case "Real Time":
                     foreach (AGV agv in AGV.ListAGV)
                     {
-                        pnFloor.Controls.Add(Display.LabelAGV[agv.ID]);          
+                        pnFloor.Controls.Add(Display.LabelAGV[agv.ID]);
+                        Display.LabelAGV[agv.ID].BringToFront();
                     }
                     break;
                 case "Simulation":
@@ -165,6 +181,7 @@ namespace AGV_Form
                     {
                         
                         pnFloor.Controls.Add(Display.SimLabelAGV[agv.ID]);
+                        Display.SimLabelAGV[agv.ID].BringToFront();
                     }
                     break;
             }
@@ -188,7 +205,7 @@ namespace AGV_Form
                     foreach (AGV agv in AGV.SimListAGV)
                     {
                         Task.SimUpdatePathFromTaskOfAGVs(agv);
-                        Display.SimLabelAGV[agv.ID].Location = Display.SimUpdatePositionAGV(agv.ID, agv.Velocity);
+                        Display.SimLabelAGV[agv.ID].Location = Display.SimUpdatePositionAGV(agv.ID, agv.Velocity,pnFloor);
 
                     }
                     break;
@@ -229,6 +246,9 @@ namespace AGV_Form
                 ToolStripMenuItem item = new ToolStripMenuItem(items, imgList.Images[0]);
                 showPathToolStripMenuItem.DropDownItems.Add(item);
                 item.Click += new EventHandler(AGVDrawPath_Click);
+                //Timer timerDrawPath = new Timer();
+               // timerDrawPath.Tick += new EventHandler(AGVDrawPath_Click()); 
+
             }
 
         }
@@ -237,7 +257,7 @@ namespace AGV_Form
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             string[] arrItem = item.Text.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
             int agvID = Convert.ToInt16(arrItem[1]);
-
+            
             switch (Display.Mode)
             {
                 case "Real Time":
@@ -248,14 +268,18 @@ namespace AGV_Form
                 case "Simulation":
                     int j = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
                     if (AGV.SimListAGV[j].Path.Count == 0) return;
+
                     Display.AddPath(pnFloor, AGV.SimListAGV[j].Path[0],Node.ListNode, Color.Blue, 4);
                     break;
             }
         }
-
+        
+        
         private void hidePathToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             Display.Points = new Point[] { new Point(), new Point() };
+            
             pnFloor.Refresh();
         }
 
@@ -322,12 +346,107 @@ namespace AGV_Form
             StoreForm storeForm = new StoreForm(54);
             storeForm.Show();
         }
+        private void LoadLabel()
+        {
+            // Load Pallet Label Block A
+            Display.ASlotLabel[0, 0] = lbA11;
+            Display.ASlotLabel[0, 1] = lbA12;
+            Display.ASlotLabel[0, 2] = lbA13;
 
-       
+            Display.ASlotLabel[1, 0] = lbA21;
+            Display.ASlotLabel[1, 1] = lbA22;
+            Display.ASlotLabel[1, 2] = lbA23;
 
-      
-      
+            Display.ASlotLabel[2, 0] = lbA31;
+            Display.ASlotLabel[2, 1] = lbA32;
+            Display.ASlotLabel[2, 2] = lbA33;
 
-       
+            Display.ASlotLabel[3, 0] = lbA41;
+            Display.ASlotLabel[3, 1] = lbA42;
+            Display.ASlotLabel[3, 2] = lbA43;
+
+            Display.ASlotLabel[4, 0] = lbA51;
+            Display.ASlotLabel[4, 1] = lbA52;
+            Display.ASlotLabel[4, 2] = lbA53;
+
+            Display.ASlotLabel[5, 0] = lbA61;
+            Display.ASlotLabel[5, 1] = lbA62;
+            Display.ASlotLabel[5, 2] = lbA63;
+            // Load Pallet Label Block B
+            Display.BSlotLabel[0, 0] = lbB11;
+            Display.BSlotLabel[0, 1] = lbB12;
+            Display.BSlotLabel[0, 2] = lbB13;
+
+            Display.BSlotLabel[1, 0] = lbB21;
+            Display.BSlotLabel[1, 1] = lbB22;
+            Display.BSlotLabel[1, 2] = lbB23;
+
+            Display.BSlotLabel[2, 0] = lbB31;
+            Display.BSlotLabel[2, 1] = lbB32;
+            Display.BSlotLabel[2, 2] = lbB33;
+
+            Display.BSlotLabel[3, 0] = lbB41;
+            Display.BSlotLabel[3, 1] = lbB42;
+            Display.BSlotLabel[3, 2] = lbB43;
+
+            Display.BSlotLabel[4, 0] = lbB51;
+            Display.BSlotLabel[4, 1] = lbB52;
+            Display.BSlotLabel[4, 2] = lbB53;
+
+            Display.BSlotLabel[5, 0] = lbB61;
+            Display.BSlotLabel[5, 1] = lbB62;
+            Display.BSlotLabel[5, 2] = lbB63;
+            // Load Pallet Label Block C
+            Display.CSlotLabel[0, 0] = lbC11;
+            Display.CSlotLabel[0, 1] = lbC12;
+            Display.CSlotLabel[0, 2] = lbC13;
+
+            Display.CSlotLabel[1, 0] = lbC21;
+            Display.CSlotLabel[1, 1] = lbC22;
+            Display.CSlotLabel[1, 2] = lbC23;
+
+            Display.CSlotLabel[2, 0] = lbC31;
+            Display.CSlotLabel[2, 1] = lbC32;
+            Display.CSlotLabel[2, 2] = lbC33;
+
+            Display.CSlotLabel[3, 0] = lbC41;
+            Display.CSlotLabel[3, 1] = lbC42;
+            Display.CSlotLabel[3, 2] = lbC43;
+
+            Display.CSlotLabel[4, 0] = lbC51;
+            Display.CSlotLabel[4, 1] = lbC52;
+            Display.CSlotLabel[4, 2] = lbC53;
+
+            Display.CSlotLabel[5, 0] = lbC61;
+            Display.CSlotLabel[5, 1] = lbC62;
+            Display.CSlotLabel[5, 2] = lbC63;
+            // Load Pallet Label Block D
+            Display.DSlotLabel[0, 0] = lbD11;
+            Display.DSlotLabel[0, 1] = lbD12;
+            Display.DSlotLabel[0, 2] = lbD13;
+
+            Display.DSlotLabel[1, 0] = lbD21;
+            Display.DSlotLabel[1, 1] = lbD22;
+            Display.DSlotLabel[1, 2] = lbD23;
+
+            Display.DSlotLabel[2, 0] = lbD31;
+            Display.DSlotLabel[2, 1] = lbD32;
+            Display.DSlotLabel[2, 2] = lbD33;
+
+            Display.DSlotLabel[3, 0] = lbD41;
+            Display.DSlotLabel[3, 1] = lbD42;
+            Display.DSlotLabel[3, 2] = lbD43;
+
+            Display.DSlotLabel[4, 0] = lbD51;
+            Display.DSlotLabel[4, 1] = lbD52;
+            Display.DSlotLabel[4, 2] = lbD53;
+
+            Display.DSlotLabel[5, 0] = lbD61;
+            Display.DSlotLabel[5, 1] = lbD62;
+            Display.DSlotLabel[5, 2] = lbD63;
+
+
+        }
+
     }
 }

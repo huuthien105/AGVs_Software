@@ -12,6 +12,7 @@ namespace AGV_Form
     {
         public string Block { get; set; }
         public int Number { get; set; }
+        //public int Slot { get; set; }
         public int AtNode { get; set; }
         public Label ColumnLabel = new Label();
 
@@ -74,6 +75,7 @@ namespace AGV_Form
         public string AtBlock { get; set; }
         public int AtColumn { get; set; }
         public int AtLevel { get; set; }
+        public Label label = new Label();
 
         public Pallet(string code, bool isInWarehouse, string storeTime, string block, int column, int level)
         {
@@ -84,10 +86,11 @@ namespace AGV_Form
             this.AtColumn = column;
             this.AtLevel = level;
         }
-
+        
         // Save pallet info (the present and the past)
         public static List<Pallet> ListPallet = new List<Pallet>();
         public static List<Pallet> SimListPallet = new List<Pallet>();
+       
         public static List<Pallet> SimStorePallet = new List<Pallet>();
         public static void SaveDeliveryTime(string palletCode, List<Pallet> listPallet)
         {

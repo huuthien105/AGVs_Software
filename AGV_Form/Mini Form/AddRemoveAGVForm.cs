@@ -248,7 +248,7 @@ namespace AGV_Form
 
         private void txtVelocity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !(e.KeyChar=='.'))
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !(e.KeyChar=='.') )
             {
                 e.Handled = true;
                 MessageBox.Show("Only allow digit", "AGV ID Type", MessageBoxButtons.OK, MessageBoxIcon.Warning);

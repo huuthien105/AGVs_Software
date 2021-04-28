@@ -57,7 +57,19 @@ namespace AGV_Form
 
             int dropNode = rack.AtNode;
             int dropLevel = Convert.ToInt32(cbbLevel.Text);
-
+            foreach(Pallet palet in Pallet.SimListPallet)
+            {
+                if (palet.Code.Trim() == txtPalletCode.Text)
+                {
+                    MessageBox.Show("Pallet has stored in stock !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }  
+                else if (palet.AtBlock == cbbBlock.Text && palet.AtColumn== Convert.ToInt32(cbbColumn.Text)&&palet.AtLevel== Convert.ToInt32(cbbLevel.Text))
+                {
+                    MessageBox.Show("Slot is not available !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }    
+            }    
             
             Task task = new Task("Store1", "Store", palletcode, agvID,
                                  pickNode, dropNode, pickLevel, dropLevel
@@ -71,7 +83,7 @@ namespace AGV_Form
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
-            Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
+            Display.UpdateListViewTasks(listViewTask, Task.SimListTask,RackColumn.SimListColumn);
         }
 
        

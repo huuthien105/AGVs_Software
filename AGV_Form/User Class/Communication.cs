@@ -26,17 +26,18 @@ namespace AGV_Form
         public static void SendPathData(string fullpath)
         {
             PathInfoSendPacket sendFrame = new PathInfoSendPacket();
-            byte[] arrPathFrame = new byte[15];
-            //string fullpath = "N,0,N,46,E,50,N,8,W,3,S,11,G,N,0";
+            
+            byte[] arrPathFrame = new byte[fullpath.Length];
+            
             //string fullpath = "N,0,S,11,N,3,W,0,S,42,E,46,G,N,0";
             string[] path = fullpath.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
+            int sendBytecount = path.Length;
             arrPathFrame[0] = (byte)path[0][0];
             arrPathFrame[1] = Convert.ToByte(path[1]);
-            arrPathFrame[2] = (byte)path[0][0];
-            arrPathFrame[13] = (byte)path[0][0];
-            arrPathFrame[14] = Convert.ToByte(path[14]);
-            for (int i = 3; i < 13; i++)
+            arrPathFrame[2] = (byte)path[2][0];
+            arrPathFrame[sendBytecount - 2] = (byte)path[sendBytecount - 2][0];
+            arrPathFrame[sendBytecount - 1] = Convert.ToByte(sendBytecount - 1);
+            for (int i = 3; i < sendBytecount - 2; i++)
             {
                 if (i % 2 == 0) arrPathFrame[i] = (byte)path[i][0];
                 else
@@ -51,7 +52,7 @@ namespace AGV_Form
             sendFrame.Header = new byte[2] { 0xAA, 0xFF };
             sendFrame.FunctionCode = 0xA1;
             sendFrame.AGVID = 0x01;
-            sendFrame.PathByteCount = Convert.ToByte(arrPathFrame.Length);
+            sendFrame.PathByteCount = Convert.ToByte(sendBytecount);
             sendFrame.Path = arrPathFrame;
             //sendFrame.CheckSum = 0xFFFF;
             sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };

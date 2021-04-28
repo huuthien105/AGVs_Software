@@ -43,7 +43,7 @@ namespace AGV_Form
         private void button5_Click(object sender, EventArgs e)
         {
             //string fullpath = "N,0,N,46,E,50,N,8,W,3,S,11,G,N,0";
-            string fullpath = "N,0,S,25,N,4,W,0,S,21,E,24,G,N,0";
+            string fullpath = "N,0,S,25,N,4,W,0,S,21,E,24,G,C,0";
             Communication.SendPathData(fullpath);
         }
 

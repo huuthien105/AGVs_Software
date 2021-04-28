@@ -83,7 +83,7 @@ namespace AGV_Form
 
         private void timerListView_Tick(object sender, EventArgs e)
         {
-            Display.UpdateListViewTasks(listViewTask,Task.SimListTask);
+            Display.UpdateListViewTasks(listViewTask,Task.SimListTask,RackColumn.SimListColumn);
             // collect pallet in stock
             
         }

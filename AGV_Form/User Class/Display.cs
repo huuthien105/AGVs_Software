@@ -17,6 +17,10 @@ namespace AGV_Form
         public static Label[] LabelAGV = new Label[AGV.MaxNumOfAGVs]; // LabelAGV[i] for AGV ID = i
         public static Label[] SimLabelAGV = new Label[AGV.MaxNumOfAGVs];
 
+        public static Label[,] ASlotLabel = new Label[6,3];
+        public static Label[,] BSlotLabel = new Label[6, 3];
+        public static Label[,] CSlotLabel = new Label[6, 3];
+        public static Label[,] DSlotLabel = new Label[6, 3];
 
         public static void AddPath(Panel panel, List<int> path, List<Node> Nodes, Color color, float width)
         {
@@ -51,7 +55,7 @@ namespace AGV_Form
 
 
         }
-        public static Point SimUpdatePositionAGV(int agvID, float speed)
+        public static Point SimUpdatePositionAGV(int agvID, float speed,Panel pnFloor)
         {
             //int step = (int)speed * 2 / 10;              //1pixel = 0.5cm =>> 20cm/s=40pixel/s
             var index = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
@@ -69,7 +73,12 @@ namespace AGV_Form
                 agv.PathCopmpleted++;
                 //if (agv.Path.Count() != 0)
                 //{
+                if (agv.PathCopmpleted == 1 || agv.PathCopmpleted == 0)
 
+                {
+                    Display.Points = new Point[] { new Point(), new Point() };
+                    pnFloor.Refresh();
+                }
 
                 //}
                 //else
@@ -182,6 +191,7 @@ namespace AGV_Form
             lbAGV.Text = "AGV#" + agvID.ToString();
             lbAGV.TextAlign = ContentAlignment.MiddleCenter;
             lbAGV.Name = "AGV" + agvID.ToString();
+            //lbAGV.BringToFront();
             int initPixelDistance = (int)Math.Round(initDistanceToExitNode*2);
             // Init the Location of new AGV
             List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
@@ -245,17 +255,20 @@ namespace AGV_Form
                 HomeScreenForm.textComStatus.Add(timeNow + " ID: " + ID.ToString() + "\n");
             }
         }
-        public static void UpdateListViewTasks(ListView listView, List<Task> listData)
+        public static void UpdateListViewTasks(ListView listView, List<Task> listData, List<RackColumn> listRackColumn )
         {
+            
             listView.Items.Clear();
             foreach (Task task in listData)
             {
+                RackColumn PickRack = listRackColumn.Find(c => c.AtNode == task.PickNode);
+                RackColumn DropRack = listRackColumn.Find(c => c.AtNode == task.DropNode);
                 listView.Items.Add(task.Name, 1);
                 listView.Items[listView.Items.Count - 1].SubItems.Add(task.Status);
                 listView.Items[listView.Items.Count - 1].SubItems.Add(task.Type);
                 listView.Items[listView.Items.Count - 1].SubItems.Add("AGV#" + task.AGVID.ToString());
-                listView.Items[listView.Items.Count - 1].SubItems.Add("Node " + task.PickNode.ToString() + "-" + task.PickLevel.ToString());
-                listView.Items[listView.Items.Count - 1].SubItems.Add("Node " + task.DropNode.ToString() + "-" + task.DropLevel.ToString());
+                listView.Items[listView.Items.Count - 1].SubItems.Add(PickRack.Block.ToString() + PickRack.Number.ToString()+" - " + task.PickLevel.ToString());
+                listView.Items[listView.Items.Count - 1].SubItems.Add(DropRack.Block.ToString() + DropRack.Number.ToString() + " - " + task.DropLevel.ToString());
                 listView.Items[listView.Items.Count - 1].SubItems.Add(task.PalletCode);
                 if (task.Status == "Doing")
                         listView.Items[listData.IndexOf(task)].BackColor = Color.PaleGreen;
@@ -264,5 +277,44 @@ namespace AGV_Form
                 
             }
         }
+
+        public static void UpdateLabelPallet(Pallet pallet)
+        {
+            switch (pallet.AtBlock)
+            {
+                case "A":
+                    Display.ASlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    break;
+                case "B":
+                    Display.BSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    break;
+                case "C":
+                    Display.CSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    break;
+                case "D":
+                    Display.DSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    break;
+            }
+        }
+
+        public static void DeleteLabelPallet(Pallet pallet)
+        {
+            switch (pallet.AtBlock)
+            {
+                case "A":
+                    Display.ASlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    break;
+                case "B":
+                    Display.BSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    break;
+                case "C":
+                    Display.CSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    break;
+                case "D":
+                    Display.DSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    break;
+            }
+        }
+
     }
 }
