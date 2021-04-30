@@ -49,8 +49,9 @@ namespace AGV_Form
         }
         private void btnStore_Click(object sender, EventArgs e)
         {
-            int agvID = 1;
-            RackColumn rack = RackColumn.SimListColumn.Find(c => c.Block == cbbBlock.Text && c.Number == Convert.ToInt32(cbbColumn.Text));
+
+            int agvID = Task.AutoSelectAGV(AGV.SimListAGV, Input);
+            RackColumn rack = RackColumn.ListColumn.Find(c => c.Block == cbbBlock.Text && c.Number == Convert.ToInt32(cbbColumn.Text));
             string palletcode = txtPalletCode.Text;
             int pickNode = Input;
             int pickLevel = 1;
@@ -75,17 +76,62 @@ namespace AGV_Form
                                  pickNode, dropNode, pickLevel, dropLevel
                                  , "Waiting");
             Pallet pallet = new Pallet(palletcode,true,"??", cbbBlock.Text, Convert.ToInt32(cbbColumn.Text), Convert.ToInt32(cbbLevel.Text));
-            int AGVindex = AGV.SimListAGV.FindIndex(a => { return a.ID == agvID; });
-            AGV.SimListAGV[AGVindex].Tasks.Add(task);
-            Task.SimListTask.Add(task);
-            Pallet.SimStorePallet.Add(pallet);
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    int AGVindex = AGV.ListAGV.FindIndex(a => { return a.ID == agvID; });
+                    AGV.ListAGV[AGVindex].Tasks.Add(task);
+                    Task.ListTask.Add(task);
+                    Pallet.StorePallet.Add(pallet);
+                    break;
+                case "Simulation":
+                    int SimAGVindex = AGV.SimListAGV.FindIndex(a => { return a.ID == agvID; });
+                    AGV.SimListAGV[SimAGVindex].Tasks.Add(task);
+                    Task.SimListTask.Add(task);
+                    Pallet.SimStorePallet.Add(pallet);
+                    break;
+            }
+            ckbAutoSelectSlot.Checked = false;
+            cbbBlock.Enabled = true;
+            cbbColumn.Enabled = true;
+            cbbLevel.Enabled = true;
         }
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
-            Display.UpdateListViewTasks(listViewTask, Task.SimListTask,RackColumn.SimListColumn);
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    Display.UpdateListViewTasks(listViewTask, Task.ListTask);
+                    break;
+                case "Simulation":
+                    Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
+                    break;
+            }
+            
         }
 
        
+
+        private void ckbAutoSelectSlot_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbAutoSelectSlot.Checked)
+            {
+                string Slot = Task.AutoSelecSlotPallet(Pallet.SimListPallet.Concat(Pallet.SimStorePallet).ToList());
+                string[] arrSlot = Slot.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                cbbBlock.Text = arrSlot[0];
+                cbbColumn.Text = arrSlot[1];
+                cbbLevel.Text = arrSlot[2];
+                cbbBlock.Enabled = false;
+                cbbColumn.Enabled = false;
+                cbbLevel.Enabled = false;
+            }
+            else
+            {
+                cbbBlock.Enabled = true;
+                cbbColumn.Enabled = true;
+                cbbLevel.Enabled = true;
+            }
+        }
     }
 }

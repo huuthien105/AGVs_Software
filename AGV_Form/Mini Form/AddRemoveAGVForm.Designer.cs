@@ -373,7 +373,9 @@ namespace AGV_Form
             "51",
             "52",
             "53",
-            "54"});
+            "54",
+            "55",
+            "56"});
             this.cbbExitNode.Location = new System.Drawing.Point(169, 56);
             this.cbbExitNode.MaxDropDownItems = 6;
             this.cbbExitNode.Name = "cbbExitNode";

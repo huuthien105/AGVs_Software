@@ -21,7 +21,7 @@ namespace AGV_Form
         public string[] PalletCodes = new string[NumOfLevel];
 
         public static List<RackColumn> ListColumn = RackColumn.GetRackColums();
-        public static List<RackColumn> SimListColumn = RackColumn.GetRackColums();
+        
 
         private RackColumn(int atNode)
         {
@@ -41,26 +41,6 @@ namespace AGV_Form
                 if (n.LocationCode.Length == 0 || n.ID == 55 || n.ID == 56) continue;
 
                 RackColumn col = new RackColumn(n.ID);
-
-                if (col.Number == 1 || col.Number == 2 || col.Number == 3)
-                {
-                    col.ColumnLabel.BackColor = SystemColors.ControlLight;
-                    col.ColumnLabel.Size = new Size(60 - 1, 35 - 2);
-                    col.ColumnLabel.Name = "ColumnAtNode" + n.ID.ToString();
-                    int x = n.X - col.ColumnLabel.Size.Width / 2;
-                    int y = n.Y + 35 + 3;
-                    col.ColumnLabel.Location = new Point(x, y);
-                }
-                else if (col.Number == 4 || col.Number == 5 || col.Number == 6)
-                {
-                    col.ColumnLabel.BackColor = SystemColors.ControlLight;
-                    col.ColumnLabel.Size = new Size(60 - 1, 35 - 2);
-                    col.ColumnLabel.Name = "ColumnAtNode" + n.ID.ToString();
-                    int x = n.X - col.ColumnLabel.Size.Width / 2;
-                    int y = n.Y - 35 - 3 - col.ColumnLabel.Size.Height;
-                    col.ColumnLabel.Location = new Point(x, y);
-                }
-
                 listCol.Add(col);
             }
             return listCol;
@@ -92,6 +72,7 @@ namespace AGV_Form
         public static List<Pallet> SimListPallet = new List<Pallet>();
        
         public static List<Pallet> SimStorePallet = new List<Pallet>();
+        public static List<Pallet> StorePallet = new List<Pallet>();
         public static void SaveDeliveryTime(string palletCode, List<Pallet> listPallet)
         {
             Pallet pallet = listPallet.Find(p => p.Code == palletCode);

@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,6 +34,7 @@ namespace AGV_Form
 
         private void dashoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Thread.Sleep(200);
             DashboardForm dashboardForm = new DashboardForm();
             Initial_Form(dashboardForm);
             pnMain.Controls.Add(dashboardForm);

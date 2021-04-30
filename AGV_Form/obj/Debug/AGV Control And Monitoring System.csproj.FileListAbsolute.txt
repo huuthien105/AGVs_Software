@@ -177,3 +177,20 @@ C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV C
 C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.exe
 C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV_Form.pdb
 C:\Users\thien\OneDrive\Máy tính\AGVs_Software - Copy\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
+D:\AGVs_Software\AGV_Form\bin\Debug\ZedGraph.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\ZedGraph.xml
+D:\AGVs_Software\AGV_Form\bin\Debug\de\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\es\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\fr\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\hu\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\it\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\ja\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\pt\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\ru\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\sk\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\sv\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\tr\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\zh-cn\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\zh-tw\ZedGraph.resources.dll
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.CopyComplete
+D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache

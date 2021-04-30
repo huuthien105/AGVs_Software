@@ -43,7 +43,7 @@ namespace AGV_Form
         public List<List<int>> Path = new List<List<int>>();
         public int PathCopmpleted = 0;
 
-        public static string[] FullPathOfAGV = new string[40];
+        public static string[] FullPathOfAGV = new string[10];
         //public string CurrentTask { get; set; }
         public List<Task> Tasks = new List<Task>();
     }

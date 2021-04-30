@@ -22,21 +22,76 @@ namespace AGV_Form
             }
 
         }
+        private static List<byte> bytesReceived = new List<byte>();
+        private const ushort PIDInfoReceivePacketSize = 24;
+        public static float speed=0, line=0;
+        public static void GetDataRecieve()
+        {
+            int rxBufferSize = 22;
+            byte[] rxBuffer = new byte[rxBufferSize];
+            int rxByteCount = Communication.SerialPort.Read(rxBuffer, 0, rxBufferSize);
+            // add to a list of bytes received
+            for (int i = 0; i < rxByteCount; i++) bytesReceived.Add(rxBuffer[i]);
 
+            int startIndex = 0;
+            byte functionCode = new byte();
+
+            // check header
+            if (bytesReceived.Count < 3) return;
+            for (int i = 0; i < bytesReceived.Count - 3; i++)
+            {
+                if (bytesReceived[i] == 0xAA && bytesReceived[i + 1] == 0xFF)
+                {
+                    startIndex = i;
+                    functionCode = bytesReceived[i + 2];
+
+                    if (functionCode == 0xA0)
+                    {
+                        // waitting for receive enough frame data of this function code
+                        if (bytesReceived.Count - startIndex < PIDInfoReceivePacketSize) return;
+
+                        // put data in an array
+                        byte[] data = new byte[PIDInfoReceivePacketSize];
+                        for (int j = 0; j < PIDInfoReceivePacketSize; j++)
+                            data[j] = bytesReceived[startIndex + j];
+
+                        PIDInfoReceivePacket receiveFrame = PIDInfoReceivePacket.FromArray(data);
+
+                        // check sum
+                        //   ushort crc = 0;
+                        //   for (int j = 0; j < PIDInfoReceivePacketSize - 4; j++)
+                        //      crc += data[j];
+                        // if (crc != receiveFrame.CheckSum) continue;
+
+                        bytesReceived.RemoveRange(0, startIndex + PIDInfoReceivePacketSize - 1);
+
+                        // update AGV info to lists of AGVs (real-time mode)
+                        if (receiveFrame.Header[0] == 0xAA && receiveFrame.Header[1] == 0xFF && receiveFrame.EndOfFrame[0] == 0x0D && receiveFrame.EndOfFrame[1] == 0x0A)
+                        {
+                            speed = receiveFrame.Velocity;
+                            //dk_Speed = receiveFrame.UdkVelocity;
+                            line = receiveFrame.LinePos;
+                            //udk_LinePos = receiveFrame.UdkLinePos;
+                        }
+                    }
+                }
+            }
+        }
         public static void SendPathData(string fullpath)
         {
             PathInfoSendPacket sendFrame = new PathInfoSendPacket();
             
-            byte[] arrPathFrame = new byte[fullpath.Length];
+            
             
             //string fullpath = "N,0,S,11,N,3,W,0,S,42,E,46,G,N,0";
-            string[] path = fullpath.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] path = fullpath.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            byte[] arrPathFrame = new byte[path.Length];
             int sendBytecount = path.Length;
             arrPathFrame[0] = (byte)path[0][0];
             arrPathFrame[1] = Convert.ToByte(path[1]);
             arrPathFrame[2] = (byte)path[2][0];
             arrPathFrame[sendBytecount - 2] = (byte)path[sendBytecount - 2][0];
-            arrPathFrame[sendBytecount - 1] = Convert.ToByte(sendBytecount - 1);
+            arrPathFrame[sendBytecount - 1] = Convert.ToByte(path[sendBytecount - 1]);
             for (int i = 3; i < sendBytecount - 2; i++)
             {
                 if (i % 2 == 0) arrPathFrame[i] = (byte)path[i][0];
@@ -194,6 +249,43 @@ namespace AGV_Form
 
 
                 return stream1.ToArray();
+            }
+        }
+        public struct PIDInfoReceivePacket
+        {
+            public byte[] Header;
+            public byte FunctionCode;
+            public byte AGVID;
+            public float Velocity;
+            public float UdkVelocity;
+            public float LinePos;
+            public float UdkLinePos;
+            public byte[] EndOfFrame;
+
+
+            // Convert Byte Arrays to Structs
+            public static PIDInfoReceivePacket FromArray(byte[] bytes)
+            {
+                var reader = new System.IO.BinaryReader(new System.IO.MemoryStream(bytes));
+
+                var s = default(PIDInfoReceivePacket);
+
+
+                s.Header = reader.ReadBytes(2);
+                s.FunctionCode = reader.ReadByte();
+                s.AGVID = reader.ReadByte();
+
+                s.Velocity = reader.ReadSingle();
+                s.UdkVelocity = reader.ReadSingle();
+                s.LinePos = reader.ReadSingle();
+                s.UdkLinePos = reader.ReadSingle();
+
+                s.EndOfFrame = reader.ReadBytes(2);
+
+                // s.CheckSum = reader.ReadUInt16();
+                //  s.EndOfFrame = reader.ReadBytes(2);
+
+                return s;
             }
         }
     }

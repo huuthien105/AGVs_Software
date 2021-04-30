@@ -34,6 +34,8 @@ namespace AGV_Form
             this.label7 = new System.Windows.Forms.Label();
             this.btnCOMSetting = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.imgRun = new System.Windows.Forms.ImageList(this.components);
             this.label4 = new System.Windows.Forms.Label();
@@ -50,6 +52,8 @@ namespace AGV_Form
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.rtxtbComStatus = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.listViewAGVs = new System.Windows.Forms.ListView();
             this.AGVID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -63,116 +67,15 @@ namespace AGV_Form
             this.cntxMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showPathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hidePathToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbA1 = new System.Windows.Forms.Label();
-            this.lbA13 = new System.Windows.Forms.Label();
-            this.lbA12 = new System.Windows.Forms.Label();
-            this.lbA11 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnOrder2 = new System.Windows.Forms.Button();
-            this.btnOrder1 = new System.Windows.Forms.Button();
-            this.lbA = new System.Windows.Forms.Label();
-            this.btnStore2 = new System.Windows.Forms.Button();
-            this.btnStore1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timerListview = new System.Windows.Forms.Timer(this.components);
-            this.timerSimAGV = new System.Windows.Forms.Timer(this.components);
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listViewTask = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.lbA23 = new System.Windows.Forms.Label();
-            this.lbA22 = new System.Windows.Forms.Label();
-            this.lbA21 = new System.Windows.Forms.Label();
-            this.lbA33 = new System.Windows.Forms.Label();
-            this.lbA32 = new System.Windows.Forms.Label();
-            this.lbA31 = new System.Windows.Forms.Label();
-            this.lbA2 = new System.Windows.Forms.Label();
-            this.lbA3 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.lbA6 = new System.Windows.Forms.Label();
-            this.lbA5 = new System.Windows.Forms.Label();
-            this.lbA61 = new System.Windows.Forms.Label();
-            this.lbA62 = new System.Windows.Forms.Label();
-            this.lbA63 = new System.Windows.Forms.Label();
-            this.lbA51 = new System.Windows.Forms.Label();
-            this.lbA52 = new System.Windows.Forms.Label();
-            this.lbA53 = new System.Windows.Forms.Label();
-            this.lbA4 = new System.Windows.Forms.Label();
-            this.lbA41 = new System.Windows.Forms.Label();
-            this.lbA42 = new System.Windows.Forms.Label();
-            this.lbA43 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
-            this.lbC6 = new System.Windows.Forms.Label();
-            this.lbC5 = new System.Windows.Forms.Label();
-            this.lbC61 = new System.Windows.Forms.Label();
-            this.lbC62 = new System.Windows.Forms.Label();
-            this.lbC63 = new System.Windows.Forms.Label();
-            this.lbC51 = new System.Windows.Forms.Label();
-            this.lbC52 = new System.Windows.Forms.Label();
-            this.lbC53 = new System.Windows.Forms.Label();
-            this.lbC4 = new System.Windows.Forms.Label();
-            this.lbC41 = new System.Windows.Forms.Label();
-            this.lbC42 = new System.Windows.Forms.Label();
-            this.lbC43 = new System.Windows.Forms.Label();
-            this.lbC3 = new System.Windows.Forms.Label();
-            this.lbC2 = new System.Windows.Forms.Label();
-            this.lbC33 = new System.Windows.Forms.Label();
-            this.lbC32 = new System.Windows.Forms.Label();
-            this.lbC31 = new System.Windows.Forms.Label();
-            this.lbC23 = new System.Windows.Forms.Label();
-            this.lbC22 = new System.Windows.Forms.Label();
-            this.lbC21 = new System.Windows.Forms.Label();
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.lbC1 = new System.Windows.Forms.Label();
-            this.lbC13 = new System.Windows.Forms.Label();
-            this.lbC12 = new System.Windows.Forms.Label();
-            this.lbC11 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
-            this.lbB6 = new System.Windows.Forms.Label();
-            this.lbB5 = new System.Windows.Forms.Label();
-            this.lbB61 = new System.Windows.Forms.Label();
-            this.lbB62 = new System.Windows.Forms.Label();
-            this.lbB63 = new System.Windows.Forms.Label();
-            this.lbB51 = new System.Windows.Forms.Label();
-            this.lbB52 = new System.Windows.Forms.Label();
-            this.lbB53 = new System.Windows.Forms.Label();
-            this.lbB4 = new System.Windows.Forms.Label();
-            this.lbB41 = new System.Windows.Forms.Label();
-            this.lbB42 = new System.Windows.Forms.Label();
-            this.lbB43 = new System.Windows.Forms.Label();
-            this.lbB3 = new System.Windows.Forms.Label();
-            this.lbB2 = new System.Windows.Forms.Label();
-            this.lbB33 = new System.Windows.Forms.Label();
-            this.lbB32 = new System.Windows.Forms.Label();
-            this.lbB31 = new System.Windows.Forms.Label();
-            this.lbB23 = new System.Windows.Forms.Label();
-            this.lbB22 = new System.Windows.Forms.Label();
-            this.lbB21 = new System.Windows.Forms.Label();
-            this.label87 = new System.Windows.Forms.Label();
-            this.label88 = new System.Windows.Forms.Label();
-            this.label89 = new System.Windows.Forms.Label();
-            this.lbB1 = new System.Windows.Forms.Label();
-            this.lbB13 = new System.Windows.Forms.Label();
-            this.lbB12 = new System.Windows.Forms.Label();
-            this.lbB11 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.label94 = new System.Windows.Forms.Label();
             this.label95 = new System.Windows.Forms.Label();
             this.label96 = new System.Windows.Forms.Label();
@@ -203,11 +106,117 @@ namespace AGV_Form
             this.lbD13 = new System.Windows.Forms.Label();
             this.lbD12 = new System.Windows.Forms.Label();
             this.lbD11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.label66 = new System.Windows.Forms.Label();
+            this.lbB6 = new System.Windows.Forms.Label();
+            this.lbB5 = new System.Windows.Forms.Label();
+            this.lbB61 = new System.Windows.Forms.Label();
+            this.lbB62 = new System.Windows.Forms.Label();
+            this.lbB63 = new System.Windows.Forms.Label();
+            this.lbB51 = new System.Windows.Forms.Label();
+            this.lbB52 = new System.Windows.Forms.Label();
+            this.lbB53 = new System.Windows.Forms.Label();
+            this.lbB4 = new System.Windows.Forms.Label();
+            this.lbB41 = new System.Windows.Forms.Label();
+            this.lbB42 = new System.Windows.Forms.Label();
+            this.lbB43 = new System.Windows.Forms.Label();
+            this.lbB3 = new System.Windows.Forms.Label();
+            this.lbB2 = new System.Windows.Forms.Label();
+            this.lbB33 = new System.Windows.Forms.Label();
+            this.lbB32 = new System.Windows.Forms.Label();
+            this.lbB31 = new System.Windows.Forms.Label();
+            this.lbB23 = new System.Windows.Forms.Label();
+            this.lbB22 = new System.Windows.Forms.Label();
+            this.lbB21 = new System.Windows.Forms.Label();
+            this.label87 = new System.Windows.Forms.Label();
+            this.label88 = new System.Windows.Forms.Label();
+            this.label89 = new System.Windows.Forms.Label();
+            this.lbB1 = new System.Windows.Forms.Label();
+            this.lbB13 = new System.Windows.Forms.Label();
+            this.lbB12 = new System.Windows.Forms.Label();
+            this.lbB11 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.lbC6 = new System.Windows.Forms.Label();
+            this.lbC5 = new System.Windows.Forms.Label();
+            this.lbC61 = new System.Windows.Forms.Label();
+            this.lbC62 = new System.Windows.Forms.Label();
+            this.lbC63 = new System.Windows.Forms.Label();
+            this.lbC51 = new System.Windows.Forms.Label();
+            this.lbC52 = new System.Windows.Forms.Label();
+            this.lbC53 = new System.Windows.Forms.Label();
+            this.lbC4 = new System.Windows.Forms.Label();
+            this.lbC41 = new System.Windows.Forms.Label();
+            this.lbC42 = new System.Windows.Forms.Label();
+            this.lbC43 = new System.Windows.Forms.Label();
+            this.lbC3 = new System.Windows.Forms.Label();
+            this.lbC2 = new System.Windows.Forms.Label();
+            this.lbC33 = new System.Windows.Forms.Label();
+            this.lbC32 = new System.Windows.Forms.Label();
+            this.lbC31 = new System.Windows.Forms.Label();
+            this.lbC23 = new System.Windows.Forms.Label();
+            this.lbC22 = new System.Windows.Forms.Label();
+            this.lbC21 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
+            this.lbC1 = new System.Windows.Forms.Label();
+            this.lbC13 = new System.Windows.Forms.Label();
+            this.lbC12 = new System.Windows.Forms.Label();
+            this.lbC11 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.lbA6 = new System.Windows.Forms.Label();
+            this.lbA5 = new System.Windows.Forms.Label();
+            this.lbA61 = new System.Windows.Forms.Label();
+            this.lbA62 = new System.Windows.Forms.Label();
+            this.lbA63 = new System.Windows.Forms.Label();
+            this.lbA51 = new System.Windows.Forms.Label();
+            this.lbA52 = new System.Windows.Forms.Label();
+            this.lbA53 = new System.Windows.Forms.Label();
+            this.lbA4 = new System.Windows.Forms.Label();
+            this.lbA41 = new System.Windows.Forms.Label();
+            this.lbA42 = new System.Windows.Forms.Label();
+            this.lbA43 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lbA3 = new System.Windows.Forms.Label();
+            this.lbA2 = new System.Windows.Forms.Label();
+            this.lbA33 = new System.Windows.Forms.Label();
+            this.lbA32 = new System.Windows.Forms.Label();
+            this.lbA31 = new System.Windows.Forms.Label();
+            this.lbA23 = new System.Windows.Forms.Label();
+            this.lbA22 = new System.Windows.Forms.Label();
+            this.lbA21 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbA1 = new System.Windows.Forms.Label();
+            this.lbA13 = new System.Windows.Forms.Label();
+            this.lbA12 = new System.Windows.Forms.Label();
+            this.lbA11 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnOrder2 = new System.Windows.Forms.Button();
+            this.btnOrder1 = new System.Windows.Forms.Button();
+            this.lbA = new System.Windows.Forms.Label();
+            this.btnStore2 = new System.Windows.Forms.Button();
+            this.btnStore1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.timerListview = new System.Windows.Forms.Timer(this.components);
+            this.timerSimAGV = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.listViewTask = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -271,6 +280,26 @@ namespace AGV_Form
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Control Pannel";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(329, 671);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(63, 32);
+            this.button5.TabIndex = 27;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(501, 680);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 26;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnPause
             // 
@@ -475,6 +504,24 @@ namespace AGV_Form
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "AGVs Monitoring";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(269, 681);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 13);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "label20";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(200, 681);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "label19";
+            // 
             // listViewAGVs
             // 
             this.listViewAGVs.BackColor = System.Drawing.Color.White;
@@ -562,6 +609,10 @@ namespace AGV_Form
             this.pnFloor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnFloor.BackgroundImage")));
             this.pnFloor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pnFloor.ContextMenuStrip = this.cntxMenuStrip;
+            this.pnFloor.Controls.Add(this.label16);
+            this.pnFloor.Controls.Add(this.label17);
+            this.pnFloor.Controls.Add(this.label15);
+            this.pnFloor.Controls.Add(this.label13);
             this.pnFloor.Controls.Add(this.label11);
             this.pnFloor.Controls.Add(this.label5);
             this.pnFloor.Controls.Add(this.label14);
@@ -726,6 +777,1396 @@ namespace AGV_Form
             this.hidePathToolStripMenuItem.Text = "Hide current path";
             this.hidePathToolStripMenuItem.Click += new System.EventHandler(this.hidePathToolStripMenuItem_Click);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.LightCyan;
+            this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label16.ForeColor = System.Drawing.Color.Navy;
+            this.label16.Location = new System.Drawing.Point(676, 575);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(19, 21);
+            this.label16.TabIndex = 163;
+            this.label16.Text = "2";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.LightCyan;
+            this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label17.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label17.ForeColor = System.Drawing.Color.Navy;
+            this.label17.Location = new System.Drawing.Point(590, 575);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(17, 21);
+            this.label17.TabIndex = 162;
+            this.label17.Text = "1";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.LightCyan;
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label15.ForeColor = System.Drawing.Color.Navy;
+            this.label15.Location = new System.Drawing.Point(119, 575);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(19, 21);
+            this.label15.TabIndex = 161;
+            this.label15.Text = "2";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.LightCyan;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.label13.ForeColor = System.Drawing.Color.Navy;
+            this.label13.Location = new System.Drawing.Point(32, 575);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(17, 21);
+            this.label13.TabIndex = 160;
+            this.label13.Text = "1";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.label11.ForeColor = System.Drawing.Color.Navy;
+            this.label11.Location = new System.Drawing.Point(630, 564);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(25, 37);
+            this.label11.TabIndex = 159;
+            this.label11.Text = "I";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(65, 559);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 37);
+            this.label5.TabIndex = 158;
+            this.label5.Text = "O";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.label14.ForeColor = System.Drawing.Color.Navy;
+            this.label14.Location = new System.Drawing.Point(391, 300);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(36, 37);
+            this.label14.TabIndex = 157;
+            this.label14.Text = "D";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.label12.ForeColor = System.Drawing.Color.Navy;
+            this.label12.Location = new System.Drawing.Point(67, 300);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(34, 37);
+            this.label12.TabIndex = 155;
+            this.label12.Text = "C";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
+            this.label10.ForeColor = System.Drawing.Color.Navy;
+            this.label10.Location = new System.Drawing.Point(393, 78);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(33, 37);
+            this.label10.TabIndex = 153;
+            this.label10.Text = "B";
+            // 
+            // label94
+            // 
+            this.label94.BackColor = System.Drawing.Color.Transparent;
+            this.label94.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.ForeColor = System.Drawing.Color.Navy;
+            this.label94.Location = new System.Drawing.Point(632, 401);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(10, 19);
+            this.label94.TabIndex = 152;
+            this.label94.Text = "1";
+            // 
+            // label95
+            // 
+            this.label95.BackColor = System.Drawing.Color.Transparent;
+            this.label95.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label95.ForeColor = System.Drawing.Color.Navy;
+            this.label95.Location = new System.Drawing.Point(632, 388);
+            this.label95.Name = "label95";
+            this.label95.Size = new System.Drawing.Size(10, 19);
+            this.label95.TabIndex = 151;
+            this.label95.Text = "2";
+            // 
+            // label96
+            // 
+            this.label96.BackColor = System.Drawing.Color.Transparent;
+            this.label96.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label96.ForeColor = System.Drawing.Color.Navy;
+            this.label96.Location = new System.Drawing.Point(632, 376);
+            this.label96.Name = "label96";
+            this.label96.Size = new System.Drawing.Size(10, 19);
+            this.label96.TabIndex = 150;
+            this.label96.Text = "3";
+            // 
+            // lbD6
+            // 
+            this.lbD6.AutoSize = true;
+            this.lbD6.BackColor = System.Drawing.Color.LightCyan;
+            this.lbD6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbD6.ForeColor = System.Drawing.Color.Navy;
+            this.lbD6.Location = new System.Drawing.Point(589, 384);
+            this.lbD6.Name = "lbD6";
+            this.lbD6.Size = new System.Drawing.Size(19, 21);
+            this.lbD6.TabIndex = 149;
+            this.lbD6.Text = "6";
+            // 
+            // lbD5
+            // 
+            this.lbD5.AutoSize = true;
+            this.lbD5.BackColor = System.Drawing.Color.LightCyan;
+            this.lbD5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbD5.ForeColor = System.Drawing.Color.Navy;
+            this.lbD5.Location = new System.Drawing.Point(515, 384);
+            this.lbD5.Name = "lbD5";
+            this.lbD5.Size = new System.Drawing.Size(19, 21);
+            this.lbD5.TabIndex = 148;
+            this.lbD5.Text = "5";
+            // 
+            // lbD61
+            // 
+            this.lbD61.BackColor = System.Drawing.Color.Silver;
+            this.lbD61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD61.ForeColor = System.Drawing.Color.Beige;
+            this.lbD61.Location = new System.Drawing.Point(569, 401);
+            this.lbD61.Name = "lbD61";
+            this.lbD61.Size = new System.Drawing.Size(59, 11);
+            this.lbD61.TabIndex = 147;
+            // 
+            // lbD62
+            // 
+            this.lbD62.BackColor = System.Drawing.Color.Silver;
+            this.lbD62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD62.ForeColor = System.Drawing.Color.Beige;
+            this.lbD62.Location = new System.Drawing.Point(569, 389);
+            this.lbD62.Name = "lbD62";
+            this.lbD62.Size = new System.Drawing.Size(59, 12);
+            this.lbD62.TabIndex = 146;
+            // 
+            // lbD63
+            // 
+            this.lbD63.BackColor = System.Drawing.Color.Silver;
+            this.lbD63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD63.ForeColor = System.Drawing.Color.Beige;
+            this.lbD63.Location = new System.Drawing.Point(569, 378);
+            this.lbD63.Name = "lbD63";
+            this.lbD63.Size = new System.Drawing.Size(59, 11);
+            this.lbD63.TabIndex = 145;
+            // 
+            // lbD51
+            // 
+            this.lbD51.BackColor = System.Drawing.Color.Silver;
+            this.lbD51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD51.ForeColor = System.Drawing.Color.Beige;
+            this.lbD51.Location = new System.Drawing.Point(495, 401);
+            this.lbD51.Name = "lbD51";
+            this.lbD51.Size = new System.Drawing.Size(59, 11);
+            this.lbD51.TabIndex = 144;
+            // 
+            // lbD52
+            // 
+            this.lbD52.BackColor = System.Drawing.Color.Silver;
+            this.lbD52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD52.ForeColor = System.Drawing.Color.Beige;
+            this.lbD52.Location = new System.Drawing.Point(495, 389);
+            this.lbD52.Name = "lbD52";
+            this.lbD52.Size = new System.Drawing.Size(59, 12);
+            this.lbD52.TabIndex = 143;
+            // 
+            // lbD53
+            // 
+            this.lbD53.BackColor = System.Drawing.Color.Silver;
+            this.lbD53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD53.ForeColor = System.Drawing.Color.Beige;
+            this.lbD53.Location = new System.Drawing.Point(495, 378);
+            this.lbD53.Name = "lbD53";
+            this.lbD53.Size = new System.Drawing.Size(59, 11);
+            this.lbD53.TabIndex = 142;
+            // 
+            // lbD4
+            // 
+            this.lbD4.AutoSize = true;
+            this.lbD4.BackColor = System.Drawing.Color.LightCyan;
+            this.lbD4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbD4.ForeColor = System.Drawing.Color.Navy;
+            this.lbD4.Location = new System.Drawing.Point(441, 384);
+            this.lbD4.Name = "lbD4";
+            this.lbD4.Size = new System.Drawing.Size(19, 21);
+            this.lbD4.TabIndex = 141;
+            this.lbD4.Text = "4";
+            // 
+            // lbD41
+            // 
+            this.lbD41.BackColor = System.Drawing.Color.Silver;
+            this.lbD41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD41.ForeColor = System.Drawing.Color.Beige;
+            this.lbD41.Location = new System.Drawing.Point(420, 401);
+            this.lbD41.Name = "lbD41";
+            this.lbD41.Size = new System.Drawing.Size(59, 11);
+            this.lbD41.TabIndex = 140;
+            // 
+            // lbD42
+            // 
+            this.lbD42.BackColor = System.Drawing.Color.Silver;
+            this.lbD42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD42.ForeColor = System.Drawing.Color.Bisque;
+            this.lbD42.Location = new System.Drawing.Point(420, 389);
+            this.lbD42.Name = "lbD42";
+            this.lbD42.Size = new System.Drawing.Size(59, 12);
+            this.lbD42.TabIndex = 139;
+            // 
+            // lbD43
+            // 
+            this.lbD43.BackColor = System.Drawing.Color.Silver;
+            this.lbD43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD43.ForeColor = System.Drawing.Color.Beige;
+            this.lbD43.Location = new System.Drawing.Point(420, 378);
+            this.lbD43.Name = "lbD43";
+            this.lbD43.Size = new System.Drawing.Size(59, 11);
+            this.lbD43.TabIndex = 138;
+            // 
+            // lbD3
+            // 
+            this.lbD3.AutoSize = true;
+            this.lbD3.BackColor = System.Drawing.Color.LightCyan;
+            this.lbD3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbD3.ForeColor = System.Drawing.Color.Navy;
+            this.lbD3.Location = new System.Drawing.Point(589, 344);
+            this.lbD3.Name = "lbD3";
+            this.lbD3.Size = new System.Drawing.Size(19, 21);
+            this.lbD3.TabIndex = 137;
+            this.lbD3.Text = "3";
+            // 
+            // lbD2
+            // 
+            this.lbD2.AutoSize = true;
+            this.lbD2.BackColor = System.Drawing.Color.LightCyan;
+            this.lbD2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbD2.ForeColor = System.Drawing.Color.Navy;
+            this.lbD2.Location = new System.Drawing.Point(515, 344);
+            this.lbD2.Name = "lbD2";
+            this.lbD2.Size = new System.Drawing.Size(19, 21);
+            this.lbD2.TabIndex = 136;
+            this.lbD2.Text = "2";
+            // 
+            // lbD33
+            // 
+            this.lbD33.BackColor = System.Drawing.Color.Silver;
+            this.lbD33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD33.ForeColor = System.Drawing.Color.Beige;
+            this.lbD33.Location = new System.Drawing.Point(569, 361);
+            this.lbD33.Name = "lbD33";
+            this.lbD33.Size = new System.Drawing.Size(59, 11);
+            this.lbD33.TabIndex = 135;
+            // 
+            // lbD32
+            // 
+            this.lbD32.BackColor = System.Drawing.Color.Silver;
+            this.lbD32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD32.ForeColor = System.Drawing.Color.Beige;
+            this.lbD32.Location = new System.Drawing.Point(569, 349);
+            this.lbD32.Name = "lbD32";
+            this.lbD32.Size = new System.Drawing.Size(59, 12);
+            this.lbD32.TabIndex = 134;
+            // 
+            // lbD31
+            // 
+            this.lbD31.BackColor = System.Drawing.Color.Silver;
+            this.lbD31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD31.ForeColor = System.Drawing.Color.Beige;
+            this.lbD31.Location = new System.Drawing.Point(569, 338);
+            this.lbD31.Name = "lbD31";
+            this.lbD31.Size = new System.Drawing.Size(59, 11);
+            this.lbD31.TabIndex = 133;
+            // 
+            // lbD23
+            // 
+            this.lbD23.BackColor = System.Drawing.Color.Silver;
+            this.lbD23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD23.ForeColor = System.Drawing.Color.Beige;
+            this.lbD23.Location = new System.Drawing.Point(495, 361);
+            this.lbD23.Name = "lbD23";
+            this.lbD23.Size = new System.Drawing.Size(59, 11);
+            this.lbD23.TabIndex = 132;
+            // 
+            // lbD22
+            // 
+            this.lbD22.BackColor = System.Drawing.Color.Silver;
+            this.lbD22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD22.ForeColor = System.Drawing.Color.Beige;
+            this.lbD22.Location = new System.Drawing.Point(495, 349);
+            this.lbD22.Name = "lbD22";
+            this.lbD22.Size = new System.Drawing.Size(59, 12);
+            this.lbD22.TabIndex = 131;
+            // 
+            // lbD21
+            // 
+            this.lbD21.BackColor = System.Drawing.Color.Silver;
+            this.lbD21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD21.ForeColor = System.Drawing.Color.Beige;
+            this.lbD21.Location = new System.Drawing.Point(495, 338);
+            this.lbD21.Name = "lbD21";
+            this.lbD21.Size = new System.Drawing.Size(59, 11);
+            this.lbD21.TabIndex = 130;
+            // 
+            // label117
+            // 
+            this.label117.BackColor = System.Drawing.Color.Transparent;
+            this.label117.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label117.ForeColor = System.Drawing.Color.Navy;
+            this.label117.Location = new System.Drawing.Point(405, 361);
+            this.label117.Name = "label117";
+            this.label117.Size = new System.Drawing.Size(10, 19);
+            this.label117.TabIndex = 129;
+            this.label117.Text = "3";
+            // 
+            // label118
+            // 
+            this.label118.BackColor = System.Drawing.Color.Transparent;
+            this.label118.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label118.ForeColor = System.Drawing.Color.Navy;
+            this.label118.Location = new System.Drawing.Point(405, 349);
+            this.label118.Name = "label118";
+            this.label118.Size = new System.Drawing.Size(10, 19);
+            this.label118.TabIndex = 128;
+            this.label118.Text = "2";
+            // 
+            // label119
+            // 
+            this.label119.BackColor = System.Drawing.Color.Transparent;
+            this.label119.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label119.ForeColor = System.Drawing.Color.Navy;
+            this.label119.Location = new System.Drawing.Point(405, 336);
+            this.label119.Name = "label119";
+            this.label119.Size = new System.Drawing.Size(10, 19);
+            this.label119.TabIndex = 127;
+            this.label119.Text = "1";
+            // 
+            // lbD1
+            // 
+            this.lbD1.AutoSize = true;
+            this.lbD1.BackColor = System.Drawing.Color.LightCyan;
+            this.lbD1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbD1.ForeColor = System.Drawing.Color.Navy;
+            this.lbD1.Location = new System.Drawing.Point(441, 344);
+            this.lbD1.Name = "lbD1";
+            this.lbD1.Size = new System.Drawing.Size(17, 21);
+            this.lbD1.TabIndex = 126;
+            this.lbD1.Text = "1";
+            // 
+            // lbD13
+            // 
+            this.lbD13.BackColor = System.Drawing.Color.Silver;
+            this.lbD13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD13.ForeColor = System.Drawing.Color.Beige;
+            this.lbD13.Location = new System.Drawing.Point(420, 361);
+            this.lbD13.Name = "lbD13";
+            this.lbD13.Size = new System.Drawing.Size(59, 11);
+            this.lbD13.TabIndex = 125;
+            // 
+            // lbD12
+            // 
+            this.lbD12.BackColor = System.Drawing.Color.Silver;
+            this.lbD12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD12.ForeColor = System.Drawing.Color.Bisque;
+            this.lbD12.Location = new System.Drawing.Point(420, 349);
+            this.lbD12.Name = "lbD12";
+            this.lbD12.Size = new System.Drawing.Size(59, 12);
+            this.lbD12.TabIndex = 124;
+            // 
+            // lbD11
+            // 
+            this.lbD11.BackColor = System.Drawing.Color.Silver;
+            this.lbD11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbD11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbD11.ForeColor = System.Drawing.Color.Beige;
+            this.lbD11.Location = new System.Drawing.Point(420, 338);
+            this.lbD11.Name = "lbD11";
+            this.lbD11.Size = new System.Drawing.Size(59, 11);
+            this.lbD11.TabIndex = 123;
+            // 
+            // label64
+            // 
+            this.label64.BackColor = System.Drawing.Color.Transparent;
+            this.label64.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label64.ForeColor = System.Drawing.Color.Navy;
+            this.label64.Location = new System.Drawing.Point(632, 178);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(10, 19);
+            this.label64.TabIndex = 122;
+            this.label64.Text = "1";
+            // 
+            // label65
+            // 
+            this.label65.BackColor = System.Drawing.Color.Transparent;
+            this.label65.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label65.ForeColor = System.Drawing.Color.Navy;
+            this.label65.Location = new System.Drawing.Point(632, 165);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(10, 19);
+            this.label65.TabIndex = 121;
+            this.label65.Text = "2";
+            // 
+            // label66
+            // 
+            this.label66.BackColor = System.Drawing.Color.Transparent;
+            this.label66.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.ForeColor = System.Drawing.Color.Navy;
+            this.label66.Location = new System.Drawing.Point(632, 153);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(10, 19);
+            this.label66.TabIndex = 120;
+            this.label66.Text = "3";
+            // 
+            // lbB6
+            // 
+            this.lbB6.AutoSize = true;
+            this.lbB6.BackColor = System.Drawing.Color.LightCyan;
+            this.lbB6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbB6.ForeColor = System.Drawing.Color.Navy;
+            this.lbB6.Location = new System.Drawing.Point(589, 161);
+            this.lbB6.Name = "lbB6";
+            this.lbB6.Size = new System.Drawing.Size(19, 21);
+            this.lbB6.TabIndex = 119;
+            this.lbB6.Text = "6";
+            // 
+            // lbB5
+            // 
+            this.lbB5.AutoSize = true;
+            this.lbB5.BackColor = System.Drawing.Color.LightCyan;
+            this.lbB5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbB5.ForeColor = System.Drawing.Color.Navy;
+            this.lbB5.Location = new System.Drawing.Point(515, 161);
+            this.lbB5.Name = "lbB5";
+            this.lbB5.Size = new System.Drawing.Size(19, 21);
+            this.lbB5.TabIndex = 118;
+            this.lbB5.Text = "5";
+            // 
+            // lbB61
+            // 
+            this.lbB61.BackColor = System.Drawing.Color.Silver;
+            this.lbB61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB61.ForeColor = System.Drawing.Color.Beige;
+            this.lbB61.Location = new System.Drawing.Point(569, 178);
+            this.lbB61.Name = "lbB61";
+            this.lbB61.Size = new System.Drawing.Size(59, 11);
+            this.lbB61.TabIndex = 117;
+            // 
+            // lbB62
+            // 
+            this.lbB62.BackColor = System.Drawing.Color.Silver;
+            this.lbB62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB62.ForeColor = System.Drawing.Color.Beige;
+            this.lbB62.Location = new System.Drawing.Point(569, 166);
+            this.lbB62.Name = "lbB62";
+            this.lbB62.Size = new System.Drawing.Size(59, 12);
+            this.lbB62.TabIndex = 116;
+            // 
+            // lbB63
+            // 
+            this.lbB63.BackColor = System.Drawing.Color.Silver;
+            this.lbB63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB63.ForeColor = System.Drawing.Color.Beige;
+            this.lbB63.Location = new System.Drawing.Point(569, 155);
+            this.lbB63.Name = "lbB63";
+            this.lbB63.Size = new System.Drawing.Size(59, 11);
+            this.lbB63.TabIndex = 115;
+            // 
+            // lbB51
+            // 
+            this.lbB51.BackColor = System.Drawing.Color.Silver;
+            this.lbB51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB51.ForeColor = System.Drawing.Color.Beige;
+            this.lbB51.Location = new System.Drawing.Point(495, 178);
+            this.lbB51.Name = "lbB51";
+            this.lbB51.Size = new System.Drawing.Size(59, 11);
+            this.lbB51.TabIndex = 114;
+            // 
+            // lbB52
+            // 
+            this.lbB52.BackColor = System.Drawing.Color.Silver;
+            this.lbB52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB52.ForeColor = System.Drawing.Color.Beige;
+            this.lbB52.Location = new System.Drawing.Point(495, 166);
+            this.lbB52.Name = "lbB52";
+            this.lbB52.Size = new System.Drawing.Size(59, 12);
+            this.lbB52.TabIndex = 113;
+            // 
+            // lbB53
+            // 
+            this.lbB53.BackColor = System.Drawing.Color.Silver;
+            this.lbB53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB53.ForeColor = System.Drawing.Color.Beige;
+            this.lbB53.Location = new System.Drawing.Point(495, 155);
+            this.lbB53.Name = "lbB53";
+            this.lbB53.Size = new System.Drawing.Size(59, 11);
+            this.lbB53.TabIndex = 112;
+            // 
+            // lbB4
+            // 
+            this.lbB4.AutoSize = true;
+            this.lbB4.BackColor = System.Drawing.Color.LightCyan;
+            this.lbB4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbB4.ForeColor = System.Drawing.Color.Navy;
+            this.lbB4.Location = new System.Drawing.Point(441, 161);
+            this.lbB4.Name = "lbB4";
+            this.lbB4.Size = new System.Drawing.Size(19, 21);
+            this.lbB4.TabIndex = 111;
+            this.lbB4.Text = "4";
+            // 
+            // lbB41
+            // 
+            this.lbB41.BackColor = System.Drawing.Color.Silver;
+            this.lbB41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB41.ForeColor = System.Drawing.Color.Beige;
+            this.lbB41.Location = new System.Drawing.Point(420, 178);
+            this.lbB41.Name = "lbB41";
+            this.lbB41.Size = new System.Drawing.Size(59, 11);
+            this.lbB41.TabIndex = 110;
+            // 
+            // lbB42
+            // 
+            this.lbB42.BackColor = System.Drawing.Color.Silver;
+            this.lbB42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB42.ForeColor = System.Drawing.Color.Bisque;
+            this.lbB42.Location = new System.Drawing.Point(420, 166);
+            this.lbB42.Name = "lbB42";
+            this.lbB42.Size = new System.Drawing.Size(59, 12);
+            this.lbB42.TabIndex = 109;
+            // 
+            // lbB43
+            // 
+            this.lbB43.BackColor = System.Drawing.Color.Silver;
+            this.lbB43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB43.ForeColor = System.Drawing.Color.Beige;
+            this.lbB43.Location = new System.Drawing.Point(420, 155);
+            this.lbB43.Name = "lbB43";
+            this.lbB43.Size = new System.Drawing.Size(59, 11);
+            this.lbB43.TabIndex = 108;
+            // 
+            // lbB3
+            // 
+            this.lbB3.AutoSize = true;
+            this.lbB3.BackColor = System.Drawing.Color.LightCyan;
+            this.lbB3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbB3.ForeColor = System.Drawing.Color.Navy;
+            this.lbB3.Location = new System.Drawing.Point(589, 121);
+            this.lbB3.Name = "lbB3";
+            this.lbB3.Size = new System.Drawing.Size(19, 21);
+            this.lbB3.TabIndex = 107;
+            this.lbB3.Text = "3";
+            // 
+            // lbB2
+            // 
+            this.lbB2.AutoSize = true;
+            this.lbB2.BackColor = System.Drawing.Color.LightCyan;
+            this.lbB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbB2.ForeColor = System.Drawing.Color.Navy;
+            this.lbB2.Location = new System.Drawing.Point(515, 121);
+            this.lbB2.Name = "lbB2";
+            this.lbB2.Size = new System.Drawing.Size(19, 21);
+            this.lbB2.TabIndex = 106;
+            this.lbB2.Text = "2";
+            // 
+            // lbB33
+            // 
+            this.lbB33.BackColor = System.Drawing.Color.Silver;
+            this.lbB33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB33.ForeColor = System.Drawing.Color.Beige;
+            this.lbB33.Location = new System.Drawing.Point(569, 138);
+            this.lbB33.Name = "lbB33";
+            this.lbB33.Size = new System.Drawing.Size(59, 11);
+            this.lbB33.TabIndex = 105;
+            // 
+            // lbB32
+            // 
+            this.lbB32.BackColor = System.Drawing.Color.Silver;
+            this.lbB32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB32.ForeColor = System.Drawing.Color.Beige;
+            this.lbB32.Location = new System.Drawing.Point(569, 126);
+            this.lbB32.Name = "lbB32";
+            this.lbB32.Size = new System.Drawing.Size(59, 12);
+            this.lbB32.TabIndex = 104;
+            // 
+            // lbB31
+            // 
+            this.lbB31.BackColor = System.Drawing.Color.Silver;
+            this.lbB31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB31.ForeColor = System.Drawing.Color.Beige;
+            this.lbB31.Location = new System.Drawing.Point(569, 115);
+            this.lbB31.Name = "lbB31";
+            this.lbB31.Size = new System.Drawing.Size(59, 11);
+            this.lbB31.TabIndex = 103;
+            // 
+            // lbB23
+            // 
+            this.lbB23.BackColor = System.Drawing.Color.Silver;
+            this.lbB23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB23.ForeColor = System.Drawing.Color.Beige;
+            this.lbB23.Location = new System.Drawing.Point(495, 138);
+            this.lbB23.Name = "lbB23";
+            this.lbB23.Size = new System.Drawing.Size(59, 11);
+            this.lbB23.TabIndex = 102;
+            // 
+            // lbB22
+            // 
+            this.lbB22.BackColor = System.Drawing.Color.Silver;
+            this.lbB22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB22.ForeColor = System.Drawing.Color.Beige;
+            this.lbB22.Location = new System.Drawing.Point(495, 126);
+            this.lbB22.Name = "lbB22";
+            this.lbB22.Size = new System.Drawing.Size(59, 12);
+            this.lbB22.TabIndex = 101;
+            // 
+            // lbB21
+            // 
+            this.lbB21.BackColor = System.Drawing.Color.Silver;
+            this.lbB21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB21.ForeColor = System.Drawing.Color.Beige;
+            this.lbB21.Location = new System.Drawing.Point(495, 115);
+            this.lbB21.Name = "lbB21";
+            this.lbB21.Size = new System.Drawing.Size(59, 11);
+            this.lbB21.TabIndex = 100;
+            // 
+            // label87
+            // 
+            this.label87.BackColor = System.Drawing.Color.Transparent;
+            this.label87.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label87.ForeColor = System.Drawing.Color.Navy;
+            this.label87.Location = new System.Drawing.Point(405, 138);
+            this.label87.Name = "label87";
+            this.label87.Size = new System.Drawing.Size(10, 19);
+            this.label87.TabIndex = 99;
+            this.label87.Text = "3";
+            // 
+            // label88
+            // 
+            this.label88.BackColor = System.Drawing.Color.Transparent;
+            this.label88.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label88.ForeColor = System.Drawing.Color.Navy;
+            this.label88.Location = new System.Drawing.Point(405, 126);
+            this.label88.Name = "label88";
+            this.label88.Size = new System.Drawing.Size(10, 19);
+            this.label88.TabIndex = 98;
+            this.label88.Text = "2";
+            // 
+            // label89
+            // 
+            this.label89.BackColor = System.Drawing.Color.Transparent;
+            this.label89.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label89.ForeColor = System.Drawing.Color.Navy;
+            this.label89.Location = new System.Drawing.Point(405, 113);
+            this.label89.Name = "label89";
+            this.label89.Size = new System.Drawing.Size(10, 19);
+            this.label89.TabIndex = 97;
+            this.label89.Text = "1";
+            // 
+            // lbB1
+            // 
+            this.lbB1.AutoSize = true;
+            this.lbB1.BackColor = System.Drawing.Color.LightCyan;
+            this.lbB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbB1.ForeColor = System.Drawing.Color.Navy;
+            this.lbB1.Location = new System.Drawing.Point(441, 121);
+            this.lbB1.Name = "lbB1";
+            this.lbB1.Size = new System.Drawing.Size(17, 21);
+            this.lbB1.TabIndex = 96;
+            this.lbB1.Text = "1";
+            // 
+            // lbB13
+            // 
+            this.lbB13.BackColor = System.Drawing.Color.Silver;
+            this.lbB13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB13.ForeColor = System.Drawing.Color.Beige;
+            this.lbB13.Location = new System.Drawing.Point(420, 138);
+            this.lbB13.Name = "lbB13";
+            this.lbB13.Size = new System.Drawing.Size(59, 11);
+            this.lbB13.TabIndex = 95;
+            // 
+            // lbB12
+            // 
+            this.lbB12.BackColor = System.Drawing.Color.Silver;
+            this.lbB12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB12.ForeColor = System.Drawing.Color.Bisque;
+            this.lbB12.Location = new System.Drawing.Point(420, 126);
+            this.lbB12.Name = "lbB12";
+            this.lbB12.Size = new System.Drawing.Size(59, 12);
+            this.lbB12.TabIndex = 94;
+            // 
+            // lbB11
+            // 
+            this.lbB11.BackColor = System.Drawing.Color.Silver;
+            this.lbB11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbB11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbB11.ForeColor = System.Drawing.Color.Beige;
+            this.lbB11.Location = new System.Drawing.Point(420, 115);
+            this.lbB11.Name = "lbB11";
+            this.lbB11.Size = new System.Drawing.Size(59, 11);
+            this.lbB11.TabIndex = 93;
+            // 
+            // label31
+            // 
+            this.label31.BackColor = System.Drawing.Color.Transparent;
+            this.label31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.Navy;
+            this.label31.Location = new System.Drawing.Point(309, 401);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(10, 19);
+            this.label31.TabIndex = 92;
+            this.label31.Text = "1";
+            // 
+            // label32
+            // 
+            this.label32.BackColor = System.Drawing.Color.Transparent;
+            this.label32.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.ForeColor = System.Drawing.Color.Navy;
+            this.label32.Location = new System.Drawing.Point(309, 388);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(10, 19);
+            this.label32.TabIndex = 91;
+            this.label32.Text = "2";
+            // 
+            // label33
+            // 
+            this.label33.BackColor = System.Drawing.Color.Transparent;
+            this.label33.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.ForeColor = System.Drawing.Color.Navy;
+            this.label33.Location = new System.Drawing.Point(309, 376);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(10, 19);
+            this.label33.TabIndex = 90;
+            this.label33.Text = "3";
+            // 
+            // lbC6
+            // 
+            this.lbC6.AutoSize = true;
+            this.lbC6.BackColor = System.Drawing.Color.LightCyan;
+            this.lbC6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbC6.ForeColor = System.Drawing.Color.Navy;
+            this.lbC6.Location = new System.Drawing.Point(266, 384);
+            this.lbC6.Name = "lbC6";
+            this.lbC6.Size = new System.Drawing.Size(19, 21);
+            this.lbC6.TabIndex = 89;
+            this.lbC6.Text = "6";
+            // 
+            // lbC5
+            // 
+            this.lbC5.AutoSize = true;
+            this.lbC5.BackColor = System.Drawing.Color.LightCyan;
+            this.lbC5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbC5.ForeColor = System.Drawing.Color.Navy;
+            this.lbC5.Location = new System.Drawing.Point(192, 384);
+            this.lbC5.Name = "lbC5";
+            this.lbC5.Size = new System.Drawing.Size(19, 21);
+            this.lbC5.TabIndex = 88;
+            this.lbC5.Text = "5";
+            // 
+            // lbC61
+            // 
+            this.lbC61.BackColor = System.Drawing.Color.Silver;
+            this.lbC61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC61.ForeColor = System.Drawing.Color.Beige;
+            this.lbC61.Location = new System.Drawing.Point(246, 401);
+            this.lbC61.Name = "lbC61";
+            this.lbC61.Size = new System.Drawing.Size(59, 11);
+            this.lbC61.TabIndex = 87;
+            // 
+            // lbC62
+            // 
+            this.lbC62.BackColor = System.Drawing.Color.Silver;
+            this.lbC62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC62.ForeColor = System.Drawing.Color.Beige;
+            this.lbC62.Location = new System.Drawing.Point(246, 389);
+            this.lbC62.Name = "lbC62";
+            this.lbC62.Size = new System.Drawing.Size(59, 12);
+            this.lbC62.TabIndex = 86;
+            // 
+            // lbC63
+            // 
+            this.lbC63.BackColor = System.Drawing.Color.Silver;
+            this.lbC63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC63.ForeColor = System.Drawing.Color.Beige;
+            this.lbC63.Location = new System.Drawing.Point(246, 378);
+            this.lbC63.Name = "lbC63";
+            this.lbC63.Size = new System.Drawing.Size(59, 11);
+            this.lbC63.TabIndex = 85;
+            // 
+            // lbC51
+            // 
+            this.lbC51.BackColor = System.Drawing.Color.Silver;
+            this.lbC51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC51.ForeColor = System.Drawing.Color.Beige;
+            this.lbC51.Location = new System.Drawing.Point(172, 401);
+            this.lbC51.Name = "lbC51";
+            this.lbC51.Size = new System.Drawing.Size(59, 11);
+            this.lbC51.TabIndex = 84;
+            // 
+            // lbC52
+            // 
+            this.lbC52.BackColor = System.Drawing.Color.Silver;
+            this.lbC52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC52.ForeColor = System.Drawing.Color.Beige;
+            this.lbC52.Location = new System.Drawing.Point(172, 389);
+            this.lbC52.Name = "lbC52";
+            this.lbC52.Size = new System.Drawing.Size(59, 12);
+            this.lbC52.TabIndex = 83;
+            // 
+            // lbC53
+            // 
+            this.lbC53.BackColor = System.Drawing.Color.Silver;
+            this.lbC53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC53.ForeColor = System.Drawing.Color.Beige;
+            this.lbC53.Location = new System.Drawing.Point(172, 378);
+            this.lbC53.Name = "lbC53";
+            this.lbC53.Size = new System.Drawing.Size(59, 11);
+            this.lbC53.TabIndex = 82;
+            // 
+            // lbC4
+            // 
+            this.lbC4.AutoSize = true;
+            this.lbC4.BackColor = System.Drawing.Color.LightCyan;
+            this.lbC4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbC4.ForeColor = System.Drawing.Color.Navy;
+            this.lbC4.Location = new System.Drawing.Point(119, 384);
+            this.lbC4.Name = "lbC4";
+            this.lbC4.Size = new System.Drawing.Size(19, 21);
+            this.lbC4.TabIndex = 81;
+            this.lbC4.Text = "4";
+            // 
+            // lbC41
+            // 
+            this.lbC41.BackColor = System.Drawing.Color.Silver;
+            this.lbC41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC41.ForeColor = System.Drawing.Color.Beige;
+            this.lbC41.Location = new System.Drawing.Point(98, 401);
+            this.lbC41.Name = "lbC41";
+            this.lbC41.Size = new System.Drawing.Size(59, 11);
+            this.lbC41.TabIndex = 80;
+            // 
+            // lbC42
+            // 
+            this.lbC42.BackColor = System.Drawing.Color.Silver;
+            this.lbC42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC42.ForeColor = System.Drawing.Color.Bisque;
+            this.lbC42.Location = new System.Drawing.Point(98, 389);
+            this.lbC42.Name = "lbC42";
+            this.lbC42.Size = new System.Drawing.Size(59, 12);
+            this.lbC42.TabIndex = 79;
+            // 
+            // lbC43
+            // 
+            this.lbC43.BackColor = System.Drawing.Color.Silver;
+            this.lbC43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC43.ForeColor = System.Drawing.Color.Beige;
+            this.lbC43.Location = new System.Drawing.Point(98, 378);
+            this.lbC43.Name = "lbC43";
+            this.lbC43.Size = new System.Drawing.Size(59, 11);
+            this.lbC43.TabIndex = 78;
+            // 
+            // lbC3
+            // 
+            this.lbC3.AutoSize = true;
+            this.lbC3.BackColor = System.Drawing.Color.LightCyan;
+            this.lbC3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbC3.ForeColor = System.Drawing.Color.Navy;
+            this.lbC3.Location = new System.Drawing.Point(266, 344);
+            this.lbC3.Name = "lbC3";
+            this.lbC3.Size = new System.Drawing.Size(19, 21);
+            this.lbC3.TabIndex = 77;
+            this.lbC3.Text = "3";
+            // 
+            // lbC2
+            // 
+            this.lbC2.AutoSize = true;
+            this.lbC2.BackColor = System.Drawing.Color.LightCyan;
+            this.lbC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbC2.ForeColor = System.Drawing.Color.Navy;
+            this.lbC2.Location = new System.Drawing.Point(192, 344);
+            this.lbC2.Name = "lbC2";
+            this.lbC2.Size = new System.Drawing.Size(19, 21);
+            this.lbC2.TabIndex = 76;
+            this.lbC2.Text = "2";
+            // 
+            // lbC33
+            // 
+            this.lbC33.BackColor = System.Drawing.Color.Silver;
+            this.lbC33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC33.ForeColor = System.Drawing.Color.Beige;
+            this.lbC33.Location = new System.Drawing.Point(246, 361);
+            this.lbC33.Name = "lbC33";
+            this.lbC33.Size = new System.Drawing.Size(59, 11);
+            this.lbC33.TabIndex = 75;
+            // 
+            // lbC32
+            // 
+            this.lbC32.BackColor = System.Drawing.Color.Silver;
+            this.lbC32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC32.ForeColor = System.Drawing.Color.Beige;
+            this.lbC32.Location = new System.Drawing.Point(246, 349);
+            this.lbC32.Name = "lbC32";
+            this.lbC32.Size = new System.Drawing.Size(59, 12);
+            this.lbC32.TabIndex = 74;
+            // 
+            // lbC31
+            // 
+            this.lbC31.BackColor = System.Drawing.Color.Silver;
+            this.lbC31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC31.ForeColor = System.Drawing.Color.Beige;
+            this.lbC31.Location = new System.Drawing.Point(246, 338);
+            this.lbC31.Name = "lbC31";
+            this.lbC31.Size = new System.Drawing.Size(59, 11);
+            this.lbC31.TabIndex = 73;
+            // 
+            // lbC23
+            // 
+            this.lbC23.BackColor = System.Drawing.Color.Silver;
+            this.lbC23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC23.ForeColor = System.Drawing.Color.Beige;
+            this.lbC23.Location = new System.Drawing.Point(172, 361);
+            this.lbC23.Name = "lbC23";
+            this.lbC23.Size = new System.Drawing.Size(59, 11);
+            this.lbC23.TabIndex = 72;
+            // 
+            // lbC22
+            // 
+            this.lbC22.BackColor = System.Drawing.Color.Silver;
+            this.lbC22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC22.ForeColor = System.Drawing.Color.Beige;
+            this.lbC22.Location = new System.Drawing.Point(172, 349);
+            this.lbC22.Name = "lbC22";
+            this.lbC22.Size = new System.Drawing.Size(59, 12);
+            this.lbC22.TabIndex = 71;
+            // 
+            // lbC21
+            // 
+            this.lbC21.BackColor = System.Drawing.Color.Silver;
+            this.lbC21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC21.ForeColor = System.Drawing.Color.Beige;
+            this.lbC21.Location = new System.Drawing.Point(172, 338);
+            this.lbC21.Name = "lbC21";
+            this.lbC21.Size = new System.Drawing.Size(59, 11);
+            this.lbC21.TabIndex = 70;
+            // 
+            // label57
+            // 
+            this.label57.BackColor = System.Drawing.Color.Transparent;
+            this.label57.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.ForeColor = System.Drawing.Color.Navy;
+            this.label57.Location = new System.Drawing.Point(83, 361);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(10, 19);
+            this.label57.TabIndex = 69;
+            this.label57.Text = "3";
+            // 
+            // label58
+            // 
+            this.label58.BackColor = System.Drawing.Color.Transparent;
+            this.label58.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.ForeColor = System.Drawing.Color.Navy;
+            this.label58.Location = new System.Drawing.Point(83, 349);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(10, 19);
+            this.label58.TabIndex = 68;
+            this.label58.Text = "2";
+            // 
+            // label59
+            // 
+            this.label59.BackColor = System.Drawing.Color.Transparent;
+            this.label59.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.ForeColor = System.Drawing.Color.Navy;
+            this.label59.Location = new System.Drawing.Point(83, 336);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(10, 19);
+            this.label59.TabIndex = 67;
+            this.label59.Text = "1";
+            // 
+            // lbC1
+            // 
+            this.lbC1.AutoSize = true;
+            this.lbC1.BackColor = System.Drawing.Color.LightCyan;
+            this.lbC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbC1.ForeColor = System.Drawing.Color.Navy;
+            this.lbC1.Location = new System.Drawing.Point(119, 344);
+            this.lbC1.Name = "lbC1";
+            this.lbC1.Size = new System.Drawing.Size(17, 21);
+            this.lbC1.TabIndex = 66;
+            this.lbC1.Text = "1";
+            // 
+            // lbC13
+            // 
+            this.lbC13.BackColor = System.Drawing.Color.Silver;
+            this.lbC13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC13.ForeColor = System.Drawing.Color.Beige;
+            this.lbC13.Location = new System.Drawing.Point(98, 361);
+            this.lbC13.Name = "lbC13";
+            this.lbC13.Size = new System.Drawing.Size(59, 11);
+            this.lbC13.TabIndex = 65;
+            // 
+            // lbC12
+            // 
+            this.lbC12.BackColor = System.Drawing.Color.Silver;
+            this.lbC12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC12.ForeColor = System.Drawing.Color.Bisque;
+            this.lbC12.Location = new System.Drawing.Point(98, 349);
+            this.lbC12.Name = "lbC12";
+            this.lbC12.Size = new System.Drawing.Size(59, 12);
+            this.lbC12.TabIndex = 64;
+            // 
+            // lbC11
+            // 
+            this.lbC11.BackColor = System.Drawing.Color.Silver;
+            this.lbC11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbC11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbC11.ForeColor = System.Drawing.Color.Beige;
+            this.lbC11.Location = new System.Drawing.Point(98, 338);
+            this.lbC11.Name = "lbC11";
+            this.lbC11.Size = new System.Drawing.Size(59, 11);
+            this.lbC11.TabIndex = 63;
+            // 
+            // label34
+            // 
+            this.label34.BackColor = System.Drawing.Color.Transparent;
+            this.label34.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.ForeColor = System.Drawing.Color.Navy;
+            this.label34.Location = new System.Drawing.Point(309, 178);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(10, 19);
+            this.label34.TabIndex = 62;
+            this.label34.Text = "1";
+            // 
+            // label35
+            // 
+            this.label35.BackColor = System.Drawing.Color.Transparent;
+            this.label35.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.Color.Navy;
+            this.label35.Location = new System.Drawing.Point(309, 165);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(10, 19);
+            this.label35.TabIndex = 61;
+            this.label35.Text = "2";
+            // 
+            // label36
+            // 
+            this.label36.BackColor = System.Drawing.Color.Transparent;
+            this.label36.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.ForeColor = System.Drawing.Color.Navy;
+            this.label36.Location = new System.Drawing.Point(309, 153);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(10, 19);
+            this.label36.TabIndex = 60;
+            this.label36.Text = "3";
+            // 
+            // lbA6
+            // 
+            this.lbA6.AutoSize = true;
+            this.lbA6.BackColor = System.Drawing.Color.LightCyan;
+            this.lbA6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbA6.ForeColor = System.Drawing.Color.Navy;
+            this.lbA6.Location = new System.Drawing.Point(266, 161);
+            this.lbA6.Name = "lbA6";
+            this.lbA6.Size = new System.Drawing.Size(19, 21);
+            this.lbA6.TabIndex = 55;
+            this.lbA6.Text = "6";
+            // 
+            // lbA5
+            // 
+            this.lbA5.AutoSize = true;
+            this.lbA5.BackColor = System.Drawing.Color.LightCyan;
+            this.lbA5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbA5.ForeColor = System.Drawing.Color.Navy;
+            this.lbA5.Location = new System.Drawing.Point(192, 161);
+            this.lbA5.Name = "lbA5";
+            this.lbA5.Size = new System.Drawing.Size(19, 21);
+            this.lbA5.TabIndex = 54;
+            this.lbA5.Text = "5";
+            // 
+            // lbA61
+            // 
+            this.lbA61.BackColor = System.Drawing.Color.Silver;
+            this.lbA61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA61.ForeColor = System.Drawing.Color.Beige;
+            this.lbA61.Location = new System.Drawing.Point(246, 178);
+            this.lbA61.Name = "lbA61";
+            this.lbA61.Size = new System.Drawing.Size(59, 11);
+            this.lbA61.TabIndex = 53;
+            // 
+            // lbA62
+            // 
+            this.lbA62.BackColor = System.Drawing.Color.Silver;
+            this.lbA62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA62.ForeColor = System.Drawing.Color.Beige;
+            this.lbA62.Location = new System.Drawing.Point(246, 166);
+            this.lbA62.Name = "lbA62";
+            this.lbA62.Size = new System.Drawing.Size(59, 12);
+            this.lbA62.TabIndex = 52;
+            // 
+            // lbA63
+            // 
+            this.lbA63.BackColor = System.Drawing.Color.Silver;
+            this.lbA63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA63.ForeColor = System.Drawing.Color.Beige;
+            this.lbA63.Location = new System.Drawing.Point(246, 155);
+            this.lbA63.Name = "lbA63";
+            this.lbA63.Size = new System.Drawing.Size(59, 11);
+            this.lbA63.TabIndex = 51;
+            // 
+            // lbA51
+            // 
+            this.lbA51.BackColor = System.Drawing.Color.Silver;
+            this.lbA51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA51.ForeColor = System.Drawing.Color.Beige;
+            this.lbA51.Location = new System.Drawing.Point(172, 178);
+            this.lbA51.Name = "lbA51";
+            this.lbA51.Size = new System.Drawing.Size(59, 11);
+            this.lbA51.TabIndex = 50;
+            // 
+            // lbA52
+            // 
+            this.lbA52.BackColor = System.Drawing.Color.Silver;
+            this.lbA52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA52.ForeColor = System.Drawing.Color.Beige;
+            this.lbA52.Location = new System.Drawing.Point(172, 166);
+            this.lbA52.Name = "lbA52";
+            this.lbA52.Size = new System.Drawing.Size(59, 12);
+            this.lbA52.TabIndex = 49;
+            // 
+            // lbA53
+            // 
+            this.lbA53.BackColor = System.Drawing.Color.Silver;
+            this.lbA53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA53.ForeColor = System.Drawing.Color.Beige;
+            this.lbA53.Location = new System.Drawing.Point(172, 155);
+            this.lbA53.Name = "lbA53";
+            this.lbA53.Size = new System.Drawing.Size(59, 11);
+            this.lbA53.TabIndex = 48;
+            // 
+            // lbA4
+            // 
+            this.lbA4.AutoSize = true;
+            this.lbA4.BackColor = System.Drawing.Color.LightCyan;
+            this.lbA4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbA4.ForeColor = System.Drawing.Color.Navy;
+            this.lbA4.Location = new System.Drawing.Point(119, 161);
+            this.lbA4.Name = "lbA4";
+            this.lbA4.Size = new System.Drawing.Size(19, 21);
+            this.lbA4.TabIndex = 47;
+            this.lbA4.Text = "4";
+            // 
+            // lbA41
+            // 
+            this.lbA41.BackColor = System.Drawing.Color.Silver;
+            this.lbA41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA41.ForeColor = System.Drawing.Color.Beige;
+            this.lbA41.Location = new System.Drawing.Point(98, 178);
+            this.lbA41.Name = "lbA41";
+            this.lbA41.Size = new System.Drawing.Size(59, 11);
+            this.lbA41.TabIndex = 46;
+            // 
+            // lbA42
+            // 
+            this.lbA42.BackColor = System.Drawing.Color.Silver;
+            this.lbA42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA42.ForeColor = System.Drawing.Color.Bisque;
+            this.lbA42.Location = new System.Drawing.Point(98, 166);
+            this.lbA42.Name = "lbA42";
+            this.lbA42.Size = new System.Drawing.Size(59, 12);
+            this.lbA42.TabIndex = 45;
+            // 
+            // lbA43
+            // 
+            this.lbA43.BackColor = System.Drawing.Color.Silver;
+            this.lbA43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA43.ForeColor = System.Drawing.Color.Beige;
+            this.lbA43.Location = new System.Drawing.Point(98, 155);
+            this.lbA43.Name = "lbA43";
+            this.lbA43.Size = new System.Drawing.Size(59, 11);
+            this.lbA43.TabIndex = 44;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.Navy;
+            this.label18.Location = new System.Drawing.Point(60, 63);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(58, 25);
+            this.label18.TabIndex = 43;
+            this.label18.Text = "Block";
+            // 
+            // lbA3
+            // 
+            this.lbA3.AutoSize = true;
+            this.lbA3.BackColor = System.Drawing.Color.LightCyan;
+            this.lbA3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbA3.ForeColor = System.Drawing.Color.Navy;
+            this.lbA3.Location = new System.Drawing.Point(266, 121);
+            this.lbA3.Name = "lbA3";
+            this.lbA3.Size = new System.Drawing.Size(19, 21);
+            this.lbA3.TabIndex = 42;
+            this.lbA3.Text = "3";
+            // 
+            // lbA2
+            // 
+            this.lbA2.AutoSize = true;
+            this.lbA2.BackColor = System.Drawing.Color.LightCyan;
+            this.lbA2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+            this.lbA2.ForeColor = System.Drawing.Color.Navy;
+            this.lbA2.Location = new System.Drawing.Point(192, 121);
+            this.lbA2.Name = "lbA2";
+            this.lbA2.Size = new System.Drawing.Size(19, 21);
+            this.lbA2.TabIndex = 41;
+            this.lbA2.Text = "2";
+            // 
+            // lbA33
+            // 
+            this.lbA33.BackColor = System.Drawing.Color.Silver;
+            this.lbA33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA33.ForeColor = System.Drawing.Color.Beige;
+            this.lbA33.Location = new System.Drawing.Point(246, 138);
+            this.lbA33.Name = "lbA33";
+            this.lbA33.Size = new System.Drawing.Size(59, 11);
+            this.lbA33.TabIndex = 40;
+            // 
+            // lbA32
+            // 
+            this.lbA32.BackColor = System.Drawing.Color.Silver;
+            this.lbA32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA32.ForeColor = System.Drawing.Color.Beige;
+            this.lbA32.Location = new System.Drawing.Point(246, 126);
+            this.lbA32.Name = "lbA32";
+            this.lbA32.Size = new System.Drawing.Size(59, 12);
+            this.lbA32.TabIndex = 39;
+            // 
+            // lbA31
+            // 
+            this.lbA31.BackColor = System.Drawing.Color.Silver;
+            this.lbA31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA31.ForeColor = System.Drawing.Color.Beige;
+            this.lbA31.Location = new System.Drawing.Point(246, 115);
+            this.lbA31.Name = "lbA31";
+            this.lbA31.Size = new System.Drawing.Size(59, 11);
+            this.lbA31.TabIndex = 38;
+            // 
+            // lbA23
+            // 
+            this.lbA23.BackColor = System.Drawing.Color.Silver;
+            this.lbA23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA23.ForeColor = System.Drawing.Color.Beige;
+            this.lbA23.Location = new System.Drawing.Point(172, 138);
+            this.lbA23.Name = "lbA23";
+            this.lbA23.Size = new System.Drawing.Size(59, 11);
+            this.lbA23.TabIndex = 37;
+            // 
+            // lbA22
+            // 
+            this.lbA22.BackColor = System.Drawing.Color.Silver;
+            this.lbA22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA22.ForeColor = System.Drawing.Color.Beige;
+            this.lbA22.Location = new System.Drawing.Point(172, 126);
+            this.lbA22.Name = "lbA22";
+            this.lbA22.Size = new System.Drawing.Size(59, 12);
+            this.lbA22.TabIndex = 36;
+            // 
+            // lbA21
+            // 
+            this.lbA21.BackColor = System.Drawing.Color.Silver;
+            this.lbA21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbA21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lbA21.ForeColor = System.Drawing.Color.Beige;
+            this.lbA21.Location = new System.Drawing.Point(172, 115);
+            this.lbA21.Name = "lbA21";
+            this.lbA21.Size = new System.Drawing.Size(59, 11);
+            this.lbA21.TabIndex = 35;
+            // 
             // label9
             // 
             this.label9.BackColor = System.Drawing.Color.Transparent;
@@ -762,7 +2203,7 @@ namespace AGV_Form
             // lbA1
             // 
             this.lbA1.AutoSize = true;
-            this.lbA1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lbA1.BackColor = System.Drawing.Color.LightCyan;
             this.lbA1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbA1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
             this.lbA1.ForeColor = System.Drawing.Color.Navy;
@@ -774,18 +2215,17 @@ namespace AGV_Form
             // 
             // lbA13
             // 
-            this.lbA13.BackColor = System.Drawing.Color.Goldenrod;
+            this.lbA13.BackColor = System.Drawing.Color.Silver;
             this.lbA13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbA13.ForeColor = System.Drawing.Color.Beige;
             this.lbA13.Location = new System.Drawing.Point(98, 138);
             this.lbA13.Name = "lbA13";
             this.lbA13.Size = new System.Drawing.Size(59, 11);
             this.lbA13.TabIndex = 15;
-            this.lbA13.Visible = false;
             // 
             // lbA12
             // 
-            this.lbA12.BackColor = System.Drawing.Color.Goldenrod;
+            this.lbA12.BackColor = System.Drawing.Color.Silver;
             this.lbA12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbA12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbA12.ForeColor = System.Drawing.Color.Bisque;
@@ -793,11 +2233,10 @@ namespace AGV_Form
             this.lbA12.Name = "lbA12";
             this.lbA12.Size = new System.Drawing.Size(59, 12);
             this.lbA12.TabIndex = 14;
-            this.lbA12.Visible = false;
             // 
             // lbA11
             // 
-            this.lbA11.BackColor = System.Drawing.Color.Goldenrod;
+            this.lbA11.BackColor = System.Drawing.Color.Silver;
             this.lbA11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbA11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbA11.ForeColor = System.Drawing.Color.Beige;
@@ -805,7 +2244,6 @@ namespace AGV_Form
             this.lbA11.Name = "lbA11";
             this.lbA11.Size = new System.Drawing.Size(59, 11);
             this.lbA11.TabIndex = 13;
-            this.lbA11.Visible = false;
             // 
             // button2
             // 
@@ -817,6 +2255,7 @@ namespace AGV_Form
             this.button2.TabIndex = 12;
             this.button2.Text = "Return AGV";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnOrder2
             // 
@@ -1009,1412 +2448,15 @@ namespace AGV_Form
             this.imageList1.Images.SetKeyName(2, "South_Direction.png.png");
             this.imageList1.Images.SetKeyName(3, "West_Direction.png.png");
             // 
-            // lbA23
-            // 
-            this.lbA23.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA23.ForeColor = System.Drawing.Color.Beige;
-            this.lbA23.Location = new System.Drawing.Point(172, 138);
-            this.lbA23.Name = "lbA23";
-            this.lbA23.Size = new System.Drawing.Size(59, 11);
-            this.lbA23.TabIndex = 37;
-            this.lbA23.Visible = false;
-            // 
-            // lbA22
-            // 
-            this.lbA22.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA22.ForeColor = System.Drawing.Color.Beige;
-            this.lbA22.Location = new System.Drawing.Point(172, 126);
-            this.lbA22.Name = "lbA22";
-            this.lbA22.Size = new System.Drawing.Size(59, 12);
-            this.lbA22.TabIndex = 36;
-            this.lbA22.Visible = false;
-            // 
-            // lbA21
-            // 
-            this.lbA21.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA21.ForeColor = System.Drawing.Color.Beige;
-            this.lbA21.Location = new System.Drawing.Point(172, 115);
-            this.lbA21.Name = "lbA21";
-            this.lbA21.Size = new System.Drawing.Size(59, 11);
-            this.lbA21.TabIndex = 35;
-            this.lbA21.Visible = false;
-            // 
-            // lbA33
-            // 
-            this.lbA33.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA33.ForeColor = System.Drawing.Color.Beige;
-            this.lbA33.Location = new System.Drawing.Point(246, 138);
-            this.lbA33.Name = "lbA33";
-            this.lbA33.Size = new System.Drawing.Size(59, 11);
-            this.lbA33.TabIndex = 40;
-            this.lbA33.Visible = false;
-            // 
-            // lbA32
-            // 
-            this.lbA32.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA32.ForeColor = System.Drawing.Color.Beige;
-            this.lbA32.Location = new System.Drawing.Point(246, 126);
-            this.lbA32.Name = "lbA32";
-            this.lbA32.Size = new System.Drawing.Size(59, 12);
-            this.lbA32.TabIndex = 39;
-            this.lbA32.Visible = false;
-            // 
-            // lbA31
-            // 
-            this.lbA31.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA31.ForeColor = System.Drawing.Color.Beige;
-            this.lbA31.Location = new System.Drawing.Point(246, 115);
-            this.lbA31.Name = "lbA31";
-            this.lbA31.Size = new System.Drawing.Size(59, 11);
-            this.lbA31.TabIndex = 38;
-            this.lbA31.Visible = false;
-            // 
-            // lbA2
-            // 
-            this.lbA2.AutoSize = true;
-            this.lbA2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbA2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbA2.ForeColor = System.Drawing.Color.Navy;
-            this.lbA2.Location = new System.Drawing.Point(192, 121);
-            this.lbA2.Name = "lbA2";
-            this.lbA2.Size = new System.Drawing.Size(19, 21);
-            this.lbA2.TabIndex = 41;
-            this.lbA2.Text = "2";
-            // 
-            // lbA3
-            // 
-            this.lbA3.AutoSize = true;
-            this.lbA3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbA3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbA3.ForeColor = System.Drawing.Color.Navy;
-            this.lbA3.Location = new System.Drawing.Point(266, 121);
-            this.lbA3.Name = "lbA3";
-            this.lbA3.Size = new System.Drawing.Size(19, 21);
-            this.lbA3.TabIndex = 42;
-            this.lbA3.Text = "3";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.ForeColor = System.Drawing.Color.Navy;
-            this.label18.Location = new System.Drawing.Point(60, 63);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(58, 25);
-            this.label18.TabIndex = 43;
-            this.label18.Text = "Block";
-            // 
-            // lbA6
-            // 
-            this.lbA6.AutoSize = true;
-            this.lbA6.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbA6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbA6.ForeColor = System.Drawing.Color.Navy;
-            this.lbA6.Location = new System.Drawing.Point(266, 161);
-            this.lbA6.Name = "lbA6";
-            this.lbA6.Size = new System.Drawing.Size(19, 21);
-            this.lbA6.TabIndex = 55;
-            this.lbA6.Text = "6";
-            // 
-            // lbA5
-            // 
-            this.lbA5.AutoSize = true;
-            this.lbA5.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbA5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbA5.ForeColor = System.Drawing.Color.Navy;
-            this.lbA5.Location = new System.Drawing.Point(192, 161);
-            this.lbA5.Name = "lbA5";
-            this.lbA5.Size = new System.Drawing.Size(19, 21);
-            this.lbA5.TabIndex = 54;
-            this.lbA5.Text = "5";
-            // 
-            // lbA61
-            // 
-            this.lbA61.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA61.ForeColor = System.Drawing.Color.Beige;
-            this.lbA61.Location = new System.Drawing.Point(246, 178);
-            this.lbA61.Name = "lbA61";
-            this.lbA61.Size = new System.Drawing.Size(59, 11);
-            this.lbA61.TabIndex = 53;
-            this.lbA61.Visible = false;
-            // 
-            // lbA62
-            // 
-            this.lbA62.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA62.ForeColor = System.Drawing.Color.Beige;
-            this.lbA62.Location = new System.Drawing.Point(246, 166);
-            this.lbA62.Name = "lbA62";
-            this.lbA62.Size = new System.Drawing.Size(59, 12);
-            this.lbA62.TabIndex = 52;
-            this.lbA62.Visible = false;
-            // 
-            // lbA63
-            // 
-            this.lbA63.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA63.ForeColor = System.Drawing.Color.Beige;
-            this.lbA63.Location = new System.Drawing.Point(246, 155);
-            this.lbA63.Name = "lbA63";
-            this.lbA63.Size = new System.Drawing.Size(59, 11);
-            this.lbA63.TabIndex = 51;
-            this.lbA63.Visible = false;
-            // 
-            // lbA51
-            // 
-            this.lbA51.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA51.ForeColor = System.Drawing.Color.Beige;
-            this.lbA51.Location = new System.Drawing.Point(172, 178);
-            this.lbA51.Name = "lbA51";
-            this.lbA51.Size = new System.Drawing.Size(59, 11);
-            this.lbA51.TabIndex = 50;
-            this.lbA51.Visible = false;
-            // 
-            // lbA52
-            // 
-            this.lbA52.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA52.ForeColor = System.Drawing.Color.Beige;
-            this.lbA52.Location = new System.Drawing.Point(172, 166);
-            this.lbA52.Name = "lbA52";
-            this.lbA52.Size = new System.Drawing.Size(59, 12);
-            this.lbA52.TabIndex = 49;
-            this.lbA52.Visible = false;
-            // 
-            // lbA53
-            // 
-            this.lbA53.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA53.ForeColor = System.Drawing.Color.Beige;
-            this.lbA53.Location = new System.Drawing.Point(172, 155);
-            this.lbA53.Name = "lbA53";
-            this.lbA53.Size = new System.Drawing.Size(59, 11);
-            this.lbA53.TabIndex = 48;
-            this.lbA53.Visible = false;
-            // 
-            // lbA4
-            // 
-            this.lbA4.AutoSize = true;
-            this.lbA4.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbA4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbA4.ForeColor = System.Drawing.Color.Navy;
-            this.lbA4.Location = new System.Drawing.Point(119, 161);
-            this.lbA4.Name = "lbA4";
-            this.lbA4.Size = new System.Drawing.Size(19, 21);
-            this.lbA4.TabIndex = 47;
-            this.lbA4.Text = "4";
-            // 
-            // lbA41
-            // 
-            this.lbA41.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA41.ForeColor = System.Drawing.Color.Beige;
-            this.lbA41.Location = new System.Drawing.Point(98, 178);
-            this.lbA41.Name = "lbA41";
-            this.lbA41.Size = new System.Drawing.Size(59, 11);
-            this.lbA41.TabIndex = 46;
-            this.lbA41.Visible = false;
-            // 
-            // lbA42
-            // 
-            this.lbA42.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA42.ForeColor = System.Drawing.Color.Bisque;
-            this.lbA42.Location = new System.Drawing.Point(98, 166);
-            this.lbA42.Name = "lbA42";
-            this.lbA42.Size = new System.Drawing.Size(59, 12);
-            this.lbA42.TabIndex = 45;
-            this.lbA42.Visible = false;
-            // 
-            // lbA43
-            // 
-            this.lbA43.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbA43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbA43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbA43.ForeColor = System.Drawing.Color.Beige;
-            this.lbA43.Location = new System.Drawing.Point(98, 155);
-            this.lbA43.Name = "lbA43";
-            this.lbA43.Size = new System.Drawing.Size(59, 11);
-            this.lbA43.TabIndex = 44;
-            this.lbA43.Visible = false;
-            // 
-            // label34
-            // 
-            this.label34.BackColor = System.Drawing.Color.Transparent;
-            this.label34.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.Navy;
-            this.label34.Location = new System.Drawing.Point(309, 178);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(10, 19);
-            this.label34.TabIndex = 62;
-            this.label34.Text = "1";
-            // 
-            // label35
-            // 
-            this.label35.BackColor = System.Drawing.Color.Transparent;
-            this.label35.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.Color.Navy;
-            this.label35.Location = new System.Drawing.Point(309, 165);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(10, 19);
-            this.label35.TabIndex = 61;
-            this.label35.Text = "2";
-            // 
-            // label36
-            // 
-            this.label36.BackColor = System.Drawing.Color.Transparent;
-            this.label36.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.Color.Navy;
-            this.label36.Location = new System.Drawing.Point(309, 153);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(10, 19);
-            this.label36.TabIndex = 60;
-            this.label36.Text = "3";
-            // 
-            // label31
-            // 
-            this.label31.BackColor = System.Drawing.Color.Transparent;
-            this.label31.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.ForeColor = System.Drawing.Color.Navy;
-            this.label31.Location = new System.Drawing.Point(309, 401);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(10, 19);
-            this.label31.TabIndex = 92;
-            this.label31.Text = "1";
-            // 
-            // label32
-            // 
-            this.label32.BackColor = System.Drawing.Color.Transparent;
-            this.label32.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.ForeColor = System.Drawing.Color.Navy;
-            this.label32.Location = new System.Drawing.Point(309, 388);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(10, 19);
-            this.label32.TabIndex = 91;
-            this.label32.Text = "2";
-            // 
-            // label33
-            // 
-            this.label33.BackColor = System.Drawing.Color.Transparent;
-            this.label33.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.ForeColor = System.Drawing.Color.Navy;
-            this.label33.Location = new System.Drawing.Point(309, 376);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(10, 19);
-            this.label33.TabIndex = 90;
-            this.label33.Text = "3";
-            // 
-            // lbC6
-            // 
-            this.lbC6.AutoSize = true;
-            this.lbC6.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbC6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbC6.ForeColor = System.Drawing.Color.Navy;
-            this.lbC6.Location = new System.Drawing.Point(266, 384);
-            this.lbC6.Name = "lbC6";
-            this.lbC6.Size = new System.Drawing.Size(19, 21);
-            this.lbC6.TabIndex = 89;
-            this.lbC6.Text = "6";
-            // 
-            // lbC5
-            // 
-            this.lbC5.AutoSize = true;
-            this.lbC5.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbC5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbC5.ForeColor = System.Drawing.Color.Navy;
-            this.lbC5.Location = new System.Drawing.Point(192, 384);
-            this.lbC5.Name = "lbC5";
-            this.lbC5.Size = new System.Drawing.Size(19, 21);
-            this.lbC5.TabIndex = 88;
-            this.lbC5.Text = "5";
-            // 
-            // lbC61
-            // 
-            this.lbC61.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC61.ForeColor = System.Drawing.Color.Beige;
-            this.lbC61.Location = new System.Drawing.Point(246, 401);
-            this.lbC61.Name = "lbC61";
-            this.lbC61.Size = new System.Drawing.Size(59, 11);
-            this.lbC61.TabIndex = 87;
-            this.lbC61.Visible = false;
-            // 
-            // lbC62
-            // 
-            this.lbC62.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC62.ForeColor = System.Drawing.Color.Beige;
-            this.lbC62.Location = new System.Drawing.Point(246, 389);
-            this.lbC62.Name = "lbC62";
-            this.lbC62.Size = new System.Drawing.Size(59, 12);
-            this.lbC62.TabIndex = 86;
-            this.lbC62.Visible = false;
-            // 
-            // lbC63
-            // 
-            this.lbC63.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC63.ForeColor = System.Drawing.Color.Beige;
-            this.lbC63.Location = new System.Drawing.Point(246, 378);
-            this.lbC63.Name = "lbC63";
-            this.lbC63.Size = new System.Drawing.Size(59, 11);
-            this.lbC63.TabIndex = 85;
-            this.lbC63.Visible = false;
-            // 
-            // lbC51
-            // 
-            this.lbC51.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC51.ForeColor = System.Drawing.Color.Beige;
-            this.lbC51.Location = new System.Drawing.Point(172, 401);
-            this.lbC51.Name = "lbC51";
-            this.lbC51.Size = new System.Drawing.Size(59, 11);
-            this.lbC51.TabIndex = 84;
-            this.lbC51.Visible = false;
-            // 
-            // lbC52
-            // 
-            this.lbC52.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC52.ForeColor = System.Drawing.Color.Beige;
-            this.lbC52.Location = new System.Drawing.Point(172, 389);
-            this.lbC52.Name = "lbC52";
-            this.lbC52.Size = new System.Drawing.Size(59, 12);
-            this.lbC52.TabIndex = 83;
-            this.lbC52.Visible = false;
-            // 
-            // lbC53
-            // 
-            this.lbC53.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC53.ForeColor = System.Drawing.Color.Beige;
-            this.lbC53.Location = new System.Drawing.Point(172, 378);
-            this.lbC53.Name = "lbC53";
-            this.lbC53.Size = new System.Drawing.Size(59, 11);
-            this.lbC53.TabIndex = 82;
-            this.lbC53.Visible = false;
-            // 
-            // lbC4
-            // 
-            this.lbC4.AutoSize = true;
-            this.lbC4.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbC4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbC4.ForeColor = System.Drawing.Color.Navy;
-            this.lbC4.Location = new System.Drawing.Point(119, 384);
-            this.lbC4.Name = "lbC4";
-            this.lbC4.Size = new System.Drawing.Size(19, 21);
-            this.lbC4.TabIndex = 81;
-            this.lbC4.Text = "4";
-            // 
-            // lbC41
-            // 
-            this.lbC41.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC41.ForeColor = System.Drawing.Color.Beige;
-            this.lbC41.Location = new System.Drawing.Point(98, 401);
-            this.lbC41.Name = "lbC41";
-            this.lbC41.Size = new System.Drawing.Size(59, 11);
-            this.lbC41.TabIndex = 80;
-            this.lbC41.Visible = false;
-            // 
-            // lbC42
-            // 
-            this.lbC42.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC42.ForeColor = System.Drawing.Color.Bisque;
-            this.lbC42.Location = new System.Drawing.Point(98, 389);
-            this.lbC42.Name = "lbC42";
-            this.lbC42.Size = new System.Drawing.Size(59, 12);
-            this.lbC42.TabIndex = 79;
-            this.lbC42.Visible = false;
-            // 
-            // lbC43
-            // 
-            this.lbC43.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC43.ForeColor = System.Drawing.Color.Beige;
-            this.lbC43.Location = new System.Drawing.Point(98, 378);
-            this.lbC43.Name = "lbC43";
-            this.lbC43.Size = new System.Drawing.Size(59, 11);
-            this.lbC43.TabIndex = 78;
-            this.lbC43.Visible = false;
-            // 
-            // lbC3
-            // 
-            this.lbC3.AutoSize = true;
-            this.lbC3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbC3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbC3.ForeColor = System.Drawing.Color.Navy;
-            this.lbC3.Location = new System.Drawing.Point(266, 344);
-            this.lbC3.Name = "lbC3";
-            this.lbC3.Size = new System.Drawing.Size(19, 21);
-            this.lbC3.TabIndex = 77;
-            this.lbC3.Text = "3";
-            // 
-            // lbC2
-            // 
-            this.lbC2.AutoSize = true;
-            this.lbC2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbC2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbC2.ForeColor = System.Drawing.Color.Navy;
-            this.lbC2.Location = new System.Drawing.Point(192, 344);
-            this.lbC2.Name = "lbC2";
-            this.lbC2.Size = new System.Drawing.Size(19, 21);
-            this.lbC2.TabIndex = 76;
-            this.lbC2.Text = "2";
-            // 
-            // lbC33
-            // 
-            this.lbC33.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC33.ForeColor = System.Drawing.Color.Beige;
-            this.lbC33.Location = new System.Drawing.Point(246, 361);
-            this.lbC33.Name = "lbC33";
-            this.lbC33.Size = new System.Drawing.Size(59, 11);
-            this.lbC33.TabIndex = 75;
-            this.lbC33.Visible = false;
-            // 
-            // lbC32
-            // 
-            this.lbC32.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC32.ForeColor = System.Drawing.Color.Beige;
-            this.lbC32.Location = new System.Drawing.Point(246, 349);
-            this.lbC32.Name = "lbC32";
-            this.lbC32.Size = new System.Drawing.Size(59, 12);
-            this.lbC32.TabIndex = 74;
-            this.lbC32.Visible = false;
-            // 
-            // lbC31
-            // 
-            this.lbC31.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC31.ForeColor = System.Drawing.Color.Beige;
-            this.lbC31.Location = new System.Drawing.Point(246, 338);
-            this.lbC31.Name = "lbC31";
-            this.lbC31.Size = new System.Drawing.Size(59, 11);
-            this.lbC31.TabIndex = 73;
-            this.lbC31.Visible = false;
-            // 
-            // lbC23
-            // 
-            this.lbC23.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC23.ForeColor = System.Drawing.Color.Beige;
-            this.lbC23.Location = new System.Drawing.Point(172, 361);
-            this.lbC23.Name = "lbC23";
-            this.lbC23.Size = new System.Drawing.Size(59, 11);
-            this.lbC23.TabIndex = 72;
-            this.lbC23.Visible = false;
-            // 
-            // lbC22
-            // 
-            this.lbC22.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC22.ForeColor = System.Drawing.Color.Beige;
-            this.lbC22.Location = new System.Drawing.Point(172, 349);
-            this.lbC22.Name = "lbC22";
-            this.lbC22.Size = new System.Drawing.Size(59, 12);
-            this.lbC22.TabIndex = 71;
-            this.lbC22.Visible = false;
-            // 
-            // lbC21
-            // 
-            this.lbC21.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC21.ForeColor = System.Drawing.Color.Beige;
-            this.lbC21.Location = new System.Drawing.Point(172, 338);
-            this.lbC21.Name = "lbC21";
-            this.lbC21.Size = new System.Drawing.Size(59, 11);
-            this.lbC21.TabIndex = 70;
-            this.lbC21.Visible = false;
-            // 
-            // label57
-            // 
-            this.label57.BackColor = System.Drawing.Color.Transparent;
-            this.label57.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label57.ForeColor = System.Drawing.Color.Navy;
-            this.label57.Location = new System.Drawing.Point(83, 361);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(10, 19);
-            this.label57.TabIndex = 69;
-            this.label57.Text = "3";
-            // 
-            // label58
-            // 
-            this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.ForeColor = System.Drawing.Color.Navy;
-            this.label58.Location = new System.Drawing.Point(83, 349);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(10, 19);
-            this.label58.TabIndex = 68;
-            this.label58.Text = "2";
-            // 
-            // label59
-            // 
-            this.label59.BackColor = System.Drawing.Color.Transparent;
-            this.label59.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label59.ForeColor = System.Drawing.Color.Navy;
-            this.label59.Location = new System.Drawing.Point(83, 336);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(10, 19);
-            this.label59.TabIndex = 67;
-            this.label59.Text = "1";
-            // 
-            // lbC1
-            // 
-            this.lbC1.AutoSize = true;
-            this.lbC1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbC1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbC1.ForeColor = System.Drawing.Color.Navy;
-            this.lbC1.Location = new System.Drawing.Point(119, 344);
-            this.lbC1.Name = "lbC1";
-            this.lbC1.Size = new System.Drawing.Size(17, 21);
-            this.lbC1.TabIndex = 66;
-            this.lbC1.Text = "1";
-            // 
-            // lbC13
-            // 
-            this.lbC13.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC13.ForeColor = System.Drawing.Color.Beige;
-            this.lbC13.Location = new System.Drawing.Point(98, 361);
-            this.lbC13.Name = "lbC13";
-            this.lbC13.Size = new System.Drawing.Size(59, 11);
-            this.lbC13.TabIndex = 65;
-            this.lbC13.Visible = false;
-            // 
-            // lbC12
-            // 
-            this.lbC12.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC12.ForeColor = System.Drawing.Color.Bisque;
-            this.lbC12.Location = new System.Drawing.Point(98, 349);
-            this.lbC12.Name = "lbC12";
-            this.lbC12.Size = new System.Drawing.Size(59, 12);
-            this.lbC12.TabIndex = 64;
-            this.lbC12.Visible = false;
-            // 
-            // lbC11
-            // 
-            this.lbC11.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbC11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbC11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbC11.ForeColor = System.Drawing.Color.Beige;
-            this.lbC11.Location = new System.Drawing.Point(98, 338);
-            this.lbC11.Name = "lbC11";
-            this.lbC11.Size = new System.Drawing.Size(59, 11);
-            this.lbC11.TabIndex = 63;
-            this.lbC11.Visible = false;
-            // 
-            // label64
-            // 
-            this.label64.BackColor = System.Drawing.Color.Transparent;
-            this.label64.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label64.ForeColor = System.Drawing.Color.Navy;
-            this.label64.Location = new System.Drawing.Point(632, 178);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(10, 19);
-            this.label64.TabIndex = 122;
-            this.label64.Text = "1";
-            // 
-            // label65
-            // 
-            this.label65.BackColor = System.Drawing.Color.Transparent;
-            this.label65.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.ForeColor = System.Drawing.Color.Navy;
-            this.label65.Location = new System.Drawing.Point(632, 165);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(10, 19);
-            this.label65.TabIndex = 121;
-            this.label65.Text = "2";
-            // 
-            // label66
-            // 
-            this.label66.BackColor = System.Drawing.Color.Transparent;
-            this.label66.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.ForeColor = System.Drawing.Color.Navy;
-            this.label66.Location = new System.Drawing.Point(632, 153);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(10, 19);
-            this.label66.TabIndex = 120;
-            this.label66.Text = "3";
-            // 
-            // lbB6
-            // 
-            this.lbB6.AutoSize = true;
-            this.lbB6.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbB6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbB6.ForeColor = System.Drawing.Color.Navy;
-            this.lbB6.Location = new System.Drawing.Point(589, 161);
-            this.lbB6.Name = "lbB6";
-            this.lbB6.Size = new System.Drawing.Size(19, 21);
-            this.lbB6.TabIndex = 119;
-            this.lbB6.Text = "6";
-            // 
-            // lbB5
-            // 
-            this.lbB5.AutoSize = true;
-            this.lbB5.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbB5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbB5.ForeColor = System.Drawing.Color.Navy;
-            this.lbB5.Location = new System.Drawing.Point(515, 161);
-            this.lbB5.Name = "lbB5";
-            this.lbB5.Size = new System.Drawing.Size(19, 21);
-            this.lbB5.TabIndex = 118;
-            this.lbB5.Text = "5";
-            // 
-            // lbB61
-            // 
-            this.lbB61.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB61.ForeColor = System.Drawing.Color.Beige;
-            this.lbB61.Location = new System.Drawing.Point(569, 178);
-            this.lbB61.Name = "lbB61";
-            this.lbB61.Size = new System.Drawing.Size(59, 11);
-            this.lbB61.TabIndex = 117;
-            this.lbB61.Visible = false;
-            // 
-            // lbB62
-            // 
-            this.lbB62.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB62.ForeColor = System.Drawing.Color.Beige;
-            this.lbB62.Location = new System.Drawing.Point(569, 166);
-            this.lbB62.Name = "lbB62";
-            this.lbB62.Size = new System.Drawing.Size(59, 12);
-            this.lbB62.TabIndex = 116;
-            this.lbB62.Visible = false;
-            // 
-            // lbB63
-            // 
-            this.lbB63.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB63.ForeColor = System.Drawing.Color.Beige;
-            this.lbB63.Location = new System.Drawing.Point(569, 155);
-            this.lbB63.Name = "lbB63";
-            this.lbB63.Size = new System.Drawing.Size(59, 11);
-            this.lbB63.TabIndex = 115;
-            this.lbB63.Visible = false;
-            // 
-            // lbB51
-            // 
-            this.lbB51.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB51.ForeColor = System.Drawing.Color.Beige;
-            this.lbB51.Location = new System.Drawing.Point(495, 178);
-            this.lbB51.Name = "lbB51";
-            this.lbB51.Size = new System.Drawing.Size(59, 11);
-            this.lbB51.TabIndex = 114;
-            this.lbB51.Visible = false;
-            // 
-            // lbB52
-            // 
-            this.lbB52.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB52.ForeColor = System.Drawing.Color.Beige;
-            this.lbB52.Location = new System.Drawing.Point(495, 166);
-            this.lbB52.Name = "lbB52";
-            this.lbB52.Size = new System.Drawing.Size(59, 12);
-            this.lbB52.TabIndex = 113;
-            this.lbB52.Visible = false;
-            // 
-            // lbB53
-            // 
-            this.lbB53.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB53.ForeColor = System.Drawing.Color.Beige;
-            this.lbB53.Location = new System.Drawing.Point(495, 155);
-            this.lbB53.Name = "lbB53";
-            this.lbB53.Size = new System.Drawing.Size(59, 11);
-            this.lbB53.TabIndex = 112;
-            this.lbB53.Visible = false;
-            // 
-            // lbB4
-            // 
-            this.lbB4.AutoSize = true;
-            this.lbB4.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbB4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbB4.ForeColor = System.Drawing.Color.Navy;
-            this.lbB4.Location = new System.Drawing.Point(441, 161);
-            this.lbB4.Name = "lbB4";
-            this.lbB4.Size = new System.Drawing.Size(19, 21);
-            this.lbB4.TabIndex = 111;
-            this.lbB4.Text = "4";
-            // 
-            // lbB41
-            // 
-            this.lbB41.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB41.ForeColor = System.Drawing.Color.Beige;
-            this.lbB41.Location = new System.Drawing.Point(420, 178);
-            this.lbB41.Name = "lbB41";
-            this.lbB41.Size = new System.Drawing.Size(59, 11);
-            this.lbB41.TabIndex = 110;
-            this.lbB41.Visible = false;
-            // 
-            // lbB42
-            // 
-            this.lbB42.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB42.ForeColor = System.Drawing.Color.Bisque;
-            this.lbB42.Location = new System.Drawing.Point(420, 166);
-            this.lbB42.Name = "lbB42";
-            this.lbB42.Size = new System.Drawing.Size(59, 12);
-            this.lbB42.TabIndex = 109;
-            this.lbB42.Visible = false;
-            // 
-            // lbB43
-            // 
-            this.lbB43.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB43.ForeColor = System.Drawing.Color.Beige;
-            this.lbB43.Location = new System.Drawing.Point(420, 155);
-            this.lbB43.Name = "lbB43";
-            this.lbB43.Size = new System.Drawing.Size(59, 11);
-            this.lbB43.TabIndex = 108;
-            this.lbB43.Visible = false;
-            // 
-            // lbB3
-            // 
-            this.lbB3.AutoSize = true;
-            this.lbB3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbB3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbB3.ForeColor = System.Drawing.Color.Navy;
-            this.lbB3.Location = new System.Drawing.Point(589, 121);
-            this.lbB3.Name = "lbB3";
-            this.lbB3.Size = new System.Drawing.Size(19, 21);
-            this.lbB3.TabIndex = 107;
-            this.lbB3.Text = "3";
-            // 
-            // lbB2
-            // 
-            this.lbB2.AutoSize = true;
-            this.lbB2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbB2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbB2.ForeColor = System.Drawing.Color.Navy;
-            this.lbB2.Location = new System.Drawing.Point(515, 121);
-            this.lbB2.Name = "lbB2";
-            this.lbB2.Size = new System.Drawing.Size(19, 21);
-            this.lbB2.TabIndex = 106;
-            this.lbB2.Text = "2";
-            // 
-            // lbB33
-            // 
-            this.lbB33.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB33.ForeColor = System.Drawing.Color.Beige;
-            this.lbB33.Location = new System.Drawing.Point(569, 138);
-            this.lbB33.Name = "lbB33";
-            this.lbB33.Size = new System.Drawing.Size(59, 11);
-            this.lbB33.TabIndex = 105;
-            this.lbB33.Visible = false;
-            // 
-            // lbB32
-            // 
-            this.lbB32.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB32.ForeColor = System.Drawing.Color.Beige;
-            this.lbB32.Location = new System.Drawing.Point(569, 126);
-            this.lbB32.Name = "lbB32";
-            this.lbB32.Size = new System.Drawing.Size(59, 12);
-            this.lbB32.TabIndex = 104;
-            this.lbB32.Visible = false;
-            // 
-            // lbB31
-            // 
-            this.lbB31.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB31.ForeColor = System.Drawing.Color.Beige;
-            this.lbB31.Location = new System.Drawing.Point(569, 115);
-            this.lbB31.Name = "lbB31";
-            this.lbB31.Size = new System.Drawing.Size(59, 11);
-            this.lbB31.TabIndex = 103;
-            this.lbB31.Visible = false;
-            // 
-            // lbB23
-            // 
-            this.lbB23.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB23.ForeColor = System.Drawing.Color.Beige;
-            this.lbB23.Location = new System.Drawing.Point(495, 138);
-            this.lbB23.Name = "lbB23";
-            this.lbB23.Size = new System.Drawing.Size(59, 11);
-            this.lbB23.TabIndex = 102;
-            this.lbB23.Visible = false;
-            // 
-            // lbB22
-            // 
-            this.lbB22.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB22.ForeColor = System.Drawing.Color.Beige;
-            this.lbB22.Location = new System.Drawing.Point(495, 126);
-            this.lbB22.Name = "lbB22";
-            this.lbB22.Size = new System.Drawing.Size(59, 12);
-            this.lbB22.TabIndex = 101;
-            this.lbB22.Visible = false;
-            // 
-            // lbB21
-            // 
-            this.lbB21.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB21.ForeColor = System.Drawing.Color.Beige;
-            this.lbB21.Location = new System.Drawing.Point(495, 115);
-            this.lbB21.Name = "lbB21";
-            this.lbB21.Size = new System.Drawing.Size(59, 11);
-            this.lbB21.TabIndex = 100;
-            this.lbB21.Visible = false;
-            // 
-            // label87
-            // 
-            this.label87.BackColor = System.Drawing.Color.Transparent;
-            this.label87.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label87.ForeColor = System.Drawing.Color.Navy;
-            this.label87.Location = new System.Drawing.Point(405, 138);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(10, 19);
-            this.label87.TabIndex = 99;
-            this.label87.Text = "3";
-            // 
-            // label88
-            // 
-            this.label88.BackColor = System.Drawing.Color.Transparent;
-            this.label88.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label88.ForeColor = System.Drawing.Color.Navy;
-            this.label88.Location = new System.Drawing.Point(405, 126);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(10, 19);
-            this.label88.TabIndex = 98;
-            this.label88.Text = "2";
-            // 
-            // label89
-            // 
-            this.label89.BackColor = System.Drawing.Color.Transparent;
-            this.label89.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label89.ForeColor = System.Drawing.Color.Navy;
-            this.label89.Location = new System.Drawing.Point(405, 113);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(10, 19);
-            this.label89.TabIndex = 97;
-            this.label89.Text = "1";
-            // 
-            // lbB1
-            // 
-            this.lbB1.AutoSize = true;
-            this.lbB1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbB1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbB1.ForeColor = System.Drawing.Color.Navy;
-            this.lbB1.Location = new System.Drawing.Point(441, 121);
-            this.lbB1.Name = "lbB1";
-            this.lbB1.Size = new System.Drawing.Size(17, 21);
-            this.lbB1.TabIndex = 96;
-            this.lbB1.Text = "1";
-            // 
-            // lbB13
-            // 
-            this.lbB13.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB13.ForeColor = System.Drawing.Color.Beige;
-            this.lbB13.Location = new System.Drawing.Point(420, 138);
-            this.lbB13.Name = "lbB13";
-            this.lbB13.Size = new System.Drawing.Size(59, 11);
-            this.lbB13.TabIndex = 95;
-            this.lbB13.Visible = false;
-            // 
-            // lbB12
-            // 
-            this.lbB12.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB12.ForeColor = System.Drawing.Color.Bisque;
-            this.lbB12.Location = new System.Drawing.Point(420, 126);
-            this.lbB12.Name = "lbB12";
-            this.lbB12.Size = new System.Drawing.Size(59, 12);
-            this.lbB12.TabIndex = 94;
-            this.lbB12.Visible = false;
-            // 
-            // lbB11
-            // 
-            this.lbB11.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbB11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbB11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbB11.ForeColor = System.Drawing.Color.Beige;
-            this.lbB11.Location = new System.Drawing.Point(420, 115);
-            this.lbB11.Name = "lbB11";
-            this.lbB11.Size = new System.Drawing.Size(59, 11);
-            this.lbB11.TabIndex = 93;
-            this.lbB11.Visible = false;
-            // 
-            // label94
-            // 
-            this.label94.BackColor = System.Drawing.Color.Transparent;
-            this.label94.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.ForeColor = System.Drawing.Color.Navy;
-            this.label94.Location = new System.Drawing.Point(632, 401);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(10, 19);
-            this.label94.TabIndex = 152;
-            this.label94.Text = "1";
-            // 
-            // label95
-            // 
-            this.label95.BackColor = System.Drawing.Color.Transparent;
-            this.label95.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.ForeColor = System.Drawing.Color.Navy;
-            this.label95.Location = new System.Drawing.Point(632, 388);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(10, 19);
-            this.label95.TabIndex = 151;
-            this.label95.Text = "2";
-            // 
-            // label96
-            // 
-            this.label96.BackColor = System.Drawing.Color.Transparent;
-            this.label96.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.ForeColor = System.Drawing.Color.Navy;
-            this.label96.Location = new System.Drawing.Point(632, 376);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(10, 19);
-            this.label96.TabIndex = 150;
-            this.label96.Text = "3";
-            // 
-            // lbD6
-            // 
-            this.lbD6.AutoSize = true;
-            this.lbD6.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbD6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD6.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbD6.ForeColor = System.Drawing.Color.Navy;
-            this.lbD6.Location = new System.Drawing.Point(589, 384);
-            this.lbD6.Name = "lbD6";
-            this.lbD6.Size = new System.Drawing.Size(19, 21);
-            this.lbD6.TabIndex = 149;
-            this.lbD6.Text = "6";
-            // 
-            // lbD5
-            // 
-            this.lbD5.AutoSize = true;
-            this.lbD5.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbD5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD5.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbD5.ForeColor = System.Drawing.Color.Navy;
-            this.lbD5.Location = new System.Drawing.Point(515, 384);
-            this.lbD5.Name = "lbD5";
-            this.lbD5.Size = new System.Drawing.Size(19, 21);
-            this.lbD5.TabIndex = 148;
-            this.lbD5.Text = "5";
-            // 
-            // lbD61
-            // 
-            this.lbD61.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD61.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD61.ForeColor = System.Drawing.Color.Beige;
-            this.lbD61.Location = new System.Drawing.Point(569, 401);
-            this.lbD61.Name = "lbD61";
-            this.lbD61.Size = new System.Drawing.Size(59, 11);
-            this.lbD61.TabIndex = 147;
-            this.lbD61.Visible = false;
-            // 
-            // lbD62
-            // 
-            this.lbD62.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD62.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD62.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD62.ForeColor = System.Drawing.Color.Beige;
-            this.lbD62.Location = new System.Drawing.Point(569, 389);
-            this.lbD62.Name = "lbD62";
-            this.lbD62.Size = new System.Drawing.Size(59, 12);
-            this.lbD62.TabIndex = 146;
-            this.lbD62.Visible = false;
-            // 
-            // lbD63
-            // 
-            this.lbD63.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD63.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD63.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD63.ForeColor = System.Drawing.Color.Beige;
-            this.lbD63.Location = new System.Drawing.Point(569, 378);
-            this.lbD63.Name = "lbD63";
-            this.lbD63.Size = new System.Drawing.Size(59, 11);
-            this.lbD63.TabIndex = 145;
-            this.lbD63.Visible = false;
-            // 
-            // lbD51
-            // 
-            this.lbD51.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD51.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD51.ForeColor = System.Drawing.Color.Beige;
-            this.lbD51.Location = new System.Drawing.Point(495, 401);
-            this.lbD51.Name = "lbD51";
-            this.lbD51.Size = new System.Drawing.Size(59, 11);
-            this.lbD51.TabIndex = 144;
-            this.lbD51.Visible = false;
-            // 
-            // lbD52
-            // 
-            this.lbD52.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD52.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD52.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD52.ForeColor = System.Drawing.Color.Beige;
-            this.lbD52.Location = new System.Drawing.Point(495, 389);
-            this.lbD52.Name = "lbD52";
-            this.lbD52.Size = new System.Drawing.Size(59, 12);
-            this.lbD52.TabIndex = 143;
-            this.lbD52.Visible = false;
-            // 
-            // lbD53
-            // 
-            this.lbD53.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD53.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD53.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD53.ForeColor = System.Drawing.Color.Beige;
-            this.lbD53.Location = new System.Drawing.Point(495, 378);
-            this.lbD53.Name = "lbD53";
-            this.lbD53.Size = new System.Drawing.Size(59, 11);
-            this.lbD53.TabIndex = 142;
-            this.lbD53.Visible = false;
-            // 
-            // lbD4
-            // 
-            this.lbD4.AutoSize = true;
-            this.lbD4.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbD4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD4.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbD4.ForeColor = System.Drawing.Color.Navy;
-            this.lbD4.Location = new System.Drawing.Point(441, 384);
-            this.lbD4.Name = "lbD4";
-            this.lbD4.Size = new System.Drawing.Size(19, 21);
-            this.lbD4.TabIndex = 141;
-            this.lbD4.Text = "4";
-            // 
-            // lbD41
-            // 
-            this.lbD41.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD41.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD41.ForeColor = System.Drawing.Color.Beige;
-            this.lbD41.Location = new System.Drawing.Point(420, 401);
-            this.lbD41.Name = "lbD41";
-            this.lbD41.Size = new System.Drawing.Size(59, 11);
-            this.lbD41.TabIndex = 140;
-            this.lbD41.Visible = false;
-            // 
-            // lbD42
-            // 
-            this.lbD42.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD42.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD42.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD42.ForeColor = System.Drawing.Color.Bisque;
-            this.lbD42.Location = new System.Drawing.Point(420, 389);
-            this.lbD42.Name = "lbD42";
-            this.lbD42.Size = new System.Drawing.Size(59, 12);
-            this.lbD42.TabIndex = 139;
-            this.lbD42.Visible = false;
-            // 
-            // lbD43
-            // 
-            this.lbD43.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD43.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD43.ForeColor = System.Drawing.Color.Beige;
-            this.lbD43.Location = new System.Drawing.Point(420, 378);
-            this.lbD43.Name = "lbD43";
-            this.lbD43.Size = new System.Drawing.Size(59, 11);
-            this.lbD43.TabIndex = 138;
-            this.lbD43.Visible = false;
-            // 
-            // lbD3
-            // 
-            this.lbD3.AutoSize = true;
-            this.lbD3.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbD3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbD3.ForeColor = System.Drawing.Color.Navy;
-            this.lbD3.Location = new System.Drawing.Point(589, 344);
-            this.lbD3.Name = "lbD3";
-            this.lbD3.Size = new System.Drawing.Size(19, 21);
-            this.lbD3.TabIndex = 137;
-            this.lbD3.Text = "3";
-            // 
-            // lbD2
-            // 
-            this.lbD2.AutoSize = true;
-            this.lbD2.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbD2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD2.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbD2.ForeColor = System.Drawing.Color.Navy;
-            this.lbD2.Location = new System.Drawing.Point(515, 344);
-            this.lbD2.Name = "lbD2";
-            this.lbD2.Size = new System.Drawing.Size(19, 21);
-            this.lbD2.TabIndex = 136;
-            this.lbD2.Text = "2";
-            // 
-            // lbD33
-            // 
-            this.lbD33.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD33.ForeColor = System.Drawing.Color.Beige;
-            this.lbD33.Location = new System.Drawing.Point(569, 361);
-            this.lbD33.Name = "lbD33";
-            this.lbD33.Size = new System.Drawing.Size(59, 11);
-            this.lbD33.TabIndex = 135;
-            this.lbD33.Visible = false;
-            // 
-            // lbD32
-            // 
-            this.lbD32.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD32.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD32.ForeColor = System.Drawing.Color.Beige;
-            this.lbD32.Location = new System.Drawing.Point(569, 349);
-            this.lbD32.Name = "lbD32";
-            this.lbD32.Size = new System.Drawing.Size(59, 12);
-            this.lbD32.TabIndex = 134;
-            this.lbD32.Visible = false;
-            // 
-            // lbD31
-            // 
-            this.lbD31.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD31.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD31.ForeColor = System.Drawing.Color.Beige;
-            this.lbD31.Location = new System.Drawing.Point(569, 338);
-            this.lbD31.Name = "lbD31";
-            this.lbD31.Size = new System.Drawing.Size(59, 11);
-            this.lbD31.TabIndex = 133;
-            this.lbD31.Visible = false;
-            // 
-            // lbD23
-            // 
-            this.lbD23.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD23.ForeColor = System.Drawing.Color.Beige;
-            this.lbD23.Location = new System.Drawing.Point(495, 361);
-            this.lbD23.Name = "lbD23";
-            this.lbD23.Size = new System.Drawing.Size(59, 11);
-            this.lbD23.TabIndex = 132;
-            this.lbD23.Visible = false;
-            // 
-            // lbD22
-            // 
-            this.lbD22.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD22.ForeColor = System.Drawing.Color.Beige;
-            this.lbD22.Location = new System.Drawing.Point(495, 349);
-            this.lbD22.Name = "lbD22";
-            this.lbD22.Size = new System.Drawing.Size(59, 12);
-            this.lbD22.TabIndex = 131;
-            this.lbD22.Visible = false;
-            // 
-            // lbD21
-            // 
-            this.lbD21.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD21.ForeColor = System.Drawing.Color.Beige;
-            this.lbD21.Location = new System.Drawing.Point(495, 338);
-            this.lbD21.Name = "lbD21";
-            this.lbD21.Size = new System.Drawing.Size(59, 11);
-            this.lbD21.TabIndex = 130;
-            this.lbD21.Visible = false;
-            // 
-            // label117
-            // 
-            this.label117.BackColor = System.Drawing.Color.Transparent;
-            this.label117.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label117.ForeColor = System.Drawing.Color.Navy;
-            this.label117.Location = new System.Drawing.Point(405, 361);
-            this.label117.Name = "label117";
-            this.label117.Size = new System.Drawing.Size(10, 19);
-            this.label117.TabIndex = 129;
-            this.label117.Text = "3";
-            // 
-            // label118
-            // 
-            this.label118.BackColor = System.Drawing.Color.Transparent;
-            this.label118.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label118.ForeColor = System.Drawing.Color.Navy;
-            this.label118.Location = new System.Drawing.Point(405, 349);
-            this.label118.Name = "label118";
-            this.label118.Size = new System.Drawing.Size(10, 19);
-            this.label118.TabIndex = 128;
-            this.label118.Text = "2";
-            // 
-            // label119
-            // 
-            this.label119.BackColor = System.Drawing.Color.Transparent;
-            this.label119.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label119.ForeColor = System.Drawing.Color.Navy;
-            this.label119.Location = new System.Drawing.Point(405, 336);
-            this.label119.Name = "label119";
-            this.label119.Size = new System.Drawing.Size(10, 19);
-            this.label119.TabIndex = 127;
-            this.label119.Text = "1";
-            // 
-            // lbD1
-            // 
-            this.lbD1.AutoSize = true;
-            this.lbD1.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.lbD1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.lbD1.ForeColor = System.Drawing.Color.Navy;
-            this.lbD1.Location = new System.Drawing.Point(441, 344);
-            this.lbD1.Name = "lbD1";
-            this.lbD1.Size = new System.Drawing.Size(17, 21);
-            this.lbD1.TabIndex = 126;
-            this.lbD1.Text = "1";
-            // 
-            // lbD13
-            // 
-            this.lbD13.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD13.ForeColor = System.Drawing.Color.Beige;
-            this.lbD13.Location = new System.Drawing.Point(420, 361);
-            this.lbD13.Name = "lbD13";
-            this.lbD13.Size = new System.Drawing.Size(59, 11);
-            this.lbD13.TabIndex = 125;
-            this.lbD13.Visible = false;
-            // 
-            // lbD12
-            // 
-            this.lbD12.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD12.ForeColor = System.Drawing.Color.Bisque;
-            this.lbD12.Location = new System.Drawing.Point(420, 349);
-            this.lbD12.Name = "lbD12";
-            this.lbD12.Size = new System.Drawing.Size(59, 12);
-            this.lbD12.TabIndex = 124;
-            this.lbD12.Visible = false;
-            // 
-            // lbD11
-            // 
-            this.lbD11.BackColor = System.Drawing.Color.Goldenrod;
-            this.lbD11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lbD11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.lbD11.ForeColor = System.Drawing.Color.Beige;
-            this.lbD11.Location = new System.Drawing.Point(420, 338);
-            this.lbD11.Name = "lbD11";
-            this.lbD11.Size = new System.Drawing.Size(59, 11);
-            this.lbD11.TabIndex = 123;
-            this.lbD11.Visible = false;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(393, 78);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(33, 37);
-            this.label10.TabIndex = 153;
-            this.label10.Text = "B";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.Navy;
-            this.label12.Location = new System.Drawing.Point(67, 300);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(34, 37);
-            this.label12.TabIndex = 155;
-            this.label12.Text = "C";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.Navy;
-            this.label14.Location = new System.Drawing.Point(391, 300);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(36, 37);
-            this.label14.TabIndex = 157;
-            this.label14.Text = "D";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(152, 552);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 37);
-            this.label5.TabIndex = 158;
-            this.label5.Text = "O";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 20F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.Navy;
-            this.label11.Location = new System.Drawing.Point(529, 552);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 37);
-            this.label11.TabIndex = 159;
-            this.label11.Text = "I";
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(421, 681);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // DashboardForm
             // 
@@ -2422,10 +2464,15 @@ namespace AGV_Form
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1370, 730);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox5);
             this.Name = "DashboardForm";
@@ -2624,5 +2671,14 @@ namespace AGV_Form
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button1;
     }
 }

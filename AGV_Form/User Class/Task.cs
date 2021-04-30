@@ -59,18 +59,19 @@ namespace AGV_Form
                 Task currentTask = agv.Tasks[0];
 
                 //agv.Path.RemoveAt(0);agv.CurrentNode != currentTask.PickNode &&
-                if ( currentTask.Status == "Waiting")
+                if (currentTask.Status == "Waiting")
                 {
+                    agv.Path.Clear();
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
                     AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
                     //agv.Path.RemoveAt(0);
                     agv.Tasks[0].Status = "Doing";
                     agv.PathCopmpleted = 0;
-                    
                 }
-                else if(agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1 )
+
+                else if (agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
                 {
-                   
+
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                     agv.Path.RemoveAt(0);
                     AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
@@ -78,52 +79,68 @@ namespace AGV_Form
                     {
                         Pallet pallet = Pallet.SimListPallet.Find(c => c.Code == currentTask.PalletCode);
                         Display.DeleteLabelPallet(pallet);
+
                     }
-                   
+                    else if (currentTask.Type == "Store")
+                    {
+
+                    }
+                    Display.SimLabelPalletInAGV[agv.ID].Visible = true;
 
                 }
-                else if(agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 2)
+                else if ((agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 2))
                 {
-                   
+
                     agv.Tasks.RemoveAt(0);
                     agv.Path.Clear();
                     agv.Status = "Stop";
+                    Display.SimLabelAGV[agv.ID].BackColor = Color.Silver;
                     string timeComplete = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
                     DBUtility.InsertCompleteTaskToDB("SimHistoryTask", currentTask, timeComplete, "Done");
                     if (currentTask.Type == "Order")
                     {
                         DBUtility.DeletePalletFromDB("SimPalletInfoTable", currentTask.PalletCode);
-                        
+                        Display.SimLabelPalletInAGV[agv.ID].Visible = false;
                         Task.SimListTask.Remove(currentTask);
                     }
                     else if (currentTask.Type == "Store")
                     {
-
-                        Pallet pallet = Pallet.SimStorePallet.Find(c=>c.Code == currentTask.PalletCode);
+                        Display.SimLabelPalletInAGV[agv.ID].Visible = false;
+                        Pallet pallet = Pallet.SimStorePallet.Find(c => c.Code == currentTask.PalletCode);
                         pallet.DeliverTime = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
-                        DBUtility.InsertNewPalletToDB("SimPalletInfoTable", pallet.Code, pallet.InStock,pallet.DeliverTime, pallet.AtBlock,pallet.AtColumn,pallet.AtLevel);
+                        DBUtility.InsertNewPalletToDB("SimPalletInfoTable", pallet.Code, pallet.InStock, pallet.DeliverTime, pallet.AtBlock, pallet.AtColumn, pallet.AtLevel);
                         Pallet.SimStorePallet.Remove(pallet);
                         Pallet.SimListPallet.Add(pallet);
                         Display.UpdateLabelPallet(pallet);
                         Task.SimListTask.Remove(currentTask);
-                    }  
+
+                    }
                     else if (currentTask.Type == "Input" || currentTask.Type == "Output")
                     {
                         Task.SimListTask.Remove(currentTask);
                     }
 
-                    
+
                 }
+                
                        
                         
-            }            
+            }     
+            else
+            {
+                if (agv.CurrentNode == 55 )
+                {
+                    agv.Status = "Stop";
+                    agv.Path.Clear() ;
+                }
+            }
         }
 
         public static void OutputAutoAdd(string palletCode, List<Task> listTaskToAdd, List<AGV> listAGV, List<RackColumn> listColumn)
         {
             // auto select agv
-            //if (SimlistAGV.Count == 0) return;
-            int agvID = 1;
+            if (AGV.SimListAGV.Count == 0) return;
+            int agvID = 1;//AutoSelectAGV(AGV.SimListAGV);
 
             // find pick node & level
             RackColumn col = listColumn.Find(c => c.PalletCodes.Contains(palletCode));
@@ -136,6 +153,139 @@ namespace AGV_Form
             Task newTask = new Task("Auto " + palletCode, "Output", palletCode, agvID, pickNode, dropNode, pickLevel, 1, "Waiting");
             listTaskToAdd.Add(newTask);
         }
+        #region Function for auto select AGV
 
+        public static int AutoSelectAGV(List<AGV> listAGV,int pickNode)
+        {
+            int selectedAGVID=0;
+            int minDistance=10000;
+            List<int> totalDistanceAllTasks = new List<int>();
+            
+
+            foreach (AGV agv in listAGV)
+            {
+                // if this agv has no task, select this agv
+                if (agv.Status == "Stop")
+                {
+                    int distance =0;
+                    List<int> path = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, pickNode);
+                    for(int i=0; i<path.Count -2;i++)
+                    {
+                        
+                        int dx = Math.Abs(Node.ListNode[path[i + 1]].X - Node.ListNode[path[i]].X);
+                        int dy = Math.Abs(Node.ListNode[path[i + 1]].Y - Node.ListNode[path[i]].Y);                  
+                        distance += (int)Math.Sqrt(dx * dx + dy * dy);
+                       
+                    }
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        selectedAGVID = agv.ID;
+                    }
+                }               
+            }
+            if (selectedAGVID == 0)
+            {
+                foreach (AGV agv in listAGV)
+                {
+                    
+                    int distance = 0;
+                    List<int> path = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[agv.Tasks.Count - 1].DropNode, pickNode);
+                    for (int i = 0; i < path.Count - 2; i++)
+                    {
+
+                        int dx = Math.Abs(Node.ListNode[path[i + 1]].X - Node.ListNode[path[i]].X);
+                        int dy = Math.Abs(Node.ListNode[path[i + 1]].Y - Node.ListNode[path[i]].Y);
+                        distance += (int)Math.Sqrt(dx * dx + dy * dy);
+
+                    }
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        selectedAGVID = agv.ID;
+                    }
+                }
+            }
+            return selectedAGVID;
+        }
+        public static string AutoSelecSlotPallet(List<Pallet> listPallet)
+        {
+            string palletLocation = "NaNN" ;
+            string AtBlock = "D";
+            
+            int AtColumn = 6;
+            int AtLevel = 1; 
+            //Pallet pl = listPallet.Find(p=> pallet.AtBlock == AtBlock && pallet.AtColumn == AtColumn && pallet.AtLevel == AtLevel)
+            //listPallet.Contains(p=> p.AtBlock == AtBlock && p.AtColumn == AtColumn && p.AtLevel == AtLevel)
+            Pallet pallet = listPallet.Find(p=> p.AtBlock == AtBlock && p.AtColumn == AtColumn && p.AtLevel == AtLevel);
+            while(listPallet.FindIndex(p => p.AtBlock == AtBlock && p.AtColumn == AtColumn && p.AtLevel == AtLevel)!= -1)
+            {
+                AtLevel += 1;
+                if (AtLevel == 4)
+                {
+                    AtLevel = 1;
+                    AtColumn -= 1;
+                    if (AtColumn == 0)
+                    {
+                        AtColumn = 6;
+
+                        switch (AtBlock)
+                        {
+                            case "D":
+                                AtBlock = "C";
+                                break;
+                            case "C":
+                                AtBlock = "B";
+                                break;
+                            case "B":
+                                AtBlock = "A";
+                                break;
+                            case "A":
+                                AtBlock = "NaN";
+                                break;
+                        }
+                    }
+                }
+
+                
+            }
+            palletLocation = AtBlock + "," + AtColumn.ToString() + "," + AtLevel.ToString();
+            //palletLocation = "FullSlot";
+            return palletLocation;
+
+        }
+        private static int CalculateTotalRemainingDistance(AGV agv)
+        {
+            int totalDistance = 0;
+
+            // get list remaning path of this agv
+            List<List<int>> listRemainingPath = new List<List<int>>();
+            for (int i = 0; i < agv.Tasks.Count; i++)
+            {
+                if (i == 0 && agv.Tasks[0].Status == "Doing")
+                    listRemainingPath.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance,agv.CurrentNode, agv.Tasks[0].DropNode));
+                else if (i == 0 && agv.Tasks[0].Status == "Waiting")
+                {
+                    listRemainingPath.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance,agv.CurrentNode, agv.Tasks[0].PickNode));
+                    listRemainingPath.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance,agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
+                }
+                else
+                    listRemainingPath.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance,agv.Tasks[i].PickNode, agv.Tasks[i].DropNode));
+
+                if (i < agv.Tasks.Count - 1)
+                    listRemainingPath.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance,agv.Tasks[i].DropNode, agv.Tasks[i + 1].PickNode));
+            }
+
+            // calculate total distance of list remaining path
+            foreach (List<int> path in listRemainingPath)
+            {
+                for (int i = 0; i < path.Count - 1; i++)
+                    totalDistance += Node.MatrixNodeDistance[path[i], path[i + 1]];
+            }
+
+            return totalDistance;
+        }
+
+        #endregion
     }
 }

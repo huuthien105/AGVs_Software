@@ -23,12 +23,22 @@ namespace AGV_Form
 
             List<Pallet> palletsInStock = new List<Pallet>();
             Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
+            Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
             lstvwPalletInStock.Items.Clear();
 
             switch (Display.Mode)
             {
                 case "Real Time":
                     lbMode.Text = "Mode: Real Time";
+                    Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
+                    foreach (Pallet pallet in Pallet.ListPallet)
+                    {
+                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtColumn.ToString());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtLevel.ToString());
+                    }
                     break;
                 case "Simulation":
 
@@ -56,13 +66,24 @@ namespace AGV_Form
 
             foreach (string palletCode in selectedPalletCode)
             {
-                palletSelected.Add(Pallet.SimListPallet.Find(c => c.Code == palletCode));
+                switch (Display.Mode)
+                {
+                    case "Real Time":
+                        palletSelected.Add(Pallet.ListPallet.Find(c => c.Code == palletCode));
+                        break;
+                    case "Simulation":
+                        palletSelected.Add(Pallet.SimListPallet.Find(c => c.Code == palletCode));
+
+                        break;
+                }
+               
             }
 
             foreach (Pallet pallet in palletSelected)
             {
-                int agvID = 1;
-                RackColumn rack = RackColumn.SimListColumn.Find(c => c.Block == pallet.AtBlock && c.Number == pallet.AtColumn);
+                
+                RackColumn rack = RackColumn.ListColumn.Find(c => c.Block == pallet.AtBlock && c.Number == pallet.AtColumn);
+                int agvID = Task.AutoSelectAGV(AGV.SimListAGV, rack.AtNode);
                 int pickNode = rack.AtNode;
                 int pickLevel = pallet.AtLevel;
 
@@ -72,10 +93,21 @@ namespace AGV_Form
                 Task task = new Task("Order1", "Order", pallet.Code, agvID,
                                  pickNode, dropNode, pickLevel, dropLevel
                                  , "Waiting");
+                switch (Display.Mode)
+                {
+                    case "Real Time":
+                        int AGVindex = AGV.ListAGV.FindIndex(a => { return a.ID == agvID; });
+                        AGV.ListAGV[AGVindex].Tasks.Add(task);
+                        Task.ListTask.Add(task);
+                        break;
+                    case "Simulation":
+                        int SimAGVindex = AGV.SimListAGV.FindIndex(a => { return a.ID == agvID; });
+                        AGV.SimListAGV[SimAGVindex].Tasks.Add(task);
+                        Task.SimListTask.Add(task);
+
+                        break;
+                }
                 
-                int AGVindex = AGV.SimListAGV.FindIndex(a => { return a.ID == agvID; });
-                AGV.SimListAGV[AGVindex].Tasks.Add(task);
-                Task.SimListTask.Add(task);
                 listViewPalletSelected.Items.Clear();
                 foreach (ListViewItem item in lstvwPalletInStock.Items) item.Checked = false;
             }
@@ -83,7 +115,18 @@ namespace AGV_Form
 
         private void timerListView_Tick(object sender, EventArgs e)
         {
-            Display.UpdateListViewTasks(listViewTask,Task.SimListTask,RackColumn.SimListColumn);
+
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    Display.UpdateListViewTasks(listViewTask, Task.ListTask);
+                    break;
+                case "Simulation":
+                    Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
+
+                    break;
+            }
+           
             // collect pallet in stock
             
         }

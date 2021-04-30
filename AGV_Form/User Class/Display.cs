@@ -16,8 +16,10 @@ namespace AGV_Form
         public static Point[] Points = new Point[2];
         public static Label[] LabelAGV = new Label[AGV.MaxNumOfAGVs]; // LabelAGV[i] for AGV ID = i
         public static Label[] SimLabelAGV = new Label[AGV.MaxNumOfAGVs];
+        public static Label[] LabelPalletInAGV = new Label[AGV.MaxNumOfAGVs];
+        public static Label[] SimLabelPalletInAGV = new Label[AGV.MaxNumOfAGVs];
 
-        public static Label[,] ASlotLabel = new Label[6,3];
+        public static Label[,] ASlotLabel = new Label[6, 3];
         public static Label[,] BSlotLabel = new Label[6, 3];
         public static Label[,] CSlotLabel = new Label[6, 3];
         public static Label[,] DSlotLabel = new Label[6, 3];
@@ -45,7 +47,7 @@ namespace AGV_Form
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Status);
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentNode.ToString());
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentOrient.ToString());
-                listView.Items[listView.Items.Count - 1].SubItems.Add((Math.Round( agv.DistanceToCurrentNode,2)).ToString() + " cm");
+                listView.Items[listView.Items.Count - 1].SubItems.Add((Math.Round(agv.DistanceToCurrentNode, 2)).ToString() + " cm");
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Velocity.ToString() + " cm/s");
                 if (agv.Status == "Running")
                     listView.Items[listData.IndexOf(agv)].BackColor = Color.PaleGreen;
@@ -55,17 +57,21 @@ namespace AGV_Form
 
 
         }
-        public static Point SimUpdatePositionAGV(int agvID, float speed,Panel pnFloor)
+        public static void SimUpdatePositionAGV(int agvID, float speed, Panel pnFloor,Label lbagv, Label lbpallet)
         {
             //int step = (int)speed * 2 / 10;              //1pixel = 0.5cm =>> 20cm/s=40pixel/s
             var index = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
             AGV agv = AGV.SimListAGV[index];
             //List<char> fullpath = AGV.FullPathOfAGV[agvID].ToList();
-            
+
             string[] frameArr = AGV.FullPathOfAGV[agvID].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-            Point oldPosition = Display.SimLabelAGV[agvID].Location;
-            Point newPosition = new Point();
+            Point oldAGVPosition = Display.SimLabelAGV[agvID].Location;
+            Point newAGVPosition = new Point();
+            Point oldPalletPosition = Display.SimLabelPalletInAGV[agvID].Location;
+            Point newPalletPosition = new Point();
+            Size oldPalletSize = Display.SimLabelPalletInAGV[agvID].Size;
+            Size newPalletSize = new Size();
 
             int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString()); ;
             if (frameArr[indexNode + 1] == "G" || frameArr[indexNode + 1] == null)
@@ -98,7 +104,7 @@ namespace AGV_Form
                 int nextNode = Convert.ToInt32(frameArr[indexNode + 2]);
                 if (agv.CurrentOrient != Display.UpdateOrient(frameArr[indexNode + 1]))
                 {
-                    agv.DistanceToCurrentNode -= speed/5.2f;
+                    agv.DistanceToCurrentNode -= speed / 5.2f;
                     if (agv.DistanceToCurrentNode <= 0)
                     {
                         agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 1]);
@@ -109,15 +115,19 @@ namespace AGV_Form
                 else
                 {
 
-                    agv.DistanceToCurrentNode += speed/5.2f;
-                    if (agv.DistanceToCurrentNode*2 >= Node.MatrixNodeDistance[currentNode, nextNode])
+                    agv.DistanceToCurrentNode += speed / 5.2f;
+                    if (agv.DistanceToCurrentNode * 2 >= Node.MatrixNodeDistance[currentNode, nextNode])
                     {
                         agv.DistanceToCurrentNode = 0;
                         agv.CurrentNode = nextNode;
                         if (frameArr[indexNode + 3] != "G")
                             agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 3]);
                     }
+                    
                     agv.Status = "Running";
+                    SimLabelAGV[agv.ID].BackColor = Color.CornflowerBlue;
+                        
+                       
                 }
             }
 
@@ -128,23 +138,40 @@ namespace AGV_Form
             switch (agv.CurrentOrient)
             {
                 case 'E':
-                    newPosition = new Point(x + pixelDistance, y);
+                    newAGVPosition = new Point(x + pixelDistance, y);
+                    newPalletSize = new Size(15, 50);
+                    newPalletPosition = new Point(x + pixelDistance - 15, y);
                     break;
                 case 'W':
-                    newPosition = new Point(x - pixelDistance, y);
+                    newAGVPosition = new Point(x - pixelDistance, y);
+                    newPalletSize = new Size(15, 50);
+                    newPalletPosition = new Point(x - pixelDistance + 50, y);
                     break;
                 case 'S':
-                    newPosition = new Point(x, y + pixelDistance);
+                    newAGVPosition = new Point(x, y + pixelDistance);
+                    newPalletSize = new Size(50, 15);
+                    newPalletPosition = new Point(x, y + pixelDistance - 15);
+
                     break;
                 case 'N':
-                    newPosition = new Point(x, y - pixelDistance);
+                    newAGVPosition = new Point(x, y - pixelDistance);
+                    newPalletSize = new Size(50, 15);
+                    newPalletPosition = new Point(x, y - pixelDistance + 50);
                     break;
-                default: newPosition = oldPosition;
+                default: 
+                    newAGVPosition = oldAGVPosition;
+                    newPalletPosition = oldPalletPosition;
+                    newPalletSize = oldPalletSize;
                     break;
             }
 
-            return newPosition;
+            lbpallet.Size = newPalletSize;
+            lbpallet.Location = newPalletPosition;
+            lbagv.Location= newAGVPosition;
+
         }
+       
+
 
         public static char UpdateOrient(string direction)
         {
@@ -182,8 +209,9 @@ namespace AGV_Form
         }
         public static void AddLabelAGV(string Mode,int agvID, int initExitNode, char initOrientation, float initDistanceToExitNode)
         {
+            /// Create new label for AGV
             Label lbAGV = new Label();
-            lbAGV.BackColor = SystemColors.ActiveCaption;
+            lbAGV.BackColor = Color.Silver;
             lbAGV.Font = new Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular,
                                                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             lbAGV.Size = new Size(50, 50);
@@ -191,7 +219,19 @@ namespace AGV_Form
             lbAGV.Text = "AGV#" + agvID.ToString();
             lbAGV.TextAlign = ContentAlignment.MiddleCenter;
             lbAGV.Name = "AGV" + agvID.ToString();
-            //lbAGV.BringToFront();
+            /// Create new label for Pallet in AGV
+            Label pallet = new Label();
+            pallet.BackColor = Color.Goldenrod;
+            pallet.Size = new Size(50,11);
+            pallet.ForeColor = Color.Black;
+            pallet.Font = new Font("Microsoft Sans Serif", 8.0F, System.Drawing.FontStyle.Regular,
+                                                    System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            pallet.Text = "Pallet";
+            pallet.TextAlign = ContentAlignment.MiddleCenter;
+            //pallet.BorderStyle = BorderStyle.FixedSingle;
+            pallet.Name = "PalletInAGV" + agvID.ToString();
+            pallet.Visible = false;
+
             int initPixelDistance = (int)Math.Round(initDistanceToExitNode*2);
             // Init the Location of new AGV
             List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
@@ -201,25 +241,36 @@ namespace AGV_Form
             {
                 case 'E':
                     lbAGV.Location = new Point(x + initPixelDistance, y);
+                    pallet.Size = new Size(15, 50);
+                    pallet.Location = new Point(x- initPixelDistance-15,y);
                     break;
                 case 'W':
                     lbAGV.Location = new Point(x - initPixelDistance, y);
+                    pallet.Size = new Size(15, 50);
+                    pallet.Location = new Point(x + initPixelDistance+50, y);
                     break;
                 case 'N':
                     lbAGV.Location = new Point(x, y - initPixelDistance);
+                    pallet.Size = new Size(50, 15);
+                    pallet.Location = new Point(x, y + initPixelDistance + 50);
+                   
                     break;
                 case 'S':
                     lbAGV.Location = new Point(x, y + initPixelDistance);
+                    pallet.Size = new Size(50, 15);
+                    pallet.Location = new Point(x, y - initPixelDistance - 15);
                     break;
             }
             // Add to Array for use
             switch (Mode)
             {
                 case "Real Time":
-                    LabelAGV[agvID] = lbAGV;                    
+                    LabelAGV[agvID] = lbAGV;
+                    LabelPalletInAGV[agvID] = pallet;
                     break;
                 case "Simulation":
-                    SimLabelAGV[agvID] = lbAGV;                    
+                    SimLabelAGV[agvID] = lbAGV;
+                    SimLabelPalletInAGV[agvID] = pallet;
                     break;
             }
         }
@@ -255,14 +306,14 @@ namespace AGV_Form
                 HomeScreenForm.textComStatus.Add(timeNow + " ID: " + ID.ToString() + "\n");
             }
         }
-        public static void UpdateListViewTasks(ListView listView, List<Task> listData, List<RackColumn> listRackColumn )
+        public static void UpdateListViewTasks(ListView listView, List<Task> listData )
         {
             
             listView.Items.Clear();
             foreach (Task task in listData)
             {
-                RackColumn PickRack = listRackColumn.Find(c => c.AtNode == task.PickNode);
-                RackColumn DropRack = listRackColumn.Find(c => c.AtNode == task.DropNode);
+                RackColumn PickRack = RackColumn.ListColumn.Find(c => c.AtNode == task.PickNode);
+                RackColumn DropRack = RackColumn.ListColumn.Find(c => c.AtNode == task.DropNode);
                 listView.Items.Add(task.Name, 1);
                 listView.Items[listView.Items.Count - 1].SubItems.Add(task.Status);
                 listView.Items[listView.Items.Count - 1].SubItems.Add(task.Type);
@@ -283,16 +334,16 @@ namespace AGV_Form
             switch (pallet.AtBlock)
             {
                 case "A":
-                    Display.ASlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    Display.ASlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Goldenrod;
                     break;
                 case "B":
-                    Display.BSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    Display.BSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Goldenrod;
                     break;
                 case "C":
-                    Display.CSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    Display.CSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Goldenrod;
                     break;
                 case "D":
-                    Display.DSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = true;
+                    Display.DSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Goldenrod;
                     break;
             }
         }
@@ -302,19 +353,19 @@ namespace AGV_Form
             switch (pallet.AtBlock)
             {
                 case "A":
-                    Display.ASlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    Display.ASlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Silver;
                     break;
                 case "B":
-                    Display.BSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    Display.BSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Silver;
                     break;
                 case "C":
-                    Display.CSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    Display.CSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Silver;
                     break;
                 case "D":
-                    Display.DSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].Visible = false;
+                    Display.DSlotLabel[pallet.AtColumn - 1, pallet.AtLevel - 1].BackColor = Color.Silver;
                     break;
             }
         }
-
+        
     }
 }

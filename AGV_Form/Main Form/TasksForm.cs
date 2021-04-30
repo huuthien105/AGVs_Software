@@ -51,7 +51,7 @@ namespace AGV_Form
                 case "Simulation":
                     // Update data in listView AGVs
                     
-                    Display.UpdateListViewTasks(listViewTasks, Task.SimListTask,RackColumn.SimListColumn);
+                    Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
                     // Update location of AGV icon (label)
                     //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
 

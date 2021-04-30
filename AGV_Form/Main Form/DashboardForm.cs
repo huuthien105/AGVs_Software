@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +18,15 @@ namespace AGV_Form
         public DashboardForm()
         {
             InitializeComponent();
-
             LoadLabel();
+            Communication.SerialPort.DataReceived += new SerialDataReceivedEventHandler(this.SerialPort_ReceiveData);
         }
-        
+
+        private void SerialPort_ReceiveData(object sender, SerialDataReceivedEventArgs e)
+        {
+            Communication.GetDataRecieve();
+        }
+
         public static int delay = 0;
         private void DashboardForm_Load(object sender, EventArgs e)
         {
@@ -72,10 +78,18 @@ namespace AGV_Form
                     pnFloor.Controls.Add(Display.SimLabelAGV[agv.ID]);
                 }
                 Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
-                
+
                 // Display Pallet in Navigation Map
+                foreach (Pallet pallet in Pallet.ListPallet)
+                {
+                    Display.DeleteLabelPallet(pallet);
+
+
+                }
+
                 foreach (Pallet pallet in Pallet.SimListPallet)
                 {
+
                     Display.UpdateLabelPallet(pallet);
                     
                         
@@ -100,7 +114,22 @@ namespace AGV_Form
                 {
                     pnFloor.Controls.Add(Display.LabelAGV[agv.ID]);
                 }
-                
+
+                Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
+                foreach (Pallet pallet in Pallet.SimListPallet)
+                {
+
+                    Display.DeleteLabelPallet(pallet);
+
+
+                }
+                foreach (Pallet pallet in Pallet.ListPallet)
+                {
+                    Display.UpdateLabelPallet(pallet);
+
+
+                }
+
             }
         }
 
@@ -119,7 +148,7 @@ namespace AGV_Form
                 case "Simulation":
                     // Update data in listView AGVs
                     Display.UpdateListViewAGVs(listViewAGVs, AGV.SimListAGV);
-                    Display.UpdateListViewTasks(listViewTask, Task.SimListTask,RackColumn.SimListColumn);
+                    Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
                     // Update location of AGV icon (label)
                     //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
 
@@ -174,6 +203,8 @@ namespace AGV_Form
                     {
                         pnFloor.Controls.Add(Display.LabelAGV[agv.ID]);
                         Display.LabelAGV[agv.ID].BringToFront();
+                        pnFloor.Controls.Add(Display.LabelPalletInAGV[agv.ID]);
+                        Display.LabelPalletInAGV[agv.ID].BringToFront();
                     }
                     break;
                 case "Simulation":
@@ -182,6 +213,8 @@ namespace AGV_Form
                         
                         pnFloor.Controls.Add(Display.SimLabelAGV[agv.ID]);
                         Display.SimLabelAGV[agv.ID].BringToFront();
+                        pnFloor.Controls.Add(Display.SimLabelPalletInAGV[agv.ID]);
+                        Display.SimLabelPalletInAGV[agv.ID].BringToFront();
                     }
                     break;
             }
@@ -205,8 +238,8 @@ namespace AGV_Form
                     foreach (AGV agv in AGV.SimListAGV)
                     {
                         Task.SimUpdatePathFromTaskOfAGVs(agv);
-                        Display.SimLabelAGV[agv.ID].Location = Display.SimUpdatePositionAGV(agv.ID, agv.Velocity,pnFloor);
-
+                        Display.SimUpdatePositionAGV(agv.ID, agv.Velocity,pnFloor, Display.SimLabelAGV[agv.ID], Display.SimLabelPalletInAGV[agv.ID]);
+                        
                     }
                     break;
             }
@@ -448,5 +481,101 @@ namespace AGV_Form
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AGV agv = AGV.ListAGV[0];
+            string pick, drop;
+            Task currentTask = AGV.ListAGV[0].Tasks[0];
+           
+            
+            if(currentTask.PickLevel ==1 || currentTask.PickLevel == 2||currentTask.PickLevel == 3)
+            {
+                pick = "P-" + currentTask.PickLevel.ToString() +"-";
+            }    
+            else
+            {
+                pick = "N-0-";
+            }  
+            if(currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
+            {
+                drop = "-D-" + currentTask.DropLevel.ToString();
+            }    
+            else
+            {
+                drop = "-N-0";
+            }    
+            agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
+            AGV.FullPathOfAGV[agv.ID] = "N-0-"+agv.CurrentOrient.ToString()+"-"+ Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient)+"-N-0";
+            Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
+            label19.Text = AGV.FullPathOfAGV[agv.ID];
+            agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
+            AGV.FullPathOfAGV[agv.ID] = pick + agv.CurrentOrient.ToString() + "-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient) + drop;
+            Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
+            label20.Text = AGV.FullPathOfAGV[agv.ID];
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //string fullpath = "N-0-S-11-N-3-W-0-S-42-E-46-G-N-0";
+            //AGV agv = AGV.ListAGV[0];
+            //string pick, drop;
+            //Task currentTask = AGV.ListAGV[0].Tasks[0];
+            //string send;
+            //agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
+            //send = "N-0-" + agv.CurrentOrient.ToString() + "-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient) + "-N-0";
+            //send.Trim();
+            //Communication.SendPathData(fullpath);
+            //label19.Text = send;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AGV agv = AGV.ListAGV[0];
+            string pick, drop;
+
+            string send;
+            Task currentTask = AGV.ListAGV[0].Tasks[0];
+            if (currentTask.PickLevel == 1 || currentTask.PickLevel == 2 || currentTask.PickLevel == 3)
+            {
+                pick = "P-" + currentTask.PickLevel.ToString() + "-";
+            }
+            else
+            {
+                pick = "N-0-";
+            }
+            if (currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
+            {
+                drop = "-D-" + currentTask.DropLevel.ToString() ;
+            }
+            else
+            {
+                drop = "-N-0";
+            }
+            agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
+            send = pick + "S" + "-" + Navigation.GetNavigationFrame(agv.Path[1], Node.MatrixNodeOrient) + drop;
+            label20.Text = send;
+            //send.Trim();
+            ///Communication.SendPathData(send);
+            agv.Path.Clear();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           label19.Text = Task.AutoSelecSlotPallet(Pallet.SimListPallet);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int agvID = 1;
+            AGV agv = AGV.SimListAGV.Find(p => p.ID == agvID);
+            if(agv.Status == "Stop")
+            {
+                
+                List<int> path = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, 55);
+                AGV.FullPathOfAGV[agvID] = Navigation.GetNavigationFrame(path, Node.MatrixNodeOrient);
+                AGV.SimListAGV[0].Path.Add(path);
+            }
+            //agv.PathCopmpleted = 4;
+        }
     }
 }
