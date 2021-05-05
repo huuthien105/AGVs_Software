@@ -35,10 +35,10 @@ namespace AGV_Form
                     foreach (Pallet pallet in Pallet.SimListPallet)
                     {
                         lstvwPalletInStock.Items.Add(pallet.Code, 0);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtColumn.ToString());
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtLevel.ToString());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.Name.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock + "-" + pallet.AtColumn.ToString() + "-" + pallet.AtLevel.ToString());
+
                     }
 
 
@@ -49,10 +49,17 @@ namespace AGV_Form
         }
         private void btnStore_Click(object sender, EventArgs e)
         {
-
-            int agvID = Task.AutoSelectAGV(AGV.SimListAGV, Input);
+            if (String.IsNullOrEmpty(txtPalletCode.Text) || String.IsNullOrEmpty(txtPalletName.Text) ||
+             String.IsNullOrEmpty(cbbBlock.Text) || String.IsNullOrEmpty(cbbColumn.Text) || String.IsNullOrEmpty(cbbLevel.Text))
+            {
+                MessageBox.Show(" Please enter correct Pallet informarion !", "Pallet Information ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            //int agvID = Task.AutoSelectAGV(AGV.SimListAGV, Input);
+            int agvID = 1;
             RackColumn rack = RackColumn.ListColumn.Find(c => c.Block == cbbBlock.Text && c.Number == Convert.ToInt32(cbbColumn.Text));
             string palletcode = txtPalletCode.Text;
+            string palletName = txtPalletName.Text;
             int pickNode = Input;
             int pickLevel = 1;
 
@@ -75,7 +82,7 @@ namespace AGV_Form
             Task task = new Task("Store1", "Store", palletcode, agvID,
                                  pickNode, dropNode, pickLevel, dropLevel
                                  , "Waiting");
-            Pallet pallet = new Pallet(palletcode,true,"??", cbbBlock.Text, Convert.ToInt32(cbbColumn.Text), Convert.ToInt32(cbbLevel.Text));
+            Pallet pallet = new Pallet(palletcode, palletName, true,"??", cbbBlock.Text, Convert.ToInt32(cbbColumn.Text), Convert.ToInt32(cbbLevel.Text));
             switch (Display.Mode)
             {
                 case "Real Time":

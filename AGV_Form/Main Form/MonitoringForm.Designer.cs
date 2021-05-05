@@ -43,6 +43,7 @@ namespace AGV_Form
             this.lbBattery = new System.Windows.Forms.Label();
             this.prgrbBattery = new System.Windows.Forms.ProgressBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.lbStatusCOM = new System.Windows.Forms.Label();
             this.cbbAGV = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,6 +60,9 @@ namespace AGV_Form
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -66,25 +70,26 @@ namespace AGV_Form
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -100,6 +105,9 @@ namespace AGV_Form
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // button5
@@ -234,6 +242,20 @@ namespace AGV_Form
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "     Battery";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label7.ForeColor = System.Drawing.Color.Navy;
+            this.label7.Location = new System.Drawing.Point(12, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 19);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "Capacity::";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbStatusCOM
             // 
@@ -434,6 +456,11 @@ namespace AGV_Form
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox5.Controls.Add(this.pictureBox11);
+            this.groupBox5.Controls.Add(this.label21);
+            this.groupBox5.Controls.Add(this.label20);
+            this.groupBox5.Controls.Add(this.pictureBox10);
+            this.groupBox5.Controls.Add(this.pictureBox8);
             this.groupBox5.Controls.Add(this.pictureBox6);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox5.ForeColor = System.Drawing.Color.DarkRed;
@@ -476,6 +503,48 @@ namespace AGV_Form
             this.groupBox6.TabIndex = 36;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "      Position";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label4.ForeColor = System.Drawing.Color.Navy;
+            this.label4.Location = new System.Drawing.Point(32, 81);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(20, 19);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "Y:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label3.ForeColor = System.Drawing.Color.Navy;
+            this.label3.Location = new System.Drawing.Point(32, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(20, 19);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "X:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(17, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 19);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Location:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox7
             // 
@@ -572,48 +641,6 @@ namespace AGV_Form
             this.label14.Text = "Orientation:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(17, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 19);
-            this.label1.TabIndex = 29;
-            this.label1.Text = "Location:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(32, 56);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(20, 19);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "X:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(32, 81);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(20, 19);
-            this.label4.TabIndex = 31;
-            this.label4.Text = "Y:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -631,6 +658,61 @@ namespace AGV_Form
             this.groupBox1.TabIndex = 37;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "     AGV Status";
+            // 
+            // label19
+            // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label19.ForeColor = System.Drawing.Color.Navy;
+            this.label19.Location = new System.Drawing.Point(154, 64);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 19);
+            this.label19.TabIndex = 38;
+            this.label19.Text = "Battery:";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label18.ForeColor = System.Drawing.Color.Navy;
+            this.label18.Location = new System.Drawing.Point(150, 26);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(60, 19);
+            this.label18.TabIndex = 37;
+            this.label18.Text = "On Task:";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label17.ForeColor = System.Drawing.Color.Navy;
+            this.label17.Location = new System.Drawing.Point(18, 22);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(49, 19);
+            this.label17.TabIndex = 36;
+            this.label17.Text = "Power:";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label15
+            // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Navy;
+            this.label15.Location = new System.Drawing.Point(20, 41);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(48, 17);
+            this.label15.TabIndex = 35;
+            this.label15.Text = "#####";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label16
             // 
@@ -674,6 +756,34 @@ namespace AGV_Form
             this.groupBox8.TabIndex = 37;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "      Current Path";
+            // 
+            // label27
+            // 
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label27.ForeColor = System.Drawing.Color.Navy;
+            this.label27.Location = new System.Drawing.Point(217, 83);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(77, 19);
+            this.label27.TabIndex = 33;
+            this.label27.Text = "Next Node:";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label5.ForeColor = System.Drawing.Color.Navy;
+            this.label5.Location = new System.Drawing.Point(55, 84);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(91, 19);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Curent Node:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox9
             // 
@@ -728,103 +838,6 @@ namespace AGV_Form
             this.label34.Text = "To Rack:";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(55, 84);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(91, 19);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Curent Node:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label27
-            // 
-            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label27.ForeColor = System.Drawing.Color.Navy;
-            this.label27.Location = new System.Drawing.Point(217, 83);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(77, 19);
-            this.label27.TabIndex = 33;
-            this.label27.Text = "Next Node:";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(12, 25);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 19);
-            this.label7.TabIndex = 34;
-            this.label7.Text = "Capacity::";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(20, 41);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(48, 17);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "#####";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label17
-            // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label17.ForeColor = System.Drawing.Color.Navy;
-            this.label17.Location = new System.Drawing.Point(18, 22);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(49, 19);
-            this.label17.TabIndex = 36;
-            this.label17.Text = "Power:";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label18.ForeColor = System.Drawing.Color.Navy;
-            this.label18.Location = new System.Drawing.Point(150, 26);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(60, 19);
-            this.label18.TabIndex = 37;
-            this.label18.Text = "On Task:";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label19
-            // 
-            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label19.ForeColor = System.Drawing.Color.Navy;
-            this.label19.Location = new System.Drawing.Point(154, 64);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(56, 19);
-            this.label19.TabIndex = 38;
-            this.label19.Text = "Battery:";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(177, 207);
@@ -834,6 +847,51 @@ namespace AGV_Form
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(41, 26);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(53, 269);
+            this.pictureBox8.TabIndex = 29;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(79, 228);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(132, 143);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 30;
+            this.pictureBox10.TabStop = false;
+            // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.LightSlateGray;
+            this.label20.Location = new System.Drawing.Point(6, 40);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(28, 255);
+            this.label20.TabIndex = 31;
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label21.Location = new System.Drawing.Point(8, 244);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(23, 13);
+            this.label21.TabIndex = 32;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(115, 280);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(79, 72);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 33;
+            this.pictureBox11.TabStop = false;
             // 
             // MonitoringForm
             // 
@@ -879,6 +937,9 @@ namespace AGV_Form
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -939,5 +1000,10 @@ namespace AGV_Form
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.PictureBox pictureBox11;
     }
 }

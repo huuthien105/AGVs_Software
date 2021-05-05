@@ -32,16 +32,20 @@ namespace AGV_Form
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderForm));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.cbbFilter = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.listViewPalletSelected = new System.Windows.Forms.ListView();
             this.imgPallet = new System.Windows.Forms.ImageList(this.components);
             this.btnOrder = new System.Windows.Forms.Button();
             this.lstvwPalletInStock = new System.Windows.Forms.ListView();
             this.pallet_code = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.stored_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.at_block = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.at_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.at_level = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pallet_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.store_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listViewTask = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -54,11 +58,7 @@ namespace AGV_Form
             this.timerListView = new System.Windows.Forms.Timer(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbMode = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.cbbFilter = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -70,8 +70,9 @@ namespace AGV_Form
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.AutoSize = true;
             this.groupBox3.BackColor = System.Drawing.Color.Lavender;
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.btnRefresh);
+            this.groupBox3.Controls.Add(this.btnSearch);
             this.groupBox3.Controls.Add(this.txtName);
             this.groupBox3.Controls.Add(this.cbbFilter);
             this.groupBox3.Controls.Add(this.label7);
@@ -84,10 +85,73 @@ namespace AGV_Form
             this.groupBox3.ForeColor = System.Drawing.Color.DarkRed;
             this.groupBox3.Location = new System.Drawing.Point(12, 52);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(649, 338);
+            this.groupBox3.Size = new System.Drawing.Size(625, 338);
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Order pallets in stock:";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnRefresh.ForeColor = System.Drawing.Color.Navy;
+            this.btnRefresh.Image = ((System.Drawing.Image)(resources.GetObject("btnRefresh.Image")));
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefresh.Location = new System.Drawing.Point(524, 20);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(84, 33);
+            this.btnRefresh.TabIndex = 64;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSearch.ForeColor = System.Drawing.Color.Navy;
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(438, 20);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(80, 33);
+            this.btnSearch.TabIndex = 63;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(306, 23);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(96, 27);
+            this.txtName.TabIndex = 62;
+            // 
+            // cbbFilter
+            // 
+            this.cbbFilter.FormattingEnabled = true;
+            this.cbbFilter.Items.AddRange(new object[] {
+            "Code",
+            "Name",
+            "Block"});
+            this.cbbFilter.Location = new System.Drawing.Point(182, 22);
+            this.cbbFilter.Name = "cbbFilter";
+            this.cbbFilter.Size = new System.Drawing.Size(65, 28);
+            this.cbbFilter.TabIndex = 61;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label7.ForeColor = System.Drawing.Color.Navy;
+            this.label7.Location = new System.Drawing.Point(134, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 19);
+            this.label7.TabIndex = 60;
+            this.label7.Text = "Filter:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -96,7 +160,7 @@ namespace AGV_Form
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(15, 26);
+            this.label5.Location = new System.Drawing.Point(15, 27);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(99, 19);
             this.label5.TabIndex = 31;
@@ -107,9 +171,9 @@ namespace AGV_Form
             // 
             this.listViewPalletSelected.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
             this.listViewPalletSelected.HideSelection = false;
-            this.listViewPalletSelected.Location = new System.Drawing.Point(15, 46);
+            this.listViewPalletSelected.Location = new System.Drawing.Point(19, 56);
             this.listViewPalletSelected.Name = "listViewPalletSelected";
-            this.listViewPalletSelected.Size = new System.Drawing.Size(95, 171);
+            this.listViewPalletSelected.Size = new System.Drawing.Size(95, 210);
             this.listViewPalletSelected.SmallImageList = this.imgPallet;
             this.listViewPalletSelected.TabIndex = 34;
             this.listViewPalletSelected.UseCompatibleStateImageBehavior = false;
@@ -123,12 +187,16 @@ namespace AGV_Form
             // 
             // btnOrder
             // 
-            this.btnOrder.Location = new System.Drawing.Point(51, 223);
+            this.btnOrder.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnOrder.ForeColor = System.Drawing.Color.Navy;
+            this.btnOrder.Image = ((System.Drawing.Image)(resources.GetObject("btnOrder.Image")));
+            this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOrder.Location = new System.Drawing.Point(36, 277);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(59, 34);
+            this.btnOrder.Size = new System.Drawing.Size(82, 33);
             this.btnOrder.TabIndex = 29;
-            this.btnOrder.Text = "Order";
-            this.btnOrder.UseVisualStyleBackColor = true;
+            this.btnOrder.Text = "      Order";
+            this.btnOrder.UseVisualStyleBackColor = false;
             this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // lstvwPalletInStock
@@ -139,16 +207,15 @@ namespace AGV_Form
             this.lstvwPalletInStock.CheckBoxes = true;
             this.lstvwPalletInStock.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.pallet_code,
-            this.stored_time,
-            this.at_block,
-            this.at_column,
-            this.at_level});
+            this.pallet_name,
+            this.store_time,
+            this.location});
             this.lstvwPalletInStock.Font = new System.Drawing.Font("Segoe UI", 9.25F);
             this.lstvwPalletInStock.FullRowSelect = true;
             this.lstvwPalletInStock.HideSelection = false;
-            this.lstvwPalletInStock.Location = new System.Drawing.Point(124, 78);
+            this.lstvwPalletInStock.Location = new System.Drawing.Point(124, 56);
             this.lstvwPalletInStock.Name = "lstvwPalletInStock";
-            this.lstvwPalletInStock.Size = new System.Drawing.Size(519, 249);
+            this.lstvwPalletInStock.Size = new System.Drawing.Size(484, 249);
             this.lstvwPalletInStock.SmallImageList = this.imgPallet;
             this.lstvwPalletInStock.TabIndex = 28;
             this.lstvwPalletInStock.UseCompatibleStateImageBehavior = false;
@@ -158,31 +225,25 @@ namespace AGV_Form
             // pallet_code
             // 
             this.pallet_code.Text = "Pallet Code";
-            this.pallet_code.Width = 120;
+            this.pallet_code.Width = 90;
             // 
-            // stored_time
+            // pallet_name
             // 
-            this.stored_time.Text = "Stored Time";
-            this.stored_time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.stored_time.Width = 150;
+            this.pallet_name.Text = "Pallet Name";
+            this.pallet_name.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pallet_name.Width = 90;
             // 
-            // at_block
+            // store_time
             // 
-            this.at_block.Text = "Block";
-            this.at_block.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.at_block.Width = 75;
+            this.store_time.Text = "Store Time";
+            this.store_time.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.store_time.Width = 230;
             // 
-            // at_column
+            // location
             // 
-            this.at_column.Text = "Column";
-            this.at_column.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.at_column.Width = 75;
-            // 
-            // at_level
-            // 
-            this.at_level.Text = "Level";
-            this.at_level.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.at_level.Width = 75;
+            this.location.Text = "Location";
+            this.location.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.location.Width = 70;
             // 
             // groupBox1
             // 
@@ -194,7 +255,7 @@ namespace AGV_Form
             this.groupBox1.ForeColor = System.Drawing.Color.DarkRed;
             this.groupBox1.Location = new System.Drawing.Point(12, 396);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(649, 177);
+            this.groupBox1.Size = new System.Drawing.Size(625, 177);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "List Of Task";
@@ -214,7 +275,7 @@ namespace AGV_Form
             this.listViewTask.HideSelection = false;
             this.listViewTask.Location = new System.Drawing.Point(15, 26);
             this.listViewTask.Name = "listViewTask";
-            this.listViewTask.Size = new System.Drawing.Size(624, 145);
+            this.listViewTask.Size = new System.Drawing.Size(593, 145);
             this.listViewTask.TabIndex = 1;
             this.listViewTask.UseCompatibleStateImageBehavior = false;
             this.listViewTask.View = System.Windows.Forms.View.Details;
@@ -284,71 +345,31 @@ namespace AGV_Form
             this.lbMode.Text = "Please select Mode !";
             this.lbMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button3
+            // label1
             // 
-            this.button3.Location = new System.Drawing.Point(481, 26);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 29);
-            this.button3.TabIndex = 63;
-            this.button3.Text = "Search";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(309, 28);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(157, 27);
-            this.txtName.TabIndex = 62;
-            // 
-            // cbbFilter
-            // 
-            this.cbbFilter.FormattingEnabled = true;
-            this.cbbFilter.Items.AddRange(new object[] {
-            "[Task Name]",
-            "Status",
-            "[Pallet Code]",
-            "Type",
-            "AGV",
-            "[Pick Node]",
-            "[Drop Node]"});
-            this.cbbFilter.Location = new System.Drawing.Point(182, 26);
-            this.cbbFilter.Name = "cbbFilter";
-            this.cbbFilter.Size = new System.Drawing.Size(110, 28);
-            this.cbbFilter.TabIndex = 61;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(134, 32);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 19);
-            this.label7.TabIndex = 60;
-            this.label7.Text = "Filter:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(564, 26);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 29);
-            this.button1.TabIndex = 64;
-            this.button1.Text = "Refresh";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.25F);
+            this.label1.ForeColor = System.Drawing.Color.Navy;
+            this.label1.Location = new System.Drawing.Point(253, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 19);
+            this.label1.TabIndex = 65;
+            this.label1.Text = "Name:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // OrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 678);
+            this.ClientSize = new System.Drawing.Size(649, 580);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OrderForm";
-            this.Text = "OrderForm";
+            this.Text = "Order Pallet";
             this.Load += new System.EventHandler(this.OrderForm_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -363,10 +384,9 @@ namespace AGV_Form
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ListView lstvwPalletInStock;
         private System.Windows.Forms.ColumnHeader pallet_code;
-        private System.Windows.Forms.ColumnHeader stored_time;
-        private System.Windows.Forms.ColumnHeader at_block;
-        private System.Windows.Forms.ColumnHeader at_column;
-        private System.Windows.Forms.ColumnHeader at_level;
+        private System.Windows.Forms.ColumnHeader pallet_name;
+        private System.Windows.Forms.ColumnHeader store_time;
+        private System.Windows.Forms.ColumnHeader location;
         private System.Windows.Forms.ImageList imgPallet;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView listViewTask;
@@ -383,10 +403,11 @@ namespace AGV_Form
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbMode;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.ComboBox cbbFilter;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label label1;
     }
 }

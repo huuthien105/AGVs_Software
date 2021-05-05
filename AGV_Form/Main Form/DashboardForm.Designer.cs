@@ -34,7 +34,7 @@ namespace AGV_Form
             this.label7 = new System.Windows.Forms.Label();
             this.btnCOMSetting = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.imgRun = new System.Windows.Forms.ImageList(this.components);
@@ -51,9 +51,8 @@ namespace AGV_Form
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.rtxtbComStatus = new System.Windows.Forms.RichTextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listViewAGVs = new System.Windows.Forms.ListView();
             this.AGVID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,6 +60,7 @@ namespace AGV_Form
             this.Orient = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DistanceToNode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Velocity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label19 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.pnFloor = new System.Windows.Forms.Panel();
@@ -216,7 +216,6 @@ namespace AGV_Form
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -259,6 +258,8 @@ namespace AGV_Form
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Lavender;
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.btnPause);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnCOMSetting);
@@ -281,23 +282,23 @@ namespace AGV_Form
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Control Pannel";
             // 
-            // button5
+            // button1
             // 
-            this.button5.Location = new System.Drawing.Point(329, 671);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(63, 32);
-            this.button5.TabIndex = 27;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.button1.Location = new System.Drawing.Point(231, 121);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "run";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(501, 680);
+            this.button4.Location = new System.Drawing.Point(311, 120);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 26;
-            this.button4.Text = "button4";
+            this.button4.Text = "wait";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -467,6 +468,8 @@ namespace AGV_Form
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.BackColor = System.Drawing.Color.Lavender;
             this.groupBox6.Controls.Add(this.rtxtbComStatus);
+            this.groupBox6.Controls.Add(this.label19);
+            this.groupBox6.Controls.Add(this.label20);
             this.groupBox6.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox6.ForeColor = System.Drawing.Color.Navy;
             this.groupBox6.Location = new System.Drawing.Point(15, 505);
@@ -489,6 +492,15 @@ namespace AGV_Form
             this.rtxtbComStatus.TabIndex = 5;
             this.rtxtbComStatus.Text = "";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(358, 10);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(58, 20);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "label20";
+            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -503,24 +515,6 @@ namespace AGV_Form
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "AGVs Monitoring";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(269, 681);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(41, 13);
-            this.label20.TabIndex = 3;
-            this.label20.Text = "label20";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(200, 681);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 13);
-            this.label19.TabIndex = 2;
-            this.label19.Text = "label19";
             // 
             // listViewAGVs
             // 
@@ -575,6 +569,15 @@ namespace AGV_Form
             this.Velocity.Text = "Velocity";
             this.Velocity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Velocity.Width = 90;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(248, 10);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 20);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "label19";
             // 
             // label1
             // 
@@ -2448,31 +2451,16 @@ namespace AGV_Form
             this.imageList1.Images.SetKeyName(2, "South_Direction.png.png");
             this.imageList1.Images.SetKeyName(3, "West_Direction.png.png");
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(421, 681);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1370, 730);
-            this.Controls.Add(this.label19);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.label20);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox6);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox5);
             this.Name = "DashboardForm";
@@ -2481,6 +2469,7 @@ namespace AGV_Form
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.pnFloor.ResumeLayout(false);
@@ -2678,7 +2667,6 @@ namespace AGV_Form
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button1;
     }
 }

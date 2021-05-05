@@ -65,43 +65,49 @@ namespace AGV_Form
             // 
             // dashboardToolStripMenuItem
             // 
+            this.dashboardToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dashboardToolStripMenuItem.Image")));
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(88, 23);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(104, 23);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashoardToolStripMenuItem_Click);
             // 
             // monitoringToolStripMenuItem
             // 
+            this.monitoringToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("monitoringToolStripMenuItem.Image")));
             this.monitoringToolStripMenuItem.Name = "monitoringToolStripMenuItem";
-            this.monitoringToolStripMenuItem.Size = new System.Drawing.Size(90, 23);
+            this.monitoringToolStripMenuItem.Size = new System.Drawing.Size(106, 23);
             this.monitoringToolStripMenuItem.Text = "Monitoring";
             this.monitoringToolStripMenuItem.Click += new System.EventHandler(this.monitoringToolStripMenuItem_Click);
             // 
             // tasksToolStripMenuItem
             // 
+            this.tasksToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("tasksToolStripMenuItem.Image")));
             this.tasksToolStripMenuItem.Name = "tasksToolStripMenuItem";
-            this.tasksToolStripMenuItem.Size = new System.Drawing.Size(52, 23);
+            this.tasksToolStripMenuItem.Size = new System.Drawing.Size(68, 23);
             this.tasksToolStripMenuItem.Text = "Tasks";
             this.tasksToolStripMenuItem.Click += new System.EventHandler(this.tasksToolStripMenuItem_Click);
             // 
             // warehouseToolStripMenuItem
             // 
+            this.warehouseToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("warehouseToolStripMenuItem.Image")));
             this.warehouseToolStripMenuItem.Name = "warehouseToolStripMenuItem";
-            this.warehouseToolStripMenuItem.Size = new System.Drawing.Size(89, 23);
+            this.warehouseToolStripMenuItem.Size = new System.Drawing.Size(105, 23);
             this.warehouseToolStripMenuItem.Text = "Warehouse";
             this.warehouseToolStripMenuItem.Click += new System.EventHandler(this.warehouseToolStripMenuItem_Click);
             // 
             // reportToolStripMenuItem
             // 
+            this.reportToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportToolStripMenuItem.Image")));
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(62, 23);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(78, 23);
             this.reportToolStripMenuItem.Text = "Report";
             this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem1
             // 
+            this.helpToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripMenuItem1.Image")));
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(49, 23);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(65, 23);
             this.helpToolStripMenuItem1.Text = "Help";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
             // 
@@ -147,7 +153,7 @@ namespace AGV_Form
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HomeScreenForm";
-            this.Text = "AGV Control & Monitoring Software";
+            this.Text = "Warehouse Management  Software";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.HomeScreenForm_Load);
             this.menuStrip1.ResumeLayout(false);

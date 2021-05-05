@@ -49,6 +49,7 @@ namespace AGV_Form
     class Pallet
     {
         public string Code { get; set; }
+        public string Name { get; set; }
         public bool InStock { get; set; }
         public string StoreTime { get; set; }
         public string DeliverTime { get; set; }
@@ -57,9 +58,10 @@ namespace AGV_Form
         public int AtLevel { get; set; }
         public Label label = new Label();
 
-        public Pallet(string code, bool isInWarehouse, string storeTime, string block, int column, int level)
+        public Pallet(string code,string name, bool isInWarehouse, string storeTime, string block, int column, int level)
         {
             this.Code = code;
+            this.Name = name;
             this.StoreTime = storeTime;
             this.InStock = isInWarehouse;
             this.AtBlock = block;

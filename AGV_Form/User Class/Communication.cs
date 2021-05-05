@@ -10,7 +10,7 @@ namespace AGV_Form
     class Communication
     {
 
-        public event SerialConnectionHander IsConnected;
+        //public event SerialConnectionHander IsConnected;
         private static SerialPort _serialPort = new SerialPort();
         public static SerialPort SerialPort
         {
@@ -24,9 +24,12 @@ namespace AGV_Form
         }
         private static List<byte> bytesReceived = new List<byte>();
         private const ushort PIDInfoReceivePacketSize = 24;
+        private const ushort PathCompleteReceivePacketSize = 7;
         public static float speed=0, line=0;
+        public static int com = 0;
         public static void GetDataRecieve()
         {
+            
             int rxBufferSize = 22;
             byte[] rxBuffer = new byte[rxBufferSize];
             int rxByteCount = Communication.SerialPort.Read(rxBuffer, 0, rxBufferSize);
@@ -74,6 +77,57 @@ namespace AGV_Form
                             //udk_LinePos = receiveFrame.UdkLinePos;
                         }
                     }
+                    if (functionCode == 0xC0)
+                    {
+                        //com++;
+                        // waitting for receive enough frame data of this function code
+                        if (bytesReceived.Count - startIndex < PathCompleteReceivePacketSize) return;
+
+                        // put data in an array
+                        byte[] data = new byte[PathCompleteReceivePacketSize];
+                        for (int j = 0; j < PathCompleteReceivePacketSize; j++)
+                            data[j] = bytesReceived[startIndex + j];
+
+                        PathCompleteRecievePacket receiveFrame = PathCompleteRecievePacket.FromArray(data);
+                        bytesReceived.RemoveRange(0, startIndex + PathCompleteReceivePacketSize - 1);
+                        //if(receiveFrame.IsComplete == 0x05)
+                        // {
+
+                        //}
+                        //string fullpath = "P-2-S-53-N-49-W-44-N-37-G-D-3";
+                        //Communication.SendPathData(fullpath);
+                        AGV agv = AGV.ListAGV[0];
+                        string pick, drop;
+                        if (AGV.ListAGV[0].Tasks.Count == 0) return;
+                        Task currentTask = AGV.ListAGV[0].Tasks[0];
+
+                        if (currentTask.PickLevel == 1 || currentTask.PickLevel == 2 || currentTask.PickLevel == 3)
+                        {
+                            pick = "P-" + currentTask.PickLevel.ToString() + "-";
+                        }
+                        else
+                        {
+                            pick = "N-0-";
+                        }
+                        if (currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
+                        {
+                            drop = "-D-" + currentTask.DropLevel.ToString();
+                        }
+                        else
+                        {
+                            drop = "-N-0";
+                        }
+                        try
+                        {
+                            AGV.FullPathOfAGV[agv.ID] = pick + agv.CurrentOrient.ToString() + "-" + Navigation.GetNavigationFrame(agv.Path[1], Node.MatrixNodeOrient) + drop;
+                            Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
+                            //label20.Text = AGV.FullPathOfAGV[agv.ID];
+                            agv.Path.Clear();
+                            AGV.ListAGV[0].Tasks.Remove(currentTask);
+                        }
+                        catch { }
+
+                    }
                 }
             }
         }
@@ -113,6 +167,8 @@ namespace AGV_Form
             sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
             try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
             catch { };
+            // wait ack
+           
         }
 
 
@@ -282,6 +338,38 @@ namespace AGV_Form
 
                 s.EndOfFrame = reader.ReadBytes(2);
 
+                // s.CheckSum = reader.ReadUInt16();
+                //  s.EndOfFrame = reader.ReadBytes(2);
+
+                return s;
+            }
+        }
+
+        public struct PathCompleteRecievePacket
+        {
+            public byte[] Header;
+            public byte FunctionCode;
+            public byte AGVID;
+            public byte IsComplete;           
+            public byte[] EndOfFrame;
+
+
+            // Convert Byte Arrays to Structs
+            public static PathCompleteRecievePacket FromArray(byte[] bytes)
+            {
+                var reader = new System.IO.BinaryReader(new System.IO.MemoryStream(bytes));
+
+                var s = default(PathCompleteRecievePacket);
+
+
+                s.Header = reader.ReadBytes(2);
+                s.FunctionCode = reader.ReadByte();
+                s.AGVID = reader.ReadByte();
+
+                s.IsComplete = reader.ReadByte();
+
+                s.EndOfFrame = reader.ReadBytes(2);
+                
                 // s.CheckSum = reader.ReadUInt16();
                 //  s.EndOfFrame = reader.ReadBytes(2);
 

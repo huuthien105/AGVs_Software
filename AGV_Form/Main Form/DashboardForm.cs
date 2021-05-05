@@ -40,9 +40,15 @@ namespace AGV_Form
                 case "Simulation":
                     rdbtnRealTime.Checked = false;
                     rdbtnSimulation.Checked = true;
+                    foreach (AGV agv in AGV.SimListAGV)
+                    {
+                        pnFloor.Controls.Add(Display.SimLabelPalletInAGV[agv.ID]);
+                        Display.SimLabelPalletInAGV[agv.ID].BringToFront();
+                    }
                     break;
             }
 
+            
 
             //AGV.ListPathOfAGV[2] = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, 54, 30);
         }
@@ -127,7 +133,6 @@ namespace AGV_Form
                 {
                     Display.UpdateLabelPallet(pallet);
 
-
                 }
 
             }
@@ -155,6 +160,10 @@ namespace AGV_Form
 
                     break;
             }
+            Collision.DetectColission();
+            label19.Text = Math.Round(Collision.dis1,2).ToString();
+            label20.Text = Math.Round(Collision.dis2,2).ToString();
+
         }
         private void pnFloor_Paint(object sender, PaintEventArgs e)
         {
@@ -238,8 +247,13 @@ namespace AGV_Form
                     foreach (AGV agv in AGV.SimListAGV)
                     {
                         Task.SimUpdatePathFromTaskOfAGVs(agv);
-                        Display.SimUpdatePositionAGV(agv.ID, agv.Velocity,pnFloor, Display.SimLabelAGV[agv.ID], Display.SimLabelPalletInAGV[agv.ID]);
+                        Display.SimUpdatePositionAGV(agv.ID, agv.Velocity,pnFloor, Display.SimLabelAGV[agv.ID],Display.SimLabelPalletInAGV[agv.ID]);
+                       
                         
+                        if(agv.HavePallet)
+                            Display.SimLabelPalletInAGV[agv.ID].Visible = true;
+                        else
+                            Display.SimLabelPalletInAGV[agv.ID].Visible = false;
                     }
                     break;
             }
@@ -283,6 +297,7 @@ namespace AGV_Form
                // timerDrawPath.Tick += new EventHandler(AGVDrawPath_Click()); 
 
             }
+
 
         }
         private void AGVDrawPath_Click(object sender, EventArgs e)
@@ -343,7 +358,18 @@ namespace AGV_Form
             switch (Display.Mode)
             {
                 case "Real Time":
+                    AGV agv = AGV.ListAGV[0];
+                    string pick, drop;
+                    if (AGV.ListAGV[0].Tasks.Count == 0) return;
+                    Task currentTask = AGV.ListAGV[0].Tasks[0];
 
+
+                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
+                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
+                    AGV.FullPathOfAGV[agv.ID] = "N-0-" + agv.CurrentOrient.ToString() + "-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient) + "-N-0";
+                    Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
+                    
+                    label19.Text = AGV.FullPathOfAGV[agv.ID];
                     break;
                 case "Simulation":
                     timerSimAGV.Enabled = true;
@@ -483,35 +509,9 @@ namespace AGV_Form
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AGV agv = AGV.ListAGV[0];
-            string pick, drop;
-            Task currentTask = AGV.ListAGV[0].Tasks[0];
+            Display.wait = 1;
            
             
-            if(currentTask.PickLevel ==1 || currentTask.PickLevel == 2||currentTask.PickLevel == 3)
-            {
-                pick = "P-" + currentTask.PickLevel.ToString() +"-";
-            }    
-            else
-            {
-                pick = "N-0-";
-            }  
-            if(currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
-            {
-                drop = "-D-" + currentTask.DropLevel.ToString();
-            }    
-            else
-            {
-                drop = "-N-0";
-            }    
-            agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
-            AGV.FullPathOfAGV[agv.ID] = "N-0-"+agv.CurrentOrient.ToString()+"-"+ Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient)+"-N-0";
-            Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
-            label19.Text = AGV.FullPathOfAGV[agv.ID];
-            agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
-            AGV.FullPathOfAGV[agv.ID] = pick + agv.CurrentOrient.ToString() + "-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient) + drop;
-            Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
-            label20.Text = AGV.FullPathOfAGV[agv.ID];
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -530,39 +530,37 @@ namespace AGV_Form
 
         private void button4_Click(object sender, EventArgs e)
         {
-            AGV agv = AGV.ListAGV[0];
-            string pick, drop;
+            Display.wait = 0;
+            //AGV agv = AGV.ListAGV[0];
+            //string pick, drop;
 
-            string send;
-            Task currentTask = AGV.ListAGV[0].Tasks[0];
-            if (currentTask.PickLevel == 1 || currentTask.PickLevel == 2 || currentTask.PickLevel == 3)
-            {
-                pick = "P-" + currentTask.PickLevel.ToString() + "-";
-            }
-            else
-            {
-                pick = "N-0-";
-            }
-            if (currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
-            {
-                drop = "-D-" + currentTask.DropLevel.ToString() ;
-            }
-            else
-            {
-                drop = "-N-0";
-            }
-            agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
-            send = pick + "S" + "-" + Navigation.GetNavigationFrame(agv.Path[1], Node.MatrixNodeOrient) + drop;
-            label20.Text = send;
-            //send.Trim();
-            ///Communication.SendPathData(send);
-            agv.Path.Clear();
+            //string send;
+            //Task currentTask = AGV.ListAGV[0].Tasks[0];
+            //if (currentTask.PickLevel == 1 || currentTask.PickLevel == 2 || currentTask.PickLevel == 3)
+            //{
+            //    pick = "P-" + currentTask.PickLevel.ToString() + "-";
+            //}
+            //else
+            //{
+            //    pick = "N-0-";
+            //}
+            //if (currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
+            //{
+            //    drop = "-D-" + currentTask.DropLevel.ToString() ;
+            //}
+            //else
+            //{
+            //    drop = "-N-0";
+            //}
+            //agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
+            //send = pick + "S" + "-" + Navigation.GetNavigationFrame(agv.Path[1], Node.MatrixNodeOrient) + drop;
+            //label20.Text = send;
+            ////send.Trim();
+            /////Communication.SendPathData(send);
+            //agv.Path.Clear();
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-           label19.Text = Task.AutoSelecSlotPallet(Pallet.SimListPallet);
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {

@@ -79,7 +79,7 @@ namespace AGV_Form
             // Store DataTable into a List
             listPallet = (from DataRow dr in table.Rows
                           where Convert.ToBoolean(dr["InStock"]) == true
-                          select new Pallet(dr["PalletCode"].ToString(), Convert.ToBoolean(dr["InStock"]), dr["StoreTime"].ToString(),
+                          select new Pallet(dr["PalletCode"].ToString(),dr["PalletName"].ToString(), Convert.ToBoolean(dr["InStock"]), dr["StoreTime"].ToString(),
                                             dr["AtBlock"].ToString(), Convert.ToInt16(dr["AtColumn"]), Convert.ToInt16(dr["AtLevel"]))
                           ).ToList();
 
@@ -87,7 +87,7 @@ namespace AGV_Form
             else if (typeof(T) == typeof(List<Pallet>)) return listPallet;
             else return null;
         }
-        public static void InsertNewPalletToDB(string tableName, string palletCode, bool inStock, string storeTime,
+        public static void InsertNewPalletToDB(string tableName, string palletCode,string palletName, bool inStock, string storeTime,
                                                string block, int column, int level)
         {
             using (SqlConnection connection = new SqlConnection(connectionStr))
@@ -97,9 +97,10 @@ namespace AGV_Form
 
                 //SqlCommand
                 SqlCommand command = connection.CreateCommand();
-                command.CommandText = "insert into " + tableName + " (PalletCode, InStock, StoreTime, AtBlock, AtColumn, AtLevel)"
-                                                     + " values(@palletCode, @inStock, @storeTime, @atBlock, @atColumn, @atLevel)";
+                command.CommandText = "insert into " + tableName + " (PalletCode,PalletName, InStock, StoreTime, AtBlock, AtColumn, AtLevel)"
+                                                     + " values(@palletCode,@palletName, @inStock, @storeTime, @atBlock, @atColumn, @atLevel)";
                 command.Parameters.Add("@palletCode", SqlDbType.NVarChar).Value = palletCode;
+                command.Parameters.Add("@palletName", SqlDbType.NVarChar).Value = palletName;
                 command.Parameters.Add("@inStock", SqlDbType.Bit).Value = inStock;
                 command.Parameters.Add("@storeTime", SqlDbType.NVarChar).Value = storeTime;
                 command.Parameters.Add("@atBlock", SqlDbType.NVarChar).Value = block;

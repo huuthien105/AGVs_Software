@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
+using System.IO.Ports;
 using ZedGraph;
 
 namespace AGV_Form
@@ -187,15 +189,28 @@ namespace AGV_Form
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string fullpath1 = "N-0-N-55-N-46-E-47-E-48-E-49-S-53-G-P-1";
+            string fullpath1 = "N-0-N-11-N-3-w-0-s-42-E-50-S-54-G-N-0";
             //string fullpath = "N,0,S,11,N,3,W,0,S,42,E,46,G,N,0";
             Communication.SendPathData(fullpath1);
+            //delay();
+            
+        }
+        private static void delay()
+        {
+            System.Timers.Timer timer1 = new System.Timers.Timer(10000);
+            timer1.Elapsed += (sender, e) => timer1_Elapsed(sender, e);
+
+            timer1.Start();
+        }
+        private static void timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
             //string fullpath = "N,0,N,46,E,50,N,8,W,3,S,11,G,N,0";
-            string fullpath = "N-0-S-53-N-49-W-48-W-47-W-46-N-25-N-4-W-3-S-11-G-D-3";
+            string fullpath = "P-2-S-53-N-49-W-44-N-37-G-D-3";
             Communication.SendPathData(fullpath);
-          
+            ((System.Timers.Timer)sender).Dispose();
         }
 
+        
         private void button1_Click(object sender, EventArgs e)
         {
             Communication.SetSpeedPacket sendFrame = new Communication.SetSpeedPacket();
@@ -219,7 +234,7 @@ namespace AGV_Form
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            
         }
 
         private void timerGraph_Tick(object sender, EventArgs e)

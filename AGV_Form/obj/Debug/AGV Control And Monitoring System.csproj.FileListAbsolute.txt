@@ -194,3 +194,5 @@ D:\AGVs_Software\AGV_Form\bin\Debug\zh-cn\ZedGraph.resources.dll
 D:\AGVs_Software\AGV_Form\bin\Debug\zh-tw\ZedGraph.resources.dll
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csproj.CopyComplete
 D:\AGVs_Software\AGV_Form\obj\Debug\AGV Control And Monitoring System.csprojAssemblyReference.cache
+D:\AGVs_Software\AGV_Form\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
+D:\AGVs_Software\AGV_Form\bin\Debug\Microsoft.VisualBasic.PowerPacks.xml

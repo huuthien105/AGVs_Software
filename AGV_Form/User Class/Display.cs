@@ -23,6 +23,7 @@ namespace AGV_Form
         public static Label[,] BSlotLabel = new Label[6, 3];
         public static Label[,] CSlotLabel = new Label[6, 3];
         public static Label[,] DSlotLabel = new Label[6, 3];
+        public static int wait =1;
 
         public static void AddPath(Panel panel, List<int> path, List<Node> Nodes, Color color, float width)
         {
@@ -73,7 +74,8 @@ namespace AGV_Form
             Size oldPalletSize = Display.SimLabelPalletInAGV[agvID].Size;
             Size newPalletSize = new Size();
 
-            int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString()); ;
+            int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString());
+            if (agv.IsColision) return;
             if (frameArr[indexNode + 1] == "G" || frameArr[indexNode + 1] == null)
             {
                 agv.PathCopmpleted++;
@@ -118,8 +120,10 @@ namespace AGV_Form
                     agv.DistanceToCurrentNode += speed / 5.2f;
                     if (agv.DistanceToCurrentNode * 2 >= Node.MatrixNodeDistance[currentNode, nextNode])
                     {
+                        
                         agv.DistanceToCurrentNode = 0;
                         agv.CurrentNode = nextNode;
+                        
                         if (frameArr[indexNode + 3] != "G")
                             agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 3]);
                     }
@@ -167,6 +171,7 @@ namespace AGV_Form
 
             lbpallet.Size = newPalletSize;
             lbpallet.Location = newPalletPosition;
+            //lbpallet.Visible = true;
             lbagv.Location= newAGVPosition;
 
         }

@@ -24,37 +24,8 @@ namespace AGV_Form
             List<Pallet> palletsInStock = new List<Pallet>();
             Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
             Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
-            lstvwPalletInStock.Items.Clear();
+            RefreshListviewPallet();
 
-            switch (Display.Mode)
-            {
-                case "Real Time":
-                    lbMode.Text = "Mode: Real Time";
-                    Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
-                    foreach (Pallet pallet in Pallet.ListPallet)
-                    {
-                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtColumn.ToString());
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtLevel.ToString());
-                    }
-                    break;
-                case "Simulation":
-
-                    lbMode.Text = "Mode: Simulation";
-                    Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
-                    foreach (Pallet pallet in Pallet.SimListPallet)
-                    {
-                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock);
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtColumn.ToString());
-                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtLevel.ToString());
-                    }
-                    break;
-            }
-            
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
@@ -109,8 +80,14 @@ namespace AGV_Form
                 }
                 
                 listViewPalletSelected.Items.Clear();
-                foreach (ListViewItem item in lstvwPalletInStock.Items) item.Checked = false;
+
+                foreach (ListViewItem item in lstvwPalletInStock.Items)
+                {
+                    if(item.Checked)
+                    lstvwPalletInStock.Items.Remove(item);
+                } 
             }
+            
         }
 
         private void timerListView_Tick(object sender, EventArgs e)
@@ -140,6 +117,82 @@ namespace AGV_Form
 
                 listViewPalletSelected.Items.Add(item.Text, 0);
 
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            DataTable table = new DataTable();
+            table = DBUtility.GetPalletInfoFromDB<DataTable>("SimPalletInfoTable");
+            string filter = null;
+            switch (cbbFilter.Text)
+            {
+                case "Code":
+                    filter = "PalletCode";
+                    break;
+                case "Name":
+                    filter = "PalletName";
+                    break;
+                case "Block":
+                    filter = "AtBlock";
+                    break;
+            }
+            string searchQuery = filter + "='" + txtName.Text + "'";
+            
+            try
+            {
+                DataRow[] result = table.Select(searchQuery);
+                lstvwPalletInStock.Items.Clear();
+                for (int i = 0; i < result.Length; i++)
+                {
+                    lstvwPalletInStock.Items.Add(result[i][0].ToString(), 0);
+                    lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(result[i][1].ToString().Trim());
+                    lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(result[i][3].ToString().Trim());
+                    lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(result[i][4].ToString() + "-" + result[i][5].ToString() + "-" + result[i][6].ToString());
+                }
+            }
+            catch 
+            {
+                lstvwPalletInStock.Items.Clear();
+            }
+               
+           
+
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshListviewPallet();
+        }
+        private void RefreshListviewPallet()
+        {
+            lstvwPalletInStock.Items.Clear();
+
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    lbMode.Text = "Mode: Real Time";
+                    Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
+                    foreach (Pallet pallet in Pallet.ListPallet)
+                    {
+                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.Name.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock + "-" + pallet.AtColumn.ToString() + "-" + pallet.AtLevel.ToString());
+                    }
+                    break;
+                case "Simulation":
+
+                    lbMode.Text = "Mode: Simulation";
+                    Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
+                    foreach (Pallet pallet in Pallet.SimListPallet)
+                    {
+                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.Name.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock + "-" + pallet.AtColumn.ToString() + "-" + pallet.AtLevel.ToString());
+                    }
+                    break;
             }
         }
     }

@@ -71,10 +71,11 @@ namespace AGV_Form
 
                 else if (agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
                 {
-
-                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                     agv.Path.RemoveAt(0);
+                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
+                    
                     AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
+                    agv.HavePallet = true;
                     if (currentTask.Type == "Order")
                     {
                         Pallet pallet = Pallet.SimListPallet.Find(c => c.Code == currentTask.PalletCode);
@@ -83,9 +84,9 @@ namespace AGV_Form
                     }
                     else if (currentTask.Type == "Store")
                     {
-
+                        
                     }
-                    Display.SimLabelPalletInAGV[agv.ID].Visible = true;
+                    
 
                 }
                 else if ((agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 2))
@@ -97,18 +98,20 @@ namespace AGV_Form
                     Display.SimLabelAGV[agv.ID].BackColor = Color.Silver;
                     string timeComplete = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
                     DBUtility.InsertCompleteTaskToDB("SimHistoryTask", currentTask, timeComplete, "Done");
+                    agv.HavePallet = false;
                     if (currentTask.Type == "Order")
                     {
                         DBUtility.DeletePalletFromDB("SimPalletInfoTable", currentTask.PalletCode);
-                        Display.SimLabelPalletInAGV[agv.ID].Visible = false;
+                        
                         Task.SimListTask.Remove(currentTask);
                     }
                     else if (currentTask.Type == "Store")
                     {
-                        Display.SimLabelPalletInAGV[agv.ID].Visible = false;
+                        
+                        //agv.HavePallet = false;
                         Pallet pallet = Pallet.SimStorePallet.Find(c => c.Code == currentTask.PalletCode);
                         pallet.DeliverTime = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
-                        DBUtility.InsertNewPalletToDB("SimPalletInfoTable", pallet.Code, pallet.InStock, pallet.DeliverTime, pallet.AtBlock, pallet.AtColumn, pallet.AtLevel);
+                        DBUtility.InsertNewPalletToDB("SimPalletInfoTable", pallet.Code,pallet.Name, pallet.InStock, pallet.DeliverTime, pallet.AtBlock, pallet.AtColumn, pallet.AtLevel);
                         Pallet.SimStorePallet.Remove(pallet);
                         Pallet.SimListPallet.Add(pallet);
                         Display.UpdateLabelPallet(pallet);
@@ -134,6 +137,7 @@ namespace AGV_Form
                     agv.Path.Clear() ;
                 }
             }
+           
         }
 
         public static void OutputAutoAdd(string palletCode, List<Task> listTaskToAdd, List<AGV> listAGV, List<RackColumn> listColumn)

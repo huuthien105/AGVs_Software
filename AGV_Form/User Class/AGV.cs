@@ -14,7 +14,8 @@ namespace AGV_Form
         public float DistanceToCurrentNode { get; set; }
         public string Status { get; set; }
         public float Velocity { get; set; }
-
+        public bool HavePallet = false;
+        public bool IsColision = false;
        // public bool IsInitialized = false; // only use in Real Time mode
 
         // Constructor of AGV with some initial information
