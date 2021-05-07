@@ -316,7 +316,7 @@ namespace AGV_Form
                 case "Simulation":
                     int j = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
                     if (AGV.SimListAGV[j].Path.Count == 0) return;
-
+                    
                     Display.AddPath(pnFloor, AGV.SimListAGV[j].Path[0],Node.ListNode, Color.Blue, 4);
                     break;
             }
@@ -509,9 +509,10 @@ namespace AGV_Form
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Display.wait = 1;
-           
-            
+            // Display.wait = 1;
+            List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, 17, 19);
+            AGV.FullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+            AGV.SimListAGV[0].PathCopmpleted = 1;
         }
 
         private void button3_Click(object sender, EventArgs e)

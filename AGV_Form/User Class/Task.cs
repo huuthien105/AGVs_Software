@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -67,10 +68,12 @@ namespace AGV_Form
                     //agv.Path.RemoveAt(0);
                     agv.Tasks[0].Status = "Doing";
                     agv.PathCopmpleted = 0;
+                    Debug.WriteLine(agv.PathCopmpleted.ToString());
                 }
 
                 else if (agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
                 {
+                    Debug.WriteLine(agv.PathCopmpleted.ToString());
                     agv.Path.RemoveAt(0);
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                     
