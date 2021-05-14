@@ -31,14 +31,10 @@ namespace AGV_Form
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoringForm));
-            this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.timerGraph = new System.Windows.Forms.Timer(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lbStatus = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lbBattery = new System.Windows.Forms.Label();
             this.prgrbBattery = new System.Windows.Forms.ProgressBar();
@@ -58,26 +54,41 @@ namespace AGV_Form
             this.lbVelocity = new System.Windows.Forms.Label();
             this.zedGraphVelocity = new ZedGraph.ZedGraphControl();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.lbLocationY = new System.Windows.Forms.Label();
+            this.lbLocationX = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lbDistancetoNode = new System.Windows.Forms.Label();
+            this.lbOrientation = new System.Windows.Forms.Label();
+            this.lbCurrentNode = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lbOnTask = new System.Windows.Forms.Label();
+            this.lbStatus = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lbPower = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.lbToRack = new System.Windows.Forms.Label();
+            this.lbFromRack = new System.Windows.Forms.Label();
+            this.lbFullPath = new System.Windows.Forms.Label();
+            this.lbToNode = new System.Windows.Forms.Label();
+            this.lbFromNode = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
@@ -85,11 +96,11 @@ namespace AGV_Form
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.lbMode = new System.Windows.Forms.Label();
+            this.timerView = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -98,6 +109,9 @@ namespace AGV_Form
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
@@ -105,24 +119,13 @@ namespace AGV_Form
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            this.groupBox7.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(420, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 32;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(608, 12);
+            this.button4.Location = new System.Drawing.Point(138, 724);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 31;
@@ -132,23 +135,13 @@ namespace AGV_Form
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(514, 12);
+            this.button1.Location = new System.Drawing.Point(57, 724);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 30;
             this.button1.Text = "SetSpeed";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(306, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 29;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // timerGraph
             // 
@@ -159,38 +152,12 @@ namespace AGV_Form
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(181, 47);
+            this.pictureBox1.Location = new System.Drawing.Point(173, 18);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(22, 22);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 41;
             this.pictureBox1.TabStop = false;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Segoe UI", 10.25F);
-            this.label11.ForeColor = System.Drawing.Color.Navy;
-            this.label11.Location = new System.Drawing.Point(960, 47);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 19);
-            this.label11.TabIndex = 40;
-            this.label11.Text = "Status:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbStatus
-            // 
-            this.lbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbStatus.AutoSize = true;
-            this.lbStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbStatus.ForeColor = System.Drawing.Color.Navy;
-            this.lbStatus.Location = new System.Drawing.Point(1012, 49);
-            this.lbStatus.Name = "lbStatus";
-            this.lbStatus.Size = new System.Drawing.Size(48, 17);
-            this.lbStatus.TabIndex = 34;
-            this.lbStatus.Text = "#####";
-            this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox3
             // 
@@ -212,9 +179,9 @@ namespace AGV_Form
             this.lbBattery.ForeColor = System.Drawing.Color.Navy;
             this.lbBattery.Location = new System.Drawing.Point(12, 50);
             this.lbBattery.Name = "lbBattery";
-            this.lbBattery.Size = new System.Drawing.Size(24, 17);
+            this.lbBattery.Size = new System.Drawing.Size(33, 17);
             this.lbBattery.TabIndex = 18;
-            this.lbBattery.Text = "##";
+            this.lbBattery.Text = "87%";
             this.lbBattery.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // prgrbBattery
@@ -224,7 +191,7 @@ namespace AGV_Form
             this.prgrbBattery.Size = new System.Drawing.Size(145, 23);
             this.prgrbBattery.Step = 1;
             this.prgrbBattery.TabIndex = 0;
-            this.prgrbBattery.Value = 50;
+            this.prgrbBattery.Value = 87;
             // 
             // groupBox3
             // 
@@ -236,9 +203,9 @@ namespace AGV_Form
             this.groupBox3.Controls.Add(this.prgrbBattery);
             this.groupBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox3.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox3.Location = new System.Drawing.Point(1105, 88);
+            this.groupBox3.Location = new System.Drawing.Point(1104, 57);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(244, 109);
+            this.groupBox3.Size = new System.Drawing.Size(244, 120);
             this.groupBox3.TabIndex = 36;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "     Battery";
@@ -280,11 +247,12 @@ namespace AGV_Form
             this.cbbAGV.Items.AddRange(new object[] {
             "AGV#1",
             "AGV#2"});
-            this.cbbAGV.Location = new System.Drawing.Point(209, 45);
+            this.cbbAGV.Location = new System.Drawing.Point(201, 17);
             this.cbbAGV.MaxDropDownItems = 6;
             this.cbbAGV.Name = "cbbAGV";
             this.cbbAGV.Size = new System.Drawing.Size(65, 25);
             this.cbbAGV.TabIndex = 38;
+            this.cbbAGV.Text = "AGV#1";
             // 
             // label2
             // 
@@ -293,7 +261,7 @@ namespace AGV_Form
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(23, 47);
+            this.label2.Location = new System.Drawing.Point(18, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(149, 19);
             this.label2.TabIndex = 33;
@@ -309,9 +277,9 @@ namespace AGV_Form
             this.groupBox4.Controls.Add(this.zedGraphLineTrack);
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox4.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox4.Location = new System.Drawing.Point(38, 225);
+            this.groupBox4.Location = new System.Drawing.Point(18, 196);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(483, 418);
+            this.groupBox4.Size = new System.Drawing.Size(525, 481);
             this.groupBox4.TabIndex = 44;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "     Line tracking";
@@ -331,7 +299,7 @@ namespace AGV_Form
             // 
             this.zedGraphLineTrack.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.zedGraphLineTrack.Location = new System.Drawing.Point(11, 47);
+            this.zedGraphLineTrack.Location = new System.Drawing.Point(10, 48);
             this.zedGraphLineTrack.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.zedGraphLineTrack.Name = "zedGraphLineTrack";
             this.zedGraphLineTrack.ScrollGrace = 0D;
@@ -341,7 +309,7 @@ namespace AGV_Form
             this.zedGraphLineTrack.ScrollMinX = 0D;
             this.zedGraphLineTrack.ScrollMinY = 0D;
             this.zedGraphLineTrack.ScrollMinY2 = 0D;
-            this.zedGraphLineTrack.Size = new System.Drawing.Size(460, 358);
+            this.zedGraphLineTrack.Size = new System.Drawing.Size(505, 424);
             this.zedGraphLineTrack.TabIndex = 0;
             // 
             // groupBox2
@@ -358,9 +326,9 @@ namespace AGV_Form
             this.groupBox2.Controls.Add(this.zedGraphVelocity);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox2.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox2.Location = new System.Drawing.Point(544, 227);
+            this.groupBox2.Location = new System.Drawing.Point(563, 195);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(483, 418);
+            this.groupBox2.Size = new System.Drawing.Size(525, 481);
             this.groupBox2.TabIndex = 45;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "      Velocity";
@@ -371,7 +339,7 @@ namespace AGV_Form
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(232, 20);
+            this.label6.Location = new System.Drawing.Point(274, 20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(101, 19);
             this.label6.TabIndex = 29;
@@ -382,7 +350,7 @@ namespace AGV_Form
             // 
             this.txtbSetVelocity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbSetVelocity.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.txtbSetVelocity.Location = new System.Drawing.Point(337, 17);
+            this.txtbSetVelocity.Location = new System.Drawing.Point(379, 17);
             this.txtbSetVelocity.Name = "txtbSetVelocity";
             this.txtbSetVelocity.Size = new System.Drawing.Size(65, 25);
             this.txtbSetVelocity.TabIndex = 32;
@@ -391,15 +359,14 @@ namespace AGV_Form
             // 
             this.btnSetVelocity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetVelocity.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.btnSetVelocity.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnSetVelocity.FlatAppearance.BorderColor = System.Drawing.Color.Lavender;
             this.btnSetVelocity.FlatAppearance.BorderSize = 0;
-            this.btnSetVelocity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetVelocity.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnSetVelocity.Font = new System.Drawing.Font("Segoe UI", 9.25F);
             this.btnSetVelocity.ForeColor = System.Drawing.Color.Navy;
             this.btnSetVelocity.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.btnSetVelocity.ImageIndex = 3;
-            this.btnSetVelocity.Location = new System.Drawing.Point(406, 17);
+            this.btnSetVelocity.Location = new System.Drawing.Point(448, 17);
             this.btnSetVelocity.Name = "btnSetVelocity";
             this.btnSetVelocity.Size = new System.Drawing.Size(54, 25);
             this.btnSetVelocity.TabIndex = 31;
@@ -447,7 +414,7 @@ namespace AGV_Form
             this.zedGraphVelocity.ScrollMinX = 0D;
             this.zedGraphVelocity.ScrollMinY = 0D;
             this.zedGraphVelocity.ScrollMinY2 = 0D;
-            this.zedGraphVelocity.Size = new System.Drawing.Size(460, 358);
+            this.zedGraphVelocity.Size = new System.Drawing.Size(505, 424);
             this.zedGraphVelocity.TabIndex = 0;
             // 
             // groupBox5
@@ -464,12 +431,57 @@ namespace AGV_Form
             this.groupBox5.Controls.Add(this.pictureBox6);
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox5.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox5.Location = new System.Drawing.Point(1039, 244);
+            this.groupBox5.Location = new System.Drawing.Point(1104, 198);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(319, 399);
+            this.groupBox5.Size = new System.Drawing.Size(244, 418);
             this.groupBox5.TabIndex = 46;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "      Lifting Fork";
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(115, 280);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(79, 72);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 33;
+            this.pictureBox11.TabStop = false;
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.label21.Location = new System.Drawing.Point(8, 244);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(23, 13);
+            this.label21.TabIndex = 32;
+            // 
+            // label20
+            // 
+            this.label20.BackColor = System.Drawing.Color.LightSlateGray;
+            this.label20.Location = new System.Drawing.Point(6, 40);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(28, 255);
+            this.label20.TabIndex = 31;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(79, 228);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(132, 143);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 30;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(41, 26);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(53, 269);
+            this.pictureBox8.TabIndex = 29;
+            this.pictureBox8.TabStop = false;
             // 
             // pictureBox6
             // 
@@ -485,24 +497,54 @@ namespace AGV_Form
             // groupBox6
             // 
             this.groupBox6.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox6.Controls.Add(this.lbLocationY);
+            this.groupBox6.Controls.Add(this.lbLocationX);
             this.groupBox6.Controls.Add(this.label4);
             this.groupBox6.Controls.Add(this.label3);
             this.groupBox6.Controls.Add(this.label1);
             this.groupBox6.Controls.Add(this.pictureBox7);
-            this.groupBox6.Controls.Add(this.label8);
-            this.groupBox6.Controls.Add(this.label9);
-            this.groupBox6.Controls.Add(this.label10);
+            this.groupBox6.Controls.Add(this.lbDistancetoNode);
+            this.groupBox6.Controls.Add(this.lbOrientation);
+            this.groupBox6.Controls.Add(this.lbCurrentNode);
             this.groupBox6.Controls.Add(this.label12);
             this.groupBox6.Controls.Add(this.label13);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox6.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox6.Location = new System.Drawing.Point(261, 86);
+            this.groupBox6.Location = new System.Drawing.Point(259, 57);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(297, 110);
+            this.groupBox6.Size = new System.Drawing.Size(297, 120);
             this.groupBox6.TabIndex = 36;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "      Position";
+            // 
+            // lbLocationY
+            // 
+            this.lbLocationY.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbLocationY.AutoSize = true;
+            this.lbLocationY.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLocationY.ForeColor = System.Drawing.Color.Navy;
+            this.lbLocationY.Location = new System.Drawing.Point(48, 83);
+            this.lbLocationY.Name = "lbLocationY";
+            this.lbLocationY.Size = new System.Drawing.Size(24, 17);
+            this.lbLocationY.TabIndex = 33;
+            this.lbLocationY.Text = "##";
+            this.lbLocationY.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbLocationX
+            // 
+            this.lbLocationX.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbLocationX.AutoSize = true;
+            this.lbLocationX.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbLocationX.ForeColor = System.Drawing.Color.Navy;
+            this.lbLocationX.Location = new System.Drawing.Point(48, 57);
+            this.lbLocationX.Name = "lbLocationX";
+            this.lbLocationX.Size = new System.Drawing.Size(24, 17);
+            this.lbLocationX.TabIndex = 32;
+            this.lbLocationX.Text = "##";
+            this.lbLocationX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -511,7 +553,7 @@ namespace AGV_Form
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(32, 81);
+            this.label4.Location = new System.Drawing.Point(22, 81);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(20, 19);
             this.label4.TabIndex = 31;
@@ -525,7 +567,7 @@ namespace AGV_Form
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.25F);
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(32, 56);
+            this.label3.Location = new System.Drawing.Point(22, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(20, 19);
             this.label3.TabIndex = 30;
@@ -557,47 +599,47 @@ namespace AGV_Form
             this.pictureBox7.TabIndex = 28;
             this.pictureBox7.TabStop = false;
             // 
-            // label8
+            // lbDistancetoNode
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lbDistancetoNode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(249, 81);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 17);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "##.#";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbDistancetoNode.AutoSize = true;
+            this.lbDistancetoNode.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDistancetoNode.ForeColor = System.Drawing.Color.Navy;
+            this.lbDistancetoNode.Location = new System.Drawing.Point(249, 81);
+            this.lbDistancetoNode.Name = "lbDistancetoNode";
+            this.lbDistancetoNode.Size = new System.Drawing.Size(35, 17);
+            this.lbDistancetoNode.TabIndex = 11;
+            this.lbDistancetoNode.Text = "##.#";
+            this.lbDistancetoNode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label9
+            // lbOrientation
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lbOrientation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(249, 56);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(16, 17);
-            this.label9.TabIndex = 11;
-            this.label9.Text = "#";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbOrientation.AutoSize = true;
+            this.lbOrientation.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOrientation.ForeColor = System.Drawing.Color.Navy;
+            this.lbOrientation.Location = new System.Drawing.Point(249, 56);
+            this.lbOrientation.Name = "lbOrientation";
+            this.lbOrientation.Size = new System.Drawing.Size(16, 17);
+            this.lbOrientation.TabIndex = 11;
+            this.lbOrientation.Text = "#";
+            this.lbOrientation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // lbCurrentNode
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lbCurrentNode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(249, 31);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(24, 17);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "##";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbCurrentNode.AutoSize = true;
+            this.lbCurrentNode.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCurrentNode.ForeColor = System.Drawing.Color.Navy;
+            this.lbCurrentNode.Location = new System.Drawing.Point(249, 31);
+            this.lbCurrentNode.Name = "lbCurrentNode";
+            this.lbCurrentNode.Size = new System.Drawing.Size(24, 17);
+            this.lbCurrentNode.TabIndex = 11;
+            this.lbCurrentNode.Text = "##";
+            this.lbCurrentNode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label12
             // 
@@ -644,20 +686,62 @@ namespace AGV_Form
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.lbOnTask);
+            this.groupBox1.Controls.Add(this.lbStatus);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.lbPower);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.pictureBox2);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox1.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox1.Location = new System.Drawing.Point(27, 81);
+            this.groupBox1.Location = new System.Drawing.Point(18, 57);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(225, 116);
+            this.groupBox1.Size = new System.Drawing.Size(225, 120);
             this.groupBox1.TabIndex = 37;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "     AGV Status";
+            this.groupBox1.Text = "      AGV Status";
+            // 
+            // label22
+            // 
+            this.label22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Navy;
+            this.label22.Location = new System.Drawing.Point(165, 87);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(33, 17);
+            this.label22.TabIndex = 41;
+            this.label22.Text = "87%";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbOnTask
+            // 
+            this.lbOnTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbOnTask.AutoSize = true;
+            this.lbOnTask.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOnTask.ForeColor = System.Drawing.Color.Navy;
+            this.lbOnTask.Location = new System.Drawing.Point(162, 47);
+            this.lbOnTask.Name = "lbOnTask";
+            this.lbOnTask.Size = new System.Drawing.Size(43, 17);
+            this.lbOnTask.TabIndex = 40;
+            this.lbOnTask.Text = "Task 1";
+            this.lbOnTask.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbStatus
+            // 
+            this.lbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbStatus.AutoSize = true;
+            this.lbStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbStatus.ForeColor = System.Drawing.Color.Navy;
+            this.lbStatus.Location = new System.Drawing.Point(27, 85);
+            this.lbStatus.Name = "lbStatus";
+            this.lbStatus.Size = new System.Drawing.Size(32, 17);
+            this.lbStatus.TabIndex = 39;
+            this.lbStatus.Text = "###";
+            this.lbStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label19
             // 
@@ -701,18 +785,18 @@ namespace AGV_Form
             this.label17.Text = "Power:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label15
+            // lbPower
             // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(20, 41);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(48, 17);
-            this.label15.TabIndex = 35;
-            this.label15.Text = "#####";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbPower.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbPower.AutoSize = true;
+            this.lbPower.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPower.ForeColor = System.Drawing.Color.Navy;
+            this.lbPower.Location = new System.Drawing.Point(27, 41);
+            this.lbPower.Name = "lbPower";
+            this.lbPower.Size = new System.Drawing.Size(28, 17);
+            this.lbPower.TabIndex = 35;
+            this.lbPower.Text = "ON";
+            this.lbPower.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label16
             // 
@@ -742,6 +826,11 @@ namespace AGV_Form
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox8.Controls.Add(this.lbToRack);
+            this.groupBox8.Controls.Add(this.lbFromRack);
+            this.groupBox8.Controls.Add(this.lbFullPath);
+            this.groupBox8.Controls.Add(this.lbToNode);
+            this.groupBox8.Controls.Add(this.lbFromNode);
             this.groupBox8.Controls.Add(this.label27);
             this.groupBox8.Controls.Add(this.label5);
             this.groupBox8.Controls.Add(this.pictureBox9);
@@ -750,12 +839,81 @@ namespace AGV_Form
             this.groupBox8.Controls.Add(this.label34);
             this.groupBox8.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox8.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox8.Location = new System.Drawing.Point(564, 87);
+            this.groupBox8.Location = new System.Drawing.Point(575, 57);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(516, 110);
+            this.groupBox8.Size = new System.Drawing.Size(516, 120);
             this.groupBox8.TabIndex = 37;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "      Current Path";
+            // 
+            // lbToRack
+            // 
+            this.lbToRack.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbToRack.AutoSize = true;
+            this.lbToRack.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbToRack.ForeColor = System.Drawing.Color.Navy;
+            this.lbToRack.Location = new System.Drawing.Point(340, 30);
+            this.lbToRack.Name = "lbToRack";
+            this.lbToRack.Size = new System.Drawing.Size(35, 17);
+            this.lbToRack.TabIndex = 38;
+            this.lbToRack.Text = "##.#";
+            this.lbToRack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbFromRack
+            // 
+            this.lbFromRack.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbFromRack.AutoSize = true;
+            this.lbFromRack.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFromRack.ForeColor = System.Drawing.Color.Navy;
+            this.lbFromRack.Location = new System.Drawing.Point(149, 32);
+            this.lbFromRack.Name = "lbFromRack";
+            this.lbFromRack.Size = new System.Drawing.Size(35, 17);
+            this.lbFromRack.TabIndex = 37;
+            this.lbFromRack.Text = "##.#";
+            this.lbFromRack.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbFullPath
+            // 
+            this.lbFullPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbFullPath.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFullPath.ForeColor = System.Drawing.Color.Navy;
+            this.lbFullPath.Location = new System.Drawing.Point(149, 57);
+            this.lbFullPath.Name = "lbFullPath";
+            this.lbFullPath.Size = new System.Drawing.Size(341, 18);
+            this.lbFullPath.TabIndex = 36;
+            this.lbFullPath.Text = "##.#";
+            this.lbFullPath.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbToNode
+            // 
+            this.lbToNode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbToNode.AutoSize = true;
+            this.lbToNode.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbToNode.ForeColor = System.Drawing.Color.Navy;
+            this.lbToNode.Location = new System.Drawing.Point(328, 84);
+            this.lbToNode.Name = "lbToNode";
+            this.lbToNode.Size = new System.Drawing.Size(35, 17);
+            this.lbToNode.TabIndex = 35;
+            this.lbToNode.Text = "##.#";
+            this.lbToNode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbFromNode
+            // 
+            this.lbFromNode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbFromNode.AutoSize = true;
+            this.lbFromNode.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbFromNode.ForeColor = System.Drawing.Color.Navy;
+            this.lbFromNode.Location = new System.Drawing.Point(164, 87);
+            this.lbFromNode.Name = "lbFromNode";
+            this.lbFromNode.Size = new System.Drawing.Size(35, 17);
+            this.lbFromNode.TabIndex = 34;
+            this.lbFromNode.Text = "##.#";
+            this.lbFromNode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label27
             // 
@@ -840,7 +998,7 @@ namespace AGV_Form
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(177, 207);
+            this.button2.Location = new System.Drawing.Point(236, 724);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 47;
@@ -848,75 +1006,79 @@ namespace AGV_Form
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // pictureBox8
+            // groupBox7
             // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(41, 26);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(53, 269);
-            this.pictureBox8.TabIndex = 29;
-            this.pictureBox8.TabStop = false;
+            this.groupBox7.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox7.Controls.Add(this.cbbAGV);
+            this.groupBox7.Controls.Add(this.label2);
+            this.groupBox7.Controls.Add(this.pictureBox1);
+            this.groupBox7.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.groupBox7.ForeColor = System.Drawing.Color.DarkRed;
+            this.groupBox7.Location = new System.Drawing.Point(18, -2);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(283, 50);
+            this.groupBox7.TabIndex = 39;
+            this.groupBox7.TabStop = false;
             // 
-            // pictureBox10
+            // label11
             // 
-            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(79, 228);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(132, 143);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox10.TabIndex = 30;
-            this.pictureBox10.TabStop = false;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.label11.Location = new System.Drawing.Point(14, 653);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(126, 21);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "Tab: Monitoring";
             // 
-            // label20
+            // groupBox9
             // 
-            this.label20.BackColor = System.Drawing.Color.LightSlateGray;
-            this.label20.Location = new System.Drawing.Point(6, 40);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(28, 255);
-            this.label20.TabIndex = 31;
+            this.groupBox9.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.groupBox9.Controls.Add(this.lbMode);
+            this.groupBox9.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.groupBox9.ForeColor = System.Drawing.Color.DarkRed;
+            this.groupBox9.Location = new System.Drawing.Point(309, -2);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(1039, 50);
+            this.groupBox9.TabIndex = 42;
+            this.groupBox9.TabStop = false;
             // 
-            // label21
+            // lbMode
             // 
-            this.label21.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.label21.Location = new System.Drawing.Point(8, 244);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(23, 13);
-            this.label21.TabIndex = 32;
+            this.lbMode.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMode.ForeColor = System.Drawing.Color.DarkRed;
+            this.lbMode.Location = new System.Drawing.Point(272, 16);
+            this.lbMode.Name = "lbMode";
+            this.lbMode.Size = new System.Drawing.Size(315, 27);
+            this.lbMode.TabIndex = 13;
+            this.lbMode.Text = "Only Use In Real Time Mode\r\n";
+            this.lbMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox11
+            // timerView
             // 
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(115, 280);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(79, 72);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox11.TabIndex = 33;
-            this.pictureBox11.TabStop = false;
+            this.timerView.Interval = 200;
+            this.timerView.Tick += new System.EventHandler(this.timerView_Tick);
             // 
             // MonitoringForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 730);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.cbbAGV);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button3);
             this.Name = "MonitoringForm";
             this.Text = "MonitoringForm";
+            this.Load += new System.EventHandler(this.MonitoringForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -927,6 +1089,9 @@ namespace AGV_Form
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -937,23 +1102,19 @@ namespace AGV_Form
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Timer timerGraph;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lbStatus;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lbBattery;
         private System.Windows.Forms.ProgressBar prgrbBattery;
@@ -975,9 +1136,9 @@ namespace AGV_Form
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbDistancetoNode;
+        private System.Windows.Forms.Label lbOrientation;
+        private System.Windows.Forms.Label lbCurrentNode;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
@@ -998,12 +1159,27 @@ namespace AGV_Form
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lbPower;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label lbMode;
+        private System.Windows.Forms.Label lbOnTask;
+        private System.Windows.Forms.Label lbStatus;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Timer timerView;
+        private System.Windows.Forms.Label lbLocationY;
+        private System.Windows.Forms.Label lbLocationX;
+        private System.Windows.Forms.Label lbToNode;
+        private System.Windows.Forms.Label lbFromNode;
+        private System.Windows.Forms.Label lbFullPath;
+        private System.Windows.Forms.Label lbToRack;
+        private System.Windows.Forms.Label lbFromRack;
     }
 }

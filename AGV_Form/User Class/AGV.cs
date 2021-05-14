@@ -14,8 +14,10 @@ namespace AGV_Form
         public float DistanceToCurrentNode { get; set; }
         public string Status { get; set; }
         public float Velocity { get; set; }
+        public float LinePos = 0;
         public bool HavePallet = false;
         public bool IsColision = false;
+        public bool Stop = false;
        // public bool IsInitialized = false; // only use in Real Time mode
 
         // Constructor of AGV with some initial information
@@ -45,6 +47,7 @@ namespace AGV_Form
         public int PathCopmpleted = 0;
 
         public static string[] FullPathOfAGV = new string[10];
+        public static string[] SimFullPathOfAGV = new string[10];
         //public string CurrentTask { get; set; }
         public List<Task> Tasks = new List<Task>();
     }

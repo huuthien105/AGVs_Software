@@ -68,7 +68,7 @@ namespace AGV_Form
                     // If not exist, add new AGV into listNewAGV
                     agv.Velocity = Convert.ToSingle(txtVelocity.Text);                    
                     AGV.SimListAGV.Add(agv);
-                    AGV.FullPathOfAGV[agv.ID] = agv.CurrentNode.ToString() + "-G";
+                    AGV.SimFullPathOfAGV[agv.ID] = agv.CurrentNode.ToString() + "-G";
                     Display.AddLabelAGV(cbbModeList.Text, agv.ID, agv.CurrentNode, agv.CurrentOrient, agv.DistanceToCurrentNode);
                     // Put new AGV ID in listView
                     listViewAGV.Items.Add(" AGV#" + agv.ID, 0);

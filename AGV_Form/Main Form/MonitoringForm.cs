@@ -18,11 +18,19 @@ namespace AGV_Form
         public MonitoringForm()
         {
             InitializeComponent();
-            InitZedGraph();
+            
+
+            if (Display.Mode == "Real Time")
+            {
+                InitZedGraph();
+                
+            }
+           
+            
         }
         private int tickStart;
         public static int selectedAGVID;
-        double vantoc = 0;
+        private static int SelectedAGV = 0;
 
         private void InitZedGraph()
         {
@@ -189,10 +197,7 @@ namespace AGV_Form
 
         private void button5_Click(object sender, EventArgs e)
         {
-            string fullpath1 = "N-0-N-11-N-3-w-0-s-42-E-50-S-54-G-N-0";
-            //string fullpath = "N,0,S,11,N,3,W,0,S,42,E,46,G,N,0";
-            Communication.SendPathData(fullpath1);
-            //delay();
+           
             
         }
         private static void delay()
@@ -239,14 +244,151 @@ namespace AGV_Form
 
         private void timerGraph_Tick(object sender, EventArgs e)
         {
-            DrawGraph(zedGraphVelocity,Communication.speed);
+            AGV agv = AGV.ListAGV.Find(p=>p.ID == SelectedAGV);
+            if (agv == null) return;
+            // Display Status
+            lbStatus.Text = agv.Status;
+            try
+            {
+                lbOnTask.Text = agv.Tasks[0].Name;
+            }
+            catch { }
+            //
+            //Display Position AGV
+            lbCurrentNode.Text = "Node "+agv.CurrentNode.ToString();
+            switch(agv.CurrentOrient)
+            {
+                case 'E':
+                    lbOrientation.Text = "East";
+                    break;
+                case 'W':
+                    lbOrientation.Text = "West";
+                    break;
+                case 'S':
+                    lbOrientation.Text = "South";
+                    break;
+                case 'N':
+                    lbOrientation.Text = "North";
+                    break;
+            }
+            
+            lbDistancetoNode.Text = Math.Round(agv.DistanceToCurrentNode,2).ToString()+" cm";
+            Point Location = ConvertLocationXY(agv);
+            lbLocationX.Text = Location.X.ToString()+" cm";
+            lbLocationY.Text = Location.Y.ToString() + " cm";
+            //lbLocationX.Text = (Display.LabelAGV[agv.ID].Location.X+25 ).ToString();
+            //lbLocationY.Text = (Display.LabelAGV[agv.ID].Location.Y+25 ).ToString();
+            //
+            //Display Path AGV
+            lbFromNode.Text = agv.CurrentNode.ToString();
+            int index = 0;
+            int nextNode = -1;
+            try
+            {
+                index = agv.Path[0].FindIndex(p=> p == agv.CurrentNode );
+                nextNode = agv.Path[0][index + 1];
+                lbToNode.Text = nextNode.ToString() ;
+                
+            }
+            catch 
+            {
+                lbToNode.Text = "###";
+               
 
-            DrawGraph(zedGraphLineTrack, Communication.line);
+            }
+            string path="";
+            if(agv.Path.Count>0)
+            {
+                foreach (int node in agv.Path[0])
+                {
+                    path += node.ToString();
+                    if (node != agv.Path[0][agv.Path[0].Count - 1])
+                    {
+                        path += "->";
+                    }
+                }
+                RackColumn fromRack = new RackColumn(agv.Path[0][0]);
+                lbFromRack.Text = fromRack.Block.ToString() + "-" + fromRack.Number.ToString();
+                RackColumn toRack = new RackColumn(agv.Path[0][agv.Path[0].Count - 1]);
+                lbToRack.Text = toRack.Block.ToString() + "-" + toRack.Number.ToString();
+
+            }
+            else 
+            {
+                lbFromRack.Text = "###";
+                lbToRack.Text = "###";
+            }
+            lbFullPath.Text = path;
+
+            
+
+            // Draw Graph
+            DrawGraph(zedGraphVelocity,agv.Velocity);
+            DrawGraph(zedGraphLineTrack,agv.LinePos);
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            vantoc = vantoc + 5;
+            
+        }
+
+        private void MonitoringForm_Load(object sender, EventArgs e)
+        {
+            cbbAGV.Items.Clear();
+            foreach(AGV agv in AGV.ListAGV)
+            { 
+                cbbAGV.Items.Add("AGV#" + agv.ID.ToString());
+            }
+            if (AGV.ListAGV.Count > 0)
+            {
+                cbbAGV.Text = "AGV#" + AGV.ListAGV[0].ID.ToString();
+                SelectedAGV = AGV.ListAGV[0].ID;
+            } 
+        }
+
+        private void timerView_Tick(object sender, EventArgs e)
+        {
+
+        }
+        private static Point ConvertLocationXY(AGV agv)
+        {
+            Point Location = new Point();
+            int x=0, y=0;
+            List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
+            int pixelDistance = (int)Math.Round(agv.DistanceToCurrentNode * 2);//Display.Scale
+            try
+            {
+                x = Nodes[agv.CurrentNode].X ;
+                y = Nodes[agv.CurrentNode].Y ;
+            }
+            catch { }
+            switch (agv.CurrentOrient)
+            {
+                case 'E':
+                    Location = new Point(x + pixelDistance, y);
+
+                    break;
+                case 'W':
+                    Location = new Point(x - pixelDistance, y);
+
+                    break;
+                case 'S':
+                    Location = new Point(x, y + pixelDistance);
+
+
+                    break;
+                case 'N':
+                    Location = new Point(x, y - pixelDistance);
+
+                    break;
+                
+
+                   
+            }
+            Location.X = (int)(Location.X-40)/2;
+            Location.Y = (int)(Location.Y - 40) / 2;
+            return Location;
         }
     }
 }

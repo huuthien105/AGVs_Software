@@ -18,7 +18,7 @@ namespace AGV_Form
         public static Label[] SimLabelAGV = new Label[AGV.MaxNumOfAGVs];
         public static Label[] LabelPalletInAGV = new Label[AGV.MaxNumOfAGVs];
         public static Label[] SimLabelPalletInAGV = new Label[AGV.MaxNumOfAGVs];
-
+        public static float Scale = 585f / 235; // pixel/cm (2.480851f)
         public static Label[,] ASlotLabel = new Label[6, 3];
         public static Label[,] BSlotLabel = new Label[6, 3];
         public static Label[,] CSlotLabel = new Label[6, 3];
@@ -49,14 +49,82 @@ namespace AGV_Form
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentNode.ToString());
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentOrient.ToString());
                 listView.Items[listView.Items.Count - 1].SubItems.Add((Math.Round(agv.DistanceToCurrentNode, 2)).ToString() + " cm");
-                listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Velocity.ToString() + " cm/s");
-                if (agv.Status == "Running")
-                    listView.Items[listData.IndexOf(agv)].BackColor = Color.PaleGreen;
-                else
-                    listView.Items[listData.IndexOf(agv)].BackColor = Color.White;
+                listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Velocity.ToString().Trim() + " cm/s");
+                
+               switch(agv.Status)
+                {
+                    case "Running":
+                        listView.Items[listData.IndexOf(agv)].BackColor = Color.PaleGreen;
+                        break;
+                    case "Stop":
+                       listView.Items[listData.IndexOf(agv)].BackColor = Color.White;
+                        break;
+                    case "Stopping":
+                        listView.Items[listData.IndexOf(agv)].BackColor = Color.Red;
+                        break;
+                    case "Pausing":
+                        listView.Items[listData.IndexOf(agv)].BackColor = Color.Yellow;
+                        break;
+                    case "Waitting":
+                        listView.Items[listData.IndexOf(agv)].BackColor = Color.LightBlue;
+                        break;
+                    case "Avoid":
+                        listView.Items[listData.IndexOf(agv)].BackColor = Color.LightCyan;
+                        break;
+                    case "Other Way":
+                        listView.Items[listData.IndexOf(agv)].BackColor = Color.Orange;
+                        break;
+                }    
+                                
             }
 
 
+        }
+        public static void UpdatePositionAGV(int agvID, Label lbagv)
+        {
+            var index = AGV.ListAGV.FindIndex(a => a.ID == agvID);
+            AGV agv = AGV.ListAGV[index];
+            Point oldAGVPosition = Display.LabelAGV[agvID].Location;
+            Point newAGVPosition = new Point();
+            int pixelDistance = (int)Math.Round(agv.DistanceToCurrentNode * Scale);
+            List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
+            int x, y;
+            try
+            {
+                x = Nodes[agv.CurrentNode].X - (int)(50 / 2);
+                y = Nodes[agv.CurrentNode].Y - (int)(50 / 2);
+            }
+            catch
+            {
+                x = oldAGVPosition.X;
+                y = oldAGVPosition.Y;
+            }
+            
+            switch (agv.CurrentOrient)
+            {
+                case 'E':
+                    newAGVPosition = new Point(x + pixelDistance, y);
+
+                    break;
+                case 'W':
+                    newAGVPosition = new Point(x - pixelDistance, y);
+
+                    break;
+                case 'S':
+                    newAGVPosition = new Point(x, y + pixelDistance);
+
+
+                    break;
+                case 'N':
+                    newAGVPosition = new Point(x, y - pixelDistance);
+
+                    break;
+                default:
+                    newAGVPosition = oldAGVPosition;
+
+                    break;
+            }
+            lbagv.Location = newAGVPosition;
         }
         public static void SimUpdatePositionAGV(int agvID, float speed, Panel pnFloor,Label lbagv, Label lbpallet)
         {
@@ -65,8 +133,8 @@ namespace AGV_Form
             AGV agv = AGV.SimListAGV[index];
             //List<char> fullpath = AGV.FullPathOfAGV[agvID].ToList();
 
-            string[] frameArr = AGV.FullPathOfAGV[agvID].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-
+            string[] frameArr = AGV.SimFullPathOfAGV[agvID].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            
             Point oldAGVPosition = Display.SimLabelAGV[agvID].Location;
             Point newAGVPosition = new Point();
             Point oldPalletPosition = Display.SimLabelPalletInAGV[agvID].Location;
@@ -75,30 +143,21 @@ namespace AGV_Form
             Size newPalletSize = new Size();
 
             int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString());
+            if (agv.Stop)
+            {
+                return;
+            } 
+            
             if (agv.IsColision) return;
             if (frameArr[indexNode + 1] == "G" || frameArr[indexNode + 1] == null)
             {
                 agv.PathCopmpleted++;
-                //if (agv.Path.Count() != 0)
-                //{
                 if (agv.PathCopmpleted == 1 || agv.PathCopmpleted == 0)
 
                 {
                     Display.Points = new Point[] { new Point(), new Point() };
                     pnFloor.Refresh();
                 }
-
-                //}
-                //else
-                //{
-                //    agv.Status = "Stop";
-                //}
-
-                // agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 1]);
-
-
-
-
             }
             else
             {
@@ -126,12 +185,7 @@ namespace AGV_Form
                         
                         if (frameArr[indexNode + 3] != "G")
                             agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 3]);
-                    }
-                    
-                    agv.Status = "Running";
-                    SimLabelAGV[agv.ID].BackColor = Color.CornflowerBlue;
-                        
-                       
+                    }                                                                                  
                 }
             }
 
@@ -371,6 +425,19 @@ namespace AGV_Form
                     break;
             }
         }
-        
+        public static void UpdateComStatus(string type, int agvID, string message, Color messageColor)
+        {
+            string timeNow = DateTime.Now.ToString(" HH:mm:ss tt");
+
+            DashboardForm.colorComStatus.Add(messageColor);
+            if (type == "send")
+                DashboardForm.textComStatus.Add(timeNow + "\t-> to AGV#" + agvID.ToString() + ":\t" + message + "\n");
+            else if (type == "receive")
+                DashboardForm.textComStatus.Add(timeNow + "\t<- from AGV#" + agvID.ToString() + ":\t" + message + "\n");
+            else if (type == "timeout")
+                DashboardForm.textComStatus.Add(timeNow + "\t...  AGV#" + agvID.ToString() + "\ttimeout" + "\n");
+            else if (type == "status")
+                DashboardForm.textComStatus.Add(timeNow + "\t" + message + "\n");
+        }
     }
 }

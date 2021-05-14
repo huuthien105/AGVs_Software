@@ -44,7 +44,70 @@ namespace AGV_Form
         public static List<Task> SimListTask = new List<Task>();
         
         public static List<Task> SimHistoryTask = new List<Task>();
-        
+        public static void UpdatePathFromTaskOfAGV(AGV agv)
+        {
+            if (agv.Tasks.Count != 0)
+            {
+                Task currentTask = agv.Tasks[0];
+                if (currentTask.Status == "Waiting")
+                {
+                    Debug.WriteLine("AAAAA");
+                    agv.Path.Clear();
+                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
+                    AGV.FullPathOfAGV[agv.ID] = "N-0-"+agv.CurrentOrient+"-"+  Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient)+"-N-0";
+                    Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
+                    Display.UpdateComStatus("send",agv.ID,"Send Path 1", Color.Green);
+
+                   // if(DashboardForm.timerToSendPathAgain.Enabled == false)
+                      //   DashboardForm.timerToSendPathAgain.Start();
+
+                  //  agv.Tasks[0].Status = "Doing";
+                    agv.PathCopmpleted = 0;
+                  //  agv.Status = "Running";
+                }
+                else if(agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
+                {
+                    Debug.WriteLine("BBBB");
+                    agv.Path.RemoveAt(0);
+                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
+                    string pick, drop;
+                    if (currentTask.PickLevel == 1 || currentTask.PickLevel == 2 || currentTask.PickLevel == 3)
+                    {
+                        pick = "P-" + currentTask.PickLevel.ToString() + "-";
+                    }
+                    else
+                    {
+                        pick = "N-0-";
+                    }
+                    if (currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
+                    {
+                        drop = "-D-" + currentTask.DropLevel.ToString();
+                    }
+                    else
+                    {
+                        drop = "-N-0";
+                    }
+                    AGV.FullPathOfAGV[agv.ID] = pick+agv.CurrentOrient+"-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient)+drop;
+                    Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
+
+                    Display.UpdateComStatus("send", agv.ID, "Send Path 2", Color.Green);
+
+                    // if (DashboardForm.timerToSendPathAgain.Enabled == false)
+                    //    DashboardForm.timerToSendPathAgain.Start();
+
+                    //  agv.PathCopmpleted = 2;
+                }
+                else if (agv.CurrentNode == currentTask.DropNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 3)
+                {
+                    Debug.WriteLine("CCCC");
+                    agv.Tasks.RemoveAt(0);
+                    agv.Path.Clear();
+                    agv.Status = "Stop";
+                    
+                }
+            }
+        }
+
         public static void SimUpdatePathFromTaskOfAGVs(AGV agv)
         {
 
@@ -64,20 +127,20 @@ namespace AGV_Form
                 {
                     agv.Path.Clear();
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
-                    AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
-                    //agv.Path.RemoveAt(0);
+                    AGV.SimFullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
                     agv.Tasks[0].Status = "Doing";
-                    agv.PathCopmpleted = 0;
-                    Debug.WriteLine(agv.PathCopmpleted.ToString());
+                    agv.PathCopmpleted = 0;                   
+                    agv.Status = "Running";
+                    Display.SimLabelAGV[agv.ID].BackColor = Color.CornflowerBlue;
                 }
 
                 else if (agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
                 {
-                    Debug.WriteLine(agv.PathCopmpleted.ToString());
+                    
                     agv.Path.RemoveAt(0);
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                     
-                    AGV.FullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
+                    AGV.SimFullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
                     agv.HavePallet = true;
                     if (currentTask.Type == "Order")
                     {
@@ -128,9 +191,6 @@ namespace AGV_Form
 
 
                 }
-                
-                       
-                        
             }     
             else
             {
@@ -160,7 +220,7 @@ namespace AGV_Form
             Task newTask = new Task("Auto " + palletCode, "Output", palletCode, agvID, pickNode, dropNode, pickLevel, 1, "Waiting");
             listTaskToAdd.Add(newTask);
         }
-        #region Function for auto select AGV
+                               #region Function for auto select AGV
 
         public static int AutoSelectAGV(List<AGV> listAGV,int pickNode)
         {

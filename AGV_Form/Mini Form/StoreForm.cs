@@ -27,6 +27,14 @@ namespace AGV_Form
             {
                 case "Real Time":
                     lbMode.Text = "Mode: Real Time";
+                    Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
+                    foreach (Pallet pallet in Pallet.ListPallet)
+                    {
+                        lstvwPalletInStock.Items.Add(pallet.Code, 0);
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.Name.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime.Trim());
+                        lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock + "-" + pallet.AtColumn.ToString() + "-" + pallet.AtLevel.ToString());
+                    }
                     break;
                 case "Simulation":
 
@@ -38,7 +46,6 @@ namespace AGV_Form
                         lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.Name.Trim());
                         lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.StoreTime.Trim());
                         lstvwPalletInStock.Items[lstvwPalletInStock.Items.Count - 1].SubItems.Add(pallet.AtBlock + "-" + pallet.AtColumn.ToString() + "-" + pallet.AtLevel.ToString());
-
                     }
 
 
@@ -65,19 +72,40 @@ namespace AGV_Form
 
             int dropNode = rack.AtNode;
             int dropLevel = Convert.ToInt32(cbbLevel.Text);
-            foreach(Pallet palet in Pallet.SimListPallet)
+            switch (Display.Mode)
             {
-                if (palet.Code.Trim() == txtPalletCode.Text)
-                {
-                    MessageBox.Show("Pallet has stored in stock !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }  
-                else if (palet.AtBlock == cbbBlock.Text && palet.AtColumn== Convert.ToInt32(cbbColumn.Text)&&palet.AtLevel== Convert.ToInt32(cbbLevel.Text))
-                {
-                    MessageBox.Show("Slot is not available !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }    
-            }    
+                case "Real Time":
+                    foreach (Pallet palet in Pallet.ListPallet)
+                    {
+                        if (palet.Code.Trim() == txtPalletCode.Text)
+                        {
+                            MessageBox.Show("Pallet has stored in stock !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else if (palet.AtBlock == cbbBlock.Text && palet.AtColumn == Convert.ToInt32(cbbColumn.Text) && palet.AtLevel == Convert.ToInt32(cbbLevel.Text))
+                        {
+                            MessageBox.Show("Slot is not available !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    break;
+                case "Simulation":
+                    foreach (Pallet palet in Pallet.SimListPallet)
+                    {
+                        if (palet.Code.Trim() == txtPalletCode.Text)
+                        {
+                            MessageBox.Show("Pallet has stored in stock !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        else if (palet.AtBlock == cbbBlock.Text && palet.AtColumn == Convert.ToInt32(cbbColumn.Text) && palet.AtLevel == Convert.ToInt32(cbbLevel.Text))
+                        {
+                            MessageBox.Show("Slot is not available !", "Store Pallet Error !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    break;
+            }
+           
             
             Task task = new Task("Store1", "Store", palletcode, agvID,
                                  pickNode, dropNode, pickLevel, dropLevel
@@ -109,7 +137,9 @@ namespace AGV_Form
             switch (Display.Mode)
             {
                 case "Real Time":
-                    Display.UpdateListViewTasks(listViewTask, Task.ListTask);
+                    //Display.UpdateListViewTasks(listViewTask, Task.ListTask);
+                    if(AGV.ListAGV.Count >0)
+                    Display.UpdateListViewTasks(listViewTask, AGV.ListAGV[0].Tasks);
                     break;
                 case "Simulation":
                     Display.UpdateListViewTasks(listViewTask, Task.SimListTask);

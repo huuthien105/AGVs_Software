@@ -50,6 +50,9 @@ namespace AGV_Form
             pnMain.Controls.Add(monitoringForm);
             monitoringForm.BringToFront();
             monitoringForm.Show();
+            if (Display.Mode == "Real Time")
+                monitoringForm.Enabled = true;
+            else monitoringForm.Enabled = false;
         }
 
         private void tasksToolStripMenuItem_Click(object sender, EventArgs e)

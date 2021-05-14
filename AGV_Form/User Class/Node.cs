@@ -22,7 +22,7 @@ namespace AGV_Form
         public static char[,] MatrixNodeOrient = Node.CreateOrientMatrix(ListNode);
         // This method return the matrix of distance from node to other node
         // d[i,j] = 0 indicate that no linking from node i to j
-        private static int[,] CreateAdjacencyMatrix(List<Node> Nodes)
+        public static int[,] CreateAdjacencyMatrix(List<Node> Nodes)
         {
             int[,] d = new int[Nodes.Count, Nodes.Count];
             for (int i = 0; i < Nodes.Count; i++)

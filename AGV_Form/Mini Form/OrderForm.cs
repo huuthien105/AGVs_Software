@@ -123,7 +123,18 @@ namespace AGV_Form
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DataTable table = new DataTable();
-            table = DBUtility.GetPalletInfoFromDB<DataTable>("SimPalletInfoTable");
+
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    table = DBUtility.GetPalletInfoFromDB<DataTable>("PalletInfoTable");
+                    break;
+                case "Simulation":
+                    table = DBUtility.GetPalletInfoFromDB<DataTable>("SimPalletInfoTable");
+
+                    break;
+            }
+           
             string filter = null;
             switch (cbbFilter.Text)
             {

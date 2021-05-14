@@ -23,7 +23,7 @@ namespace AGV_Form
         public static List<RackColumn> ListColumn = RackColumn.GetRackColums();
         
 
-        private RackColumn(int atNode)
+        public RackColumn(int atNode)
         {
             Node n = Node.ListNode.Find(nd => nd.ID == atNode);
             string[] locationCode = n.LocationCode.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);

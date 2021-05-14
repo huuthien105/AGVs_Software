@@ -79,7 +79,7 @@ namespace AGV_Form
                     lbInfoCOM.Text = Communication.SerialPort.PortName + "-" + Communication.SerialPort.BaudRate + "-" +
                                      Communication.SerialPort.DataBits + "-" + Communication.SerialPort.StopBits + "-" +
                                      Communication.SerialPort.Parity;
-                    
+                    Display.UpdateComStatus("status", 0, Communication.SerialPort.PortName + " is opened", System.Drawing.Color.Blue);
                 }
                 catch (Exception error)
                 {
@@ -100,7 +100,7 @@ namespace AGV_Form
                     btnConnect.ImageIndex = 0;
                     btnConnect.ForeColor = Color.MediumBlue;
                     btnReScan.Enabled = true;
-
+                    Display.UpdateComStatus("status", 0, Communication.SerialPort.PortName + " is closed", System.Drawing.Color.Red);
                     Communication.SerialPort.Close();
                     lbStatusCOM.Text = "Disconnected!";
                     lbStatusCOM.ForeColor = Color.Red;

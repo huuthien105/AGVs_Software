@@ -8,13 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.Diagnostics;
 
 namespace AGV_Form
 {
     public partial class DashboardForm : Form
     {
-        
 
+        public static string PathSend;
+        public static List<string> textComStatus = new List<string>();
+        public static List<Color> colorComStatus = new List<Color>();
         public DashboardForm()
         {
             InitializeComponent();
@@ -36,6 +40,11 @@ namespace AGV_Form
                 case "Real Time":
                     rdbtnRealTime.Checked = true;
                     rdbtnSimulation.Checked = false;
+                    foreach (AGV agv in AGV.ListAGV)
+                    {
+                        pnFloor.Controls.Add(Display.LabelPalletInAGV[agv.ID]);
+                        Display.LabelPalletInAGV[agv.ID].BringToFront();
+                    }
                     break;
                 case "Simulation":
                     rdbtnRealTime.Checked = false;
@@ -72,6 +81,8 @@ namespace AGV_Form
             if (rdbtnSimulation.Checked)
             {
                 lbModeStatus.Text = "Simulation Mode.";
+                timerListview.Interval = 100;
+                timerSimAGV.Interval = 100;
                 Display.Mode = "Simulation";
                 foreach (AGV agv in AGV.ListAGV)
                 {
@@ -108,6 +119,8 @@ namespace AGV_Form
             if (rdbtnRealTime.Checked)
             {
                 lbModeStatus.Text = "Realtime Mode.";
+                timerListview.Interval = 100;
+                timerSimAGV.Interval = 250;
                 Display.Mode = "Real Time";
                 foreach (AGV agv in AGV.SimListAGV)
                 {
@@ -140,15 +153,29 @@ namespace AGV_Form
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
-            delay++;
+            if (textComStatus.Count != 0)
+            {
+                rtxtbComStatus.SelectionColor = colorComStatus[0];
+                rtxtbComStatus.SelectedText = textComStatus[0];
+
+                textComStatus.RemoveAt(0);
+                colorComStatus.RemoveAt(0);
+            }
+
             switch (Display.Mode)
             {
                 case "Real Time":
                     // Update data in listView AGVs
                     Display.UpdateListViewAGVs(listViewAGVs, AGV.ListAGV);
-
+                    if(AGV.ListAGV.Count >0)
+                    {
+                        Display.UpdateListViewTasks(listViewTask, AGV.ListAGV[0].Tasks);
+                        Display.UpdatePositionAGV(AGV.ListAGV[0].ID, Display.LabelAGV[AGV.ListAGV[0].ID]);
+                    }
+                    
                     // Do something here
-
+                    // Update serial port status
+                  
                     break;
                 case "Simulation":
                     // Update data in listView AGVs
@@ -160,9 +187,10 @@ namespace AGV_Form
 
                     break;
             }
-            Collision.DetectColission();
-            label19.Text = Math.Round(Collision.dis1,2).ToString();
-            label20.Text = Math.Round(Collision.dis2,2).ToString();
+           ///if(AGV.SimListAGV.Count >=2)
+          /// Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[1]);
+
+            //label21.Text = Collision.CollisionType.ToString();
 
         }
         private void pnFloor_Paint(object sender, PaintEventArgs e)
@@ -182,21 +210,7 @@ namespace AGV_Form
         {
             // Clone a list for ListAGV (amazing way to clone a reference type)
             List<AGV> oldSimListAGV = new List<AGV>();
-            switch (Display.Mode)
-            {
-                case "Real Time":
-                    AGV.ListAGV.ForEach((a) =>
-                    {
-                        oldSimListAGV.Add(new AGV(a.ID, a.CurrentNode, a.CurrentOrient, a.DistanceToCurrentNode, a.Status));
-                    });
-                    break;
-                case "Simulation":
-                    AGV.SimListAGV.ForEach((a) =>
-                    {
-                        oldSimListAGV.Add(new AGV(a.ID, a.CurrentNode, a.CurrentOrient, a.DistanceToCurrentNode, a.Status));
-                    });
-                    break;
-            }
+          
             using (AddRemoveAGVForm AddRemoveForm = new AddRemoveAGVForm())
             {
                 AddRemoveForm.ShowDialog();
@@ -238,7 +252,7 @@ namespace AGV_Form
                 case "Real Time":
                     foreach (AGV agv in AGV.ListAGV)
                     {
-                        
+                        Task.UpdatePathFromTaskOfAGV(agv);
                        
 
                     }
@@ -293,13 +307,62 @@ namespace AGV_Form
                 ToolStripMenuItem item = new ToolStripMenuItem(items, imgList.Images[0]);
                 showPathToolStripMenuItem.DropDownItems.Add(item);
                 item.Click += new EventHandler(AGVDrawPath_Click);
-                //Timer timerDrawPath = new Timer();
-               // timerDrawPath.Tick += new EventHandler(AGVDrawPath_Click()); 
-
+            }
+            runCurrentAGVToolStripMenuItem.DropDownItems.Clear();
+            foreach (string items in strItems)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(items, imgList.Images[0]);
+                runCurrentAGVToolStripMenuItem.DropDownItems.Add(item);
+                item.Click += new EventHandler(RunAGV_Click);
+            }
+            stopCurrentAGVToolStripMenuItem.DropDownItems.Clear();
+            foreach (string items in strItems)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem(items, imgList.Images[0]);
+                stopCurrentAGVToolStripMenuItem.DropDownItems.Add(item);
+                item.Click += new EventHandler(StopAGV_Click);
             }
 
-
         }
+        private void StopAGV_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            string[] arrItem = item.Text.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
+            int agvID = Convert.ToInt16(arrItem[1]);
+
+            switch (Display.Mode)
+            {
+                case "Real Time":
+
+                    break;
+                case "Simulation":
+                    AGV agv = AGV.SimListAGV.Find(a => a.ID == agvID);
+                    agv.Stop = true;
+                    agv.Status = "Stopping";
+                    Display.SimLabelAGV[agv.ID].BackColor = Color.Red;
+                    break;
+            }
+        }
+        private void RunAGV_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            string[] arrItem = item.Text.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
+            int agvID = Convert.ToInt16(arrItem[1]);
+           
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                   
+                    break;
+                case "Simulation":
+                    AGV agv = AGV.SimListAGV.Find(a=>a.ID == agvID);
+                    agv.Stop = false;
+                    agv.Status = "Running";
+                    Display.SimLabelAGV[agv.ID].BackColor = Color.CornflowerBlue;
+                    break;
+            }
+        }
+
         private void AGVDrawPath_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = sender as ToolStripMenuItem;
@@ -311,7 +374,7 @@ namespace AGV_Form
                 case "Real Time":
                     int i = AGV.ListAGV.FindIndex(a => a.ID == agvID);
                     if (AGV.ListAGV[i].Path.Count == 0) return;
-                    //Display.AddPath(pnFloor, AGV.ListAGV[i].Path[0], Color.Blue, 4);
+                    Display.AddPath(pnFloor, AGV.ListAGV[i].Path[0],Node.ListNode, Color.Blue, 4);
                     break;
                 case "Simulation":
                     int j = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
@@ -342,7 +405,7 @@ namespace AGV_Form
             switch (Display.Mode)
             {
                 case "Real Time":
-                   
+                    timerSimAGV.Enabled = false;
                     break;
                 case "Simulation":
                     timerSimAGV.Enabled = false;
@@ -351,6 +414,10 @@ namespace AGV_Form
            
         }
 
+        public static System.Windows.Forms.Timer timerToSendLineAgain;
+        public static System.Windows.Forms.Timer timerToSendPathAgain;
+        public static System.Windows.Forms.Timer timerToSendSpeedAgain;
+        public static System.Windows.Forms.Timer timerToSendPath2Again;
         private void btnRun_Click(object sender, EventArgs e)
         {
             btnRun.BackColor = Color.DodgerBlue;
@@ -358,24 +425,42 @@ namespace AGV_Form
             switch (Display.Mode)
             {
                 case "Real Time":
-                    AGV agv = AGV.ListAGV[0];
-                    string pick, drop;
-                    if (AGV.ListAGV[0].Tasks.Count == 0) return;
-                    Task currentTask = AGV.ListAGV[0].Tasks[0];
+                  //  timerToSendPathAgain = new System.Windows.Forms.Timer();
+                   // timerToSendPathAgain.Tick += new EventHandler(timerToSendPathAgain_Tick);
+                  //  timerToSendPathAgain.Interval = 100;
+                  /*  timerToSendPath2Again = new System.Windows.Forms.Timer();
+                    timerToSendPath2Again.Tick += new EventHandler(timerToSendPath2Again_Tick);
+                    timerToSendPath2Again.Interval = 400;   */
 
+                    timerSimAGV.Enabled = true;
 
-                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
-                    agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
-                    AGV.FullPathOfAGV[agv.ID] = "N-0-" + agv.CurrentOrient.ToString() + "-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient) + "-N-0";
-                    Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
-                    
-                    label19.Text = AGV.FullPathOfAGV[agv.ID];
                     break;
                 case "Simulation":
                     timerSimAGV.Enabled = true;
                     break;
             }
         }
+        public static void timerToSendPathAgain_Tick(object sender, EventArgs e)
+        {
+            timerToSendPathAgain.Stop();
+            if (AGV.ListAGV[0].PathCopmpleted == 0)
+            {
+                Task currentTask = AGV.ListAGV[0].Tasks[0];
+                currentTask.Status = "Waiting";
+               // AGV.ListAGV[0].PathCopmpleted = 0;
+            }
+        
+
+           
+        }
+ /*       public static void timerToSendPath2Again_Tick(object sender, EventArgs e)
+        {
+            timerToSendPath2Again.Stop();
+            AGV.ListAGV[0].PathCopmpleted = 1;
+            
+        }   */
+
+
 
         private void btnOrder1_Click(object sender, EventArgs e)
         {
@@ -507,58 +592,12 @@ namespace AGV_Form
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Display.wait = 1;
-            List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, 17, 19);
-            AGV.FullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
-            AGV.SimListAGV[0].PathCopmpleted = 1;
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //string fullpath = "N-0-S-11-N-3-W-0-S-42-E-46-G-N-0";
-            //AGV agv = AGV.ListAGV[0];
-            //string pick, drop;
-            //Task currentTask = AGV.ListAGV[0].Tasks[0];
-            //string send;
-            //agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
-            //send = "N-0-" + agv.CurrentOrient.ToString() + "-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient) + "-N-0";
-            //send.Trim();
-            //Communication.SendPathData(fullpath);
-            //label19.Text = send;
-        }
+       
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Display.wait = 0;
-            //AGV agv = AGV.ListAGV[0];
-            //string pick, drop;
-
-            //string send;
-            //Task currentTask = AGV.ListAGV[0].Tasks[0];
-            //if (currentTask.PickLevel == 1 || currentTask.PickLevel == 2 || currentTask.PickLevel == 3)
-            //{
-            //    pick = "P-" + currentTask.PickLevel.ToString() + "-";
-            //}
-            //else
-            //{
-            //    pick = "N-0-";
-            //}
-            //if (currentTask.DropLevel == 1 || currentTask.DropLevel == 2 || currentTask.DropLevel == 3)
-            //{
-            //    drop = "-D-" + currentTask.DropLevel.ToString() ;
-            //}
-            //else
-            //{
-            //    drop = "-N-0";
-            //}
-            //agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.Tasks[0].PickNode, agv.Tasks[0].DropNode));
-            //send = pick + "S" + "-" + Navigation.GetNavigationFrame(agv.Path[1], Node.MatrixNodeOrient) + drop;
-            //label20.Text = send;
-            ////send.Trim();
-            /////Communication.SendPathData(send);
-            //agv.Path.Clear();
+            AGV.SimListAGV[1].Stop = true;
+          
         }
 
         
@@ -571,10 +610,123 @@ namespace AGV_Form
             {
                 
                 List<int> path = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, 55);
-                AGV.FullPathOfAGV[agvID] = Navigation.GetNavigationFrame(path, Node.MatrixNodeOrient);
+                AGV.SimFullPathOfAGV[agvID] = Navigation.GetNavigationFrame(path, Node.MatrixNodeOrient);
                 AGV.SimListAGV[0].Path.Add(path);
             }
             //agv.PathCopmpleted = 4;
         }
+
+        private void btnConfigPIDLine_Click(object sender, EventArgs e)
+        {
+            timerToSendLineAgain = new System.Windows.Forms.Timer();
+            timerToSendLineAgain.Tick += new EventHandler(timerToSendLineAgain_Tick);
+            timerToSendLineAgain.Interval = 400;
+            sendLineFrame();
+         //   Thread thrdSendLineFrame = new Thread(sendLineFrame);
+         // thrdSendLineFrame.IsBackground = true;
+         // thrdSendLineFrame.Start();
+        }
+        public void timerToSendLineAgain_Tick(object sender, EventArgs e)
+        {
+            timerToSendLineAgain.Stop();
+            sendLineFrame();
+            
+        }  
+      
+       
+        public static void sendLineFrame()
+        {
+            Communication.SetLinePosPacket sendFrame = new Communication.SetLinePosPacket();
+
+            sendFrame.Header = new byte[2] { 0xAA, 0xFF };
+            sendFrame.FunctionCode = 0xAD;
+            sendFrame.AGVID = 0x01;
+            sendFrame.Kp = Convert.ToSingle("0.5");
+            sendFrame.Ki = Convert.ToSingle("0.0005");
+            sendFrame.Kd = Convert.ToSingle("0.05");
+            sendFrame.CheckSum = new byte[2];
+
+            // calculate check sum
+            CRC16_Calculator(sendFrame.ToArrayCRC(), sendFrame.CheckSum);
+
+            //sendFrame.CheckSum = crc;
+            sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
+            if (!Communication.SerialPort.IsOpen) return;
+            try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
+            catch { };
+            if (timerToSendLineAgain.Enabled == false)
+                timerToSendLineAgain.Start();
+            
+        }
+
+
+        public static void CRC16_Calculator(byte[] messageArray, byte[] CRC)
+        {
+            ushort CRCFull = 0xFFFF;
+            char CRCLSB;
+
+            for (int i = 0; i < (messageArray.Length); i++)
+            {
+                CRCFull = (ushort)(CRCFull ^ messageArray[i]);
+
+                for (int j = 0; j < 8; j++)
+                {
+                    CRCLSB = (char)(CRCFull & 0x0001);
+                    CRCFull = (ushort)((CRCFull >> 1) & 0x7FFF);
+
+                    if (CRCLSB == 1)
+                        CRCFull = (ushort)(CRCFull ^ 0xA001);
+                }
+            }
+            CRC[0] = (byte)(CRCFull & 0xFF);
+            CRC[1] = (byte)((CRCFull >> 8) & 0xFF);
+        }
+
+        private void btnConfigPIDSpeed_Click(object sender, EventArgs e)
+        {
+            timerToSendSpeedAgain = new System.Windows.Forms.Timer();
+            timerToSendSpeedAgain.Tick += new EventHandler(timerToSendSpeedAgain_Tick);
+            timerToSendSpeedAgain.Interval = 400;
+            sendSpeedFrame();
+          // Thread thrdSendSpeedFrame = new Thread(sendSpeedFrame);
+          // thrdSendSpeedFrame.IsBackground = true;
+          // thrdSendSpeedFrame.Start();
+        }
+        public void timerToSendSpeedAgain_Tick(object sender, EventArgs e)
+        {
+            timerToSendSpeedAgain.Stop();
+            sendSpeedFrame();
+
+        }
+
+        public static void sendSpeedFrame()
+        {
+            Communication.SetSpeedPacket sendFrame = new Communication.SetSpeedPacket();
+
+            sendFrame.Header = new byte[2] { 0xAA, 0xFF };
+            sendFrame.CheckSum = new byte[2];
+            sendFrame.FunctionCode = 0xAC;
+            sendFrame.AGVID = 0x01;
+            sendFrame.Kp = Convert.ToSingle("2.0");
+            sendFrame.Ki = Convert.ToSingle("2.0");
+            sendFrame.Kd = Convert.ToSingle("0.015");
+            sendFrame.Velocity = Convert.ToSingle("15.0");
+            sendFrame.CheckSum = new byte[2];
+            // calculate check sum
+            CRC16_Calculator(sendFrame.ToArrayCRC(), sendFrame.CheckSum);
+            //   sendFrame.CheckSum = crc;           
+            sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
+            if (!Communication.SerialPort.IsOpen) return;
+            try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
+            catch { };
+            if (timerToSendSpeedAgain.Enabled == false)
+                timerToSendSpeedAgain.Start();
+
+           
+        }
+
+       
+
+        
     }
 }
