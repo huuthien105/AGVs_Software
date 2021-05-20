@@ -173,8 +173,8 @@ namespace AGV_Form
                 command.Parameters.Add("@palletcode", SqlDbType.NVarChar).Value = task.PalletCode;
                 command.Parameters.Add("@type", SqlDbType.NVarChar).Value = task.Type;
                 command.Parameters.Add("@agv", SqlDbType.NVarChar).Value = task.AGVID;
-                command.Parameters.Add("@picknode", SqlDbType.NVarChar).Value = task.PickNode + "- Slot" + task.PickLevel;
-                command.Parameters.Add("@dropnode", SqlDbType.NVarChar).Value = task.DropNode + "- Slot" + task.DropLevel;
+                command.Parameters.Add("@picknode", SqlDbType.NVarChar).Value = task.PickNode + " - Slot" + task.PickLevel;
+                command.Parameters.Add("@dropnode", SqlDbType.NVarChar).Value = task.DropNode + " - Slot" + task.DropLevel;
                 command.ExecuteNonQuery();
 
                 connection.Close();

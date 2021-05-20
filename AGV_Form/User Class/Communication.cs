@@ -19,6 +19,7 @@ namespace AGV_Form
         private static SerialPort _serialPort = new SerialPort();
         private static int FlagPath1Complete = 0;
         private static int FlagPath2Complete = 0;
+        public static int FlagPauseResume = 0;
         public static SerialPort SerialPort
         {
             get { return _serialPort; }
@@ -269,6 +270,59 @@ namespace AGV_Form
                         }
                         Debug.WriteLine("NAK Path");
                         Display.UpdateComStatus("receive", receiveFrame.AGVID, " NAK (Path)", Color.Red);
+                    }
+                    if (functionCode == 0xD3)       //NAK Pause/Resume
+                    {
+                        if (bytesReceived.Count - startIndex < PathCompleteReceivePacketSize) return;
+
+                        // put data in an array
+                        byte[] data = new byte[PathCompleteReceivePacketSize];
+                        for (int j = 0; j < PathCompleteReceivePacketSize; j++)
+                            data[j] = bytesReceived[startIndex + j];
+
+                        PathCompleteRecievePacket receiveFrame = PathCompleteRecievePacket.FromArray(data);
+                        bytesReceived.RemoveRange(0, startIndex + PathCompleteReceivePacketSize - 1);
+
+                        // if (DashboardForm.timerToSendLineAgain.Enabled == true)
+                        //     DashboardForm.timerToSendLineAgain.Stop();
+                        DashboardForm.sendPauseResumeFrame();
+                        Display.UpdateComStatus("receive", receiveFrame.AGVID, " NAK Pause", Color.Red);
+                        // if (DashboardForm.timerToSendPauseResumeAgain.Enabled == true)
+                        //    DashboardForm.timerToSendPauseResumeAgain.Stop();
+                    }
+                    else if (functionCode == 0xD4)       //ACK Pause
+                    {
+                        if (bytesReceived.Count - startIndex < PathCompleteReceivePacketSize) return;
+
+                        // put data in an array
+                        byte[] data = new byte[PathCompleteReceivePacketSize];
+                        for (int j = 0; j < PathCompleteReceivePacketSize; j++)
+                            data[j] = bytesReceived[startIndex + j];
+
+                        PathCompleteRecievePacket receiveFrame = PathCompleteRecievePacket.FromArray(data);
+                        bytesReceived.RemoveRange(0, startIndex + PathCompleteReceivePacketSize - 1);
+
+                        if (DashboardForm.timerToSendPauseAgain.Enabled == true)
+                            DashboardForm.timerToSendPauseAgain.Stop();
+                        FlagPauseResume = 1;
+                        Display.UpdateComStatus("receive", receiveFrame.AGVID, " ACK Pause", Color.Red);
+                    }
+                    else if (functionCode == 0xD5)       //ACK Resume
+                    {
+                        if (bytesReceived.Count - startIndex < PathCompleteReceivePacketSize) return;
+
+                        // put data in an array
+                        byte[] data = new byte[PathCompleteReceivePacketSize];
+                        for (int j = 0; j < PathCompleteReceivePacketSize; j++)
+                            data[j] = bytesReceived[startIndex + j];
+
+                        PathCompleteRecievePacket receiveFrame = PathCompleteRecievePacket.FromArray(data);
+                        bytesReceived.RemoveRange(0, startIndex + PathCompleteReceivePacketSize - 1);
+
+                        if (DashboardForm.timerToSendResumeAgain.Enabled == true)
+                            DashboardForm.timerToSendResumeAgain.Stop();
+                        FlagPauseResume = 0;
+                        Display.UpdateComStatus("receive", receiveFrame.AGVID, " ACK Pause", Color.Red);
                     }
 
 
@@ -536,7 +590,43 @@ namespace AGV_Form
                 return s;
             }
         }
+        public struct PauseInfoPacket
+        {
+            public byte[] Header;
+            public byte FunctionCode;
+            public byte AGVID;
+            public char DataPause;
+            public byte[] CheckSum;
+            public byte[] EndOfFrame;
 
+            // Convert Structs to Byte Arrays
+            public byte[] ToArray()
+            {
+                var stream = new System.IO.MemoryStream();
+                var writer = new System.IO.BinaryWriter(stream);
+
+                writer.Write(this.Header);
+                writer.Write(this.FunctionCode);
+                writer.Write(this.AGVID);
+                writer.Write(this.DataPause);
+                writer.Write(this.CheckSum);
+                writer.Write(this.EndOfFrame);
+
+                return stream.ToArray();
+            }
+            public byte[] ToArrayCRC()
+            {
+                var stream1 = new System.IO.MemoryStream();
+                var writer1 = new System.IO.BinaryWriter(stream1);
+
+
+                writer1.Write(this.FunctionCode);
+                writer1.Write(this.AGVID);
+                writer1.Write(this.DataPause);
+                //   writer.Write(this.CheckSum);
+                return stream1.ToArray();
+            }
+        }
         public struct PathCompleteRecievePacket
         {
             public byte[] Header;

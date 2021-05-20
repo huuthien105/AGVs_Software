@@ -14,6 +14,7 @@ namespace AGV_Form
         public float DistanceToCurrentNode { get; set; }
         public string Status { get; set; }
         public float Velocity { get; set; }
+        public float Battery = 87.0F;
         public float LinePos = 0;
         public bool HavePallet = false;
         public bool IsColision = false;

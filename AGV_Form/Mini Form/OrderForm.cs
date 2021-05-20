@@ -54,24 +54,45 @@ namespace AGV_Form
             {
                 
                 RackColumn rack = RackColumn.ListColumn.Find(c => c.Block == pallet.AtBlock && c.Number == pallet.AtColumn);
-                int agvID = Task.AutoSelectAGV(AGV.SimListAGV, rack.AtNode);
+                int agvID = 0;
+                if (Display.Mode == "Simulation")
+                    agvID = Task.AutoSelectAGV(AGV.SimListAGV, rack.AtNode);
+                else if (Display.Mode == "Real Time")
+                    agvID = Task.AutoSelectAGV(AGV.ListAGV, rack.AtNode);
+                string taskname = null;
                 int pickNode = rack.AtNode;
                 int pickLevel = pallet.AtLevel;
 
                 int dropNode = Output;
                 int dropLevel = 1;
+                switch (Display.Mode)
+                {
+                    case "Real Time":
+                        taskname = "Order " + Task.OrderIndex.ToString();
+                        Task.OrderIndex++;
+                        break;
+                    case "Simulation":
+                        taskname = "Order " + Task.SimOrderIndex.ToString();
+                        Task.SimOrderIndex++;
 
-                Task task = new Task("Order1", "Order", pallet.Code, agvID,
+                        break;
+                }
+
+
+
+                Task task = new Task(taskname, "Order", pallet.Code, agvID,
                                  pickNode, dropNode, pickLevel, dropLevel
                                  , "Waiting");
                 switch (Display.Mode)
                 {
                     case "Real Time":
+                      
                         int AGVindex = AGV.ListAGV.FindIndex(a => { return a.ID == agvID; });
                         AGV.ListAGV[AGVindex].Tasks.Add(task);
                         Task.ListTask.Add(task);
                         break;
                     case "Simulation":
+                        
                         int SimAGVindex = AGV.SimListAGV.FindIndex(a => { return a.ID == agvID; });
                         AGV.SimListAGV[SimAGVindex].Tasks.Add(task);
                         Task.SimListTask.Add(task);

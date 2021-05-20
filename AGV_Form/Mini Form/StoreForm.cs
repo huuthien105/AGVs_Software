@@ -62,9 +62,14 @@ namespace AGV_Form
                 MessageBox.Show(" Please enter correct Pallet informarion !", "Pallet Information ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            //int agvID = Task.AutoSelectAGV(AGV.SimListAGV, Input);
-            int agvID = 1;
+            int agvID = 0;
+            if (Display.Mode == "Simulation")
+                agvID = Task.AutoSelectAGV(AGV.SimListAGV, Input);
+            else if (Display.Mode == "Real Time")
+                agvID = Task.AutoSelectAGV(AGV.ListAGV, Input);
+            //int agvID = 1;
             RackColumn rack = RackColumn.ListColumn.Find(c => c.Block == cbbBlock.Text && c.Number == Convert.ToInt32(cbbColumn.Text));
+            string taskname = null;
             string palletcode = txtPalletCode.Text;
             string palletName = txtPalletName.Text;
             int pickNode = Input;
@@ -75,6 +80,8 @@ namespace AGV_Form
             switch (Display.Mode)
             {
                 case "Real Time":
+                    taskname = "Store " + Task.StoreIndex.ToString();
+                    Task.StoreIndex++;
                     foreach (Pallet palet in Pallet.ListPallet)
                     {
                         if (palet.Code.Trim() == txtPalletCode.Text)
@@ -90,6 +97,8 @@ namespace AGV_Form
                     }
                     break;
                 case "Simulation":
+                    taskname = "Store " + Task.SimStoreIndex.ToString();
+                    Task.SimStoreIndex++;
                     foreach (Pallet palet in Pallet.SimListPallet)
                     {
                         if (palet.Code.Trim() == txtPalletCode.Text)
@@ -107,7 +116,7 @@ namespace AGV_Form
             }
            
             
-            Task task = new Task("Store1", "Store", palletcode, agvID,
+            Task task = new Task(taskname, "Store", palletcode, agvID,
                                  pickNode, dropNode, pickLevel, dropLevel
                                  , "Waiting");
             Pallet pallet = new Pallet(palletcode, palletName, true,"??", cbbBlock.Text, Convert.ToInt32(cbbColumn.Text), Convert.ToInt32(cbbLevel.Text));
@@ -126,20 +135,24 @@ namespace AGV_Form
                     Pallet.SimStorePallet.Add(pallet);
                     break;
             }
+            txtPalletCode.Text = "";
+            txtPalletName.Text = "";
             ckbAutoSelectSlot.Checked = false;
             cbbBlock.Enabled = true;
+            cbbBlock.Text = "";
             cbbColumn.Enabled = true;
+            cbbColumn.Text = "";
             cbbLevel.Enabled = true;
+            cbbLevel.Text = "";
+            
         }
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
             switch (Display.Mode)
             {
-                case "Real Time":
-                    //Display.UpdateListViewTasks(listViewTask, Task.ListTask);
-                    if(AGV.ListAGV.Count >0)
-                    Display.UpdateListViewTasks(listViewTask, AGV.ListAGV[0].Tasks);
+                case "Real Time":                  
+                    Display.UpdateListViewTasks(listViewTask, Task.ListTask);
                     break;
                 case "Simulation":
                     Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
@@ -152,9 +165,14 @@ namespace AGV_Form
 
         private void ckbAutoSelectSlot_CheckedChanged(object sender, EventArgs e)
         {
+            string Slot="";
+                if(Display.Mode == "Simulation")
+                 Slot = Task.AutoSelecSlotPallet(Pallet.SimListPallet.Concat(Pallet.SimStorePallet).ToList());
+                else if(Display.Mode == "Real Time")
+                Slot = Task.AutoSelecSlotPallet(Pallet.ListPallet.Concat(Pallet.StorePallet).ToList());
             if (ckbAutoSelectSlot.Checked)
             {
-                string Slot = Task.AutoSelecSlotPallet(Pallet.SimListPallet.Concat(Pallet.SimStorePallet).ToList());
+                
                 string[] arrSlot = Slot.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 cbbBlock.Text = arrSlot[0];
                 cbbColumn.Text = arrSlot[1];

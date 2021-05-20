@@ -66,6 +66,11 @@ namespace AGV_Form
                         }
                     }
                     // If not exist, add new AGV into listNewAGV
+                    if (String.IsNullOrEmpty(txtVelocity.Text))
+                    {
+                        MessageBox.Show("Please enter velocity value ! ", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    } 
                     agv.Velocity = Convert.ToSingle(txtVelocity.Text);                    
                     AGV.SimListAGV.Add(agv);
                     AGV.SimFullPathOfAGV[agv.ID] = agv.CurrentNode.ToString() + "-G";
@@ -96,7 +101,13 @@ namespace AGV_Form
                     case "Real Time":
                         AGV agvRealRemove = AGV.ListAGV.Find(a => { return a.ID == Convert.ToInt16(cbbIDRemove.Text); });
                         if (AGV.ListAGV.Contains(agvRealRemove))
+
+                        {
                             AGV.ListAGV.Remove(agvRealRemove);
+                            Display.RemoveLabelAGV(agvRealRemove.ID,cbbModeList.Text);
+
+
+                        } 
                         // Put remaining AGV in listView  
                         listViewAGV.Clear();
                         foreach (AGV agv in AGV.ListAGV)
@@ -111,7 +122,7 @@ namespace AGV_Form
                         if (AGV.SimListAGV.Contains(agvSimRemove))
                         {
                             AGV.SimListAGV.Remove(agvSimRemove);
-                            Display.RemoveLabelAGV(cbbModeList.Text,agvSimRemove.ID);
+                            Display.RemoveLabelAGV(agvSimRemove.ID, cbbModeList.Text);
                         }
                             
                         // Put remaining AGV in listView  
@@ -121,6 +132,7 @@ namespace AGV_Form
                             listViewAGV.Items.Add(" AGV#" + agv.ID, 0);
                         }
                         cbbIDRemove.Items.Clear();
+                        
                         MessageBox.Show(" Remove AGV#" + agvSimRemove.ID.ToString() + " Successful !", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                 }
@@ -230,15 +242,22 @@ namespace AGV_Form
                     {
                         if (Convert.ToInt16(txbID.Text) == a.ID)
                         {
-                            Display.RemoveLabelAGV(cbbModeList.Text,a.ID);
-;                            a.CurrentNode = Convert.ToInt16(cbbExitNode.Text);
+                           
+;                           a.CurrentNode = Convert.ToInt16(cbbExitNode.Text);
                             a.CurrentOrient = Convert.ToChar(cbbOrientation.Text);
                             a.DistanceToCurrentNode = Convert.ToInt16(txbDistance.Text);
                             a.Status = "Stop";
+                            if (String.IsNullOrEmpty(txtVelocity.Text))
+                            {
+                                MessageBox.Show("Please enter velocity value ! ", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                            a.Velocity = Convert.ToSingle(txtVelocity.Text);
                             Display.AddLabelAGV(cbbModeList.Text,a.ID,a.CurrentNode,a.CurrentOrient,a.DistanceToCurrentNode);
                             agvSimAdded = true;
                             MessageBox.Show(" Edit AGV#" + a.ID.ToString() + " Successful !", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
+
                     }
                     if (!agvSimAdded)
                         MessageBox.Show("AGV ID is not in AGV List !", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Hand);

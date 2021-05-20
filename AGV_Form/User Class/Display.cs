@@ -49,7 +49,7 @@ namespace AGV_Form
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentNode.ToString());
                 listView.Items[listView.Items.Count - 1].SubItems.Add(agv.CurrentOrient.ToString());
                 listView.Items[listView.Items.Count - 1].SubItems.Add((Math.Round(agv.DistanceToCurrentNode, 2)).ToString() + " cm");
-                listView.Items[listView.Items.Count - 1].SubItems.Add(agv.Velocity.ToString().Trim() + " cm/s");
+                listView.Items[listView.Items.Count - 1].SubItems.Add(Math.Round(agv.Velocity,2).ToString() + " cm/s");
                 
                switch(agv.Status)
                 {
@@ -69,7 +69,7 @@ namespace AGV_Form
                         listView.Items[listData.IndexOf(agv)].BackColor = Color.LightBlue;
                         break;
                     case "Avoid":
-                        listView.Items[listData.IndexOf(agv)].BackColor = Color.LightCyan;
+                        listView.Items[listData.IndexOf(agv)].BackColor = Color.Orange;
                         break;
                     case "Other Way":
                         listView.Items[listData.IndexOf(agv)].BackColor = Color.Orange;
@@ -80,12 +80,16 @@ namespace AGV_Form
 
 
         }
-        public static void UpdatePositionAGV(int agvID, Label lbagv)
+        public static void UpdatePositionAGV(int agvID, Label lbagv,Label lbpallet)
         {
             var index = AGV.ListAGV.FindIndex(a => a.ID == agvID);
             AGV agv = AGV.ListAGV[index];
             Point oldAGVPosition = Display.LabelAGV[agvID].Location;
             Point newAGVPosition = new Point();
+            Point oldPalletPosition = Display.LabelPalletInAGV[agvID].Location;
+            Point newPalletPosition = new Point();
+            Size oldPalletSize = Display.LabelPalletInAGV[agvID].Size;
+            Size newPalletSize = new Size();
             int pixelDistance = (int)Math.Round(agv.DistanceToCurrentNode * Scale);
             List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
             int x, y;
@@ -104,26 +108,33 @@ namespace AGV_Form
             {
                 case 'E':
                     newAGVPosition = new Point(x + pixelDistance, y);
-
+                    newPalletSize = new Size(15, 50);
+                    newPalletPosition = new Point(x + pixelDistance - 15, y);
                     break;
                 case 'W':
                     newAGVPosition = new Point(x - pixelDistance, y);
-
+                    newPalletSize = new Size(15, 50);
+                    newPalletPosition = new Point(x - pixelDistance + 50, y);
                     break;
                 case 'S':
                     newAGVPosition = new Point(x, y + pixelDistance);
-
+                    newPalletSize = new Size(50, 15);
+                    newPalletPosition = new Point(x, y + pixelDistance - 15);
 
                     break;
                 case 'N':
                     newAGVPosition = new Point(x, y - pixelDistance);
-
+                    newPalletSize = new Size(50, 15);
+                    newPalletPosition = new Point(x, y - pixelDistance + 50);
                     break;
                 default:
                     newAGVPosition = oldAGVPosition;
-
+                    newPalletPosition = oldPalletPosition;
+                    newPalletSize = oldPalletSize;
                     break;
             }
+            lbpallet.Size = newPalletSize;
+            lbpallet.Location = newPalletPosition;
             lbagv.Location = newAGVPosition;
         }
         public static void SimUpdatePositionAGV(int agvID, float speed, Panel pnFloor,Label lbagv, Label lbpallet)
@@ -334,25 +345,22 @@ namespace AGV_Form
             }
         }
 
-        public static void RemoveLabelAGV(string Mode,int agvID)
+        public static void RemoveLabelAGV(int agvID, string mode)
         {
-            //var label = panel.Controls.OfType<Label>().FirstOrDefault(lb => lb.Name == "AGV" + agvID.ToString());
-            
-                //panel.Controls.Remove(label);
-                //label.Dispose();
-
-                switch (Mode)
-                {
-                    case "Real Time":
-                        Array.Clear(LabelAGV, agvID, 1);
-                        break;
-                    case "Simulation":
-                        Array.Clear(SimLabelAGV, agvID, 1);
-                        break;
-                }
-            
+            switch (mode)
+            {
+                case "Real Time":
+                    Array.Clear(LabelAGV, agvID, 1);
+                    
+                    break;
+                case "Simulation":
+                    Array.Clear(SimLabelAGV, agvID, 1);
+                    
+                    break;
+            }
         }
-        public static void UpdateComStatus(int ID, Color messageColor)
+    
+    public static void UpdateComStatus(int ID, Color messageColor)
         {
             HomeScreenForm.colorComStatus.Add(messageColor);
             string timeNow = DateTime.Now.ToString(" h:mm:ss.fff tt");

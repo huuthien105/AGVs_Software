@@ -17,14 +17,21 @@ namespace AGV_Form
         public HomeScreenForm()
         {
             InitializeComponent();
+           
+           
+
         }
-        
-        
+        private static DashboardForm dashboardForm = new DashboardForm();
+        //private static MonitoringForm 
+
+        private static TasksForm taksForm = new TasksForm();
+       
+
 
         private void HomeScreenForm_Load(object sender, EventArgs e)
         {
-            DashboardForm dashboardForm = new DashboardForm();
             Initial_Form(dashboardForm);
+            Initial_Form(taksForm);
             pnMain.Controls.Add(dashboardForm);
             dashboardForm.BringToFront();
             dashboardForm.Show();
@@ -34,9 +41,8 @@ namespace AGV_Form
 
         private void dashoardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Thread.Sleep(200);
-            DashboardForm dashboardForm = new DashboardForm();
-            Initial_Form(dashboardForm);
+
+            pnMain.Controls.Clear();
             pnMain.Controls.Add(dashboardForm);
             dashboardForm.BringToFront();
             dashboardForm.Show();
@@ -45,6 +51,7 @@ namespace AGV_Form
 
         private void monitoringToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            pnMain.Controls.Clear();
             MonitoringForm monitoringForm = new MonitoringForm();
             Initial_Form(monitoringForm);
             pnMain.Controls.Add(monitoringForm);
@@ -57,8 +64,9 @@ namespace AGV_Form
 
         private void tasksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TasksForm taksForm = new TasksForm();
-            Initial_Form(taksForm);
+            
+            
+            pnMain.Controls.Clear();
             pnMain.Controls.Add(taksForm);
             taksForm.BringToFront();
             taksForm.Show();
@@ -69,6 +77,7 @@ namespace AGV_Form
         {
             WarehouseForm warehouseForm = new WarehouseForm();
             Initial_Form(warehouseForm);
+            pnMain.Controls.Clear();
             pnMain.Controls.Add(warehouseForm);
             warehouseForm.BringToFront();
             warehouseForm.Show();

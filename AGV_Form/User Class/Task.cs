@@ -44,6 +44,12 @@ namespace AGV_Form
         public static List<Task> SimListTask = new List<Task>();
         
         public static List<Task> SimHistoryTask = new List<Task>();
+
+        public static List<Task> HistoryTask = new List<Task>();
+        public static int StoreIndex = 0;
+        public static int OrderIndex = 0;
+        public static int SimStoreIndex = 0;
+        public static int SimOrderIndex = 0;
         public static void UpdatePathFromTaskOfAGV(AGV agv)
         {
             if (agv.Tasks.Count != 0)
@@ -56,14 +62,16 @@ namespace AGV_Form
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
                     AGV.FullPathOfAGV[agv.ID] = "N-0-"+agv.CurrentOrient+"-"+  Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient)+"-N-0";
                     Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
+                    Debug.WriteLine(AGV.FullPathOfAGV[agv.ID]);
                     Display.UpdateComStatus("send",agv.ID,"Send Path 1", Color.Green);
-
+                    
                    // if(DashboardForm.timerToSendPathAgain.Enabled == false)
-                      //   DashboardForm.timerToSendPathAgain.Start();
+                   //   DashboardForm.timerToSendPathAgain.Start();
 
-                  //  agv.Tasks[0].Status = "Doing";
+                    //  agv.Tasks[0].Status = "Doing";
                     agv.PathCopmpleted = 0;
-                  //  agv.Status = "Running";
+                    //agv.Status = "Running";
+                    Display.LabelAGV[agv.ID].BackColor = Color.CornflowerBlue;
                 }
                 else if(agv.CurrentNode == currentTask.PickNode && currentTask.Status == "Doing" && agv.PathCopmpleted == 1)
                 {
@@ -89,8 +97,20 @@ namespace AGV_Form
                     }
                     AGV.FullPathOfAGV[agv.ID] = pick+agv.CurrentOrient+"-" + Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient)+drop;
                     Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
-
+                    Debug.WriteLine(AGV.FullPathOfAGV[agv.ID]);
                     Display.UpdateComStatus("send", agv.ID, "Send Path 2", Color.Green);
+                    agv.HavePallet = true;
+                    Display.LabelPalletInAGV[agv.ID].Visible = true;
+                    if (currentTask.Type == "Order")
+                    {
+                        Pallet pallet = Pallet.ListPallet.Find(c => c.Code == currentTask.PalletCode);
+                        Display.DeleteLabelPallet(pallet);
+
+                    }
+                    else if (currentTask.Type == "Store")
+                    {
+
+                    }
 
                     // if (DashboardForm.timerToSendPathAgain.Enabled == false)
                     //    DashboardForm.timerToSendPathAgain.Start();
@@ -103,7 +123,35 @@ namespace AGV_Form
                     agv.Tasks.RemoveAt(0);
                     agv.Path.Clear();
                     agv.Status = "Stop";
-                    
+                    Display.LabelAGV[agv.ID].BackColor = Color.Silver;
+                    agv.HavePallet = false;
+                    Display.LabelPalletInAGV[agv.ID].Visible = false;
+                    string timeComplete = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
+                   
+                    if (currentTask.Type == "Order")
+                    {
+                        DBUtility.InsertCompleteTaskToDB("HistoryTask", currentTask, timeComplete, "Done");
+                        DBUtility.DeletePalletFromDB("PalletInfoTable", currentTask.PalletCode);
+
+                        Task.ListTask.Remove(currentTask);
+                    }
+                    else if (currentTask.Type == "Store")
+                    {
+                        DBUtility.InsertCompleteTaskToDB("HistoryTask", currentTask, timeComplete, "Done");
+                        //agv.HavePallet = false;
+                        Pallet pallet = Pallet.StorePallet.Find(c => c.Code == currentTask.PalletCode);
+                        pallet.DeliverTime = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
+                        DBUtility.InsertNewPalletToDB("PalletInfoTable", pallet.Code, pallet.Name, pallet.InStock, pallet.DeliverTime, pallet.AtBlock, pallet.AtColumn, pallet.AtLevel);
+                        Pallet.StorePallet.Remove(pallet);
+                        Pallet.ListPallet.Add(pallet);
+                        Display.UpdateLabelPallet(pallet);
+                        Task.ListTask.Remove(currentTask);
+
+                    }
+                    else if (currentTask.Type == "Collision" )
+                    {
+                        Task.ListTask.Remove(currentTask);
+                    }
                 }
             }
         }
@@ -141,6 +189,7 @@ namespace AGV_Form
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].DropNode));
                     
                     AGV.SimFullPathOfAGV[agv.ID] = Navigation.GetNavigationFrame(agv.Path[0], Node.MatrixNodeOrient);
+                    Display.SimLabelPalletInAGV[agv.ID].Visible = true;
                     agv.HavePallet = true;
                     if (currentTask.Type == "Order")
                     {
@@ -163,17 +212,19 @@ namespace AGV_Form
                     agv.Status = "Stop";
                     Display.SimLabelAGV[agv.ID].BackColor = Color.Silver;
                     string timeComplete = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
-                    DBUtility.InsertCompleteTaskToDB("SimHistoryTask", currentTask, timeComplete, "Done");
+                    
                     agv.HavePallet = false;
+                    Display.SimLabelPalletInAGV[agv.ID].Visible = false;
                     if (currentTask.Type == "Order")
                     {
+                        DBUtility.InsertCompleteTaskToDB("SimHistoryTask", currentTask, timeComplete, "Done");
                         DBUtility.DeletePalletFromDB("SimPalletInfoTable", currentTask.PalletCode);
                         
                         Task.SimListTask.Remove(currentTask);
                     }
                     else if (currentTask.Type == "Store")
                     {
-                        
+                        DBUtility.InsertCompleteTaskToDB("SimHistoryTask", currentTask, timeComplete, "Done");
                         //agv.HavePallet = false;
                         Pallet pallet = Pallet.SimStorePallet.Find(c => c.Code == currentTask.PalletCode);
                         pallet.DeliverTime = DateTime.Now.ToString("dddd, MMMM dd, yyyy  h:mm:ss tt");
@@ -184,7 +235,7 @@ namespace AGV_Form
                         Task.SimListTask.Remove(currentTask);
 
                     }
-                    else if (currentTask.Type == "Input" || currentTask.Type == "Output")
+                    else if (currentTask.Type == "Collision" )
                     {
                         Task.SimListTask.Remove(currentTask);
                     }
@@ -203,23 +254,7 @@ namespace AGV_Form
            
         }
 
-        public static void OutputAutoAdd(string palletCode, List<Task> listTaskToAdd, List<AGV> listAGV, List<RackColumn> listColumn)
-        {
-            // auto select agv
-            if (AGV.SimListAGV.Count == 0) return;
-            int agvID = 1;//AutoSelectAGV(AGV.SimListAGV);
-
-            // find pick node & level
-            RackColumn col = listColumn.Find(c => c.PalletCodes.Contains(palletCode));
-            int pickNode = col.AtNode;
-            int pickLevel = Array.IndexOf(col.PalletCodes, palletCode) + 1;
-
-            // select drop node (output1 or output2)
-            int dropNode = agvID % 2 == 1 ? 51 : 52;
-
-            Task newTask = new Task("Auto " + palletCode, "Output", palletCode, agvID, pickNode, dropNode, pickLevel, 1, "Waiting");
-            listTaskToAdd.Add(newTask);
-        }
+        
                                #region Function for auto select AGV
 
         public static int AutoSelectAGV(List<AGV> listAGV,int pickNode)

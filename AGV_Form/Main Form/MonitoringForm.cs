@@ -31,17 +31,31 @@ namespace AGV_Form
         private int tickStart;
         public static int selectedAGVID;
         private static int SelectedAGV = 0;
-
+        private void MonitoringForm_Load(object sender, EventArgs e)
+        {
+            cbbAGV.Items.Clear();
+            foreach (AGV agv in AGV.ListAGV)
+            {
+                cbbAGV.Items.Add("AGV#" + agv.ID.ToString());
+            }
+            if (AGV.ListAGV.Count > 0)
+            {
+                cbbAGV.Text = "AGV#" + AGV.ListAGV[0].ID.ToString();
+                if(SelectedAGV==0)
+                SelectedAGV = AGV.ListAGV[0].ID;
+            }
+        }
+        #region Init Zed Graph Velocity And Line Track
         private void InitZedGraph()
         {
             #region Init Velocity graph
             GraphPane velocityPane = zedGraphVelocity.GraphPane;
 
             RollingPointPairList velocityPointBuffer = new RollingPointPairList(10000);
-            LineItem velocityCurve = velocityPane.AddCurve("velocity", velocityPointBuffer, Color.Red, SymbolType.None);
+            LineItem velocityCurve = velocityPane.AddCurve("Value", velocityPointBuffer, Color.Red, SymbolType.None);
 
             RollingPointPairList setPointBuffer = new RollingPointPairList(10000);
-            LineItem setPointCurve = velocityPane.AddCurve("desired velocity", setPointBuffer, Color.Blue, SymbolType.None);
+            LineItem setPointCurve = velocityPane.AddCurve("Setpoint", setPointBuffer, Color.Blue, SymbolType.None);
 
             // Add titles
             velocityPane.Title.Text = "Velocity of AGV";
@@ -92,7 +106,9 @@ namespace AGV_Form
             GraphPane linetrackPane = zedGraphLineTrack.GraphPane;
 
             RollingPointPairList linetrackPointBuffer = new RollingPointPairList(10000);
-            LineItem linetrackCurve = linetrackPane.AddCurve("error", linetrackPointBuffer, Color.Red, SymbolType.None);
+            LineItem linetrackCurve = linetrackPane.AddCurve("Error", linetrackPointBuffer, Color.Red, SymbolType.None);
+            RollingPointPairList lineStandardPointBuffer = new RollingPointPairList(10000);
+            LineItem lineStandardCurve = linetrackPane.AddCurve("Lsine", lineStandardPointBuffer, Color.Blue, SymbolType.None);
 
             // Add titles
             linetrackPane.Title.Text = "Error of line tracking";
@@ -124,6 +140,7 @@ namespace AGV_Form
 
             // Make both curves thicker
             linetrackCurve.Line.Width = 2.0F;
+            lineStandardCurve.Line.Width = 2.0F;
 
             //// Fill the area under the curves
             //linetrackCurve.Line.Fill = new Fill(Color.White, Color.FromArgb(255, 175, 175), -90F);
@@ -139,7 +156,8 @@ namespace AGV_Form
 
             tickStart = Environment.TickCount;
         }
-        private void DrawGraph(ZedGraphControl zedGraphControl, double value)
+        #endregion
+        private void DrawGraph(ZedGraphControl zedGraphControl, double value1,double value2)
         {
             if (zedGraphControl.GraphPane.CurveList.Count <= 0) return;
 
@@ -149,19 +167,18 @@ namespace AGV_Form
             LineItem curve = zedGraphControl.GraphPane.CurveList[0] as LineItem;
             IPointListEdit pointBuffer = curve.Points as IPointListEdit;
             // add point to buffer to draw
-            pointBuffer.Add(time, value);
-            
-            if (zedGraphControl == zedGraphVelocity)
-            {
+            pointBuffer.Add(time, value1);
+
+           
                 LineItem curve1 = zedGraphControl.GraphPane.CurveList[1] as LineItem;
                 IPointListEdit pointBuffer1 = curve1.Points as IPointListEdit;
                 // add point to buffer to draw
-                if (Display.Mode == "Real Time") pointBuffer1.Add(time, 15);
-                else if (Display.Mode == "Simulation") pointBuffer1.Add(time, 15);
-            }
+                pointBuffer1.Add(time, value2);
+            
+           
 
-            // make xAxis scroll
-            Scale xScale = zedGraphControl.GraphPane.XAxis.Scale;
+                // make xAxis scroll
+                Scale xScale = zedGraphControl.GraphPane.XAxis.Scale;
             if (time > xScale.Max - xScale.MajorStep)
             {
                 xScale.Max = time + xScale.MajorStep;
@@ -244,10 +261,15 @@ namespace AGV_Form
 
         private void timerGraph_Tick(object sender, EventArgs e)
         {
-            AGV agv = AGV.ListAGV.Find(p=>p.ID == SelectedAGV);
+            AGV agv = AGV.ListAGV.Find(p => p.ID == selectedAGVID);
             if (agv == null) return;
             // Display Status
+            lbIDSelected.Text = selectedAGVID.ToString();
             lbStatus.Text = agv.Status;
+            lbPower.Text = "ON";
+            
+            lbBattery.Text = agv.Battery.ToString() + "%";
+            prgrbBattery.Value = Convert.ToInt32(agv.Battery);
             try
             {
                 lbOnTask.Text = agv.Tasks[0].Name;
@@ -296,9 +318,10 @@ namespace AGV_Form
                
 
             }
-            string path="";
+            string path="No Path";
             if(agv.Path.Count>0)
             {
+                path = "";
                 foreach (int node in agv.Path[0])
                 {
                     path += node.ToString();
@@ -320,11 +343,16 @@ namespace AGV_Form
             }
             lbFullPath.Text = path;
 
-            
 
+            lbVelocity.Text = Math.Round(agv.Velocity, 2).ToString();
+            lbLine.Text = (agv.LinePos-1000).ToString();
+            if (agv.LinePos == 1000) lbTracking.Text = "In The Middle";
+            else if (agv.LinePos > 1000) lbTracking.Text = "On The Left";
+            else if (agv.LinePos < 1000) lbTracking.Text = "On The Right";
+            else lbTracking.Text = "##,#";
             // Draw Graph
-            DrawGraph(zedGraphVelocity,agv.Velocity);
-            DrawGraph(zedGraphLineTrack,agv.LinePos);
+            DrawGraph(zedGraphVelocity,agv.Velocity,Convert.ToDouble(txtbSetVelocity.Text));
+            DrawGraph(zedGraphLineTrack,agv.LinePos,0);
 
         }
 
@@ -333,19 +361,7 @@ namespace AGV_Form
             
         }
 
-        private void MonitoringForm_Load(object sender, EventArgs e)
-        {
-            cbbAGV.Items.Clear();
-            foreach(AGV agv in AGV.ListAGV)
-            { 
-                cbbAGV.Items.Add("AGV#" + agv.ID.ToString());
-            }
-            if (AGV.ListAGV.Count > 0)
-            {
-                cbbAGV.Text = "AGV#" + AGV.ListAGV[0].ID.ToString();
-                SelectedAGV = AGV.ListAGV[0].ID;
-            } 
-        }
+       
 
         private void timerView_Tick(object sender, EventArgs e)
         {
@@ -389,6 +405,55 @@ namespace AGV_Form
             Location.X = (int)(Location.X-40)/2;
             Location.Y = (int)(Location.Y - 40) / 2;
             return Location;
+        }
+        private void UpdateForkliftPosition(float position)
+        {
+            if (position > 100)
+                position = 100;
+            else if (position < 0)
+                position = 0;
+            int pixel = (int)((position / 100) * 260);
+            int x1 = lbPosLift.Location.X;
+            int y1 =349 - pixel;
+            lbPosLift.Location = new Point(x1, y1);
+
+            int x2 = ptbLift.Location.X;
+            int y2 = 331 - pixel;
+            ptbLift.Location = new Point(x2,y2);
+
+            int x3 = ptbGoods.Location.X;
+            int y3 = 382 - pixel;
+            ptbGoods.Location = new Point(x3,y3);
+
+
+
+        }
+        private static float pos=0;
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            UpdateForkliftPosition(pos);
+            label8.Text = pos.ToString();
+            pos += 0.5f;
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            UpdateForkliftPosition(pos);
+            label8.Text = pos.ToString();
+            pos -= 0.5f;
+        }
+
+        private void cbbAGV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string[] arrID = cbbAGV.Text.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
+            selectedAGVID = Convert.ToInt16(arrID[1]);
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AGV agv = AGV.ListAGV.Find(p => p.ID == selectedAGVID);
+            label22.Text = agv.CurrentNode.ToString();
         }
     }
 }

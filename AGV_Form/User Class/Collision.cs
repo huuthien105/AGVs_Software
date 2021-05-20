@@ -341,8 +341,9 @@ namespace AGV_Form
                 if (CollisionType ==2 )
                 {
                     int node_ss = ReturnToNodeForward(agv2.CurrentNode);
+                   // Debug.WriteLine(node_ss.ToString());
                     //int node_ss = GotoNodeNeibor(agv2.CurrentNode, agv2.CurrentOrient, goal2);
-                    if (agv1.CurrentNode == node_ss)
+                    if (agv1.CurrentNode == node_ss|| agv2.CurrentNode ==27 || agv2.CurrentNode == 40)
                     { 
                         List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv1.CurrentNode, goal1);
                         AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);

@@ -13,17 +13,19 @@ using System.Diagnostics;
 
 namespace AGV_Form
 {
+    
     public partial class DashboardForm : Form
     {
 
-        public static string PathSend;
+        public static string PathSend = null;
         public static List<string> textComStatus = new List<string>();
         public static List<Color> colorComStatus = new List<Color>();
+
         public DashboardForm()
         {
             InitializeComponent();
-            LoadLabel();
             Communication.SerialPort.DataReceived += new SerialDataReceivedEventHandler(this.SerialPort_ReceiveData);
+
         }
 
         private void SerialPort_ReceiveData(object sender, SerialDataReceivedEventArgs e)
@@ -34,12 +36,15 @@ namespace AGV_Form
         public static int delay = 0;
         private void DashboardForm_Load(object sender, EventArgs e)
         {
-           
+            
+            LoadLabel();
+
             switch (Display.Mode)
             {
                 case "Real Time":
                     rdbtnRealTime.Checked = true;
                     rdbtnSimulation.Checked = false;
+                    //rtxtbComStatus = ComStatus;
                     foreach (AGV agv in AGV.ListAGV)
                     {
                         pnFloor.Controls.Add(Display.LabelPalletInAGV[agv.ID]);
@@ -53,6 +58,16 @@ namespace AGV_Form
                     {
                         pnFloor.Controls.Add(Display.SimLabelPalletInAGV[agv.ID]);
                         Display.SimLabelPalletInAGV[agv.ID].BringToFront();
+                    }
+                    
+                    if (Communication.SerialPort.IsOpen)
+                    {
+                        lbStatusCOM.Text = Communication.SerialPort.PortName + " Connected.";
+                    }
+                    else
+                    {
+                        lbStatusCOM.Text = "Please setting COM !";
+
                     }
                     break;
             }
@@ -83,33 +98,23 @@ namespace AGV_Form
                 lbModeStatus.Text = "Simulation Mode.";
                 timerListview.Interval = 100;
                 timerSimAGV.Interval = 100;
-                Display.Mode = "Simulation";
-                foreach (AGV agv in AGV.ListAGV)
-                {
-                    Label label = Display.LabelAGV[agv.ID];
-                    pnFloor.Controls.Remove(label);
-                    //label.Dispose();
-                }
-                    foreach (AGV agv in AGV.SimListAGV)
-                {                   
-                    pnFloor.Controls.Add(Display.SimLabelAGV[agv.ID]);
-                }
-                Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
-
+                Display.Mode = "Simulation";               
+                // Hide all Label AGV in ListAGV in pnFloor
+                HideAGVLabel(AGV.ListAGV, Display.LabelAGV, pnFloor);
+                // Show All Label AGV in pnFloor
+                ShowAGVLabel(AGV.SimListAGV,Display.SimLabelAGV,pnFloor);
                 // Display Pallet in Navigation Map
+                Pallet.SimListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("SimPalletInfoTable");
                 foreach (Pallet pallet in Pallet.ListPallet)
                 {
                     Display.DeleteLabelPallet(pallet);
-
 
                 }
 
                 foreach (Pallet pallet in Pallet.SimListPallet)
                 {
-
                     Display.UpdateLabelPallet(pallet);
-                    
-                        
+                                           
                 }
             }
         }
@@ -122,24 +127,15 @@ namespace AGV_Form
                 timerListview.Interval = 100;
                 timerSimAGV.Interval = 250;
                 Display.Mode = "Real Time";
-                foreach (AGV agv in AGV.SimListAGV)
-                {
-                    //Label label = pnFloor.Controls.OfType<Label>().FirstOrDefault(lb => lb.Name == "AGV" + agv.ID.ToString());
-                    Label label = Display.SimLabelAGV[agv.ID];
-                    pnFloor.Controls.Remove(label);
-                    //label.Dispose();
-                }
-                foreach (AGV agv in AGV.ListAGV)
-                {
-                    pnFloor.Controls.Add(Display.LabelAGV[agv.ID]);
-                }
-
+                // Hide all Label AGV in ListAGV in pnFloor
+                HideAGVLabel(AGV.SimListAGV, Display.SimLabelAGV, pnFloor);
+                // Show All Label AGV in pnFloor
+                ShowAGVLabel(AGV.ListAGV, Display.LabelAGV, pnFloor); 
                 Pallet.ListPallet = DBUtility.GetPalletInfoFromDB<List<Pallet>>("PalletInfoTable");
                 foreach (Pallet pallet in Pallet.SimListPallet)
                 {
 
                     Display.DeleteLabelPallet(pallet);
-
 
                 }
                 foreach (Pallet pallet in Pallet.ListPallet)
@@ -147,12 +143,12 @@ namespace AGV_Form
                     Display.UpdateLabelPallet(pallet);
 
                 }
-
             }
         }
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
+            
             if (textComStatus.Count != 0)
             {
                 rtxtbComStatus.SelectionColor = colorComStatus[0];
@@ -161,7 +157,7 @@ namespace AGV_Form
                 textComStatus.RemoveAt(0);
                 colorComStatus.RemoveAt(0);
             }
-
+            
             switch (Display.Mode)
             {
                 case "Real Time":
@@ -170,7 +166,7 @@ namespace AGV_Form
                     if(AGV.ListAGV.Count >0)
                     {
                         Display.UpdateListViewTasks(listViewTask, AGV.ListAGV[0].Tasks);
-                        Display.UpdatePositionAGV(AGV.ListAGV[0].ID, Display.LabelAGV[AGV.ListAGV[0].ID]);
+                        Display.UpdatePositionAGV(AGV.ListAGV[0].ID, Display.LabelAGV[AGV.ListAGV[0].ID], Display.LabelPalletInAGV[AGV.ListAGV[0].ID]);
                     }
                     
                     // Do something here
@@ -187,10 +183,10 @@ namespace AGV_Form
 
                     break;
             }
-           ///if(AGV.SimListAGV.Count >=2)
-          /// Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[1]);
+          //if(AGV.SimListAGV.Count >=2)
+         // Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[1]);
 
-            //label21.Text = Collision.CollisionType.ToString();
+            //label19.Text = Collision.CollisionType.ToString();
 
         }
         private void pnFloor_Paint(object sender, PaintEventArgs e)
@@ -208,20 +204,30 @@ namespace AGV_Form
 
         private void AddAGV_Click(object sender, EventArgs e)
         {
-            // Clone a list for ListAGV (amazing way to clone a reference type)
-            List<AGV> oldSimListAGV = new List<AGV>();
-          
+
+            List<Label> listLabel = new List<Label>();
+            foreach(AGV agv in AGV.ListAGV)
+            {
+                listLabel.Add(Display.LabelAGV[agv.ID]);
+            }
+            foreach (AGV agv in AGV.SimListAGV)
+            {
+                listLabel.Add(Display.SimLabelAGV[agv.ID]);
+            }
+
             using (AddRemoveAGVForm AddRemoveForm = new AddRemoveAGVForm())
             {
                 AddRemoveForm.ShowDialog();
             }
-            //foreach (AGV agv in oldSimListAGV)
-            //{
-             //   Display.RemoveLabelAGV(pnFloor, agv.ID);
-           // }
+            // Remove all Label AGV
+           foreach(Label label in listLabel)
+            {
+                pnFloor.Controls.Remove(label);
+            }
             switch (Display.Mode)
             {
                 case "Real Time":
+                    
                     foreach (AGV agv in AGV.ListAGV)
                     {
                         pnFloor.Controls.Add(Display.LabelAGV[agv.ID]);
@@ -231,9 +237,10 @@ namespace AGV_Form
                     }
                     break;
                 case "Simulation":
+                    
                     foreach (AGV agv in AGV.SimListAGV)
                     {
-                        
+
                         pnFloor.Controls.Add(Display.SimLabelAGV[agv.ID]);
                         Display.SimLabelAGV[agv.ID].BringToFront();
                         pnFloor.Controls.Add(Display.SimLabelPalletInAGV[agv.ID]);
@@ -264,10 +271,10 @@ namespace AGV_Form
                         Display.SimUpdatePositionAGV(agv.ID, agv.Velocity,pnFloor, Display.SimLabelAGV[agv.ID],Display.SimLabelPalletInAGV[agv.ID]);
                        
                         
-                        if(agv.HavePallet)
-                            Display.SimLabelPalletInAGV[agv.ID].Visible = true;
-                        else
-                            Display.SimLabelPalletInAGV[agv.ID].Visible = false;
+                        //if(agv.HavePallet)
+                        //    Display.SimLabelPalletInAGV[agv.ID].Visible = true;
+                        //else
+                        //    Display.SimLabelPalletInAGV[agv.ID].Visible = false;
                     }
                     break;
             }
@@ -394,18 +401,41 @@ namespace AGV_Form
             pnFloor.Refresh();
         }
 
-        
 
-       
 
+
+        public static System.Windows.Forms.Timer timerToSendPauseAgain;
+        public static System.Windows.Forms.Timer timerToSendResumeAgain;
         private void btnPause_Click(object sender, EventArgs e)
         {
-            btnPause.BackColor = Color.DodgerBlue;
-            btnRun.BackColor = Color.LightSteelBlue;
+            if(btnPause.Text== "   Pause")
+            {
+                btnPause.Text = "   Resume";
+                btnPause.BackColor = Color.DodgerBlue;
+                //btnRun.BackColor = Color.LightSteelBlue;
+            }
+            else if(btnPause.Text == "   Resume")
+            {
+                btnPause.Text = "   Pause";
+                btnPause.BackColor = Color.LightSteelBlue;
+            }
+            
             switch (Display.Mode)
             {
                 case "Real Time":
-                    timerSimAGV.Enabled = false;
+                    timerToSendPauseAgain = new System.Windows.Forms.Timer();
+                    timerToSendPauseAgain.Tick += new EventHandler(timerToSendPauseAgain_Tick);
+                    timerToSendPauseAgain.Interval = 500;
+
+                    timerToSendResumeAgain = new System.Windows.Forms.Timer();
+                    timerToSendResumeAgain.Tick += new EventHandler(timerToSendResumeAgain_Tick);
+                    timerToSendResumeAgain.Interval = 500;
+
+                    sendPauseResumeFrame();
+                    if (Communication.FlagPauseResume == 0)
+                        timerSimAGV.Enabled = false;
+                    else
+                        timerSimAGV.Enabled = true;
                     break;
                 case "Simulation":
                     timerSimAGV.Enabled = false;
@@ -414,6 +444,50 @@ namespace AGV_Form
            
         }
 
+        public void timerToSendResumeAgain_Tick(object sender, EventArgs e)
+        {
+            timerToSendResumeAgain.Stop();
+            sendPauseResumeFrame();
+
+        }
+        public void timerToSendPauseAgain_Tick(object sender, EventArgs e)
+        {
+            timerToSendPauseAgain.Stop();
+            sendPauseResumeFrame();
+
+        }
+        public static void sendPauseResumeFrame()
+        {
+            Communication.PauseInfoPacket sendFrame = new Communication.PauseInfoPacket();
+
+            sendFrame.Header = new byte[2] { 0xAA, 0xFF };
+            sendFrame.FunctionCode = 0xAE;
+            sendFrame.AGVID = 0x01;
+            if (Communication.FlagPauseResume == 0)
+                sendFrame.DataPause = 'S';
+            else if (Communication.FlagPauseResume == 1)
+                sendFrame.DataPause = 'R';
+            sendFrame.CheckSum = new byte[2];
+            // calculate check sum
+            CRC16_Calculator(sendFrame.ToArrayCRC(), sendFrame.CheckSum);
+
+            //sendFrame.CheckSum = crc;
+            sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
+
+            if (!Communication.SerialPort.IsOpen) return;
+            try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
+            catch { };
+            if (Communication.FlagPauseResume == 0)
+            {
+                if (timerToSendPauseAgain.Enabled == false)
+                    timerToSendPauseAgain.Start();
+            }
+            else if (Communication.FlagPauseResume == 1)
+            {
+                if (timerToSendResumeAgain.Enabled == false)
+                    timerToSendResumeAgain.Start();
+            }
+        }
         public static System.Windows.Forms.Timer timerToSendLineAgain;
         public static System.Windows.Forms.Timer timerToSendPathAgain;
         public static System.Windows.Forms.Timer timerToSendSpeedAgain;
@@ -490,6 +564,157 @@ namespace AGV_Form
             StoreForm storeForm = new StoreForm(54);
             storeForm.Show();
         }
+        
+
+       
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AGV.SimListAGV[1].Stop = true;
+          
+        }
+
+        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int agvID = 1;
+            AGV agv = AGV.SimListAGV.Find(p => p.ID == agvID);
+            if(agv.Status == "Stop")
+            {
+                
+                List<int> path = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, 55);
+                AGV.SimFullPathOfAGV[agvID] = Navigation.GetNavigationFrame(path, Node.MatrixNodeOrient);
+                AGV.SimListAGV[0].Path.Add(path);
+            }
+          
+        }
+
+        private void btnConfigPIDLine_Click(object sender, EventArgs e)
+        {
+            timerToSendLineAgain = new System.Windows.Forms.Timer();
+            timerToSendLineAgain.Tick += new EventHandler(timerToSendLineAgain_Tick);
+            timerToSendLineAgain.Interval = 400;
+            sendLineFrame();
+         //   Thread thrdSendLineFrame = new Thread(sendLineFrame);
+         // thrdSendLineFrame.IsBackground = true;
+         // thrdSendLineFrame.Start();
+        }
+        public void timerToSendLineAgain_Tick(object sender, EventArgs e)
+        {
+            timerToSendLineAgain.Stop();
+            sendLineFrame();
+            
+        }  
+      
+       
+        public static void sendLineFrame()
+        {
+            Communication.SetLinePosPacket sendFrame = new Communication.SetLinePosPacket();
+
+            sendFrame.Header = new byte[2] { 0xAA, 0xFF };
+            sendFrame.FunctionCode = 0xAD;
+            sendFrame.AGVID = 0x01;
+            sendFrame.Kp = Convert.ToSingle("0.5");
+            sendFrame.Ki = Convert.ToSingle("0.0005");
+            sendFrame.Kd = Convert.ToSingle("0.05");
+            sendFrame.CheckSum = new byte[2];
+
+            // calculate check sum
+            CRC16_Calculator(sendFrame.ToArrayCRC(), sendFrame.CheckSum);
+
+            //sendFrame.CheckSum = crc;
+            sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
+            if (!Communication.SerialPort.IsOpen) return;
+            try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
+            catch { };
+            if (timerToSendLineAgain.Enabled == false)
+                timerToSendLineAgain.Start();
+            
+        }
+        private void ShowAGVLabel(List<AGV> listAGV,Label[] listLabel, Panel panel)
+        {
+            foreach (AGV agv in listAGV)
+            {
+                panel.Controls.Add(listLabel[agv.ID]);
+            }
+        }
+         private void HideAGVLabel(List<AGV> listAGV, Label[] listLabel, Panel panel)
+        {
+            foreach (AGV agv in listAGV)
+            {
+                Label label = listLabel[agv.ID];
+                panel.Controls.Remove(label);
+                
+                
+            }
+        }
+
+        public static void CRC16_Calculator(byte[] messageArray, byte[] CRC)
+        {
+            ushort CRCFull = 0xFFFF;
+            char CRCLSB;
+
+            for (int i = 0; i < (messageArray.Length); i++)
+            {
+                CRCFull = (ushort)(CRCFull ^ messageArray[i]);
+
+                for (int j = 0; j < 8; j++)
+                {
+                    CRCLSB = (char)(CRCFull & 0x0001);
+                    CRCFull = (ushort)((CRCFull >> 1) & 0x7FFF);
+
+                    if (CRCLSB == 1)
+                        CRCFull = (ushort)(CRCFull ^ 0xA001);
+                }
+            }
+            CRC[0] = (byte)(CRCFull & 0xFF);
+            CRC[1] = (byte)((CRCFull >> 8) & 0xFF);
+        }
+
+        private void btnConfigPIDSpeed_Click(object sender, EventArgs e)
+        {
+            timerToSendSpeedAgain = new System.Windows.Forms.Timer();
+            timerToSendSpeedAgain.Tick += new EventHandler(timerToSendSpeedAgain_Tick);
+            timerToSendSpeedAgain.Interval = 400;
+            sendSpeedFrame();
+          // Thread thrdSendSpeedFrame = new Thread(sendSpeedFrame);
+          // thrdSendSpeedFrame.IsBackground = true;
+          // thrdSendSpeedFrame.Start();
+        }
+        public void timerToSendSpeedAgain_Tick(object sender, EventArgs e)
+        {
+            timerToSendSpeedAgain.Stop();
+            sendSpeedFrame();
+
+        }
+
+        public static void sendSpeedFrame()
+        {
+            Communication.SetSpeedPacket sendFrame = new Communication.SetSpeedPacket();
+
+            sendFrame.Header = new byte[2] { 0xAA, 0xFF };
+            sendFrame.CheckSum = new byte[2];
+            sendFrame.FunctionCode = 0xAC;
+            sendFrame.AGVID = 0x01;
+            sendFrame.Kp = Convert.ToSingle("2.0");
+            sendFrame.Ki = Convert.ToSingle("2.0");
+            sendFrame.Kd = Convert.ToSingle("0.015");
+            sendFrame.Velocity = Convert.ToSingle("15.0");
+            sendFrame.CheckSum = new byte[2];
+            // calculate check sum
+            CRC16_Calculator(sendFrame.ToArrayCRC(), sendFrame.CheckSum);
+            //   sendFrame.CheckSum = crc;           
+            sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
+            if (!Communication.SerialPort.IsOpen) return;
+            try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
+            catch { };
+            if (timerToSendSpeedAgain.Enabled == false)
+                timerToSendSpeedAgain.Start();
+
+           
+        }
+        #region Load Label to List Label in Display Class
         private void LoadLabel()
         {
             // Load Pallet Label Block A
@@ -591,142 +816,12 @@ namespace AGV_Form
 
 
         }
+        #endregion
 
-       
-
-        private void button4_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            AGV.SimListAGV[1].Stop = true;
-          
+            string send = "N-0-N-55-N-25-N-4-W-3-W-2-S-10-G-N-0";
+            Communication.SendPathData(send);   
         }
-
-        
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            int agvID = 1;
-            AGV agv = AGV.SimListAGV.Find(p => p.ID == agvID);
-            if(agv.Status == "Stop")
-            {
-                
-                List<int> path = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, 55);
-                AGV.SimFullPathOfAGV[agvID] = Navigation.GetNavigationFrame(path, Node.MatrixNodeOrient);
-                AGV.SimListAGV[0].Path.Add(path);
-            }
-            //agv.PathCopmpleted = 4;
-        }
-
-        private void btnConfigPIDLine_Click(object sender, EventArgs e)
-        {
-            timerToSendLineAgain = new System.Windows.Forms.Timer();
-            timerToSendLineAgain.Tick += new EventHandler(timerToSendLineAgain_Tick);
-            timerToSendLineAgain.Interval = 400;
-            sendLineFrame();
-         //   Thread thrdSendLineFrame = new Thread(sendLineFrame);
-         // thrdSendLineFrame.IsBackground = true;
-         // thrdSendLineFrame.Start();
-        }
-        public void timerToSendLineAgain_Tick(object sender, EventArgs e)
-        {
-            timerToSendLineAgain.Stop();
-            sendLineFrame();
-            
-        }  
-      
-       
-        public static void sendLineFrame()
-        {
-            Communication.SetLinePosPacket sendFrame = new Communication.SetLinePosPacket();
-
-            sendFrame.Header = new byte[2] { 0xAA, 0xFF };
-            sendFrame.FunctionCode = 0xAD;
-            sendFrame.AGVID = 0x01;
-            sendFrame.Kp = Convert.ToSingle("0.5");
-            sendFrame.Ki = Convert.ToSingle("0.0005");
-            sendFrame.Kd = Convert.ToSingle("0.05");
-            sendFrame.CheckSum = new byte[2];
-
-            // calculate check sum
-            CRC16_Calculator(sendFrame.ToArrayCRC(), sendFrame.CheckSum);
-
-            //sendFrame.CheckSum = crc;
-            sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
-            if (!Communication.SerialPort.IsOpen) return;
-            try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
-            catch { };
-            if (timerToSendLineAgain.Enabled == false)
-                timerToSendLineAgain.Start();
-            
-        }
-
-
-        public static void CRC16_Calculator(byte[] messageArray, byte[] CRC)
-        {
-            ushort CRCFull = 0xFFFF;
-            char CRCLSB;
-
-            for (int i = 0; i < (messageArray.Length); i++)
-            {
-                CRCFull = (ushort)(CRCFull ^ messageArray[i]);
-
-                for (int j = 0; j < 8; j++)
-                {
-                    CRCLSB = (char)(CRCFull & 0x0001);
-                    CRCFull = (ushort)((CRCFull >> 1) & 0x7FFF);
-
-                    if (CRCLSB == 1)
-                        CRCFull = (ushort)(CRCFull ^ 0xA001);
-                }
-            }
-            CRC[0] = (byte)(CRCFull & 0xFF);
-            CRC[1] = (byte)((CRCFull >> 8) & 0xFF);
-        }
-
-        private void btnConfigPIDSpeed_Click(object sender, EventArgs e)
-        {
-            timerToSendSpeedAgain = new System.Windows.Forms.Timer();
-            timerToSendSpeedAgain.Tick += new EventHandler(timerToSendSpeedAgain_Tick);
-            timerToSendSpeedAgain.Interval = 400;
-            sendSpeedFrame();
-          // Thread thrdSendSpeedFrame = new Thread(sendSpeedFrame);
-          // thrdSendSpeedFrame.IsBackground = true;
-          // thrdSendSpeedFrame.Start();
-        }
-        public void timerToSendSpeedAgain_Tick(object sender, EventArgs e)
-        {
-            timerToSendSpeedAgain.Stop();
-            sendSpeedFrame();
-
-        }
-
-        public static void sendSpeedFrame()
-        {
-            Communication.SetSpeedPacket sendFrame = new Communication.SetSpeedPacket();
-
-            sendFrame.Header = new byte[2] { 0xAA, 0xFF };
-            sendFrame.CheckSum = new byte[2];
-            sendFrame.FunctionCode = 0xAC;
-            sendFrame.AGVID = 0x01;
-            sendFrame.Kp = Convert.ToSingle("2.0");
-            sendFrame.Ki = Convert.ToSingle("2.0");
-            sendFrame.Kd = Convert.ToSingle("0.015");
-            sendFrame.Velocity = Convert.ToSingle("15.0");
-            sendFrame.CheckSum = new byte[2];
-            // calculate check sum
-            CRC16_Calculator(sendFrame.ToArrayCRC(), sendFrame.CheckSum);
-            //   sendFrame.CheckSum = crc;           
-            sendFrame.EndOfFrame = new byte[2] { 0x0A, 0x0D };
-            if (!Communication.SerialPort.IsOpen) return;
-            try { Communication.SerialPort.Write(sendFrame.ToArray(), 0, sendFrame.ToArray().Length); }
-            catch { };
-            if (timerToSendSpeedAgain.Enabled == false)
-                timerToSendSpeedAgain.Start();
-
-           
-        }
-
-       
-
-        
     }
 }
