@@ -60,7 +60,7 @@ namespace AGV_Form
             this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.ImageIndex = 4;
             this.label2.ImageList = this.imageList1;
-            this.label2.Location = new System.Drawing.Point(76, 28);
+            this.label2.Location = new System.Drawing.Point(39, 28);
             this.label2.Name = "label2";
             this.label2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label2.Size = new System.Drawing.Size(136, 19);
@@ -82,7 +82,7 @@ namespace AGV_Form
             // txbPhoneNumber
             // 
             this.txbPhoneNumber.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.txbPhoneNumber.Location = new System.Drawing.Point(215, 63);
+            this.txbPhoneNumber.Location = new System.Drawing.Point(178, 63);
             this.txbPhoneNumber.Name = "txbPhoneNumber";
             this.txbPhoneNumber.Size = new System.Drawing.Size(149, 25);
             this.txbPhoneNumber.TabIndex = 44;
@@ -90,7 +90,7 @@ namespace AGV_Form
             // txbName
             // 
             this.txbName.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.txbName.Location = new System.Drawing.Point(215, 26);
+            this.txbName.Location = new System.Drawing.Point(178, 26);
             this.txbName.Name = "txbName";
             this.txbName.Size = new System.Drawing.Size(149, 25);
             this.txbName.TabIndex = 43;
@@ -99,7 +99,7 @@ namespace AGV_Form
             // 
             this.txbTemplatePath.BackColor = System.Drawing.SystemColors.Info;
             this.txbTemplatePath.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbTemplatePath.Location = new System.Drawing.Point(218, 125);
+            this.txbTemplatePath.Location = new System.Drawing.Point(181, 125);
             this.txbTemplatePath.Name = "txbTemplatePath";
             this.txbTemplatePath.ReadOnly = true;
             this.txbTemplatePath.Size = new System.Drawing.Size(499, 25);
@@ -111,7 +111,7 @@ namespace AGV_Form
             this.btnPreview.ForeColor = System.Drawing.Color.DarkRed;
             this.btnPreview.ImageIndex = 0;
             this.btnPreview.ImageList = this.imageList1;
-            this.btnPreview.Location = new System.Drawing.Point(528, 562);
+            this.btnPreview.Location = new System.Drawing.Point(492, 591);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(85, 32);
             this.btnPreview.TabIndex = 40;
@@ -126,7 +126,7 @@ namespace AGV_Form
             this.btnLoadTemplate.ForeColor = System.Drawing.Color.DarkRed;
             this.btnLoadTemplate.ImageIndex = 2;
             this.btnLoadTemplate.ImageList = this.imageList1;
-            this.btnLoadTemplate.Location = new System.Drawing.Point(84, 120);
+            this.btnLoadTemplate.Location = new System.Drawing.Point(47, 120);
             this.btnLoadTemplate.Name = "btnLoadTemplate";
             this.btnLoadTemplate.Size = new System.Drawing.Size(128, 32);
             this.btnLoadTemplate.TabIndex = 41;
@@ -145,7 +145,7 @@ namespace AGV_Form
             this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.ImageIndex = 5;
             this.label1.ImageList = this.imageList1;
-            this.label1.Location = new System.Drawing.Point(76, 65);
+            this.label1.Location = new System.Drawing.Point(39, 65);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 19);
             this.label1.TabIndex = 38;
@@ -159,7 +159,7 @@ namespace AGV_Form
             // txbEmail
             // 
             this.txbEmail.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
-            this.txbEmail.Location = new System.Drawing.Point(528, 65);
+            this.txbEmail.Location = new System.Drawing.Point(491, 65);
             this.txbEmail.Name = "txbEmail";
             this.txbEmail.Size = new System.Drawing.Size(186, 25);
             this.txbEmail.TabIndex = 46;
@@ -170,7 +170,7 @@ namespace AGV_Form
             this.btnSaveAs.ForeColor = System.Drawing.Color.DarkRed;
             this.btnSaveAs.ImageIndex = 1;
             this.btnSaveAs.ImageList = this.imageList1;
-            this.btnSaveAs.Location = new System.Drawing.Point(627, 562);
+            this.btnSaveAs.Location = new System.Drawing.Point(591, 591);
             this.btnSaveAs.Name = "btnSaveAs";
             this.btnSaveAs.Size = new System.Drawing.Size(90, 32);
             this.btnSaveAs.TabIndex = 42;
@@ -189,7 +189,7 @@ namespace AGV_Form
             this.label3.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
             this.label3.ImageIndex = 3;
             this.label3.ImageList = this.imageList1;
-            this.label3.Location = new System.Drawing.Point(458, 69);
+            this.label3.Location = new System.Drawing.Point(421, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 19);
             this.label3.TabIndex = 39;
@@ -200,10 +200,10 @@ namespace AGV_Form
             // 
             this.rtxbTemplate.BackColor = System.Drawing.Color.White;
             this.rtxbTemplate.Font = new System.Drawing.Font("Cambria", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtxbTemplate.Location = new System.Drawing.Point(88, 158);
+            this.rtxbTemplate.Location = new System.Drawing.Point(49, 169);
             this.rtxbTemplate.Name = "rtxbTemplate";
             this.rtxbTemplate.ReadOnly = true;
-            this.rtxbTemplate.Size = new System.Drawing.Size(633, 387);
+            this.rtxbTemplate.Size = new System.Drawing.Size(633, 400);
             this.rtxbTemplate.TabIndex = 47;
             this.rtxbTemplate.Text = "";
             // 
@@ -225,9 +225,9 @@ namespace AGV_Form
             this.groupBox2.Controls.Add(this.btnLoadTemplate);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox2.Location = new System.Drawing.Point(26, 9);
+            this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(813, 614);
+            this.groupBox2.Size = new System.Drawing.Size(754, 640);
             this.groupBox2.TabIndex = 48;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Export Report File";
@@ -247,7 +247,8 @@ namespace AGV_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 749);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.groupBox2);
             this.Name = "ReportForm";

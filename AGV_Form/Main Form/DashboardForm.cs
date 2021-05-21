@@ -148,7 +148,7 @@ namespace AGV_Form
 
         private void timerListview_Tick(object sender, EventArgs e)
         {
-            
+
             if (textComStatus.Count != 0)
             {
                 rtxtbComStatus.SelectionColor = colorComStatus[0];
@@ -157,21 +157,21 @@ namespace AGV_Form
                 textComStatus.RemoveAt(0);
                 colorComStatus.RemoveAt(0);
             }
-            
+
             switch (Display.Mode)
             {
                 case "Real Time":
                     // Update data in listView AGVs
                     Display.UpdateListViewAGVs(listViewAGVs, AGV.ListAGV);
-                    if(AGV.ListAGV.Count >0)
-                    {
-                        Display.UpdateListViewTasks(listViewTask, AGV.ListAGV[0].Tasks);
+                    Display.UpdateListViewTasks(listViewTask, Task.ListTask);
+                    if (AGV.ListAGV.Count > 0)
+                    {                        
                         Display.UpdatePositionAGV(AGV.ListAGV[0].ID, Display.LabelAGV[AGV.ListAGV[0].ID], Display.LabelPalletInAGV[AGV.ListAGV[0].ID]);
                     }
-                    
+
                     // Do something here
                     // Update serial port status
-                  
+
                     break;
                 case "Simulation":
                     // Update data in listView AGVs
@@ -183,10 +183,17 @@ namespace AGV_Form
 
                     break;
             }
-          //if(AGV.SimListAGV.Count >=2)
-         // Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[1]);
+            //if (AGV.SimListAGV.Count >= 4)
+            //{
+            //    Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[1], 1);
+            //    Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[2], 2);
+            //    Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[3], 3);
+            //    Collision.DetectColission(AGV.SimListAGV[1], AGV.SimListAGV[2], 4);
+            //    Collision.DetectColission(AGV.SimListAGV[1], AGV.SimListAGV[3], 5);
+            //    Collision.DetectColission(AGV.SimListAGV[2], AGV.SimListAGV[3], 6);
+            //    //label19.Text = Collision.type1.ToString();
+            //}
 
-            //label19.Text = Collision.CollisionType.ToString();
 
         }
         private void pnFloor_Paint(object sender, PaintEventArgs e)

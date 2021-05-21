@@ -450,10 +450,6 @@ namespace AGV_Form
             
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            AGV agv = AGV.ListAGV.Find(p => p.ID == selectedAGVID);
-            label22.Text = agv.CurrentNode.ToString();
-        }
+       
     }
 }

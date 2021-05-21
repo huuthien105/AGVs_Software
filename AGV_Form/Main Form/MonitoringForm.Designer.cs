@@ -93,6 +93,7 @@ namespace AGV_Form
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbIDSelected = new System.Windows.Forms.Label();
             this.lbOnTask = new System.Windows.Forms.Label();
             this.lbStatus = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -119,9 +120,6 @@ namespace AGV_Form
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.lbMode = new System.Windows.Forms.Label();
             this.timerView = new System.Windows.Forms.Timer(this.components);
-            this.lbIDSelected = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -983,6 +981,19 @@ namespace AGV_Form
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "      AGV Status";
             // 
+            // lbIDSelected
+            // 
+            this.lbIDSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbIDSelected.AutoSize = true;
+            this.lbIDSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbIDSelected.ForeColor = System.Drawing.Color.Navy;
+            this.lbIDSelected.Location = new System.Drawing.Point(36, 47);
+            this.lbIDSelected.Name = "lbIDSelected";
+            this.lbIDSelected.Size = new System.Drawing.Size(35, 17);
+            this.lbIDSelected.TabIndex = 41;
+            this.lbIDSelected.Text = "##,#";
+            this.lbIDSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lbOnTask
             // 
             this.lbOnTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -1300,8 +1311,6 @@ namespace AGV_Form
             // groupBox9
             // 
             this.groupBox9.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.groupBox9.Controls.Add(this.label22);
-            this.groupBox9.Controls.Add(this.button6);
             this.groupBox9.Controls.Add(this.lbMode);
             this.groupBox9.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.groupBox9.ForeColor = System.Drawing.Color.DarkRed;
@@ -1326,38 +1335,6 @@ namespace AGV_Form
             // 
             this.timerView.Interval = 200;
             this.timerView.Tick += new System.EventHandler(this.timerView_Tick);
-            // 
-            // lbIDSelected
-            // 
-            this.lbIDSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbIDSelected.AutoSize = true;
-            this.lbIDSelected.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIDSelected.ForeColor = System.Drawing.Color.Navy;
-            this.lbIDSelected.Location = new System.Drawing.Point(36, 47);
-            this.lbIDSelected.Name = "lbIDSelected";
-            this.lbIDSelected.Size = new System.Drawing.Size(35, 17);
-            this.lbIDSelected.TabIndex = 41;
-            this.lbIDSelected.Text = "##,#";
-            this.lbIDSelected.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(6, 20);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 14;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(133, 23);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(58, 20);
-            this.label22.TabIndex = 15;
-            this.label22.Text = "label22";
             // 
             // MonitoringForm
             // 
@@ -1407,7 +1384,6 @@ namespace AGV_Form
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1503,7 +1479,5 @@ namespace AGV_Form
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label lbLiftPosition;
         private System.Windows.Forms.Label lbIDSelected;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Button button6;
     }
 }

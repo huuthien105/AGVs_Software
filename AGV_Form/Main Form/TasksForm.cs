@@ -335,13 +335,13 @@ namespace AGV_Form
 
           
             RackColumn rack = RackColumn.ListColumn.Find(c => c.Block == pallet.AtBlock && c.Number == pallet.AtColumn);
-            Debug.WriteLine(rack.AtNode.ToString());
+            //Debug.WriteLine(rack.AtNode.ToString());
             int agvID = 0;
             if (cbbModeList.Text == "Simulation")
                 agvID = Task.AutoSelectAGV(AGV.SimListAGV, rack.AtNode);
             else if (cbbModeList.Text == "Real Time")
                 agvID = Task.AutoSelectAGV(AGV.ListAGV, rack.AtNode);
-            Debug.WriteLine(agvID.ToString());
+            //Debug.WriteLine(agvID.ToString());
             int pickNode = rack.AtNode;
             int pickLevel = pallet.AtLevel;
 
@@ -373,10 +373,10 @@ namespace AGV_Form
         private void btnRemove_Click(object sender, EventArgs e)
         {
             
-            if(cbbModeList.Text=="Real Time")
+            if(cbbModeList.Text== "Real Time")
             {
                 Task taskRemove = Task.ListTask.Find(a=>a.Name == cbbTaskRemove.Text);
-                if(taskRemove.Status == "Waitting")
+                if(taskRemove.Status == "Waiting")
                 {
                     Task.ListTask.Remove(taskRemove);
                     int AGVindex = AGV.ListAGV.FindIndex(a => { return a.ID == taskRemove.AGVID; });
