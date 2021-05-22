@@ -35,7 +35,7 @@ namespace AGV_Form
             
         }
         private static List<byte> bytesReceived = new List<byte>();
-        private const ushort PIDInfoReceivePacketSize = 20;
+        private const ushort PIDInfoReceivePacketSize = 24;
         private const ushort PathCompleteReceivePacketSize = 7;
 
         public static int com = 0;
@@ -44,7 +44,7 @@ namespace AGV_Form
         public static void GetDataRecieve()
         {
 
-            int rxBufferSize = 18;
+            int rxBufferSize = 22;
             byte[] rxBuffer = new byte[rxBufferSize];
             int rxByteCount = Communication.SerialPort.Read(rxBuffer, 0, rxBufferSize);
             // add to a list of bytes received
@@ -97,6 +97,7 @@ namespace AGV_Form
                             agv.Velocity = receiveFrame.Velocity;
                             agv.DistanceToCurrentNode = receiveFrame.distanceToPreNode;
                             agv.LinePos = receiveFrame.LinePos;
+                            agv.LiftPos = receiveFrame.PositionLift;
                             //Display.UpdateComStatus("receive", agv.ID, "Receive AGV Information", Color.Green);
 
                     }
@@ -559,6 +560,7 @@ namespace AGV_Form
             public byte CurrentNode;
             public char currentOrient;
             public float distanceToPreNode;
+            public float PositionLift;
             public byte[] EndOfFrame;
 
 
@@ -579,8 +581,14 @@ namespace AGV_Form
                 s.LinePos = reader.ReadSingle();
               //  s.UdkLinePos = reader.ReadSingle();
                 s.CurrentNode = reader.ReadByte();
-                s.currentOrient = reader.ReadChar();
+                try
+                {
+                    s.currentOrient = reader.ReadChar();
+                }
+                catch { }
+                
                 s.distanceToPreNode = reader.ReadSingle();
+                s.PositionLift = reader.ReadSingle();
             //    s.CheckSum = reader.ReadUInt16();
                 s.EndOfFrame = reader.ReadBytes(2);
 

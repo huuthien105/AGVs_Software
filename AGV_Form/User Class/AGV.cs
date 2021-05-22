@@ -16,6 +16,7 @@ namespace AGV_Form
         public float Velocity { get; set; }
         public float Battery = 87.0F;
         public float LinePos = 0;
+        public float LiftPos = 0;
         public bool HavePallet = false;
         public bool IsColision = false;
         public bool Stop = false;

@@ -46,10 +46,10 @@ namespace AGV_Form
         public static List<Task> SimHistoryTask = new List<Task>();
 
         public static List<Task> HistoryTask = new List<Task>();
-        public static int StoreIndex = 0;
-        public static int OrderIndex = 0;
-        public static int SimStoreIndex = 0;
-        public static int SimOrderIndex = 0;
+        public static int StoreIndex = 1;
+        public static int OrderIndex = 1;
+        public static int SimStoreIndex = 1;
+        public static int SimOrderIndex = 1;
         public static void UpdatePathFromTaskOfAGV(AGV agv)
         {
             if (agv.Tasks.Count != 0)

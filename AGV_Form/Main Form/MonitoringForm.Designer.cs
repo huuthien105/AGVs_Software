@@ -66,9 +66,6 @@ namespace AGV_Form
             this.label28 = new System.Windows.Forms.Label();
             this.lbPosLift = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.ptbGoods = new System.Windows.Forms.PictureBox();
             this.label20 = new System.Windows.Forms.Label();
             this.ptbLift = new System.Windows.Forms.PictureBox();
@@ -522,9 +519,6 @@ namespace AGV_Form
             this.groupBox5.Controls.Add(this.label28);
             this.groupBox5.Controls.Add(this.lbPosLift);
             this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.button5);
-            this.groupBox5.Controls.Add(this.label8);
-            this.groupBox5.Controls.Add(this.button3);
             this.groupBox5.Controls.Add(this.ptbGoods);
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.ptbLift);
@@ -631,35 +625,6 @@ namespace AGV_Form
             this.label10.TabIndex = 37;
             this.label10.Text = "(Unit: cm)";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(169, 242);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 36;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(169, 219);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 20);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "label8";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(161, 193);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 34;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // ptbGoods
             // 
@@ -1458,9 +1423,6 @@ namespace AGV_Form
         private System.Windows.Forms.Label lbFullPath;
         private System.Windows.Forms.Label lbToRack;
         private System.Windows.Forms.Label lbFromRack;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;

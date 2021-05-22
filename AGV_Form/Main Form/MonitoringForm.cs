@@ -350,9 +350,23 @@ namespace AGV_Form
             else if (agv.LinePos > 1000) lbTracking.Text = "On The Left";
             else if (agv.LinePos < 1000) lbTracking.Text = "On The Right";
             else lbTracking.Text = "##,#";
+            //
+            UpdateForkliftPosition(agv.LiftPos);
+            lbLiftPosition.Text = agv.LiftPos.ToString();
+            if(agv.HavePallet)
+            {
+                lbHavePallet.Text = "Yes";
+                ptbGoods.Visible = true;
+            }
+            else
+            {
+                lbHavePallet.Text = "No";
+                ptbGoods.Visible = false;
+
+            }
             // Draw Graph
             DrawGraph(zedGraphVelocity,agv.Velocity,Convert.ToDouble(txtbSetVelocity.Text));
-            DrawGraph(zedGraphLineTrack,agv.LinePos,0);
+            DrawGraph(zedGraphLineTrack,agv.LinePos-1000,0);
 
         }
 
@@ -428,21 +442,7 @@ namespace AGV_Form
 
 
         }
-        private static float pos=0;
-        private void button3_Click_1(object sender, EventArgs e)
-        {
-            UpdateForkliftPosition(pos);
-            label8.Text = pos.ToString();
-            pos += 0.5f;
-        }
-
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-            UpdateForkliftPosition(pos);
-            label8.Text = pos.ToString();
-            pos -= 0.5f;
-        }
-
+        
         private void cbbAGV_SelectedIndexChanged(object sender, EventArgs e)
         {
             string[] arrID = cbbAGV.Text.Split(new char[] { '#' }, StringSplitOptions.RemoveEmptyEntries);
