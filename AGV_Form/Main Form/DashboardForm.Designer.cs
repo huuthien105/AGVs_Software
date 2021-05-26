@@ -216,6 +216,8 @@ namespace AGV_Form
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -258,6 +260,8 @@ namespace AGV_Form
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Lavender;
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.btnPause);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.btnCOMSetting);
@@ -2460,6 +2464,24 @@ namespace AGV_Form
             this.imageList1.Images.SetKeyName(2, "South_Direction.png.png");
             this.imageList1.Images.SetKeyName(3, "West_Direction.png.png");
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(257, 91);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(56, 20);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "label19";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(257, 121);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(58, 20);
+            this.label20.TabIndex = 25;
+            this.label20.Text = "label20";
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2678,5 +2700,7 @@ namespace AGV_Form
         private System.Windows.Forms.Button btnConfigPIDSpeed;
         private System.Windows.Forms.ToolStripMenuItem runCurrentAGVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stopCurrentAGVToolStripMenuItem;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
     }
 }

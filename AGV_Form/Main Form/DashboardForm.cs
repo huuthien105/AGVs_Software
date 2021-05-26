@@ -166,10 +166,16 @@ namespace AGV_Form
                     Display.UpdateListViewTasks(listViewTask, Task.ListTask);
                     if (AGV.ListAGV.Count > 0)
                     {                        
-                        Display.UpdatePositionAGV(AGV.ListAGV[0].ID, Display.LabelAGV[AGV.ListAGV[0].ID], Display.LabelPalletInAGV[AGV.ListAGV[0].ID]);
+                        Display.UpdateDisplayAGV(AGV.ListAGV[0].ID, Display.LabelAGV[AGV.ListAGV[0].ID], Display.LabelPalletInAGV[AGV.ListAGV[0].ID]);
                     }
+                    if(AGV.ListAGV.Count>1)
+                    {
+                        Display.UpdateDisplayAGV(AGV.ListAGV[1].ID, Display.SimLabelAGV[AGV.ListAGV[1].ID], Display.SimLabelPalletInAGV[AGV.ListAGV[1].ID]);
+                        Display.UpdatePositionAGV(AGV.ListAGV[1].ID, AGV.ListAGV[1].Velocity, pnFloor);
 
-                    // Do something here
+                    }
+                    //UpdatePathForSimAGVs();
+
                     // Update serial port status
 
                     break;
@@ -179,6 +185,12 @@ namespace AGV_Form
                     Display.UpdateListViewTasks(listViewTask, Task.SimListTask);
                     // Update location of AGV icon (label)
                     //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
+                    if (AGV.SimListAGV.Count >= 2)
+                    {
+                        Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[1], 1);
+                        label19.Text = Collision.goal[1].ToString();
+                        label20.Text = Collision.goal_type23[1].ToString();
+                    }
 
 
                     break;
@@ -193,6 +205,40 @@ namespace AGV_Form
             //    Collision.DetectColission(AGV.SimListAGV[2], AGV.SimListAGV[3], 6);
             //    //label19.Text = Collision.type1.ToString();
             //}
+
+
+        }
+        private void timerSimAGV_Tick(object sender, EventArgs e)
+        {
+            //listViewTask.Items.Clear();
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    //if(AGV.ListAGV.Count >0)
+                    //    Task.UpdatePathFromTaskOfAGV(AGV.ListAGV.Count[);
+                    foreach(AGV agv in AGV.ListAGV)
+                    {
+                        Task.UpdatePathFromTaskOfAGV(agv);
+                    }    
+
+                    
+                    break;
+                case "Simulation":
+                    foreach (AGV agv in AGV.SimListAGV)
+                    {
+                        Task.SimUpdatePathFromTaskOfAGVs(agv);
+                        Display.SimUpdateDisplayAGV(agv.ID, Display.SimLabelAGV[agv.ID], Display.SimLabelPalletInAGV[agv.ID]);
+                        Display.SimUpdatePositionAGV(agv.ID, agv.Velocity, pnFloor);
+
+                        //if(agv.HavePallet)
+                        //    Display.SimLabelPalletInAGV[agv.ID].Visible = true;
+                        //else
+                        //    Display.SimLabelPalletInAGV[agv.ID].Visible = false;
+                    }
+                    break;
+            }
+
+
 
 
         }
@@ -258,38 +304,7 @@ namespace AGV_Form
             
         }
 
-        private void timerSimAGV_Tick(object sender, EventArgs e)
-        {
-            //listViewTask.Items.Clear();
-            switch (Display.Mode)
-            {
-                case "Real Time":
-                    foreach (AGV agv in AGV.ListAGV)
-                    {
-                        Task.UpdatePathFromTaskOfAGV(agv);
-                       
-
-                    }
-                    break;
-                case "Simulation":
-                    foreach (AGV agv in AGV.SimListAGV)
-                    {
-                        Task.SimUpdatePathFromTaskOfAGVs(agv);
-                        Display.SimUpdatePositionAGV(agv.ID, agv.Velocity,pnFloor, Display.SimLabelAGV[agv.ID],Display.SimLabelPalletInAGV[agv.ID]);
-                       
-                        
-                        //if(agv.HavePallet)
-                        //    Display.SimLabelPalletInAGV[agv.ID].Visible = true;
-                        //else
-                        //    Display.SimLabelPalletInAGV[agv.ID].Visible = false;
-                    }
-                    break;
-            }
-
-
-           
-            
-        }
+       
 
        
 

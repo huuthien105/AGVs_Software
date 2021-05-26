@@ -227,5 +227,70 @@ namespace AGV_Form
                     break;
             }
         }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (String.IsNullOrEmpty(cbbTaskRemove.Text)) return;
+            if (Display.Mode == "Real Time")
+            {
+                Task taskRemove = Task.ListTask.Find(a => a.Name == cbbTaskRemove.Text);
+                if (taskRemove.Status == "Waiting")
+                {
+                    Task.ListTask.Remove(taskRemove);
+                    int AGVindex = AGV.ListAGV.FindIndex(a => { return a.ID == taskRemove.AGVID; });
+                    AGV.ListAGV[AGVindex].Tasks.Remove(taskRemove);
+                    MessageBox.Show("Remove " + taskRemove.Name.ToString() + " Successful !", "Remove Task",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Unable Remove " + taskRemove.Name.ToString() + " Because Task is doing !", "Remove Task",
+                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            else
+            {
+                Task taskRemove = Task.SimListTask.Find(a => a.Name == cbbTaskRemove.Text);
+                if (taskRemove.Status == "Waiting")
+                {
+                    Task.SimListTask.Remove(taskRemove);
+                    int SimAGVindex = AGV.SimListAGV.FindIndex(a => { return a.ID == taskRemove.AGVID; });
+                    AGV.SimListAGV[SimAGVindex].Tasks.Remove(taskRemove);
+                    MessageBox.Show("Remove " + taskRemove.Name.ToString() + " Successful !", "Remove Task",
+                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Unable Remove " + taskRemove.Name.ToString() + " Because Task is doing !", "Remove Task",
+                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            cbbTaskRemove.Text = "";
+        }
+
+        private void cbbTaskRemove_Click(object sender, EventArgs e)
+        {
+
+            cbbTaskRemove.Items.Clear();
+            switch (Display.Mode)
+            {
+                case "Real Time":
+                    // Update data in listView AGVs
+                    foreach (Task task in Task.ListTask)
+                    {
+                        cbbTaskRemove.Items.Add(task.Name);
+                    }
+                    break;
+                case "Simulation":
+                    // Update data in listView AGVs
+                    foreach (Task task in Task.SimListTask)
+                    {
+                        cbbTaskRemove.Items.Add(task.Name);
+                    }
+
+                    break;
+            }
+        }
     }
 }

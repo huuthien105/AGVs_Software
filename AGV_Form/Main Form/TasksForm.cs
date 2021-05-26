@@ -372,8 +372,8 @@ namespace AGV_Form
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            
-            if(cbbModeList.Text== "Real Time")
+            if (String.IsNullOrEmpty(cbbTaskRemove.Text)) return;
+            if (cbbModeList.Text== "Real Time")
             {
                 Task taskRemove = Task.ListTask.Find(a=>a.Name == cbbTaskRemove.Text);
                 if(taskRemove.Status == "Waiting")
@@ -384,7 +384,11 @@ namespace AGV_Form
                     MessageBox.Show("Remove " + taskRemove.Name.ToString() + " Successful !", "Remove Task",
                                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
+                else
+                {
+                    MessageBox.Show("Unable Remove " + taskRemove.Name.ToString() + " Because Task is doing !", "Remove Task",
+                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -396,6 +400,11 @@ namespace AGV_Form
                     AGV.SimListAGV[SimAGVindex].Tasks.Remove(taskRemove);
                     MessageBox.Show("Remove "+taskRemove.Name.ToString()+ " Successful !", "Remove Task",
                                              MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Unable Remove " + taskRemove.Name.ToString() + " Because Task is doing !", "Remove Task",
+                                           MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             cbbTaskRemove.Text = "";

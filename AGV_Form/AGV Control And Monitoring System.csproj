@@ -58,6 +58,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="User Class\RealCollision.cs" />
     <Compile Include="User Class\Collision.cs" />
     <Compile Include="Mini Form\AddTaskAGVForm.cs">
       <SubType>Form</SubType>

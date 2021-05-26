@@ -80,7 +80,7 @@ namespace AGV_Form
 
 
         }
-        public static void UpdatePositionAGV(int agvID, Label lbagv,Label lbpallet)
+        public static void UpdateDisplayAGV(int agvID, Label lbagv,Label lbpallet)
         {
             var index = AGV.ListAGV.FindIndex(a => a.ID == agvID);
             AGV agv = AGV.ListAGV[index];
@@ -137,28 +137,19 @@ namespace AGV_Form
             lbpallet.Location = newPalletPosition;
             lbagv.Location = newAGVPosition;
         }
-        public static void SimUpdatePositionAGV(int agvID, float speed, Panel pnFloor,Label lbagv, Label lbpallet)
+        public static void UpdatePositionAGV(int agvID, float speed, Panel pnFloor)
         {
             //int step = (int)speed * 2 / 10;              //1pixel = 0.5cm =>> 20cm/s=40pixel/s
-            var index = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
-            AGV agv = AGV.SimListAGV[index];
+            var index = AGV.ListAGV.FindIndex(a => a.ID == agvID);
+            AGV agv = AGV.ListAGV[index];
+            string[] frameArr = AGV.FullPathOfAGV[agvID].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
             //List<char> fullpath = AGV.FullPathOfAGV[agvID].ToList();
-
-            string[] frameArr = AGV.SimFullPathOfAGV[agvID].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-            
-            Point oldAGVPosition = Display.SimLabelAGV[agvID].Location;
-            Point newAGVPosition = new Point();
-            Point oldPalletPosition = Display.SimLabelPalletInAGV[agvID].Location;
-            Point newPalletPosition = new Point();
-            Size oldPalletSize = Display.SimLabelPalletInAGV[agvID].Size;
-            Size newPalletSize = new Size();
-
             int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString());
             if (agv.Stop)
             {
                 return;
-            } 
-            
+            }
+
             if (agv.IsColision) return;
             if (frameArr[indexNode + 1] == "G" || frameArr[indexNode + 1] == null)
             {
@@ -190,16 +181,87 @@ namespace AGV_Form
                     agv.DistanceToCurrentNode += speed / 5.2f;
                     if (agv.DistanceToCurrentNode * 2 >= Node.MatrixNodeDistance[currentNode, nextNode])
                     {
-                        
+
                         agv.DistanceToCurrentNode = 0;
                         agv.CurrentNode = nextNode;
-                        
+
                         if (frameArr[indexNode + 3] != "G")
                             agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 3]);
-                    }                                                                                  
+                    }
                 }
             }
 
+        }
+        public static void SimUpdatePositionAGV(int agvID, float speed, Panel pnFloor)
+        {
+            //int step = (int)speed * 2 / 10;              //1pixel = 0.5cm =>> 20cm/s=40pixel/s
+            var index = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
+            AGV agv = AGV.SimListAGV[index];
+            string[] frameArr = AGV.SimFullPathOfAGV[agvID].Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
+            //List<char> fullpath = AGV.FullPathOfAGV[agvID].ToList();
+            int indexNode = Array.FindIndex(frameArr, a => a == agv.CurrentNode.ToString());
+            if (agv.Stop)
+            {
+                return;
+            }
+
+            if (agv.IsColision) return;
+            if (frameArr[indexNode + 1] == "G" || frameArr[indexNode + 1] == null)
+            {
+                agv.PathCopmpleted++;
+                if (agv.PathCopmpleted == 1 || agv.PathCopmpleted == 0)
+
+                {
+                    Display.Points = new Point[] { new Point(), new Point() };
+                    pnFloor.Refresh();
+                }
+            }
+            else
+            {
+                int currentNode = agv.CurrentNode;
+                int nextNode = Convert.ToInt32(frameArr[indexNode + 2]);
+                if (agv.CurrentOrient != Display.UpdateOrient(frameArr[indexNode + 1]))
+                {
+                    agv.DistanceToCurrentNode -= speed / 5.2f;
+                    if (agv.DistanceToCurrentNode <= 0)
+                    {
+                        agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 1]);
+                        agv.DistanceToCurrentNode = 0;
+                    }
+
+                }
+                else
+                {
+
+                    agv.DistanceToCurrentNode += speed / 5.2f;
+                    if (agv.DistanceToCurrentNode * 2 >= Node.MatrixNodeDistance[currentNode, nextNode])
+                    {
+
+                        agv.DistanceToCurrentNode = 0;
+                        agv.CurrentNode = nextNode;
+
+                        if (frameArr[indexNode + 3] != "G")
+                            agv.CurrentOrient = Display.UpdateOrient(frameArr[indexNode + 3]);
+                    }
+                }
+            }
+
+        }
+        public static void SimUpdateDisplayAGV(int agvID,Label lbagv, Label lbpallet)
+        {
+
+            var index = AGV.SimListAGV.FindIndex(a => a.ID == agvID);
+            AGV agv = AGV.SimListAGV[index];
+
+
+            Point oldAGVPosition = Display.SimLabelAGV[agvID].Location;
+            Point newAGVPosition = new Point();
+            Point oldPalletPosition = Display.SimLabelPalletInAGV[agvID].Location;
+            Point newPalletPosition = new Point();
+            Size oldPalletSize = Display.SimLabelPalletInAGV[agvID].Size;
+            Size newPalletSize = new Size();
+
+            
             int pixelDistance = (int)Math.Round(agv.DistanceToCurrentNode * 2);
             List<Node> Nodes = DBUtility.GetDataFromDB<List<Node>>("NodeInfoTable");
             int x = Nodes[agv.CurrentNode].X - 50 / 2;
@@ -439,9 +501,9 @@ namespace AGV_Form
 
             DashboardForm.colorComStatus.Add(messageColor);
             if (type == "send")
-                DashboardForm.textComStatus.Add(timeNow + "\t-> to AGV#" + agvID.ToString() + ":\t" + message + "\n");
+                DashboardForm.textComStatus.Add(timeNow + "\t-> to AGV#" + agvID.ToString() + ":  " + message + "\n");
             else if (type == "receive")
-                DashboardForm.textComStatus.Add(timeNow + "\t<- from AGV#" + agvID.ToString() + ":\t" + message + "\n");
+                DashboardForm.textComStatus.Add(timeNow + "\t<- from AGV#" + agvID.ToString() + ":  " + message + "\n");
             else if (type == "timeout")
                 DashboardForm.textComStatus.Add(timeNow + "\t...  AGV#" + agvID.ToString() + "\ttimeout" + "\n");
             else if (type == "status")

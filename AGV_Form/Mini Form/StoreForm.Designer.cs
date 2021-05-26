@@ -32,6 +32,9 @@ namespace AGV_Form
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoreForm));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cbbTaskRemove = new System.Windows.Forms.ComboBox();
             this.listViewTask = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -50,6 +53,7 @@ namespace AGV_Form
             this.pallet_name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.store_time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.location = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imgPallet = new System.Windows.Forms.ImageList(this.components);
             this.btnStore = new System.Windows.Forms.Button();
             this.cbbLevel = new System.Windows.Forms.ComboBox();
             this.cbbColumn = new System.Windows.Forms.ComboBox();
@@ -62,7 +66,6 @@ namespace AGV_Form
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lbMode = new System.Windows.Forms.Label();
             this.timerListview = new System.Windows.Forms.Timer(this.components);
-            this.imgPallet = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,15 +76,55 @@ namespace AGV_Form
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.Color.Lavender;
+            this.groupBox1.Controls.Add(this.btnRemove);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.cbbTaskRemove);
             this.groupBox1.Controls.Add(this.listViewTask);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.DarkRed;
             this.groupBox1.Location = new System.Drawing.Point(12, 347);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(681, 177);
+            this.groupBox1.Size = new System.Drawing.Size(681, 212);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "List Of Task";
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnRemove.ForeColor = System.Drawing.Color.Navy;
+            this.btnRemove.Image = ((System.Drawing.Image)(resources.GetObject("btnRemove.Image")));
+            this.btnRemove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRemove.Location = new System.Drawing.Point(578, 171);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(94, 33);
+            this.btnRemove.TabIndex = 87;
+            this.btnRemove.Text = "     Remove";
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Navy;
+            this.label7.Location = new System.Drawing.Point(382, 179);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 20);
+            this.label7.TabIndex = 86;
+            this.label7.Text = "Task Remove:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // cbbTaskRemove
+            // 
+            this.cbbTaskRemove.FormattingEnabled = true;
+            this.cbbTaskRemove.Location = new System.Drawing.Point(484, 175);
+            this.cbbTaskRemove.Name = "cbbTaskRemove";
+            this.cbbTaskRemove.Size = new System.Drawing.Size(86, 28);
+            this.cbbTaskRemove.TabIndex = 85;
+            this.cbbTaskRemove.Click += new System.EventHandler(this.cbbTaskRemove_Click);
             // 
             // listViewTask
             // 
@@ -263,6 +306,12 @@ namespace AGV_Form
             this.location.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.location.Width = 70;
             // 
+            // imgPallet
+            // 
+            this.imgPallet.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgPallet.ImageStream")));
+            this.imgPallet.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgPallet.Images.SetKeyName(0, "icon_pallet.png");
+            // 
             // btnStore
             // 
             this.btnStore.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -405,17 +454,11 @@ namespace AGV_Form
             this.timerListview.Enabled = true;
             this.timerListview.Tick += new System.EventHandler(this.timerListview_Tick);
             // 
-            // imgPallet
-            // 
-            this.imgPallet.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgPallet.ImageStream")));
-            this.imgPallet.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgPallet.Images.SetKeyName(0, "icon_pallet.png");
-            // 
             // StoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 520);
+            this.ClientSize = new System.Drawing.Size(705, 571);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
@@ -424,6 +467,7 @@ namespace AGV_Form
             this.Text = "Store Pallet";
             this.Load += new System.EventHandler(this.StoreForm_Load);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -465,5 +509,8 @@ namespace AGV_Form
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPalletName;
         private System.Windows.Forms.ImageList imgPallet;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cbbTaskRemove;
     }
 }
