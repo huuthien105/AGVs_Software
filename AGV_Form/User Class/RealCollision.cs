@@ -15,6 +15,7 @@ namespace AGV_Form
             public static int[] goal = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             public static int[] goal_type45 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
             public static int[] goal_type23 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            public static string OldDrop = null;
             public static void DetectColission(AGV agv1, AGV agv2, int type)
             {
 
@@ -58,76 +59,77 @@ namespace AGV_Form
                 catch { }
             #endregion
 
-            #region AGV1 STOP AND AGV2 RUNNING
-            if (agv1.Stop && !agv2.Stop)
-                {
-                    float deltaDistance = (float)Math.Sqrt(Math.Pow(Node.ListNode[agv1.CurrentNode].X - Node.ListNode[agv1_nextNode].X, 2) +
-                                          Math.Pow(Node.ListNode[agv1.CurrentNode].Y - Node.ListNode[agv1_nextNode].Y, 2));
-
-
-                    Node.MatrixNodeDistance = Node.CreateAdjacencyMatrix(Node.ListNode);
-
-                    int[,] d = Node.MatrixNodeDistance;
-                    if (agv1.DistanceToCurrentNode < 20.0)
+                #region AGV1 STOP AND AGV2 RUNNING
+                if (agv1.Stop && !agv2.Stop)
                     {
-                        foreach (string adj in Node.ListNode[agv1.CurrentNode].AdjacentNode)
+                        float deltaDistance = (float)Math.Sqrt(Math.Pow(Node.ListNode[agv1.CurrentNode].X - Node.ListNode[agv1_nextNode].X, 2) +
+                                              Math.Pow(Node.ListNode[agv1.CurrentNode].Y - Node.ListNode[agv1_nextNode].Y, 2));
+
+
+                        Node.MatrixNodeDistance = Node.CreateAdjacencyMatrix(Node.ListNode);
+
+                        int[,] d = Node.MatrixNodeDistance;
+                        if (agv1.DistanceToCurrentNode < 20.0)
                         {
-                            int i = Convert.ToInt32(adj);
-                            d[agv1.CurrentNode, i] = 10000;
-                            d[i, agv1.CurrentNode] = 10000;
+                            foreach (string adj in Node.ListNode[agv1.CurrentNode].AdjacentNode)
+                            {
+                                int i = Convert.ToInt32(adj);
+                                d[agv1.CurrentNode, i] = 10000;
+                                d[i, agv1.CurrentNode] = 10000;
+
+                            }
+                            foreach (string adj in Node.ListNode[agv1.CurrentNode].AdjacentNode)
+                            {
+                                int i = Convert.ToInt32(adj);
+                                if (agv2_nextNode == i)
+                                {
+                                    List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d, agv2.CurrentNode, goal[agv2.ID]);
+                                    agv2.Path[0] = newpath;
+                                    string drop = 
+                                    AGV.FullPathOfAGV[agv2.ID] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                                }
+                            }
 
                         }
-                        foreach (string adj in Node.ListNode[agv1.CurrentNode].AdjacentNode)
+                        else if (agv1.DistanceToCurrentNode > (deltaDistance / 2 - 20.0))
                         {
-                            int i = Convert.ToInt32(adj);
-                            if (agv2_nextNode == i)
+                            foreach (string adj in Node.ListNode[agv1_nextNode].AdjacentNode)
+                            {
+                                int i = Convert.ToInt32(adj);
+                                d[agv1_nextNode, i] = 10000;
+                                d[i, agv1_nextNode] = 10000;
+
+
+
+                            }
+                            foreach (string adj in Node.ListNode[agv1_nextNode].AdjacentNode)
+                            {
+                                int i = Convert.ToInt32(adj);
+                                if (agv2_nextNode == i)
+                                {
+                                    List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d, agv2.CurrentNode, goal[agv2.ID]);
+                                    agv2.Path[0] = newpath;
+                                    AGV.FullPathOfAGV[agv2.ID] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                                }
+                            }
+
+
+                        }
+                        else if (agv1.DistanceToCurrentNode > 20.0 && agv1.DistanceToCurrentNode < (deltaDistance / 2 - 20.0))
+                        {
+                            d[agv1.CurrentNode, agv1_nextNode] = 100000;
+                            d[agv1_nextNode, agv1.CurrentNode] = 100000;
+                            if (agv2.CurrentNode == agv1_nextNode || agv2.CurrentNode == agv1.CurrentNode)
                             {
                                 List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d, agv2.CurrentNode, goal[agv2.ID]);
                                 agv2.Path[0] = newpath;
-                                AGV.FullPathOfAGV[agv2.ID] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                                AGV.FullPathOfAGV[2] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
                             }
                         }
 
+                        return;
                     }
-                    else if (agv1.DistanceToCurrentNode > (deltaDistance / 2 - 20.0))
-                    {
-                        foreach (string adj in Node.ListNode[agv1_nextNode].AdjacentNode)
-                        {
-                            int i = Convert.ToInt32(adj);
-                            d[agv1_nextNode, i] = 10000;
-                            d[i, agv1_nextNode] = 10000;
-
-
-
-                        }
-                        foreach (string adj in Node.ListNode[agv1_nextNode].AdjacentNode)
-                        {
-                            int i = Convert.ToInt32(adj);
-                            if (agv2_nextNode == i)
-                            {
-                                List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d, agv2.CurrentNode, goal[agv2.ID]);
-                                agv2.Path[0] = newpath;
-                                AGV.SimFullPathOfAGV[agv2.ID] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
-                            }
-                        }
-
-
-                    }
-                    else if (agv1.DistanceToCurrentNode > 20.0 && agv1.DistanceToCurrentNode < (deltaDistance / 2 - 20.0))
-                    {
-                        d[agv1.CurrentNode, agv1_nextNode] = 100000;
-                        d[agv1_nextNode, agv1.CurrentNode] = 100000;
-                        if (agv2.CurrentNode == agv1_nextNode || agv2.CurrentNode == agv1.CurrentNode)
-                        {
-                            List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d, agv2.CurrentNode, goal[agv2.ID]);
-                            agv2.Path[0] = newpath;
-                            AGV.SimFullPathOfAGV[2] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
-                        }
-                    }
-
-                    return;
-                }
-                #endregion
+                    #endregion
                 #region AGV1 RUNNING AND AGV2 STOP
                 else if (!agv1.Stop && agv2.Stop)
                 {
@@ -154,7 +156,10 @@ namespace AGV_Form
                             {
                                 List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d2, agv1.CurrentNode, goal[agv1.ID]);
                                 agv1.Path[0] = newpath;
-                                AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                                OldDrop = SplitDrop(AGV.FullPathOfAGV[1]);
+
+                                AGV.FullPathOfAGV[1] = "N-0-"+agv1.CurrentOrient+"-"+Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient)+"-"+OldDrop;
+                                SendPath2AGV();
                             }
                         }
                     }
@@ -174,8 +179,10 @@ namespace AGV_Form
                             {
                                 List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d2, agv1.CurrentNode, goal[agv1.ID]);
                                 agv1.Path[0] = newpath;
-                                AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
-                            }
+                                OldDrop = SplitDrop(AGV.FullPathOfAGV[1]);
+                                AGV.FullPathOfAGV[1] = "N-0-" + agv1.CurrentOrient + "-" + Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient) + "-" + OldDrop;
+                            SendPath2AGV();
+                        }
                         }
                     }
                     else if (agv2.DistanceToCurrentNode > 20.0 && agv2.DistanceToCurrentNode < (delta2Distance / 2 - 20.0))
@@ -186,8 +193,10 @@ namespace AGV_Form
                         {
                             List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, d2, agv1.CurrentNode, goal[agv1.ID]);
                             agv1.Path[0] = newpath;
-                            AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
-                        }
+                             OldDrop = SplitDrop(AGV.FullPathOfAGV[1]);
+                            AGV.FullPathOfAGV[1] = "N-0-" + agv1.CurrentOrient + "-" + Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient) + "-" + OldDrop;
+                        SendPath2AGV();
+                    }
                     }
 
                     return;
@@ -208,7 +217,10 @@ namespace AGV_Form
                         int instead_node = GotoNodeNeibor(agv1.CurrentNode, agv2.CurrentOrient, goal[agv1.ID]);
 
                         List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv1.CurrentNode, instead_node);
-                        AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                        OldDrop = SplitDrop(AGV.FullPathOfAGV[1]);
+                        
+                        AGV.FullPathOfAGV[1] = "N-0-" + agv1.CurrentOrient + "-" + Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient) + "-N-0" ;
+                        SendPath2AGV();
                         goal_type45[agv1.ID] = goal[agv1.ID];
                         agv1.Path[0] = newpath;
                         CollisionType[type] = 4;
@@ -223,7 +235,7 @@ namespace AGV_Form
                         int instead_node = GotoNodeNeibor(agv2.CurrentNode, agv1.CurrentOrient, goal[agv2.ID]);
 
                         List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv2.CurrentNode, instead_node);
-                        AGV.SimFullPathOfAGV[2] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                        AGV.FullPathOfAGV[agv2.ID] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
                         goal_type45[agv2.ID] = goal[agv2.ID];
                         agv2.Path[0] = newpath;
                         CollisionType[type] = 5;
@@ -288,6 +300,7 @@ namespace AGV_Form
                         {
                             agv1.Status = "Pausing";
                             agv1.IsColision = true;
+                            StopAGV();
                             agv2.IsColision = false;
                             CollisionType[type] = 2;// agv2 chay agv 1 dung
                         }
@@ -297,6 +310,7 @@ namespace AGV_Form
                     {
 
                         agv1.IsColision = true;
+                        StopAGV();
                         agv2.IsColision = false;
                         CollisionType[type] = 2;
                         agv1.Status = "Pausing";
@@ -319,7 +333,10 @@ namespace AGV_Form
 
 
                         List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv1.CurrentNode, instead_node);
-                        AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                            OldDrop = SplitDrop(AGV.FullPathOfAGV[1]);
+                        AGV.FullPathOfAGV[1] = "N-0-" + agv1.CurrentOrient + "-" + Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient) + "-N-0";
+                    
+                        SendPath2AGV();
                         goal_type23[agv1.ID] = goal[agv1.ID];
                         agv1.Path[0] = newpath;
                         CollisionType[type] = 3;
@@ -389,8 +406,9 @@ namespace AGV_Form
 
 
                     List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv1.CurrentNode, instead_node);
-                    //path_tam = AGV.FullPathOfAGV[1];
-                    AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                    OldDrop = SplitDrop(AGV.FullPathOfAGV[1]);
+                    AGV.FullPathOfAGV[1] = "N-0-" + agv1.CurrentOrient + "-" + Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient) + "-N-0";
+                    SendPath2AGV();
                     goal_type23[agv1.ID] = goal[agv1.ID];
                     agv1.Path[0] = newpath;
                     CollisionType[type] = 3;
@@ -406,7 +424,8 @@ namespace AGV_Form
                         {
                             Debug.WriteLine("ABCDEFG");
                             List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv1.CurrentNode, goal_type23[agv1.ID]);
-                            AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                            AGV.FullPathOfAGV[1] = "N-0-" + agv1.CurrentOrient + "-" + Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient) + "-" +OldDrop;
+                            SendPath2AGV();
                             agv1.PathCopmpleted = 1;
                             agv1.Path[0] = newpath;
                             CollisionType[type] = 0;
@@ -420,7 +439,8 @@ namespace AGV_Form
                         if (agv2.CurrentNode != goal_type45[agv1.ID])
                         {
                             List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv1.CurrentNode, goal_type45[agv1.ID]);
-                            AGV.SimFullPathOfAGV[1] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                            AGV.FullPathOfAGV[1] = "N-0-" + agv1.CurrentOrient + "-" + Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient) + "-" + OldDrop;
+                            SendPath2AGV();
                             agv1.PathCopmpleted = 1;
                             agv1.Path[0] = newpath;
                             CollisionType[type] = 0;
@@ -434,7 +454,7 @@ namespace AGV_Form
                         if (agv1.CurrentNode != goal_type45[agv2.ID])
                         {
                             List<int> newpath = Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv2.CurrentNode, goal_type45[agv2.ID]);
-                            AGV.SimFullPathOfAGV[2] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
+                            AGV.FullPathOfAGV[agv2.ID] = Navigation.GetNavigationFrame(newpath, Node.MatrixNodeOrient);
                             agv2.PathCopmpleted = 1;
                             agv2.Path[0] = newpath;
                             CollisionType[type] = 0;
@@ -446,6 +466,7 @@ namespace AGV_Form
                     {
 
                         agv1.IsColision = false;
+                        RunAGV();
                         CollisionType[type] = 0;
                         agv1.Status = "Running";
                     }
@@ -518,18 +539,30 @@ namespace AGV_Form
             public static void SendPath2AGV()
             {
                 AGV agv = AGV.ListAGV[0]; 
+                
+
                 Communication.SendPathData(AGV.FullPathOfAGV[agv.ID]);
                 Debug.WriteLine(AGV.FullPathOfAGV[agv.ID]);
                 Display.UpdateComStatus("send", agv.ID, "Send Path 1", Color.Green);
-            //agv.PathCopmpleted = 0;
+                
             }
             public static void StopAGV()
             {
 
             }
-        public static void RunAGV()
-        {
+            public static void RunAGV()
+            {
 
+            }
+        public static string SplitDrop(string fullpath)
+        {
+            string drop = null;
+            
+            for(int i = fullpath.Length-3;i<fullpath.Length;i++)
+            {
+                drop += fullpath[i];
+            }
+            return drop;
         }
         public static int ReturnToNodeForward(int currentNode)
             {

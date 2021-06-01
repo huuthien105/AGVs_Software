@@ -50,6 +50,11 @@ namespace AGV_Form
                     // If not exist, add new AGV into listNewAGV
                     AGV.ListAGV.Add(agv);
                     Display.AddLabelAGV(cbbModeList.Text, agv.ID, agv.CurrentNode, agv.CurrentOrient, agv.DistanceToCurrentNode);
+                    AGV.FullPathOfAGV[agv.ID] = agv.CurrentNode.ToString() + "-G";
+                    agv.Velocity = Convert.ToSingle(txtVelocity.Text);
+                    agv.Stop = true;
+                    Random rd = new Random();
+                    agv.Battery = rd.Next(80, 98);
                     // Put new AGV ID in listView
                     listViewAGV.Items.Add(" AGV#" + agv.ID, 0);
                     MessageBox.Show(" Add AGV#" + agv.ID.ToString() + " Successful !", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -75,6 +80,9 @@ namespace AGV_Form
                     AGV.SimListAGV.Add(agv);
                     AGV.SimFullPathOfAGV[agv.ID] = agv.CurrentNode.ToString() + "-G";
                     Display.AddLabelAGV(cbbModeList.Text, agv.ID, agv.CurrentNode, agv.CurrentOrient, agv.DistanceToCurrentNode);
+                    agv.Stop = true;
+                    Random rd1 = new Random();
+                    agv.Battery = rd1.Next(80,98);
                     // Put new AGV ID in listView
                     listViewAGV.Items.Add(" AGV#" + agv.ID, 0);
                     MessageBox.Show(" Add AGV#" + agv.ID.ToString() + " Successful !", "Updates AGV", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -105,9 +113,14 @@ namespace AGV_Form
                         {
                             AGV.ListAGV.Remove(agvRealRemove);
                             Display.RemoveLabelAGV(agvRealRemove.ID,cbbModeList.Text);
-
+                            
 
                         } 
+                        foreach(Task task in Task.ListTask)
+                        {
+                            if (task.AGVID == agvRealRemove.ID)
+                                Task.ListTask.Remove(task);
+;                        }
                         // Put remaining AGV in listView  
                         listViewAGV.Clear();
                         foreach (AGV agv in AGV.ListAGV)
@@ -124,7 +137,12 @@ namespace AGV_Form
                             AGV.SimListAGV.Remove(agvSimRemove);
                             Display.RemoveLabelAGV(agvSimRemove.ID, cbbModeList.Text);
                         }
-                            
+                        foreach (Task task in Task.SimListTask)
+                        {
+                            if (task.AGVID == agvSimRemove.ID)
+                                Task.SimListTask.Remove(task);
+                            ;
+                        }
                         // Put remaining AGV in listView  
                         listViewAGV.Clear();
                         foreach (AGV agv in AGV.SimListAGV)
@@ -165,7 +183,7 @@ namespace AGV_Form
                 case "Real Time":
 
                     // Put existing AGV in ListAGV and listView
-                    txtVelocity.Enabled = false;
+                    //txtVelocity.Enabled = false;
                     foreach (AGV agv in AGV.ListAGV)
                     {
                         listViewAGV.Items.Add(" AGV#" + agv.ID, 0);

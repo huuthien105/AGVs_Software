@@ -125,7 +125,7 @@ namespace AGV_Form
             {
                 lbModeStatus.Text = "Realtime Mode.";
                 timerListview.Interval = 100;
-                timerSimAGV.Interval = 250;
+                timerSimAGV.Interval = 100;
                 Display.Mode = "Real Time";
                 // Hide all Label AGV in ListAGV in pnFloor
                 HideAGVLabel(AGV.SimListAGV, Display.SimLabelAGV, pnFloor);
@@ -168,13 +168,8 @@ namespace AGV_Form
                     {                        
                         Display.UpdateDisplayAGV(AGV.ListAGV[0].ID, Display.LabelAGV[AGV.ListAGV[0].ID], Display.LabelPalletInAGV[AGV.ListAGV[0].ID]);
                     }
-                    if(AGV.ListAGV.Count>1)
-                    {
-                        Display.UpdateDisplayAGV(AGV.ListAGV[1].ID, Display.SimLabelAGV[AGV.ListAGV[1].ID], Display.SimLabelPalletInAGV[AGV.ListAGV[1].ID]);
-                        Display.UpdatePositionAGV(AGV.ListAGV[1].ID, AGV.ListAGV[1].Velocity, pnFloor);
-
-                    }
-                    //UpdatePathForSimAGVs();
+                    
+                    //
 
                     // Update serial port status
 
@@ -187,9 +182,10 @@ namespace AGV_Form
                     //Display.UpdateListViewTasks(listViewTasks, Task.SimListTask);
                     if (AGV.SimListAGV.Count >= 2)
                     {
+                        //label21.Text = AGV.SimListAGV[0].PathCopmpleted.ToString();
                         Collision.DetectColission(AGV.SimListAGV[0], AGV.SimListAGV[1], 1);
-                        label19.Text = Collision.goal[1].ToString();
-                        label20.Text = Collision.goal_type23[1].ToString();
+                        //label19.Text = Collision.goal[1].ToString();
+                        //label20.Text = Collision.goal_type23[1].ToString();
                     }
 
 
@@ -214,14 +210,21 @@ namespace AGV_Form
             switch (Display.Mode)
             {
                 case "Real Time":
-                    //if(AGV.ListAGV.Count >0)
-                    //    Task.UpdatePathFromTaskOfAGV(AGV.ListAGV.Count[);
-                    foreach(AGV agv in AGV.ListAGV)
+                    if (AGV.ListAGV.Count > 0)
+                        Task.UpdatePathFromTaskOfAGV(AGV.ListAGV[0]);
+                    //foreach(AGV agv in AGV.ListAGV)
+                    //{
+                    //    Task.UpdatePathFromTaskOfAGV(agv);
+                    //}    
+                    if (AGV.ListAGV.Count > 1)
                     {
-                        Task.UpdatePathFromTaskOfAGV(agv);
-                    }    
+                        AGV agv = AGV.ListAGV[1];
+                        Task.UpdatePathForSimAGVs(agv);
+                        Display.UpdatePositionAGV(agv.ID, agv.Velocity, pnFloor);
+                        Display.UpdateDisplayAGV(agv.ID, Display.LabelAGV[agv.ID], Display.LabelPalletInAGV[agv.ID]);
 
-                    
+                    }
+
                     break;
                 case "Simulation":
                     foreach (AGV agv in AGV.SimListAGV)
@@ -434,12 +437,42 @@ namespace AGV_Form
             {
                 btnPause.Text = "   Resume";
                 btnPause.BackColor = Color.DodgerBlue;
-                //btnRun.BackColor = Color.LightSteelBlue;
+                switch (Display.Mode)
+                {
+                    case "Real Time":
+                        foreach (AGV agv in AGV.ListAGV)
+                        {
+                            agv.Stop = true;
+                        }
+                        break;
+                    case "Simulation":
+                        foreach (AGV agv in AGV.SimListAGV)
+                        {
+                            agv.Stop = true;
+                        }
+                        break;
+                }
+                
             }
             else if(btnPause.Text == "   Resume")
             {
                 btnPause.Text = "   Pause";
                 btnPause.BackColor = Color.LightSteelBlue;
+                switch (Display.Mode)
+                {
+                    case "Real Time":
+                        foreach (AGV agv in AGV.ListAGV)
+                        {
+                            agv.Stop = false;
+                        }
+                        break;
+                    case "Simulation":
+                        foreach (AGV agv in AGV.SimListAGV)
+                        {
+                            agv.Stop = false;
+                        }
+                        break;
+                }
             }
             
             switch (Display.Mode)
@@ -460,7 +493,8 @@ namespace AGV_Form
                         timerSimAGV.Enabled = true;
                     break;
                 case "Simulation":
-                    timerSimAGV.Enabled = false;
+
+                    //timerSimAGV.Enabled = false;
                     break;
             }
            
@@ -517,22 +551,21 @@ namespace AGV_Form
         private void btnRun_Click(object sender, EventArgs e)
         {
             btnRun.BackColor = Color.DodgerBlue;
-            btnPause.BackColor = Color.LightSteelBlue;
+            btnPause.BackColor = Color.LightSteelBlue;                  
+            timerSimAGV.Enabled = true;
             switch (Display.Mode)
             {
                 case "Real Time":
-                  //  timerToSendPathAgain = new System.Windows.Forms.Timer();
-                   // timerToSendPathAgain.Tick += new EventHandler(timerToSendPathAgain_Tick);
-                  //  timerToSendPathAgain.Interval = 100;
-                  /*  timerToSendPath2Again = new System.Windows.Forms.Timer();
-                    timerToSendPath2Again.Tick += new EventHandler(timerToSendPath2Again_Tick);
-                    timerToSendPath2Again.Interval = 400;   */
-
-                    timerSimAGV.Enabled = true;
-
+                    foreach(AGV agv in AGV.ListAGV)
+                    {
+                        agv.Stop = false;
+                    }    
                     break;
                 case "Simulation":
-                    timerSimAGV.Enabled = true;
+                    foreach (AGV agv in AGV.SimListAGV)
+                    {
+                        agv.Stop = false;
+                    }
                     break;
             }
         }
@@ -845,5 +878,7 @@ namespace AGV_Form
             string send = "N-0-N-55-N-25-N-4-W-3-W-2-S-10-G-N-0";
             Communication.SendPathData(send);   
         }
+
+        
     }
 }

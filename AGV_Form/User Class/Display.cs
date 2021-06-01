@@ -18,7 +18,7 @@ namespace AGV_Form
         public static Label[] SimLabelAGV = new Label[AGV.MaxNumOfAGVs];
         public static Label[] LabelPalletInAGV = new Label[AGV.MaxNumOfAGVs];
         public static Label[] SimLabelPalletInAGV = new Label[AGV.MaxNumOfAGVs];
-        public static float Scale = 585f / 235; // pixel/cm (2.480851f)
+        public static float Scale = 2.0f;//585f / 235; // pixel/cm (2.480851f)
         public static Label[,] ASlotLabel = new Label[6, 3];
         public static Label[,] BSlotLabel = new Label[6, 3];
         public static Label[,] CSlotLabel = new Label[6, 3];
@@ -179,7 +179,7 @@ namespace AGV_Form
                 {
 
                     agv.DistanceToCurrentNode += speed / 5.2f;
-                    if (agv.DistanceToCurrentNode * 2 >= Node.MatrixNodeDistance[currentNode, nextNode])
+                    if (agv.DistanceToCurrentNode * Scale >= Node.MatrixNodeDistance[currentNode, nextNode])
                     {
 
                         agv.DistanceToCurrentNode = 0;
@@ -443,7 +443,7 @@ namespace AGV_Form
             {
                 RackColumn PickRack = RackColumn.ListColumn.Find(c => c.AtNode == task.PickNode);
                 RackColumn DropRack = RackColumn.ListColumn.Find(c => c.AtNode == task.DropNode);
-                listView.Items.Add(task.Name, 1);
+                listView.Items.Add(task.Name, 0);
                 listView.Items[listView.Items.Count - 1].SubItems.Add(task.Status);
                 listView.Items[listView.Items.Count - 1].SubItems.Add(task.Type);
                 listView.Items[listView.Items.Count - 1].SubItems.Add("AGV#" + task.AGVID.ToString());

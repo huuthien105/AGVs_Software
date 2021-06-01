@@ -47,7 +47,9 @@ namespace AGV_Form
             this.rtxbTemplate = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -212,6 +214,7 @@ namespace AGV_Form
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.Color.Lavender;
+            this.groupBox2.Controls.Add(this.pictureBox7);
             this.groupBox2.Controls.Add(this.txbTemplatePath);
             this.groupBox2.Controls.Add(this.btnSaveAs);
             this.groupBox2.Controls.Add(this.btnPreview);
@@ -225,12 +228,12 @@ namespace AGV_Form
             this.groupBox2.Controls.Add(this.btnLoadTemplate);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.DarkRed;
-            this.groupBox2.Location = new System.Drawing.Point(12, 12);
+            this.groupBox2.Location = new System.Drawing.Point(12, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(754, 640);
             this.groupBox2.TabIndex = 48;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Export Report File";
+            this.groupBox2.Text = "      Export Report File";
             // 
             // label13
             // 
@@ -242,6 +245,17 @@ namespace AGV_Form
             this.label13.Size = new System.Drawing.Size(94, 21);
             this.label13.TabIndex = 61;
             this.label13.Text = "Tab: Report";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(4, 3);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(26, 25);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 48;
+            this.pictureBox7.TabStop = false;
             // 
             // ReportForm
             // 
@@ -255,6 +269,7 @@ namespace AGV_Form
             this.Text = "ReportForm";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -277,5 +292,6 @@ namespace AGV_Form
         private System.Windows.Forms.RichTextBox rtxbTemplate;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }

@@ -57,6 +57,7 @@ namespace AGV_Form
                 Task currentTask = agv.Tasks[0];
                 if (currentTask.Status == "Waiting")
                 {
+                   
                     Debug.WriteLine("AAAAA");
                     agv.Path.Clear();
                     agv.Path.Add(Algorithm.A_starFindPath(Node.ListNode, Node.MatrixNodeDistance, agv.CurrentNode, agv.Tasks[0].PickNode));
